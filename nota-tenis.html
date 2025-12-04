@@ -10,9 +10,12 @@
         :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
         body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
         a { text-decoration: none; color: white; transition: 0.3s; }
+        
+        /* HEADER LOGO */
         header { background: var(--bg-dark); padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
-        .logo { font-family: var(--font-head); font-size: 2rem; font-weight: 700; font-style: italic; }
-        .logo span { color: var(--primary); }
+        .logo-img img { max-height: 50px; width: auto; display: block; }
+        .logo-img:hover { opacity: 0.8; }
+
         .article-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
         .article-header h1 { font-family: var(--font-head); font-size: 2.5rem; line-height: 1.2; color: white; margin-bottom: 10px; }
         .meta-data { color: #888; font-size: 0.9rem; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 20px; }
@@ -20,11 +23,14 @@
         .article-body p { font-size: 1.1rem; line-height: 1.8; color: #d4d4d8; margin-bottom: 20px; }
         .article-body strong { color: #ea580c; } /* Naranja para Tenis */
         .back-btn { display: inline-block; margin-top: 40px; padding: 10px 20px; background: var(--primary); color: white; font-weight: bold; border-radius: 4px; }
+        @media (max-width: 768px) { .logo-img img { max-height: 35px; } }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">FIRST<span>SPORTS</span></div>
+        <a href="index.html" class="logo-img">
+            <img src="logof1.png" alt="F1rstSports">
+        </a>
         <a href="index.html" style="font-weight:bold; color:var(--accent);">VOLVER AL INICIO</a>
     </header>
 
@@ -32,10 +38,11 @@
         <div class="article-header">
             <span style="background:#ea580c; color:white; padding:2px 8px; font-weight:bold; font-size:0.8rem;">TENIS &bull; ATP/WTA</span>
             <h1>Revolución en el tenis: nuevos líderes, récords económicos y una temporada 2026 llena de expectativas</h1>
-            <div class="meta-data">Por Redacción FirstSports &bull; Internacional</div>
+            <div class="meta-data">Por Redacción F1rstSports &bull; Internacional</div>
         </div>
 
-        <img src="https://images.unsplash.com/photo-1622163642998-1ea36b1dde3b?q=80&w=1200&auto=format&fit=crop" class="main-image" alt="Tenis">
+        <!-- IMAGEN CORREGIDA -->
+        <img src="Carlos-Alcaraz.png" class="main-image" alt="Tenis">
 
         <div class="article-body">
             <p><strong>Internacional.—</strong> El mundo del tenis cierra 2025 con transformaciones significativas tanto en el plano deportivo como en el institucional. En la rama masculina, <strong>Carlos Alcaraz</strong> se consolidó como número uno del mundo tras conquistar el US Open, mientras que Jannik Sinner se mantiene como su principal perseguidor en una rivalidad que marca el inicio de una nueva era.</p>
