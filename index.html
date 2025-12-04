@@ -28,13 +28,13 @@
         a:hover { color: var(--accent); }
 
         /* --- TOP BAR --- */
-        .top-bar { background: black; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; border-bottom: 1px solid #333; }
+        .top-bar { background: black; padding: 10px 2%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; border-bottom: 1px solid #333; }
         .social-icons a { margin-left: 15px; font-size: 1rem; }
 
         /* --- HEADER --- */
         header { 
             background: var(--bg-dark); 
-            padding: 15px 5%; 
+            padding: 15px 2%; /* Margen reducido para aprovechar ancho */
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
@@ -46,14 +46,12 @@
         
         .logo-img img { max-height: 50px; width: auto; display: block; }
 
-        /* MENÚ DE ESCRITORIO */
-        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
-        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1rem; color: #ccc; }
+        nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1.1rem; color: #ccc; }
         nav a:hover, nav a.active { color: white; border-bottom: 2px solid var(--accent); }
 
-        /* BOTÓN HAMBURGUESA (Oculto en PC) */
+        /* BOTÓN HAMBURGUESA */
         .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
-
         .cta-btn { border:1px solid var(--accent); color:var(--accent); padding: 5px 15px; font-weight:bold; }
 
         /* --- TICKER --- */
@@ -63,119 +61,156 @@
         .ticker-item::before { content: "⚡ "; color: var(--accent); }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- LAYOUT --- */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        /* --- LAYOUT FULL WIDTH (MODIFICADO) --- */
+        .container { 
+            width: 98%; /* Ocupa casi toda la pantalla */
+            max-width: 1800px; /* Límite para pantallas 4K */
+            margin: 20px auto; 
+            padding: 0 10px;
+            display: flex;       /* Usamos Flexbox vertical */
+            flex-direction: column; /* Elementos uno debajo del otro */
+            gap: 40px;
+        }
 
-        /* --- CARRUSEL (SLIDER) --- */
+        /* --- CARRUSEL --- */
         .carousel-container {
             position: relative;
             width: 100%;
-            height: 500px; /* Altura del slider */
+            height: 600px; /* Más alto para impactar en pantalla completa */
             overflow: hidden;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            border: 1px solid #333;
+            border-radius: 0; /* Sin bordes redondos para look cinematográfico */
+            border-bottom: 4px solid var(--accent);
         }
 
         .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            display: flex; /* Para centrar contenido si es necesario */
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 0.5s ease-in-out; display: flex;
         }
-
         .slide.active { opacity: 1; z-index: 1; }
-
-        .slide img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: brightness(0.6); /* Oscurecer para leer texto */
-        }
+        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
 
         .slide-content {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%;
-            padding: 40px;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            z-index: 2;
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px;
+            background: linear-gradient(to top, black, transparent); z-index: 2;
         }
 
         .slide-tag {
-            background: var(--accent); color: black; padding: 5px 10px;
+            background: var(--accent); color: black; padding: 5px 15px;
             font-family: var(--font-head); font-weight: bold; text-transform: uppercase;
-            font-size: 0.8rem; display: inline-block; margin-bottom: 10px;
+            font-size: 1rem; display: inline-block; margin-bottom: 15px;
         }
 
         .slide-title {
-            font-family: var(--font-head); font-size: 2.5rem; margin: 0 0 10px 0; line-height: 1.1;
-            text-shadow: 2px 2px 4px black;
+            font-family: var(--font-head); font-size: 4rem; /* Título gigante */
+            margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black;
         }
 
-        /* FLECHAS DEL CARRUSEL */
         .carousel-btn {
             position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(0,0,0,0.5); color: white; border: none;
-            font-size: 2rem; padding: 10px 15px; cursor: pointer; z-index: 10;
+            font-size: 3rem; padding: 20px; cursor: pointer; z-index: 10;
             transition: 0.3s;
         }
         .carousel-btn:hover { background: var(--accent); color: black; }
-        .prev { left: 10px; }
-        .next { right: 10px; }
+        .prev { left: 20px; }
+        .next { right: 20px; }
 
-        /* --- NOTICIAS ABAJO (GRID) --- */
+        /* --- NOTICIAS GRID (Ahora ocupa todo el ancho) --- */
         .latest-news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            /* Columnas automáticas, mínimo 350px cada una */
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
         }
 
-        .news-card { background: var(--bg-card); border: 1px solid #333; border-radius: 8px; overflow: hidden; transition: 0.3s; }
+        .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; }
         .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 10px 0; line-height: 1.2; }
-        .card-excerpt { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 15px; }
-        .read-btn { color: var(--accent); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
+        .card-img { width: 100%; height: 250px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card-title { font-family: var(--font-head); font-size: 1.5rem; margin: 10px 0; line-height: 1.2; }
+        .card-excerpt { font-size: 1rem; color: var(--text-sec); margin-bottom: 15px; }
+        .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; }
 
-        /* --- SIDEBAR --- */
-        .sidebar-box { background: var(--bg-card); padding: 25px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid var(--primary); }
-        .sidebar-title { font-family: var(--font-head); font-size: 1.5rem; margin-top: 0; color: white; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
-        .league-list li { padding: 10px 0; border-bottom: 1px dashed #333; display: flex; justify-content: space-between; color: var(--text-sec); }
-        .league-list li:last-child { border: none; }
-        
-        /* FOOTER */
-        footer { background: black; padding: 50px 5%; border-top: 1px solid #333; text-align: center; margin-top: 50px; }
+        /* --- SECCIÓN LIGAS (AHORA ABAJO Y HORIZONTAL) --- */
+        .bottom-section {
+            background: #111;
+            padding: 40px;
+            border-top: 3px solid var(--primary);
+            margin-top: 20px;
+        }
 
-        /* --- RESPONSIVE (MÓVIL) --- */
+        .bottom-title {
+            font-family: var(--font-head);
+            font-size: 2rem;
+            color: white;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Convertimos la lista vertical en un GRID HORIZONTAL */
+        .league-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Se adaptan al ancho */
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .league-item {
+            background: var(--bg-card);
+            border: 1px solid #333;
+            padding: 20px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .league-item:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .league-item span {
+            display: block;
+            font-family: var(--font-head);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .league-item i { font-size: 2rem; color: var(--accent); }
+        .league-item:hover i { color: white; }
+
+        /* --- FOOTER --- */
+        footer { background: black; padding: 50px 5%; border-top: 1px solid #333; text-align: center; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            .container { grid-template-columns: 1fr; }
-            .carousel-container { height: 400px; } /* Slider más chico en cel */
-            .slide-title { font-size: 1.5rem; }
+            .slide-title { font-size: 2rem; }
+            .carousel-container { height: 400px; }
+            .slide-content { padding: 20px; }
             
-            /* MENÚ HAMBURGUESA ACTIVADO */
+            /* Menú Hamburguesa */
             .hamburger { display: block; }
-            .cta-btn { display: none; } /* Ocultar botón mundial en móvil por espacio */
+            .cta-btn { display: none; }
             
             nav {
-                position: absolute;
-                top: 70px; left: 0; width: 100%;
-                background: var(--bg-dark);
-                border-bottom: 3px solid var(--primary);
-                display: none; /* Oculto por defecto */
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+                position: absolute; top: 80px; left: 0; width: 100%;
+                background: var(--bg-dark); border-bottom: 3px solid var(--primary);
+                display: none; flex-direction: column; padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.9);
             }
+            nav.active { display: flex; }
             
-            nav.active { display: flex; } /* Se muestra con JS */
-            nav ul { flex-direction: column; align-items: center; }
+            /* Ajuste de grid de ligas en móvil */
+            .league-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP BAR -->
     <div class="top-bar">
         <div>CDMX | 04 Diciembre 2025</div>
         <div class="social-icons">
@@ -185,13 +220,11 @@
         </div>
     </div>
 
-    <!-- HEADER -->
     <header>
         <a href="index.html" class="logo-img">
             <img src="logof1.png" alt="F1rstSports">
         </a>
 
-        <!-- Botón Hamburguesa -->
         <button class="hamburger" onclick="toggleMenu()">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -210,7 +243,6 @@
         <a href="nota-sorteo.html" class="cta-btn">MUNDIAL '26</a>
     </header>
 
-    <!-- TICKER -->
     <div class="ticker-wrap">
         <div class="ticker">
             <span class="ticker-item">MÉXICO CABEZA DE SERIE EN 2026</span>
@@ -219,91 +251,119 @@
         </div>
     </div>
 
+    <!-- CONTENEDOR ANCHO COMPLETO -->
     <div class="container">
         
-        <main>
-            <!-- CARRUSEL PRINCIPAL (SLIDER) -->
-            <div class="carousel-container">
-                
-                <!-- SLIDE 1: SORTEO -->
-                <div class="slide active">
-                    <img src="sorteo.png" alt="Sorteo Mundial">
-                    <div class="slide-content">
-                        <span class="slide-tag">MUNDIAL 2026</span>
-                        <h2 class="slide-title"><a href="nota-sorteo.html">Sorteo del Mundial 2026: lo que significa para México</a></h2>
-                        <a href="nota-sorteo.html" class="read-btn">LEER MÁS &rarr;</a>
-                    </div>
+        <!-- CARRUSEL -->
+        <div class="carousel-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="sorteo.png" alt="Sorteo Mundial">
+                <div class="slide-content">
+                    <span class="slide-tag">MUNDIAL 2026</span>
+                    <h2 class="slide-title"><a href="nota-sorteo.html">Sorteo 2026: México cabeza de serie</a></h2>
+                    <a href="nota-sorteo.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
-
-                <!-- SLIDE 2: CRISIS MEXICO -->
-                <div class="slide">
-                    <img src="2026.jpg" alt="Crisis Tri">
-                    <div class="slide-content">
-                        <span class="slide-tag">SELECCIÓN</span>
-                        <h2 class="slide-title"><a href="nota-mexico.html">Crisis en el Tri: Dudas y presión rumbo al 2026</a></h2>
-                        <a href="nota-mexico.html" class="read-btn">LEER MÁS &rarr;</a>
-                    </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="2026.jpg" alt="Crisis Tri">
+                <div class="slide-content">
+                    <span class="slide-tag">SELECCIÓN</span>
+                    <h2 class="slide-title"><a href="nota-mexico.html">Crisis en el Tri: Presión máxima</a></h2>
+                    <a href="nota-mexico.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
-
-                <!-- SLIDE 3: NFL -->
-                <div class="slide">
-                    <img src="Super_Bowl_LIX.png" alt="NFL">
-                    <div class="slide-content">
-                        <span class="slide-tag">NFL</span>
-                        <h2 class="slide-title"><a href="nota-nfl.html">Favoritos y dudas camino al Super Bowl LIX</a></h2>
-                        <a href="nota-nfl.html" class="read-btn">LEER MÁS &rarr;</a>
-                    </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="Super_Bowl_LIX.png" alt="NFL">
+                <div class="slide-content">
+                    <span class="slide-tag">NFL</span>
+                    <h2 class="slide-title"><a href="nota-nfl.html">Camino al Super Bowl LIX</a></h2>
+                    <a href="nota-nfl.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
-
-                <!-- Botones Flechas -->
-                <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-                <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
             </div>
 
-            <!-- SECCIÓN DE NOTICIAS SECUNDARIAS (GRID) -->
-            <h3 style="font-family:'Chakra Petch'; border-left:4px solid var(--accent); padding-left:10px; margin-bottom:20px;">MÁS NOTICIAS</h3>
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+
+        <!-- MÁS NOTICIAS (GRID EXPANDIDO) -->
+        <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
+        
+        <div class="latest-news-grid">
             
-            <div class="latest-news-grid">
-                
-                <!-- NOTA: TENIS -->
-                <article class="news-card">
-                    <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
-                    <div class="card-body">
-                        <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">TENIS</span>
-                        <h3 class="card-title"><a href="nota-tenis.html">Revolución en el tenis: Nuevos líderes y récords</a></h3>
-                        <p class="card-excerpt">Carlos Alcaraz se consolida como número uno tras el US Open...</p>
-                        <a href="nota-tenis.html" class="read-btn">LEER &rarr;</a>
-                    </div>
-                </article>
+            <!-- Nota Tenis -->
+            <article class="news-card">
+                <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">TENIS</span>
+                    <h3 class="card-title"><a href="nota-tenis.html">Revolución: Alcaraz y nuevos récords</a></h3>
+                    <p class="card-excerpt">El tenis vive una era dorada con premios históricos.</p>
+                    <a href="nota-tenis.html" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
 
-                <!-- Tarjeta de Relleno (Ejemplo) -->
-                <article class="news-card">
-                    <div style="background:#333; height:200px; display:flex; align-items:center; justify-content:center; color:#555;">FOTO</div>
-                    <div class="card-body">
-                        <span style="color:var(--accent); font-weight:bold; font-size:0.8rem;">LIGA MX</span>
-                        <h3 class="card-title"><a href="#">El mercado de fichajes se enciende</a></h3>
-                        <p class="card-excerpt">Rumores y confirmaciones para el Clausura 2026.</p>
-                    </div>
-                </article>
+            <!-- Nota Extra 1 (Relleno para que veas el grid) -->
+            <article class="news-card">
+                <div style="background:#222; height:250px; display:flex; align-items:center; justify-content:center; font-size:3rem; color:#444;"><i class="fa-solid fa-futbol"></i></div>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">LIGA MX</span>
+                    <h3 class="card-title"><a href="#">Fichajes Bomba del Clausura 2026</a></h3>
+                    <p class="card-excerpt">Rumores y confirmaciones del mercado de piernas.</p>
+                    <a href="#" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
 
-            </div>
-        </main>
+            <!-- Nota Extra 2 -->
+            <article class="news-card">
+                <div style="background:#222; height:250px; display:flex; align-items:center; justify-content:center; font-size:3rem; color:#444;"><i class="fa-solid fa-car"></i></div>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">F1</span>
+                    <h3 class="card-title"><a href="#">Checo Pérez renueva con Red Bull</a></h3>
+                    <p class="card-excerpt">El piloto mexicano asegura su asiento dos años más.</p>
+                    <a href="#" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
 
-        <aside>
-            <div class="sidebar-box">
-                <h3 class="sidebar-title">Ligas Principales</h3>
-                <ul class="league-list" style="list-style:none; padding:0;">
-                    <li><span>NFL</span> <i class="fa-solid fa-chevron-right"></i></li>
-                    <li><span>Tenis</span> <i class="fa-solid fa-chevron-right"></i></li>
-                    <li><span>Liga MX</span> <i class="fa-solid fa-chevron-right"></i></li>
-                    <li><span>Champions</span> <i class="fa-solid fa-chevron-right"></i></li>
-                </ul>
+        </div>
+
+        <!-- SECCIÓN DE LIGAS (AHORA ABAJO Y HORIZONTAL) -->
+        <div class="bottom-section">
+            <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
+            <ul class="league-grid">
+                <li class="league-item">
+                    <i class="fa-solid fa-football"></i>
+                    <span>NFL</span>
+                </li>
+                <li class="league-item">
+                    <i class="fa-solid fa-table-tennis"></i>
+                    <span>Tenis</span>
+                </li>
+                <li class="league-item">
+                    <i class="fa-solid fa-futbol"></i>
+                    <span>Liga MX</span>
+                </li>
+                <li class="league-item">
+                    <i class="fa-solid fa-flag-usa"></i>
+                    <span>MLS</span>
+                </li>
+                <li class="league-item">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span>Champions</span>
+                </li>
+                <li class="league-item">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <span>Libertadores</span>
+                </li>
+            </ul>
+            
+            <!-- Banner Publicidad Horizontal -->
+            <div style="margin-top:40px; background:#000; border:1px solid #333; padding:30px; text-align:center;">
+                <h4 style="color:white; margin:0;">ESPACIO PUBLICITARIO DISPONIBLE</h4>
+                <p style="color:#666; font-size:0.8rem;">Contáctanos para anunciarte aquí</p>
             </div>
-            <div class="sidebar-box" style="text-align:center; background: #000; border:1px solid #333;">
-                <h4 style="color:white;">TU MARCA AQUÍ</h4>
-                <p style="font-size:0.8rem; color:#aaa;">Publicidad</p>
-            </div>
-        </aside>
+        </div>
 
     </div>
 
@@ -314,28 +374,21 @@
         <p style="color:#555; font-size:0.8rem;">&copy; 2025 F1rstSports Media.</p>
     </footer>
 
-    <!-- JAVASCRIPT (Lógica del Carrusel y Menú) -->
     <script>
-        // --- MENÚ HAMBURGUESA ---
         function toggleMenu() {
             const nav = document.getElementById('mainNav');
             nav.classList.toggle('active');
         }
 
-        // --- CARRUSEL ---
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
 
         function showSlide(index) {
-            // Reiniciar si se pasa
             if (index >= totalSlides) currentSlide = 0;
             else if (index < 0) currentSlide = totalSlides - 1;
             else currentSlide = index;
-
-            // Quitar clase active a todos
             slides.forEach(slide => slide.classList.remove('active'));
-            // Poner clase active al actual
             slides[currentSlide].classList.add('active');
         }
 
@@ -343,10 +396,7 @@
             showSlide(currentSlide + direction);
         }
 
-        // Cambio automático cada 5 segundos
-        setInterval(() => {
-            moveSlide(1);
-        }, 5000);
+        setInterval(() => { moveSlide(1); }, 5000);
     </script>
 
 </body>
