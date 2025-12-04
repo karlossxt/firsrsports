@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FirstSports | El Líder en Deportes</title>
+    <title>F1rstSports | El Líder en Deportes</title>
     
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,8 @@
         :root {
             --bg-dark: #09090b;
             --bg-card: #18181b;
-            --accent: #ccff00;
-            --primary: #2563eb;
+            --accent: #ccff00; /* Verde Neón */
+            --primary: #2563eb; /* Azul Royal */
             --text-main: #ffffff;
             --text-sec: #a1a1aa;
             --font-head: 'Chakra Petch', sans-serif;
@@ -34,10 +34,15 @@
 
         /* --- HEADER & NAV --- */
         header { background: var(--bg-dark); padding: 20px 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--primary); }
+        
+        /* LOGO NUEVO F1RST */
         .logo { font-family: var(--font-head); font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; font-style: italic; }
         .logo span { color: var(--primary); }
-        nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1.1rem; }
+        .logo .num { color: var(--accent); font-style: normal; } /* El "1" en otro color */
+
+        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1rem; color: #ccc; }
+        nav a:hover, nav a.active { color: white; border-bottom: 2px solid var(--accent); }
 
         /* --- TICKER --- */
         .ticker-wrap { background: var(--primary); color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-family: var(--font-head); font-size: 0.9rem; font-weight: bold; }
@@ -101,18 +106,21 @@
 
     <!-- HEADER -->
     <header>
-        <div class="logo">FIRST<span>SPORTS</span></div>
+        <!-- LOGO ACTUALIZADO CON EL "1" -->
+        <div class="logo">F<span class="num">1</span>RST<span>SPORTS</span></div>
         <nav>
             <ul>
-                <li><a href="#" style="color:var(--accent)">Inicio</a></li>
-                <!-- CORREGIDO AQUÍ: Los enlaces del menú ahora están bien escritos -->
-                <li><a href="nota-mexico.html">Fútbol</a></li>
+                <!-- MENÚ ACTUALIZADO -->
+                <li><a href="index.html" class="active">Inicio</a></li>
                 <li><a href="nota-nfl.html">NFL</a></li>
                 <li><a href="nota-tenis.html">Tenis</a></li>
-                <li><a href="#">Copa 2026</a></li>
+                <li><a href="#">Liga MX</a></li>
+                <li><a href="#">MLS</a></li>
+                <li><a href="#">Champions</a></li>
+                <li><a href="#">Libertadores</a></li>
             </ul>
         </nav>
-        <a href="#" style="border:1px solid white; padding: 5px 15px; font-weight:bold;">EN VIVO</a>
+        <a href="#" style="border:1px solid var(--accent); color:var(--accent); padding: 5px 15px; font-weight:bold;">MUNDIAL '26</a>
     </header>
 
     <!-- TICKER -->
@@ -130,22 +138,20 @@
         <main>
             <!-- NOTA 1: MÉXICO (HERO) -->
             <article class="hero-article">
-                <a href="nota-mexico.html"> <!-- CORREGIDO: Imagen clickable -->
-                    <img src="2026.jpg" class="hero-img" alt="Selección Mexicana">
+                <a href="nota-mexico.html">
+                    <img src="img/mexico.jpg" class="hero-img" alt="Selección Mexicana">
                 </a>
                 
                 <div class="hero-content">
                     <span class="tag">RUMBO AL MUNDIAL 2026</span>
-                    <!-- CORREGIDO: El título ahora es un enlace -->
                     <h1 class="hero-title"><a href="nota-mexico.html" style="color:white;">Crisis en la Selección Mexicana: Dudas, presión y un futuro incierto</a></h1>
                     <div class="article-meta">
                         <span><i class="fa-regular fa-clock"></i> Hace 2 horas</span> &bull; 
-                        <span><i class="fa-regular fa-user"></i> Redacción FirstSports</span>
+                        <span><i class="fa-regular fa-user"></i> Redacción F1rstSports</span>
                     </div>
                     <p class="lead-text">
                         La Selección Mexicana atraviesa uno de los momentos más tensos. A pesar de haber conquistado la Nations League y la Copa Oro, el equipo llega a finales de 2025 con una racha negativa...
                     </p>
-                    <!-- Agregué botón Leer Más aquí también -->
                     <a href="nota-mexico.html" class="read-btn" style="display:inline-block; margin-top:10px;">LEER NOTA COMPLETA &rarr;</a>
                 </div>
             </article>
@@ -155,28 +161,26 @@
                 
                 <!-- NOTA 2: NFL -->
                 <article class="news-card">
-                    <a href="nota-nfl.html"><img src="Super_Bowl_LIX.png" class="card-img" alt="NFL"></a>
+                    <a href="nota-nfl.html"><img src="img/nfl.jpg" class="card-img" alt="NFL"></a>
                     <div class="card-body">
                         <span class="tag" style="background:#2563eb; color:white;">NFL 2025-26</span>
                         <h3 class="card-title"><a href="nota-nfl.html">Favoritos, dudas y el camino hacia el Super Bowl</a></h3>
                         <p class="card-excerpt">
                             La temporada entra en su tramo decisivo. Philadelphia Eagles, Kansas City Chiefs y Baltimore Ravens despuntan como favoritos...
                         </p>
-                        <!-- CORREGIDO: El botón ahora lleva a la nota -->
                         <a href="nota-nfl.html" class="read-btn">LEER MÁS &rarr;</a>
                     </div>
                 </article>
 
                 <!-- NOTA 3: TENIS -->
                 <article class="news-card">
-                    <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
+                    <a href="nota-tenis.html"><img src="img/tenis.jpg" class="card-img" alt="Tenis"></a>
                     <div class="card-body">
                         <span class="tag" style="background:#ea580c; color:white;">TENIS MUNDIAL</span>
                         <h3 class="card-title"><a href="nota-tenis.html">Revolución en el tenis: Nuevos líderes y récords económicos</a></h3>
                         <p class="card-excerpt">
                             Carlos Alcaraz se consolida como número uno tras el US Open, mientras Elena Rybakina sorprende en las WTA Finals...
                         </p>
-                        <!-- CORREGIDO: El botón ahora lleva a la nota -->
                         <a href="nota-tenis.html" class="read-btn">LEER MÁS &rarr;</a>
                     </div>
                 </article>
@@ -186,33 +190,34 @@
 
         <aside>
             <div class="sidebar-box">
-                <h3 class="sidebar-title">Cobertura Total</h3>
+                <h3 class="sidebar-title">Ligas Principales</h3>
                 <ul class="league-list" style="list-style:none; padding:0;">
-                    <li><span>Liga MX</span> <i class="fa-solid fa-chevron-right"></i></li>
-                    <li><span>Champions League</span> <i class="fa-solid fa-chevron-right"></i></li>
-                    <li><span>Copa Libertadores</span> <i class="fa-solid fa-chevron-right"></i></li>
-                    <li><span>NFL</span> <i class="fa-solid fa-chevron-right"></i></li>
-                    <li><span>Fórmula 1</span> <i class="fa-solid fa-chevron-right"></i></li>
+                    <li><span><i class="fa-solid fa-football"></i> NFL</span> <i class="fa-solid fa-chevron-right"></i></li>
+                    <li><span><i class="fa-solid fa-table-tennis"></i> Tenis</span> <i class="fa-solid fa-chevron-right"></i></li>
+                    <li><span><i class="fa-solid fa-futbol"></i> Liga MX</span> <i class="fa-solid fa-chevron-right"></i></li>
+                    <li><span><i class="fa-solid fa-flag-usa"></i> MLS</span> <i class="fa-solid fa-chevron-right"></i></li>
+                    <li><span><i class="fa-solid fa-trophy"></i> Champions</span> <i class="fa-solid fa-chevron-right"></i></li>
+                    <li><span><i class="fa-solid fa-earth-americas"></i> Libertadores</span> <i class="fa-solid fa-chevron-right"></i></li>
                 </ul>
             </div>
             <div class="sidebar-box" style="text-align:center; background: #000; border:1px solid #333;">
                 <p style="color:#555; font-size:0.7rem;">PUBLICIDAD</p>
-                <h4 style="color:white;">SUSCRÍBETE AL NEWSLETTER</h4>
-                <p style="font-size:0.8rem; color:#aaa;">Recibe el resumen diario.</p>
-                <button style="background:var(--accent); border:none; padding:10px 20px; font-weight:bold; cursor:pointer;">SUSCRIBIRME</button>
+                <h4 style="color:white;">TU MARCA AQUÍ</h4>
+                <p style="font-size:0.8rem; color:#aaa;">Llega a miles de fanáticos.</p>
+                <button style="background:var(--accent); border:none; padding:10px 20px; font-weight:bold; cursor:pointer;">CONTACTAR</button>
             </div>
         </aside>
 
     </div>
 
     <footer>
-        <div class="logo" style="margin-bottom:20px;">FIRST<span>SPORTS</span></div>
+        <div class="logo" style="margin-bottom:20px;">F<span class="num">1</span>RST<span>SPORTS</span></div>
         <div style="font-size:1.5rem; margin-bottom:20px;">
             <i class="fa-brands fa-facebook" style="margin:0 10px;"></i>
             <i class="fa-brands fa-instagram" style="margin:0 10px;"></i>
             <i class="fa-brands fa-twitter" style="margin:0 10px;"></i>
         </div>
-        <p style="color:#555; font-size:0.8rem;">&copy; 2025 FirstSports Media Group. Todos los derechos reservados.</p>
+        <p style="color:#555; font-size:0.8rem;">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
 </body>
