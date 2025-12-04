@@ -35,9 +35,9 @@
         /* --- HEADER & NAV --- */
         header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--primary); }
         
-        /* ESTILOS DEL LOGO IMAGEN */
+        /* LOGO IMAGEN */
         .logo-img img {
-            max-height: 50px; /* Ajustado para que se vea bien */
+            max-height: 50px;
             width: auto;
             display: block;
         }
@@ -98,7 +98,7 @@
 
     <!-- TOP BAR -->
     <div class="top-bar">
-        <div>CDMX | 03 Diciembre 2025</div>
+        <div>CDMX | 04 Diciembre 2025</div>
         <div class="social-icons">
             <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -110,7 +110,6 @@
 
     <!-- HEADER -->
     <header>
-        <!-- LOGO IMAGEN CORREGIDO (Sin 'img/') -->
         <a href="index.html" class="logo-img">
             <img src="logof1.png" alt="F1rstSports">
         </a>
@@ -126,13 +125,13 @@
                 <li><a href="#">Libertadores</a></li>
             </ul>
         </nav>
-        <a href="#" style="border:1px solid var(--accent); color:var(--accent); padding: 5px 15px; font-weight:bold;">MUNDIAL '26</a>
+        <a href="nota-sorteo.html" style="border:1px solid var(--accent); color:var(--accent); padding: 5px 15px; font-weight:bold;">MUNDIAL '26</a>
     </header>
 
     <!-- TICKER -->
     <div class="ticker-wrap">
         <div class="ticker">
-            <span class="ticker-item">MÉXICO SE PREPARA PARA EL MUNDIAL 2026</span>
+            <span class="ticker-item">SORTEO MUNDIAL 2026: MÉXICO CABEZA DE SERIE</span>
             <span class="ticker-item">SUPER BOWL LIX: FAVORITOS CONFIRMADOS</span>
             <span class="ticker-item">CARLOS ALCARAZ NÚMERO 1 DEL MUNDO</span>
             <span class="ticker-item">CHIEFS BUSCAN EL TRICAMPEONATO</span>
@@ -142,34 +141,47 @@
     <div class="container">
         
         <main>
-            <!-- NOTA 1: MÉXICO (HERO) -->
+            <!-- NOTA 1: SORTEO MUNDIAL (NUEVO HERO) -->
             <article class="hero-article">
-                <a href="nota-mexico.html">
-                    <!-- RUTA CORREGIDA (Sin 'img/') -->
-                    <img src="2026.jpg" class="hero-img" alt="Selección Mexicana">
+                <a href="nota-sorteo.html">
+                    <img src="sorteo.png" class="hero-img" alt="Sorteo Mundial 2026">
                 </a>
                 
                 <div class="hero-content">
-                    <span class="tag">RUMBO AL MUNDIAL 2026</span>
-                    <h1 class="hero-title"><a href="nota-mexico.html" style="color:white;">Crisis en la Selección Mexicana: Dudas, presión y un futuro incierto</a></h1>
+                    <span class="tag">MUNDIAL 2026 &bull; FIFA</span>
+                    <h1 class="hero-title"><a href="nota-sorteo.html" style="color:white;">Sorteo del Mundial 2026: lo que viene y qué significa para México</a></h1>
                     <div class="article-meta">
-                        <span><i class="fa-regular fa-clock"></i> Hace 2 horas</span> &bull; 
+                        <span><i class="fa-regular fa-clock"></i> Hace 1 hora</span> &bull; 
                         <span><i class="fa-regular fa-user"></i> Redacción F1rstSports</span>
                     </div>
                     <p class="lead-text">
-                        La Selección Mexicana atraviesa uno de los momentos más tensos. A pesar de haber conquistado la Nations League y la Copa Oro, el equipo llega a finales de 2025 con una racha negativa...
+                        Por primera vez en la historia, la Copa del Mundo contará con 48 selecciones. México, como anfitrión, entra en el bombo 1, asegurando un lugar preferencial. ¿Qué implica esto para el Tri?
                     </p>
-                    <a href="nota-mexico.html" class="read-btn" style="display:inline-block; margin-top:10px;">LEER NOTA COMPLETA &rarr;</a>
+                    <a href="nota-sorteo.html" class="read-btn" style="display:inline-block; margin-top:10px;">LEER NOTA COMPLETA &rarr;</a>
                 </div>
             </article>
 
             <!-- NOTAS SECUNDARIAS (GRID) -->
             <div class="secondary-grid">
                 
-                <!-- NOTA 2: NFL -->
+                <!-- NOTA 2: CRISIS MEXICO (Moviéndose de Hero a Secundaria) -->
+                <article class="news-card">
+                    <a href="nota-mexico.html">
+                        <img src="2026.jpg" class="card-img" alt="Selección Mexicana">
+                    </a>
+                    <div class="card-body">
+                        <span class="tag" style="background:#009e49; color:white;">FÚTBOL</span>
+                        <h3 class="card-title"><a href="nota-mexico.html">Crisis en el Tri: Dudas y presión rumbo al 2026</a></h3>
+                        <p class="card-excerpt">
+                            A pesar de haber conquistado la Nations League, el equipo llega a finales de 2025 con una racha negativa y mucha incertidumbre...
+                        </p>
+                        <a href="nota-mexico.html" class="read-btn">LEER MÁS &rarr;</a>
+                    </div>
+                </article>
+
+                <!-- NOTA 3: NFL -->
                 <article class="news-card">
                     <a href="nota-nfl.html">
-                        <!-- RUTA CORREGIDA (Sin 'img/') -->
                         <img src="Super_Bowl_LIX.png" class="card-img" alt="NFL">
                     </a>
                     <div class="card-body">
@@ -179,22 +191,6 @@
                              La temporada entra en su tramo decisivo. Philadelphia Eagles, Kansas City Chiefs y Baltimore Ravens despuntan como favoritos...
                         </p>
                         <a href="nota-nfl.html" class="read-btn">LEER MÁS &rarr;</a>
-                    </div>
-                </article>
-
-                <!-- NOTA 3: TENIS -->
-                <article class="news-card">
-                    <a href="nota-tenis.html">
-                        <!-- RUTA CORREGIDA (Sin 'img/') -->
-                        <img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis">
-                    </a>
-                    <div class="card-body">
-                        <span class="tag" style="background:#ea580c; color:white;">TENIS MUNDIAL</span>
-                        <h3 class="card-title"><a href="nota-tenis.html">Revolución en el tenis: Nuevos líderes y récords económicos</a></h3>
-                        <p class="card-excerpt">
-                            Carlos Alcaraz se consolida como número uno tras el US Open, mientras Elena Rybakina sorprende en las WTA Finals...
-                        </p>
-                        <a href="nota-tenis.html" class="read-btn">LEER MÁS &rarr;</a>
                     </div>
                 </article>
 
@@ -224,7 +220,6 @@
     </div>
 
     <footer>
-        <!-- LOGO TAMBIÉN EN EL FOOTER -->
         <div style="margin-bottom:20px;">
             <a href="#" class="logo-img">
                 <img src="logof1.png" alt="F1rstSports" style="margin: 0 auto;">
