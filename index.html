@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1rstSports | El Líder en Deportes</title>
     
+    <!-- AQUÍ ESTÁ EL ÍCONO DE LA PESTAÑA (FAVICON) -->
+    <link rel="icon" type="image/png" href="logof1.png">
+
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
@@ -169,7 +172,7 @@
 
     <div class="ticker-wrap">
         <div class="ticker">
-            <span class="ticker-item">MÉXICO EN EL GRUPO A CON SUDÁFRICA Y COREA</span>
+            <span class="ticker-item">MÉXICO CABEZA DE SERIE EN 2026</span>
             <span class="ticker-item">SUPER BOWL LIX: TODO LISTO</span>
             <span class="ticker-item">ALCARAZ DOMINA EL RANKING</span>
         </div>
@@ -178,10 +181,10 @@
     <!-- CONTENEDOR ANCHO COMPLETO -->
     <div class="container">
         
-        <!-- CARRUSEL -->
+        <!-- CARRUSEL (ACTUALIZADO CON MÉXICO) -->
         <div class="carousel-container">
             
-            <!-- Slide 1: NOTA NUEVA (MÉXICO GRUPO A) -->
+            <!-- Slide 1: MÉXICO GRUPO A (Active) -->
             <div class="slide active">
                 <img src="mexico-grupo.jpg" alt="Rivales de México">
                 <div class="slide-content">
@@ -220,7 +223,7 @@
         
         <div class="latest-news-grid">
             
-            <!-- Nota: Sorteo General (Movida aquí) -->
+            <!-- Nota: Sorteo General -->
             <article class="news-card">
                 <a href="nota-sorteo.html"><img src="sorteo.png" class="card-img" alt="Sorteo"></a>
                 <div class="card-body">
@@ -242,7 +245,7 @@
                 </div>
             </article>
 
-            <!-- Nota: Crisis México (Movida aquí) -->
+            <!-- Nota: Crisis México -->
             <article class="news-card">
                 <a href="nota-mexico.html"><img src="2026.jpg" class="card-img" alt="Selección"></a>
                 <div class="card-body">
@@ -288,9 +291,13 @@
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank" title="Facebook">
                 <i class="fa-brands fa-facebook-f"></i>
             </a>
+            <!-- TIKTOK -->
             <a href="#" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <!-- INSTAGRAM -->
             <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <!-- TWITTER -->
             <a href="#" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <!-- EMAIL -->
             <a href="mailto:frstsports2@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
         <p class="copyright">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
@@ -303,23 +310,4 @@
         }
 
         let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            if (index >= totalSlides) currentSlide = 0;
-            else if (index < 0) currentSlide = totalSlides - 1;
-            else currentSlide = index;
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[currentSlide].classList.add('active');
-        }
-
-        function moveSlide(direction) {
-            showSlide(currentSlide + direction);
-        }
-
-        setInterval(() => { moveSlide(1); }, 5000);
-    </script>
-
-</body>
-</html>
+        const sli
