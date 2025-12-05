@@ -34,7 +34,7 @@
         /* --- HEADER --- */
         header { 
             background: var(--bg-dark); 
-            padding: 15px 2%; /* Margen reducido para aprovechar ancho */
+            padding: 15px 2%; 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
@@ -44,7 +44,25 @@
             border-bottom: 3px solid var(--primary); 
         }
         
+        /* ESTILO MARCA (LOGO + TEXTO) */
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Espacio entre imagen y texto */
+            text-decoration: none;
+        }
+
         .logo-img img { max-height: 50px; width: auto; display: block; }
+        
+        .brand-text {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: white;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
 
         nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
         nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1.1rem; color: #ccc; }
@@ -61,14 +79,14 @@
         .ticker-item::before { content: "⚡ "; color: var(--accent); }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- LAYOUT FULL WIDTH (MODIFICADO) --- */
+        /* --- LAYOUT FULL WIDTH --- */
         .container { 
-            width: 98%; /* Ocupa casi toda la pantalla */
-            max-width: 1800px; /* Límite para pantallas 4K */
+            width: 98%; 
+            max-width: 1800px; 
             margin: 20px auto; 
             padding: 0 10px;
-            display: flex;       /* Usamos Flexbox vertical */
-            flex-direction: column; /* Elementos uno debajo del otro */
+            display: flex;       
+            flex-direction: column; 
             gap: 40px;
         }
 
@@ -76,9 +94,8 @@
         .carousel-container {
             position: relative;
             width: 100%;
-            height: 600px; /* Más alto para impactar en pantalla completa */
+            height: 600px; 
             overflow: hidden;
-            border-radius: 0; /* Sin bordes redondos para look cinematográfico */
             border-bottom: 4px solid var(--accent);
         }
 
@@ -101,7 +118,7 @@
         }
 
         .slide-title {
-            font-family: var(--font-head); font-size: 4rem; /* Título gigante */
+            font-family: var(--font-head); font-size: 4rem; 
             margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black;
         }
 
@@ -115,10 +132,9 @@
         .prev { left: 20px; }
         .next { right: 20px; }
 
-        /* --- NOTICIAS GRID (Ahora ocupa todo el ancho) --- */
+        /* --- NOTICIAS GRID --- */
         .latest-news-grid {
             display: grid;
-            /* Columnas automáticas, mínimo 350px cada una */
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
         }
@@ -131,7 +147,7 @@
         .card-excerpt { font-size: 1rem; color: var(--text-sec); margin-bottom: 15px; }
         .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; }
 
-        /* --- SECCIÓN LIGAS (AHORA ABAJO Y HORIZONTAL) --- */
+        /* --- SECCIÓN LIGAS --- */
         .bottom-section {
             background: #111;
             padding: 40px;
@@ -148,10 +164,9 @@
             margin-bottom: 30px;
         }
 
-        /* Convertimos la lista vertical en un GRID HORIZONTAL */
         .league-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Se adaptan al ancho */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
             list-style: none;
             padding: 0;
@@ -192,7 +207,6 @@
             .carousel-container { height: 400px; }
             .slide-content { padding: 20px; }
             
-            /* Menú Hamburguesa */
             .hamburger { display: block; }
             .cta-btn { display: none; }
             
@@ -204,8 +218,8 @@
             }
             nav.active { display: flex; }
             
-            /* Ajuste de grid de ligas en móvil */
             .league-grid { grid-template-columns: repeat(2, 1fr); }
+            .brand-text { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -214,15 +228,18 @@
     <div class="top-bar">
         <div>CDMX | 04 Diciembre 2025</div>
         <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <!-- LINK DE FACEBOOK REAL -->
+            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
         </div>
     </div>
 
     <header>
-        <a href="index.html" class="logo-img">
-            <img src="logof1.png" alt="F1rstSports">
+        <!-- LOGO IMAGEN + TEXTO -->
+        <a href="index.html" class="brand-link">
+            <div class="logo-img"><img src="logof1.png" alt="F1rstSports Logo"></div>
+            <span class="brand-text">F1RSTSPORTS</span>
         </a>
 
         <button class="hamburger" onclick="toggleMenu()">
@@ -288,7 +305,7 @@
             <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
         </div>
 
-        <!-- MÁS NOTICIAS (GRID EXPANDIDO) -->
+        <!-- MÁS NOTICIAS -->
         <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
         
         <div class="latest-news-grid">
@@ -304,7 +321,7 @@
                 </div>
             </article>
 
-            <!-- Nota Extra 1 (Relleno para que veas el grid) -->
+            <!-- Nota Extra 1 -->
             <article class="news-card">
                 <div style="background:#222; height:250px; display:flex; align-items:center; justify-content:center; font-size:3rem; color:#444;"><i class="fa-solid fa-futbol"></i></div>
                 <div class="card-body">
@@ -328,37 +345,21 @@
 
         </div>
 
-        <!-- SECCIÓN DE LIGAS (AHORA ABAJO Y HORIZONTAL) -->
+        <!-- SECCIÓN DE LIGAS (EXPANDIDA) -->
         <div class="bottom-section">
             <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
             <ul class="league-grid">
-                <li class="league-item">
-                    <i class="fa-solid fa-football"></i>
-                    <span>NFL</span>
-                </li>
-                <li class="league-item">
-                    <i class="fa-solid fa-table-tennis"></i>
-                    <span>Tenis</span>
-                </li>
-                <li class="league-item">
-                    <i class="fa-solid fa-futbol"></i>
-                    <span>Liga MX</span>
-                </li>
-                <li class="league-item">
-                    <i class="fa-solid fa-flag-usa"></i>
-                    <span>MLS</span>
-                </li>
-                <li class="league-item">
-                    <i class="fa-solid fa-trophy"></i>
-                    <span>Champions</span>
-                </li>
-                <li class="league-item">
-                    <i class="fa-solid fa-earth-americas"></i>
-                    <span>Libertadores</span>
-                </li>
+                <li class="league-item"><i class="fa-solid fa-football"></i> <span>NFL</span></li>
+                <li class="league-item"><i class="fa-solid fa-table-tennis"></i> <span>Tenis</span></li>
+                <li class="league-item"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></li>
+                <li class="league-item"><i class="fa-solid fa-futbol"></i> <span>La Liga</span></li> <!-- Nueva -->
+                <li class="league-item"><i class="fa-solid fa-crown"></i> <span>Premier League</span></li> <!-- Nueva -->
+                <li class="league-item"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></li> <!-- Nueva -->
+                <li class="league-item"><i class="fa-solid fa-flag-usa"></i> <span>MLS</span></li>
+                <li class="league-item"><i class="fa-solid fa-trophy"></i> <span>Champions</span></li>
+                <li class="league-item"><i class="fa-solid fa-earth-americas"></i> <span>Libertadores</span></li>
             </ul>
             
-            <!-- Banner Publicidad Horizontal -->
             <div style="margin-top:40px; background:#000; border:1px solid #333; padding:30px; text-align:center;">
                 <h4 style="color:white; margin:0;">ESPACIO PUBLICITARIO DISPONIBLE</h4>
                 <p style="color:#666; font-size:0.8rem;">Contáctanos para anunciarte aquí</p>
@@ -368,8 +369,11 @@
     </div>
 
     <footer>
-        <div style="margin-bottom:20px;">
-            <a href="#" class="logo-img"><img src="logof1.png" alt="F1rstSports" style="margin: 0 auto;"></a>
+        <div style="margin-bottom:20px; display:flex; justify-content:center;">
+            <a href="index.html" class="brand-link">
+                <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
+                <span class="brand-text">F1RSTSPORTS</span>
+            </a>
         </div>
         <p style="color:#555; font-size:0.8rem;">&copy; 2025 F1rstSports Media.</p>
     </footer>
