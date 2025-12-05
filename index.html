@@ -8,8 +8,7 @@
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <!-- ICONOS (ESTA LÍNEA ES VITAL PARA QUE SE VEAN) -->
+    <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -31,7 +30,6 @@
         /* --- TOP BAR --- */
         .top-bar { background: black; padding: 10px 2%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; border-bottom: 1px solid #333; }
         .social-icons a { margin-left: 15px; font-size: 1rem; }
-        .social-icons a:hover { color: var(--accent); transform: scale(1.1); display: inline-block;}
 
         /* --- HEADER --- */
         header { 
@@ -112,33 +110,12 @@
         .league-item i { font-size: 2rem; color: var(--accent); }
         .league-item:hover i { color: white; }
 
-        /* --- FOOTER (ESTILO NUEVO CENTRADO) --- */
-        footer { 
-            background: black; 
-            padding: 50px 20px; 
-            border-top: 1px solid #333; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; /* Centra horizontalmente */
-            gap: 25px; 
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 30px; /* Espacio entre iconos */
-            font-size: 1.8rem; /* Iconos más grandes */
-        }
-
+        /* --- FOOTER --- */
+        footer { background: black; padding: 50px 20px; border-top: 1px solid #333; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .footer-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .footer-social { display: flex; gap: 30px; font-size: 1.8rem; }
         .footer-social a { color: white; transition: 0.3s; }
         .footer-social a:hover { color: var(--accent); transform: scale(1.2); }
-
         .copyright { color: #555; font-size: 0.8rem; text-align: center; }
 
         /* --- RESPONSIVE --- */
@@ -158,7 +135,7 @@
 <body>
 
     <div class="top-bar">
-        <div>CDMX | 04 Diciembre 2025</div>
+        <div>CDMX | 05 Diciembre 2025</div>
         <div class="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -192,7 +169,7 @@
 
     <div class="ticker-wrap">
         <div class="ticker">
-            <span class="ticker-item">MÉXICO CABEZA DE SERIE EN 2026</span>
+            <span class="ticker-item">MÉXICO EN EL GRUPO A CON SUDÁFRICA Y COREA</span>
             <span class="ticker-item">SUPER BOWL LIX: TODO LISTO</span>
             <span class="ticker-item">ALCARAZ DOMINA EL RANKING</span>
         </div>
@@ -203,31 +180,34 @@
         
         <!-- CARRUSEL -->
         <div class="carousel-container">
-            <!-- Slide 1 -->
+            
+            <!-- Slide 1: NOTA NUEVA (MÉXICO GRUPO A) -->
             <div class="slide active">
-                <img src="sorteo.png" alt="Sorteo Mundial">
+                <img src="mexico-grupo.jpg" alt="Rivales de México">
                 <div class="slide-content">
                     <span class="slide-tag">MUNDIAL 2026</span>
-                    <h2 class="slide-title"><a href="nota-sorteo.html">Sorteo 2026: México cabeza de serie</a></h2>
-                    <a href="nota-sorteo.html" class="read-btn">LEER NOTA &rarr;</a>
+                    <h2 class="slide-title"><a href="nota-mexico-grupo.html">México conoce a sus rivales: Así quedó el Grupo A</a></h2>
+                    <a href="nota-mexico-grupo.html" class="read-btn">VER CALENDARIO &rarr;</a>
                 </div>
             </div>
-            <!-- Slide 2 -->
-            <div class="slide">
-                <img src="2026.jpg" alt="Crisis Tri">
-                <div class="slide-content">
-                    <span class="slide-tag">SELECCIÓN</span>
-                    <h2 class="slide-title"><a href="nota-mexico.html">Crisis en el Tri: Presión máxima</a></h2>
-                    <a href="nota-mexico.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </div>
-            <!-- Slide 3 -->
+
+            <!-- Slide 2: NFL -->
             <div class="slide">
                 <img src="Super_Bowl_LIX.png" alt="NFL">
                 <div class="slide-content">
                     <span class="slide-tag">NFL</span>
-                    <h2 class="slide-title"><a href="nota-nfl.html">Camino al Super Bowl LIX</a></h2>
+                    <h2 class="slide-title"><a href="nota-nfl.html">Camino al Super Bowl LIX: Favoritos y dudas</a></h2>
                     <a href="nota-nfl.html" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: SORTEO -->
+            <div class="slide">
+                <img src="sorteo.png" alt="Sorteo Mundial">
+                <div class="slide-content">
+                    <span class="slide-tag">FIFA</span>
+                    <h2 class="slide-title"><a href="nota-sorteo.html">Resumen del Sorteo: Todos los Grupos del Mundial</a></h2>
+                    <a href="nota-sorteo.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
             </div>
 
@@ -235,12 +215,23 @@
             <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
         </div>
 
-        <!-- MÁS NOTICIAS -->
+        <!-- MÁS NOTICIAS (GRID) -->
         <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
         
         <div class="latest-news-grid">
             
-            <!-- Nota Tenis -->
+            <!-- Nota: Sorteo General (Movida aquí) -->
+            <article class="news-card">
+                <a href="nota-sorteo.html"><img src="sorteo.png" class="card-img" alt="Sorteo"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">FIFA</span>
+                    <h3 class="card-title"><a href="nota-sorteo.html">Así quedaron los 12 grupos del Mundial</a></h3>
+                    <p class="card-excerpt">Consulta la lista completa de selecciones y sectores.</p>
+                    <a href="nota-sorteo.html" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota: Tenis -->
             <article class="news-card">
                 <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
                 <div class="card-body">
@@ -251,31 +242,20 @@
                 </div>
             </article>
 
-            <!-- Nota Extra 1 -->
+            <!-- Nota: Crisis México (Movida aquí) -->
             <article class="news-card">
-                <div style="background:#222; height:250px; display:flex; align-items:center; justify-content:center; font-size:3rem; color:#444;"><i class="fa-solid fa-futbol"></i></div>
+                <a href="nota-mexico.html"><img src="2026.jpg" class="card-img" alt="Selección"></a>
                 <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">LIGA MX</span>
-                    <h3 class="card-title"><a href="#">Fichajes Bomba del Clausura 2026</a></h3>
-                    <p class="card-excerpt">Rumores y confirmaciones del mercado de piernas.</p>
-                    <a href="#" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-            <!-- Nota Extra 2 -->
-            <article class="news-card">
-                <div style="background:#222; height:250px; display:flex; align-items:center; justify-content:center; font-size:3rem; color:#444;"><i class="fa-solid fa-car"></i></div>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">F1</span>
-                    <h3 class="card-title"><a href="#">Checo Pérez renueva con Red Bull</a></h3>
-                    <p class="card-excerpt">El piloto mexicano asegura su asiento dos años más.</p>
-                    <a href="#" class="read-btn">LEER &rarr;</a>
+                    <span style="color:var(--accent); font-weight:bold;">ANÁLISIS</span>
+                    <h3 class="card-title"><a href="nota-mexico.html">Crisis en el Tri: ¿Podrán competir en casa?</a></h3>
+                    <p class="card-excerpt">Dudas y presión en el entorno de la selección.</p>
+                    <a href="nota-mexico.html" class="read-btn">LEER &rarr;</a>
                 </div>
             </article>
 
         </div>
 
-        <!-- SECCIÓN DE LIGAS (EXPANDIDA) -->
+        <!-- SECCIÓN DE LIGAS -->
         <div class="bottom-section">
             <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
             <ul class="league-grid">
@@ -298,38 +278,21 @@
 
     </div>
 
-    <!-- FOOTER MEJORADO Y CENTRADO -->
+    <!-- FOOTER -->
     <footer>
-        <!-- Logo y Nombre -->
-        <a href="index.html" class="brand-link footer-brand">
+        <a href="index.html" class="footer-brand">
             <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
             <span class="brand-text">F1RSTSPORTS</span>
         </a>
-
-        <!-- Redes Sociales -->
         <div class="footer-social">
-            <!-- Facebook Real -->
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank" title="Facebook">
                 <i class="fa-brands fa-facebook-f"></i>
             </a>
-            <!-- TikTok -->
-            <a href="#" target="_blank" title="TikTok">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-            <!-- Instagram -->
-            <a href="#" target="_blank" title="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <!-- Twitter -->
-            <a href="#" target="_blank" title="Twitter/X">
-                <i class="fa-brands fa-twitter"></i>
-            </a>
-            <!-- Email -->
-            <a href="mailto:frstsports2@gmail.com" title="Enviar Correo">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
+            <a href="#" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="mailto:frstsports2@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
-
         <p class="copyright">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
