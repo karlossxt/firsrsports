@@ -1,0 +1,57 @@
+/* --- ESTILOS DE LA TABLA DE GRUPOS --- */
+    .groups-section-title {
+        font-family: 'Chakra Petch', sans-serif;
+        color: var(--accent);
+        font-size: 2rem;
+        margin: 40px 0 20px 0;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 10px;
+    }
+
+    .groups-grid {
+        display: grid;
+        /* Crea columnas automáticas de mínimo 200px */
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .group-card {
+        background: var(--bg-card);
+        border: 1px solid #333;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .group-header {
+        background: var(--primary);
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-family: 'Chakra Petch', sans-serif;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .team-list {
+        list-style: none;
+        padding: 15px;
+        margin: 0;
+    }
+
+    .team-list li {
+        padding: 5px 0;
+        border-bottom: 1px solid #333;
+        font-size: 0.95rem;
+        color: #ddd;
+    }
+
+    .team-list li:last-child { border-bottom: none; }
+
+    /* Resaltar a México */
+    .highlight-team {
+        color: var(--accent) !important;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
