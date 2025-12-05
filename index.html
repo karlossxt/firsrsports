@@ -198,8 +198,60 @@
         .league-item i { font-size: 2rem; color: var(--accent); }
         .league-item:hover i { color: white; }
 
-        /* --- FOOTER --- */
-        footer { background: black; padding: 50px 5%; border-top: 1px solid #333; text-align: center; }
+        <footer>
+        <!-- 1. LOGO + NOMBRE (Centrado) -->
+        <a href="index.html" class="footer-brand">
+            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
+            <span class="brand-text">F1RSTSPORTS</span>
+        </a>
+
+        <!-- 2. REDES SOCIALES (Centradas) -->
+        <div class="footer-social">
+            <!-- Facebook Real -->
+            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <!-- Otras redes (Poner enlaces cuando los tengas) -->
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+
+        <!-- 3. COPYRIGHT -->
+        <p class="copyright">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
+    </footer>
+        /* --- FOOTER ESTILO NUEVO (Centrado) --- */
+footer { 
+    background: black; 
+    padding: 50px 20px; 
+    border-top: 1px solid #333; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; /* ESTO CENTRA TODO HORIZONTALMENTE */
+    gap: 20px; 
+}
+
+/* Contenedor del Logo y Nombre en Footer */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+/* Iconos de Redes en Footer */
+.footer-social {
+    display: flex;
+    gap: 25px; /* Espacio entre iconos */
+    font-size: 1.5rem;
+}
+
+.footer-social a { color: white; transition: 0.3s; }
+.footer-social a:hover { color: var(--accent); transform: scale(1.2); }
+
+.copyright { color: #555; font-size: 0.8rem; margin-top: 10px; text-align: center; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
@@ -405,3 +457,4 @@
 
 </body>
 </html>
+
