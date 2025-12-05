@@ -8,7 +8,8 @@
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Iconos -->
+    
+    <!-- ICONOS (ESTA LÍNEA ES VITAL PARA QUE SE VEAN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -30,6 +31,7 @@
         /* --- TOP BAR --- */
         .top-bar { background: black; padding: 10px 2%; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; border-bottom: 1px solid #333; }
         .social-icons a { margin-left: 15px; font-size: 1rem; }
+        .social-icons a:hover { color: var(--accent); transform: scale(1.1); display: inline-block;}
 
         /* --- HEADER --- */
         header { 
@@ -44,25 +46,10 @@
             border-bottom: 3px solid var(--primary); 
         }
         
-        /* ESTILO MARCA (LOGO + TEXTO) */
-        .brand-link {
-            display: flex;
-            align-items: center;
-            gap: 10px; /* Espacio entre imagen y texto */
-            text-decoration: none;
-        }
-
+        /* ESTILO MARCA */
+        .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .logo-img img { max-height: 50px; width: auto; display: block; }
-        
-        .brand-text {
-            font-family: var(--font-head);
-            font-weight: 700;
-            font-style: italic;
-            font-size: 1.8rem;
-            color: white;
-            line-height: 1;
-            letter-spacing: -1px;
-        }
+        .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.8rem; color: white; line-height: 1; letter-spacing: -1px; }
 
         nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
         nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1.1rem; color: #ccc; }
@@ -92,53 +79,21 @@
 
         /* --- CARRUSEL --- */
         .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 600px; 
-            overflow: hidden;
-            border-bottom: 4px solid var(--accent);
+            position: relative; width: 100%; height: 600px; 
+            overflow: hidden; border-bottom: 4px solid var(--accent);
         }
-
-        .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0; transition: opacity 0.5s ease-in-out; display: flex;
-        }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; }
         .slide.active { opacity: 1; z-index: 1; }
         .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
-
-        .slide-content {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px;
-            background: linear-gradient(to top, black, transparent); z-index: 2;
-        }
-
-        .slide-tag {
-            background: var(--accent); color: black; padding: 5px 15px;
-            font-family: var(--font-head); font-weight: bold; text-transform: uppercase;
-            font-size: 1rem; display: inline-block; margin-bottom: 15px;
-        }
-
-        .slide-title {
-            font-family: var(--font-head); font-size: 4rem; 
-            margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black;
-        }
-
-        .carousel-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(0,0,0,0.5); color: white; border: none;
-            font-size: 3rem; padding: 20px; cursor: pointer; z-index: 10;
-            transition: 0.3s;
-        }
+        .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(to top, black, transparent); z-index: 2; }
+        .slide-tag { background: var(--accent); color: black; padding: 5px 15px; font-family: var(--font-head); font-weight: bold; text-transform: uppercase; font-size: 1rem; display: inline-block; margin-bottom: 15px; }
+        .slide-title { font-family: var(--font-head); font-size: 4rem; margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 3rem; padding: 20px; cursor: pointer; z-index: 10; transition: 0.3s; }
         .carousel-btn:hover { background: var(--accent); color: black; }
-        .prev { left: 20px; }
-        .next { right: 20px; }
+        .prev { left: 20px; } .next { right: 20px; }
 
         /* --- NOTICIAS GRID --- */
-        .latest-news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-        }
-
+        .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
         .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; }
         .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .card-img { width: 100%; height: 250px; object-fit: cover; }
@@ -148,128 +103,53 @@
         .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; }
 
         /* --- SECCIÓN LIGAS --- */
-        .bottom-section {
-            background: #111;
-            padding: 40px;
-            border-top: 3px solid var(--primary);
-            margin-top: 20px;
-        }
-
-        .bottom-title {
-            font-family: var(--font-head);
-            font-size: 2rem;
-            color: white;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-        }
-
-        .league-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            list-style: none;
-            padding: 0;
-        }
-
-        .league-item {
-            background: var(--bg-card);
-            border: 1px solid #333;
-            padding: 20px;
-            text-align: center;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .league-item:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .league-item span {
-            display: block;
-            font-family: var(--font-head);
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
-
+        .bottom-section { background: #111; padding: 40px; border-top: 3px solid var(--primary); margin-top: 20px; }
+        .bottom-title { font-family: var(--font-head); font-size: 2rem; color: white; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
+        .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; list-style: none; padding: 0; }
+        .league-item { background: var(--bg-card); border: 1px solid #333; padding: 20px; text-align: center; transition: 0.3s; cursor: pointer; }
+        .league-item:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
+        .league-item span { display: block; font-family: var(--font-head); font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
         .league-item i { font-size: 2rem; color: var(--accent); }
         .league-item:hover i { color: white; }
 
-        <footer>
-        <!-- 1. LOGO + NOMBRE (Centrado) -->
-        <a href="index.html" class="footer-brand">
-            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
-            <span class="brand-text">F1RSTSPORTS</span>
-        </a>
+        /* --- FOOTER (ESTILO NUEVO CENTRADO) --- */
+        footer { 
+            background: black; 
+            padding: 50px 20px; 
+            border-top: 1px solid #333; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; /* Centra horizontalmente */
+            gap: 25px; 
+        }
 
-        <!-- 2. REDES SOCIALES (Centradas) -->
-        <div class="footer-social">
-            <!-- Facebook Real -->
-            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <!-- Otras redes (Poner enlaces cuando los tengas) -->
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-        </div>
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
 
-        <!-- 3. COPYRIGHT -->
-        <p class="copyright">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
-    </footer>
-        /* --- FOOTER ESTILO NUEVO (Centrado) --- */
-footer { 
-    background: black; 
-    padding: 50px 20px; 
-    border-top: 1px solid #333; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; /* ESTO CENTRA TODO HORIZONTALMENTE */
-    gap: 20px; 
-}
+        .footer-social {
+            display: flex;
+            gap: 30px; /* Espacio entre iconos */
+            font-size: 1.8rem; /* Iconos más grandes */
+        }
 
-/* Contenedor del Logo y Nombre en Footer */
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    margin-bottom: 10px;
-}
+        .footer-social a { color: white; transition: 0.3s; }
+        .footer-social a:hover { color: var(--accent); transform: scale(1.2); }
 
-/* Iconos de Redes en Footer */
-.footer-social {
-    display: flex;
-    gap: 25px; /* Espacio entre iconos */
-    font-size: 1.5rem;
-}
-
-.footer-social a { color: white; transition: 0.3s; }
-.footer-social a:hover { color: var(--accent); transform: scale(1.2); }
-
-.copyright { color: #555; font-size: 0.8rem; margin-top: 10px; text-align: center; }
+        .copyright { color: #555; font-size: 0.8rem; text-align: center; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .slide-title { font-size: 2rem; }
             .carousel-container { height: 400px; }
             .slide-content { padding: 20px; }
-            
             .hamburger { display: block; }
             .cta-btn { display: none; }
-            
-            nav {
-                position: absolute; top: 80px; left: 0; width: 100%;
-                background: var(--bg-dark); border-bottom: 3px solid var(--primary);
-                display: none; flex-direction: column; padding: 20px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.9);
-            }
+            nav { position: absolute; top: 80px; left: 0; width: 100%; background: var(--bg-dark); border-bottom: 3px solid var(--primary); display: none; flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.9); }
             nav.active { display: flex; }
-            
             .league-grid { grid-template-columns: repeat(2, 1fr); }
             .brand-text { font-size: 1.4rem; }
         }
@@ -280,7 +160,6 @@ footer {
     <div class="top-bar">
         <div>CDMX | 04 Diciembre 2025</div>
         <div class="social-icons">
-            <!-- LINK DE FACEBOOK REAL -->
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -288,9 +167,8 @@ footer {
     </div>
 
     <header>
-        <!-- LOGO IMAGEN + TEXTO -->
         <a href="index.html" class="brand-link">
-            <div class="logo-img"><img src="logof1.png" alt="F1rstSports Logo"></div>
+            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
             <span class="brand-text">F1RSTSPORTS</span>
         </a>
 
@@ -404,9 +282,9 @@ footer {
                 <li class="league-item"><i class="fa-solid fa-football"></i> <span>NFL</span></li>
                 <li class="league-item"><i class="fa-solid fa-table-tennis"></i> <span>Tenis</span></li>
                 <li class="league-item"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></li>
-                <li class="league-item"><i class="fa-solid fa-futbol"></i> <span>La Liga</span></li> <!-- Nueva -->
-                <li class="league-item"><i class="fa-solid fa-crown"></i> <span>Premier League</span></li> <!-- Nueva -->
-                <li class="league-item"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></li> <!-- Nueva -->
+                <li class="league-item"><i class="fa-solid fa-futbol"></i> <span>La Liga</span></li>
+                <li class="league-item"><i class="fa-solid fa-crown"></i> <span>Premier League</span></li>
+                <li class="league-item"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></li>
                 <li class="league-item"><i class="fa-solid fa-flag-usa"></i> <span>MLS</span></li>
                 <li class="league-item"><i class="fa-solid fa-trophy"></i> <span>Champions</span></li>
                 <li class="league-item"><i class="fa-solid fa-earth-americas"></i> <span>Libertadores</span></li>
@@ -420,14 +298,39 @@ footer {
 
     </div>
 
+    <!-- FOOTER MEJORADO Y CENTRADO -->
     <footer>
-        <div style="margin-bottom:20px; display:flex; justify-content:center;">
-            <a href="index.html" class="brand-link">
-                <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
-                <span class="brand-text">F1RSTSPORTS</span>
+        <!-- Logo y Nombre -->
+        <a href="index.html" class="brand-link footer-brand">
+            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
+            <span class="brand-text">F1RSTSPORTS</span>
+        </a>
+
+        <!-- Redes Sociales -->
+        <div class="footer-social">
+            <!-- Facebook Real -->
+            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank" title="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <!-- TikTok -->
+            <a href="#" target="_blank" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <!-- Instagram -->
+            <a href="#" target="_blank" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <!-- Twitter -->
+            <a href="#" target="_blank" title="Twitter/X">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            <!-- Email -->
+            <a href="mailto:frstsports2@gmail.com" title="Enviar Correo">
+                <i class="fa-solid fa-envelope"></i>
             </a>
         </div>
-        <p style="color:#555; font-size:0.8rem;">&copy; 2025 F1rstSports Media.</p>
+
+        <p class="copyright">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
     <script>
@@ -457,4 +360,3 @@ footer {
 
 </body>
 </html>
-
