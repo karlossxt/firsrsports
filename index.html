@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1rstSports | El Líder en Deportes</title>
-    
-    <!-- AQUÍ ESTÁ EL ÍCONO DE LA PESTAÑA (FAVICON) -->
     <link rel="icon" type="image/png" href="logof1.png">
-
+    
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
@@ -43,64 +41,72 @@
             justify-content: space-between; 
             position: sticky; 
             top: 0; 
-            z-index: 1000; 
+            z-index: 2000; 
             border-bottom: 3px solid var(--primary); 
         }
         
-        /* ESTILO MARCA */
-        .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .logo-img img { max-height: 50px; width: auto; display: block; }
+        .logo-img:hover { opacity: 0.8; }
+
+        .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.8rem; color: white; line-height: 1; letter-spacing: -1px; }
 
         nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
         nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1.1rem; color: #ccc; }
         nav a:hover, nav a.active { color: white; border-bottom: 2px solid var(--accent); }
 
-        /* BOTÓN HAMBURGUESA */
-        .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+        .hamburger { display: none; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
         .cta-btn { border:1px solid var(--accent); color:var(--accent); padding: 5px 15px; font-weight:bold; }
 
         /* --- TICKER --- */
         .ticker-wrap { background: var(--primary); color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-family: var(--font-head); font-size: 0.9rem; font-weight: bold; }
-        .ticker { display: inline-block; animation: scroll 30s linear infinite; }
+        .ticker { display: inline-block; animation: scroll 60s linear infinite; }
         .ticker-item { margin-right: 40px; }
-        .ticker-item::before { content: "⚡ "; color: var(--accent); }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* --- LAYOUT FULL WIDTH --- */
+        /* --- LAYOUT --- */
         .container { 
-            width: 98%; 
-            max-width: 1800px; 
-            margin: 20px auto; 
-            padding: 0 10px;
-            display: flex;       
-            flex-direction: column; 
-            gap: 40px;
+            width: 98%; max-width: 1800px; margin: 20px auto; padding: 0 10px;
+            display: flex; flex-direction: column; gap: 40px;
         }
 
         /* --- CARRUSEL --- */
         .carousel-container {
             position: relative; width: 100%; height: 600px; 
             overflow: hidden; border-bottom: 4px solid var(--accent);
+            touch-action: pan-y;
         }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; }
-        .slide.active { opacity: 1; z-index: 1; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; pointer-events: none; }
+        .slide.active { opacity: 1; z-index: 1; pointer-events: auto; }
+        
+        .slide img { 
+            width: 100%; height: 100%; 
+            object-fit: cover; 
+            object-position: top center; 
+            filter: brightness(0.8); 
+        }
+        
         .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(to top, black, transparent); z-index: 2; }
         .slide-tag { background: var(--accent); color: black; padding: 5px 15px; font-family: var(--font-head); font-weight: bold; text-transform: uppercase; font-size: 1rem; display: inline-block; margin-bottom: 15px; }
         .slide-title { font-family: var(--font-head); font-size: 4rem; margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black; }
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 3rem; padding: 20px; cursor: pointer; z-index: 10; transition: 0.3s; }
+        
+        /* FLECHAS CORREGIDAS */
+        .carousel-btn { 
+            position: absolute; top: 50%; transform: translateY(-50%); 
+            background: rgba(0,0,0,0.5); color: white; border: none; 
+            font-size: 3rem; padding: 20px; cursor: pointer; 
+            z-index: 100; /* Z-INDEX ALTO PARA QUE FUNCIONE SIEMPRE */
+            transition: 0.3s;
+        }
         .carousel-btn:hover { background: var(--accent); color: black; }
         .prev { left: 20px; } .next { right: 20px; }
 
         /* --- NOTICIAS GRID --- */
         .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
         .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .card-img { width: 100%; height: 250px; object-fit: cover; }
         .card-body { padding: 25px; }
         .card-title { font-family: var(--font-head); font-size: 1.5rem; margin: 10px 0; line-height: 1.2; }
-        .card-excerpt { font-size: 1rem; color: var(--text-sec); margin-bottom: 15px; }
         .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; }
 
         /* --- SECCIÓN LIGAS --- */
@@ -111,7 +117,6 @@
         .league-item:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
         .league-item span { display: block; font-family: var(--font-head); font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
         .league-item i { font-size: 2rem; color: var(--accent); }
-        .league-item:hover i { color: white; }
 
         /* --- FOOTER --- */
         footer { background: black; padding: 50px 20px; border-top: 1px solid #333; display: flex; flex-direction: column; align-items: center; gap: 25px; }
@@ -124,14 +129,19 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .slide-title { font-size: 2rem; }
-            .carousel-container { height: 400px; }
+            .carousel-container { height: 450px; }
             .slide-content { padding: 20px; }
             .hamburger { display: block; }
             .cta-btn { display: none; }
+            
             nav { position: absolute; top: 80px; left: 0; width: 100%; background: var(--bg-dark); border-bottom: 3px solid var(--primary); display: none; flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.9); }
             nav.active { display: flex; }
+            
             .league-grid { grid-template-columns: repeat(2, 1fr); }
             .brand-text { font-size: 1.4rem; }
+            
+            /* FLECHAS VISIBLES EN MÓVIL TAMBIÉN */
+            .carousel-btn { font-size: 2rem; padding: 10px; } 
         }
     </style>
 </head>
@@ -152,7 +162,7 @@
             <span class="brand-text">F1RSTSPORTS</span>
         </a>
 
-        <button class="hamburger" onclick="toggleMenu()">
+        <button class="hamburger" id="menuBtn">
             <i class="fa-solid fa-bars"></i>
         </button>
 
@@ -165,44 +175,27 @@
                 <li><a href="#">MLS</a></li>
                 <li><a href="#">Champions</a></li>
                 <li><a href="#">Libertadores</a></li>
+                <!-- Opción móvil del botón -->
+                <li style="margin-top:10px;"><a href="nota-sorteo.html" style="color:var(--accent); border:1px solid var(--accent); padding:5px 15px;">MUNDIAL '26</a></li>
             </ul>
         </nav>
-        <a href="nota-sorteo.html" class="cta-btn">MUNDIAL '26</a>
+        <a href="nota-sorteo.html" class="cta-btn desktop-only">MUNDIAL '26</a>
     </header>
 
-   <!-- TICKER (NOTICIAS Y GRUPOS) -->
     <div class="ticker-wrap">
         <div class="ticker">
-            <!-- Nota Principal -->
-            <span class="ticker-item">🇲🇽 GRUPO A DEFINIDO: MÉXICO, SUDÁFRICA, COREA DEL SUR</span>
-            
-            <!-- Link al Sorteo -->
-            <span class="ticker-item">🏆 SORTEO MUNDIAL 2026: CONSULTA AQUÍ LOS 12 GRUPOS</span>
-            
-            <!-- Grupo B (Canadá) -->
-            <span class="ticker-item">🇨🇦 GRUPO B: CANADÁ, QATAR, SUIZA</span>
-            
-            <!-- Grupo D (USA) -->
-            <span class="ticker-item">🇺🇸 GRUPO D: ESTADOS UNIDOS, PARAGUAY, AUSTRALIA</span>
-            
-            <!-- Grupos Potencias -->
-            <span class="ticker-item">🔥 GRUPO C: BRASIL Y MARRUECOS</span>
-            <span class="ticker-item">💣 GRUPO J: ARGENTINA Y ARGELIA</span>
-            
-            <!-- Otras Notas -->
-            <span class="ticker-item">🏈 NFL: FAVORITOS AL SUPER BOWL LIX</span>
-            <span class="ticker-item">🎾 ALCARAZ CIERRA EL AÑO COMO NÚMERO 1</span>
+            <span class="ticker-item">MÉXICO CABEZA DE SERIE EN 2026</span>
+            <span class="ticker-item">SUPER BOWL LIX: TODO LISTO</span>
+            <span class="ticker-item">ALCARAZ DOMINA EL RANKING</span>
+            <span class="ticker-item">SORTEO MUNDIAL: GRUPO A DEFINIDO</span>
         </div>
     </div>
-    </div>
 
-    <!-- CONTENEDOR ANCHO COMPLETO -->
     <div class="container">
         
-        <!-- CARRUSEL (ACTUALIZADO CON MÉXICO) -->
-        <div class="carousel-container">
+        <!-- CARRUSEL -->
+        <div class="carousel-container" id="mainCarousel">
             
-            <!-- Slide 1: MÉXICO GRUPO A (Active) -->
             <div class="slide active">
                 <img src="mexico-grupo.jpg" alt="Rivales de México">
                 <div class="slide-content">
@@ -212,7 +205,6 @@
                 </div>
             </div>
 
-            <!-- Slide 2: NFL -->
             <div class="slide">
                 <img src="Super_Bowl_LIX.png" alt="NFL">
                 <div class="slide-content">
@@ -222,7 +214,6 @@
                 </div>
             </div>
 
-            <!-- Slide 3: SORTEO -->
             <div class="slide">
                 <img src="sorteo.png" alt="Sorteo Mundial">
                 <div class="slide-content">
@@ -232,16 +223,15 @@
                 </div>
             </div>
 
-            <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+            <!-- FLECHAS CON CLIC MANUAL -->
+            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
         </div>
 
-        <!-- MÁS NOTICIAS (GRID) -->
+        <!-- MÁS NOTICIAS -->
         <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
         
         <div class="latest-news-grid">
-            
-            <!-- Nota: Sorteo General -->
             <article class="news-card">
                 <a href="nota-sorteo.html"><img src="sorteo.png" class="card-img" alt="Sorteo"></a>
                 <div class="card-body">
@@ -252,7 +242,6 @@
                 </div>
             </article>
 
-            <!-- Nota: Tenis -->
             <article class="news-card">
                 <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
                 <div class="card-body">
@@ -263,7 +252,6 @@
                 </div>
             </article>
 
-            <!-- Nota: Crisis México -->
             <article class="news-card">
                 <a href="nota-mexico.html"><img src="2026.jpg" class="card-img" alt="Selección"></a>
                 <div class="card-body">
@@ -273,7 +261,6 @@
                     <a href="nota-mexico.html" class="read-btn">LEER &rarr;</a>
                 </div>
             </article>
-
         </div>
 
         <!-- SECCIÓN DE LIGAS -->
@@ -299,7 +286,6 @@
 
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <a href="index.html" class="footer-brand">
             <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
@@ -309,24 +295,97 @@
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank" title="Facebook">
                 <i class="fa-brands fa-facebook-f"></i>
             </a>
-            <!-- TIKTOK -->
             <a href="#" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <!-- INSTAGRAM -->
             <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <!-- TWITTER -->
             <a href="#" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
-            <!-- EMAIL -->
             <a href="mailto:frstsports2@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
         <p class="copyright">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- JAVASCRIPT: LÓGICA BLINDADA -->
     <script>
-        function toggleMenu() {
-            const nav = document.getElementById('mainNav');
+        // 1. MENÚ HAMBURGUESA
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('mainNav');
+
+        menuBtn.addEventListener('click', () => {
             nav.classList.toggle('active');
+            if(nav.classList.contains('active')){
+                menuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+        });
+
+        // 2. CARRUSEL (FLECHAS Y AUTOMÁTICO)
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let slideInterval; // Variable para el timer
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
         }
 
-        let currentSlide = 0;
-        const sli
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function startAutoPlay() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            startAutoPlay();
+        }
+
+        // Eventos de Flechas
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            nextSlide();
+            resetTimer();
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            prevSlide();
+            resetTimer();
+        });
+
+        // Iniciar al cargar
+        startAutoPlay();
+
+        // 3. SWIPE TÁCTIL
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const sliderContainer = document.getElementById('mainCarousel');
+
+        sliderContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(slideInterval);
+        }, {passive: true});
+
+        sliderContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoPlay();
+        }, {passive: true});
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) prevSlide();
+        }
+    </script>
+
+</body>
+</html>
 
