@@ -11,15 +11,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6PX8GFES3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-Q6PX8GFES3');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6PX8GFES3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q6PX8GFES3');
+    </script>
 
     <style>
         :root {
@@ -92,7 +92,7 @@
             width: 100%; height: 100%; 
             object-fit: cover; 
             object-position: top center; 
-            filter: brightness(0.8); 
+            filter: brightness(0.7); 
         }
         
         .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(to top, black, transparent); z-index: 2; }
@@ -112,9 +112,11 @@
         /* --- NOTICIAS GRID --- */
         .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
         .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; }
+        .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .card-img { width: 100%; height: 250px; object-fit: cover; }
         .card-body { padding: 25px; }
         .card-title { font-family: var(--font-head); font-size: 1.5rem; margin: 10px 0; line-height: 1.2; }
+        .card-excerpt { font-size: 1rem; color: var(--text-sec); margin-bottom: 15px; }
         .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; }
 
         /* --- SECCIÓN LIGAS --- */
@@ -123,8 +125,10 @@
         .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; list-style: none; padding: 0; }
         .league-item { background: var(--bg-card); border: 1px solid #333; padding: 20px; text-align: center; transition: 0.3s; cursor: pointer; }
         .league-item:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
+        .league-item a { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
         .league-item span { display: block; font-family: var(--font-head); font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
         .league-item i { font-size: 2rem; color: var(--accent); }
+        .league-item:hover i { color: white; }
 
         /* --- FOOTER --- */
         footer { background: black; padding: 50px 20px; border-top: 1px solid #333; display: flex; flex-direction: column; align-items: center; gap: 25px; }
@@ -152,7 +156,7 @@
 <body>
 
     <div class="top-bar">
-        <div>CDMX | 07 Diciembre 2025</div>
+        <div>CDMX | 18 Diciembre 2025</div>
         <div class="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -186,10 +190,10 @@
 
     <div class="ticker-wrap">
         <div class="ticker">
-            <span class="ticker-item">SÉBASTIEN OGIER SE CORONA NUEVE VECES CAMPEÓN DEL WRC</span>
-            <span class="ticker-item">MÉXICO CABEZA DE SERIE EN 2026</span>
-            <span class="ticker-item">SUPER BOWL LIX: TODO LISTO</span>
-            <span class="ticker-item">ALCARAZ DOMINA EL RANKING</span>
+            <span class="ticker-item">PSG CAMPEÓN INTERCONTINENTAL</span>
+            <span class="ticker-item">JOHN CENA SE DESPIDE DE LA WWE</span>
+            <span class="ticker-item">OGIER GANA SU NOVENO TÍTULO DE WRC</span>
+            <span class="ticker-item">MÉXICO CABEZA DE SERIE EN EL GRUPO A</span>
         </div>
     </div>
 
@@ -199,33 +203,33 @@
         <!-- CARRUSEL -->
         <div class="carousel-container" id="mainCarousel">
             
-            <!-- Slide 1: WRC (NUEVA - ACTIVE) -->
+            <!-- Slide 1: PSG (ACTIVA - NUEVA) -->
             <div class="slide active">
+                <img src="psg-campeon.jpg" alt="PSG Campeón">
+                <div class="slide-content">
+                    <span class="slide-tag">FÚTBOL INTERNACIONAL</span>
+                    <h2 class="slide-title"><a href="nota-psg.html">El año en que el PSG aprendió a ganar como gigante</a></h2>
+                    <a href="nota-psg.html" class="read-btn">LEER CRÓNICA &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Slide 2: JOHN CENA -->
+            <div class="slide">
+                <img src="cena-gunther.jpg" alt="John Cena Retiro">
+                <div class="slide-content">
+                    <span class="slide-tag">WWE</span>
+                    <h2 class="slide-title"><a href="nota-john-cena.html">El último saludo: John Cena y el adiós de una era</a></h2>
+                    <a href="nota-john-cena.html" class="read-btn">LEER CRÓNICA &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: WRC -->
+            <div class="slide">
                 <img src="wrc.jpg" alt="Ogier Campeón WRC">
                 <div class="slide-content">
                     <span class="slide-tag">MOTORSPORT</span>
                     <h2 class="slide-title"><a href="nota-wrc.html">Sébastien Ogier: Nueve veces campeón del WRC</a></h2>
                     <a href="nota-wrc.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 2: MÉXICO GRUPO A -->
-            <div class="slide">
-                <img src="mexico-grupo.jpg" alt="Rivales de México">
-                <div class="slide-content">
-                    <span class="slide-tag">MUNDIAL 2026</span>
-                    <h2 class="slide-title"><a href="nota-mexico-grupo.html">México conoce a sus rivales: Así quedó el Grupo A</a></h2>
-                    <a href="nota-mexico-grupo.html" class="read-btn">VER CALENDARIO &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 3: NFL -->
-            <div class="slide">
-                <img src="Super_Bowl_LIX.png" alt="NFL">
-                <div class="slide-content">
-                    <span class="slide-tag">NFL</span>
-                    <h2 class="slide-title"><a href="nota-nfl.html">Camino al Super Bowl LIX: Favoritos y dudas</a></h2>
-                    <a href="nota-nfl.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
             </div>
 
@@ -238,58 +242,66 @@
         
         <div class="latest-news-grid">
             
-            <!-- Nota: Sorteo Mundial -->
+            <!-- Nota: México Grupo A -->
+            <article class="news-card">
+                <a href="nota-mexico-grupo.html"><img src="mexico-grupo.jpg" class="card-img" alt="México Grupo A"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">MUNDIAL 2026</span>
+                    <h3 class="card-title"><a href="nota-mexico-grupo.html">México conoce a sus rivales: Así quedó el Grupo A</a></h3>
+                    <p class="card-excerpt">Calendario y análisis de los rivales del Tri en casa.</p>
+                    <a href="nota-mexico-grupo.html" class="read-btn">VER CALENDARIO &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota: Sorteo General -->
             <article class="news-card">
                 <a href="nota-sorteo.html"><img src="sorteo.png" class="card-img" alt="Sorteo"></a>
                 <div class="card-body">
                     <span style="color:var(--accent); font-weight:bold;">FIFA</span>
-                    <h3 class="card-title"><a href="nota-sorteo.html">Así quedaron los 12 grupos del Mundial</a></h3>
-                    <p class="card-excerpt">Consulta la lista completa de selecciones y sectores.</p>
+                    <h3 class="card-title"><a href="nota-sorteo.html">Resumen del Sorteo: Todos los Grupos del Mundial</a></h3>
+                    <p class="card-excerpt">Consulta cómo quedaron conformados los 12 grupos.</p>
                     <a href="nota-sorteo.html" class="read-btn">LEER &rarr;</a>
                 </div>
             </article>
 
-            <!-- Nota: Tenis -->
+            <!-- Nota: NFL -->
             <article class="news-card">
-                <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
+                <a href="nota-nfl.html"><img src="Super_Bowl_LIX.png" class="card-img" alt="NFL"></a>
                 <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">TENIS</span>
-                    <h3 class="card-title"><a href="nota-tenis.html">Revolución: Alcaraz y nuevos récords</a></h3>
-                    <p class="card-excerpt">El tenis vive una era dorada con premios históricos.</p>
-                    <a href="nota-tenis.html" class="read-btn">LEER &rarr;</a>
+                    <span style="color:var(--accent); font-weight:bold;">NFL</span>
+                    <h3 class="card-title"><a href="nota-nfl.html">Camino al Super Bowl LIX: Favoritos y dudas</a></h3>
+                    <p class="card-excerpt">Favoritos y dudas de cara a la postemporada.</p>
+                    <a href="nota-nfl.html" class="read-btn">LEER &rarr;</a>
                 </div>
             </article>
 
-            <!-- Nota: Crisis México -->
-            <article class="news-card">
-                <a href="nota-mexico.html"><img src="2026.jpg" class="card-img" alt="Selección"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">ANÁLISIS</span>
-                    <h3 class="card-title"><a href="nota-mexico.html">Crisis en el Tri: ¿Podrán competir en casa?</a></h3>
-                    <p class="card-excerpt">Dudas y presión en el entorno de la selección.</p>
-                    <a href="nota-mexico.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
         </div>
 
         <!-- SECCIÓN DE LIGAS -->
         <div class="bottom-section">
             <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
             <ul class="league-grid">
-                <li class="league-item"><i class="fa-solid fa-football"></i> <span>NFL</span></li>
-                <li class="league-item"><i class="fa-solid fa-table-tennis"></i> <span>Tenis</span></li>
-                <li class="league-item"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></li>
-                <li class="league-item"><i class="fa-solid fa-futbol"></i> <span>La Liga</span></li>
-                <li class="league-item"><i class="fa-solid fa-crown"></i> <span>Premier League</span></li>
-                <li class="league-item"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></li>
-                <li class="league-item"><i class="fa-solid fa-flag-usa"></i> <span>MLS</span></li>
-                <li class="league-item"><i class="fa-solid fa-trophy"></i> <span>Champions</span></li>
-                <li class="league-item"><i class="fa-solid fa-earth-americas"></i> <span>Libertadores</span></li>
+                <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i> <span>NFL</span></a></li>
+                <li class="league-item"><a href="seccion-tenis.html"><i class="fa-solid fa-baseball"></i> <span>Tenis</span></a></li>
+                <li class="league-item"><a href="#"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
+                <li class="league-item"><a href="#"><i class="fa-solid fa-futbol"></i> <span>La Liga</span></a></li>
+                <li class="league-item"><a href="#"><i class="fa-solid fa-crown"></i> <span>Premier League</span></a></li>
+                <li class="league-item"><a href="#"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
+                <li class="league-item"><a href="#"><i class="fa-solid fa-flag-usa"></i> <span>MLS</span></a></li>
+                <li class="league-item"><a href="#"><i class="fa-solid fa-trophy"></i> <span>Champions</span></a></li>
+                <li class="league-item"><a href="#"><i class="fa-solid fa-earth-americas"></i> <span>Libertadores</span></a></li>
             </ul>
             
-            <div style="margin-top:40px; background:#000; border:1px solid #333; padding:30px; text-align:center;">
-                <h4 style="color:white; margin:0;">ESPACIO PUBLICITARIO DISPONIBLE</h4>
-                <p style="color:#666; font-size:0.8rem;">Contáctanos para anunciarte aquí</p>
+            <!-- PUBLICIDAD -->
+            <div class="ad-container" style="text-align: center; margin-top:40px; border:1px solid #333; background:#000;">
+                <span style="font-size:0.7rem; color:#666; display:block; padding:5px;">PUBLICIDAD</span>
+                <a href="https://wa.me/521234567890" target="_blank">
+                    <!-- Si tienes un banner, súbelo como img/banner-publi.jpg -->
+                    <div style="padding:40px; color:white;">
+                        <h4>ANÚNCIATE AQUÍ</h4>
+                        <p style="color:#aaa;">Espacio disponible</p>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -370,4 +382,3 @@
 
 </body>
 </html>
-
