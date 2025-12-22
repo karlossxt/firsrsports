@@ -85,8 +85,20 @@
             overflow: hidden; border-bottom: 4px solid var(--accent);
             touch-action: pan-y;
         }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; pointer-events: none; }
-        .slide.active { opacity: 1; z-index: 1; pointer-events: auto; }
+        
+        .slide { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; 
+            display: flex; 
+            pointer-events: none; /* Desactivado para slides ocultos */
+        }
+        
+        .slide.active { 
+            opacity: 1; 
+            z-index: 1; 
+            pointer-events: auto; /* Activado para el visible */
+        }
         
         .slide img { 
             width: 100%; height: 100%; 
@@ -99,15 +111,18 @@
         .slide-tag { background: var(--accent); color: black; padding: 5px 15px; font-family: var(--font-head); font-weight: bold; text-transform: uppercase; font-size: 1rem; display: inline-block; margin-bottom: 15px; }
         .slide-title { font-family: var(--font-head); font-size: 4rem; margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black; }
         
+        /* FLECHAS CORREGIDAS */
         .carousel-btn { 
             position: absolute; top: 50%; transform: translateY(-50%); 
             background: rgba(0,0,0,0.5); color: white; border: none; 
             font-size: 3rem; padding: 20px; cursor: pointer; 
-            z-index: 100; 
+            z-index: 100; /* Siempre encima */
+            pointer-events: auto; /* Asegura que reciba clics */
             transition: 0.3s;
         }
         .carousel-btn:hover { background: var(--accent); color: black; }
-        .prev { left: 20px; } .next { right: 20px; }
+        .prev { left: 20px; } 
+        .next { right: 20px; }
 
         /* --- NOTICIAS GRID --- */
         .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
@@ -123,13 +138,9 @@
         .bottom-section { background: #111; padding: 40px; border-top: 3px solid var(--primary); margin-top: 20px; }
         .bottom-title { font-family: var(--font-head); font-size: 2rem; color: white; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
         .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; list-style: none; padding: 0; }
-        
         .league-item { background: var(--bg-card); border: 1px solid #333; padding: 20px; text-align: center; transition: 0.3s; cursor: pointer; }
         .league-item:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
-        
-        /* Enlace que cubre todo el cuadro */
         .league-item a { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
-        
         .league-item span { display: block; font-family: var(--font-head); font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
         .league-item i { font-size: 2rem; color: var(--accent); }
         .league-item:hover i { color: white; }
@@ -153,14 +164,14 @@
             nav.active { display: flex; }
             .league-grid { grid-template-columns: repeat(2, 1fr); }
             .brand-text { font-size: 1.4rem; }
-            .carousel-btn { font-size: 2rem; padding: 10px; } 
+            .carousel-btn { font-size: 2rem; padding: 10px; display: block; } /* Flechas visibles en móvil */
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <div>CDMX | 18 Diciembre 2025</div>
+        <div>CDMX | 21 Diciembre 2025</div>
         <div class="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -171,154 +182,4 @@
     <header>
         <a href="index.html" class="brand-link">
             <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
-            <span class="brand-text">F1RSTSPORTS</span>
-        </a>
-
-        <button class="hamburger" id="menuBtn">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-
-        <nav id="mainNav">
-            <ul>
-                <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="nota-nfl.html">NFL</a></li>
-                <li><a href="nota-tenis.html">Tenis</a></li>
-                <li><a href="#">Liga MX</a></li>
-                <li><a href="#">MLS</a></li>
-                <li><a href="#">Champions</a></li>
-                <li><a href="#">Libertadores</a></li>
-            </ul>
-        </nav>
-        <a href="nota-sorteo.html" class="cta-btn desktop-only">MUNDIAL '26</a>
-    </header>
-
-    <div class="ticker-wrap">
-        <div class="ticker">
-            <span class="ticker-item">PSG CAMPEÓN INTERCONTINENTAL</span>
-            <span class="ticker-item">TOLUCA CAMPEÓN DE LA LIGA MX</span>
-            <span class="ticker-item">SÉBASTIEN OGIER SE CORONA EN WRC</span>
-            <span class="ticker-item">MÉXICO EN EL GRUPO A DEL MUNDIAL</span>
-        </div>
-    </div>
-
-    <!-- CONTENEDOR ANCHO COMPLETO -->
-    <div class="container">
-        
-        <!-- CARRUSEL -->
-        <div class="carousel-container" id="mainCarousel">
-            
-            <!-- Slide 1: PSG -->
-            <div class="slide active">
-                <img src="psg-campeon.jpg" alt="PSG Campeón">
-                <div class="slide-content">
-                    <span class="slide-tag">FÚTBOL INTERNACIONAL</span>
-                    <h2 class="slide-title"><a href="nota-psg.html">El año en que el PSG aprendió a ganar como gigante</a></h2>
-                    <a href="nota-psg.html" class="read-btn">LEER CRÓNICA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 2: TOLUCA -->
-            <div class="slide">
-                <img src="toluca-campeon.jpg" alt="Toluca Campeón">
-                <div class="slide-content">
-                    <span class="slide-tag">LIGA MX</span>
-                    <h2 class="slide-title"><a href="nota-final-ligamx.html">Toluca vence a Tigres: Una final con el corazón en la garganta</a></h2>
-                    <a href="nota-final-ligamx.html" class="read-btn">LEER CRÓNICA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 3: JOHN CENA -->
-            <div class="slide">
-                <img src="cena-gunther.jpg" alt="John Cena Retiro">
-                <div class="slide-content">
-                    <span class="slide-tag">WWE</span>
-                    <h2 class="slide-title"><a href="nota-john-cena.html">El último saludo: John Cena y el adiós de una era</a></h2>
-                    <a href="nota-john-cena.html" class="read-btn">LEER CRÓNICA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 4: WRC -->
-            <div class="slide">
-                <img src="wrc.jpg" alt="Ogier Campeón WRC">
-                <div class="slide-content">
-                    <span class="slide-tag">MOTORSPORT</span>
-                    <h2 class="slide-title"><a href="nota-wrc.html">Sébastien Ogier: Nueve veces campeón del WRC</a></h2>
-                    <a href="nota-wrc.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </div>
-
-            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
-            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
-        </div>
-
-        <!-- MÁS NOTICIAS -->
-        <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
-        
-        <div class="latest-news-grid">
-            
-            <!-- Nota: México Grupo A -->
-            <article class="news-card">
-                <a href="nota-mexico-grupo.html"><img src="mexico-grupo.jpg" class="card-img" alt="México Grupo A"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">MUNDIAL 2026</span>
-                    <h3 class="card-title"><a href="nota-mexico-grupo.html">México conoce a sus rivales: Así quedó el Grupo A</a></h3>
-                    <p class="card-excerpt">Calendario y análisis de los rivales del Tri en casa.</p>
-                    <a href="nota-mexico-grupo.html" class="read-btn">VER CALENDARIO &rarr;</a>
-                </div>
-            </article>
-
-            <!-- Nota: Sorteo General -->
-            <article class="news-card">
-                <a href="nota-sorteo.html"><img src="sorteo.png" class="card-img" alt="Sorteo"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">FIFA</span>
-                    <h3 class="card-title"><a href="nota-sorteo.html">Así quedaron los 12 grupos del Mundial</a></h3>
-                    <p class="card-excerpt">Consulta cómo quedaron conformados los 12 grupos.</p>
-                    <a href="nota-sorteo.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-            <!-- Nota: NFL -->
-            <article class="news-card">
-                <a href="nota-nfl.html"><img src="Super_Bowl_LIX.png" class="card-img" alt="NFL"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">NFL</span>
-                    <h3 class="card-title"><a href="nota-nfl.html">Camino al Super Bowl LIX: Favoritos y dudas</a></h3>
-                    <p class="card-excerpt">Favoritos y dudas de cara a la postemporada.</p>
-                    <a href="nota-nfl.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-        </div>
-
-        <!-- SECCIÓN DE LIGAS (AHORA CON LINKS) -->
-        <div class="bottom-section">
-            <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
-            <ul class="league-grid">
-                <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i> <span>NFL</span></a></li>
-                <li class="league-item"><a href="seccion-tenis.html"><i class="fa-solid fa-baseball"></i> <span>Tenis</span></a></li>
-                <li class="league-item"><a href="seccion-ligamx.html"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
-                <li class="league-item"><a href="seccion-laliga.html"><i class="fa-solid fa-futbol"></i> <span>La Liga</span></a></li>
-                <li class="league-item"><a href="seccion-premier.html"><i class="fa-solid fa-crown"></i> <span>Premier League</span></a></li>
-                <li class="league-item"><a href="seccion-motor.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
-                <li class="league-item"><a href="seccion-mls.html"><i class="fa-solid fa-flag-usa"></i> <span>MLS</span></a></li>
-                <li class="league-item"><a href="seccion-champions.html"><i class="fa-solid fa-trophy"></i> <span>Champions</span></a></li>
-                <li class="league-item"><a href="seccion-libertadores.html"><i class="fa-solid fa-earth-americas"></i> <span>Libertadores</span></a></li>
-            </ul>
-            
-            <div style="margin-top:40px; background:#000; border:1px solid #333; padding:30px; text-align:center;">
-                <h4 style="color:white; margin:0;">ESPACIO PUBLICITARIO DISPONIBLE</h4>
-                <p style="color:#666; font-size:0.8rem;">Contáctanos para anunciarte aquí</p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <a href="index.html" class="footer-brand">
-            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
-            <span class="brand-text">F1RSTSPORTS</span>
-        </a>
-        <div class="footer-social">
-            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank" title="Facebook"
+            <span class
