@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CORREGIDO: Etiqueta title cerrada correctamente -->
-    <title>Noticias | F1rstSports</title>
+    <title>Noticias Motor | F1rstSports</title>
     <link rel="icon" type="image/png" href="logof1.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ESTILOS BASE (Iguales al Index) */
+        /* ESTILOS BASE */
         :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
         body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
         a { text-decoration: none; color: white; transition: 0.3s; }
@@ -20,7 +19,6 @@
         /* HEADER */
         header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
         .logo-img img { max-height: 50px; width: auto; display: block; }
-        .logo-img:hover { opacity: 0.8; }
         .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; }
 
         /* ENCABEZADO DE SECCIÓN */
@@ -33,7 +31,7 @@
         .section-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 0 black; }
         .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* GRID DE NOTICIAS */
+        /* GRID */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
         
@@ -46,10 +44,7 @@
         .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
         .read-btn:hover { color: var(--accent); }
 
-        /* FOOTER */
         footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
-
-        @media (max-width: 768px) { .section-title { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
@@ -59,33 +54,38 @@
         <a href="index.html" class="back-link">VOLVER AL INICIO</a>
     </header>
 
-    <!-- TÍTULO DE LA SECCIÓN -->
     <div class="section-header">
-        <span class="section-subtitle">NOTICIAS DESTACADAS</span>
-        
-        <!-- ¡AQUÍ CAMBIA EL NOMBRE DE LA LIGA! -->
-        <h1 class="section-title">MOTOR</h1>
+        <span class="section-subtitle">WRC / F1 / DAKAR</span>
+        <h1 class="section-title">MOTORSPORT</h1>
     </div>
 
     <div class="container">
         <div class="news-grid">
             
-            <!-- TARJETA 1 (PLANTILLA) -->
+            <!-- NOTA: RAPTOR DAKAR -->
             <article class="news-card">
-                <!-- Link a la nota -->
-                <a href="#">
-                    <!-- Imagen de la nota -->
-                    <img src="https://placehold.co/600x400/111/FFF?text=SIN+NOTICIAS" class="card-img" alt="Foto Nota">
+                <a href="nota-raptor-dakar.html">
+                    <img src="raptor-dakar.jpg" class="card-img" alt="Dakar">
                 </a>
                 <div class="card-body">
-                    <span class="card-tag">CATEGORÍA</span>
-                    <h3 class="card-title"><a href="#">Próximamente más noticias...</a></h3>
-                    <a href="#" class="read-btn">LEER NOTA &rarr;</a>
+                    <span class="card-tag">DAKAR</span>
+                    <h3 class="card-title"><a href="nota-raptor-dakar.html">Raptor ataca de nuevo en el Dakar 2026</a></h3>
+                    <a href="nota-raptor-dakar.html" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTA: OGIER WRC -->
+            <article class="news-card">
+                <a href="nota-wrc.html">
+                    <img src="wrc.jpg" class="card-img" alt="WRC">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">WRC</span>
+                    <h3 class="card-title"><a href="nota-wrc.html">Sébastien Ogier: Nueve veces campeón del WRC</a></h3>
+                    <a href="nota-wrc.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
             </article>
             
-            <!-- Aquí puedes copiar y pegar más tarjetas -->
-
         </div>
     </div>
 
