@@ -197,20 +197,13 @@
         </div>
     </div>
 
+    <!-- CONTENEDOR ANCHO COMPLETO -->
     <div class="container">
         
-        <!-- CARRUSEL -->
-        <!-- Nota: Dakar (Añadida de nuevo) -->
-    <article class="news-card">
-        <a href="nota-dakar-2026.html"><img src="raptor-dakar.jpg" class="card-img" alt="Dakar 2026"></a>
-        <div class="card-body">
-            <span style="color:var(--accent); font-weight:bold;">MOTORSPORT</span>
-            <h3 class="card-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar 2026</a></h3>
-            <p class="card-excerpt">La odisea en el desierto comienza. Conoce la ruta y al representante mexicano.</p>
-            <a href="nota-dakar-2026.html" class="read-btn">LEER &rarr;</a>
-        </div>
-
+        <!-- 1. CARRUSEL (Va primero) -->
         <div class="carousel-container" id="mainCarousel">
+            
+            <!-- Slide 1: WRC -->
             <div class="slide active">
                 <img src="wrc.jpg" alt="Ogier Campeón WRC">
                 <div class="slide-content">
@@ -220,6 +213,7 @@
                 </div>
             </div>
 
+            <!-- Slide 2: PSG -->
             <div class="slide">
                 <img src="psg-campeon.jpg" alt="PSG Campeón">
                 <div class="slide-content">
@@ -229,6 +223,7 @@
                 </div>
             </div>
 
+            <!-- Slide 3: TOLUCA -->
             <div class="slide">
                 <img src="toluca-campeon.jpg" alt="Toluca Campeón">
                 <div class="slide-content">
@@ -238,6 +233,7 @@
                 </div>
             </div>
 
+            <!-- Slide 4: JOHN CENA -->
             <div class="slide">
                 <img src="cena-gunther.jpg" alt="John Cena Retiro">
                 <div class="slide-content">
@@ -246,6 +242,64 @@
                     <a href="nota-john-cena.html" class="read-btn">LEER CRÓNICA &rarr;</a>
                 </div>
             </div>
+
+            <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
+        </div>
+
+        <!-- 2. TÍTULO DE SECCIÓN -->
+        <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
+        
+        <!-- 3. GRID DE NOTICIAS (Aquí es donde van las tarjetas como la del Dakar) -->
+        <div class="latest-news-grid">
+            
+            <!-- Nota: Dakar (AQUÍ ES SU LUGAR CORRECTO) -->
+            <article class="news-card">
+                <a href="nota-dakar-2026.html"><img src="raptor-dakar.jpg" class="card-img" alt="Dakar 2026"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">MOTORSPORT</span>
+                    <h3 class="card-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar 2026</a></h3>
+                    <p class="card-excerpt">La odisea en el desierto comienza. Conoce la ruta y al representante mexicano.</p>
+                    <a href="nota-dakar-2026.html" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota: Tenis -->
+            <article class="news-card">
+                <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">TENIS</span>
+                    <h3 class="card-title"><a href="nota-tenis.html">Revolución: Alcaraz y nuevos récords</a></h3>
+                    <p class="card-excerpt">El tenis vive una era dorada con premios históricos.</p>
+                    <a href="nota-tenis.html" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota: México Grupo A -->
+            <article class="news-card">
+                <a href="nota-mexico-grupo.html"><img src="mexico-grupo.jpg" class="card-img" alt="México Grupo A"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">MUNDIAL 2026</span>
+                    <h3 class="card-title"><a href="nota-mexico-grupo.html">México conoce a sus rivales: Así quedó el Grupo A</a></h3>
+                    <p class="card-excerpt">Calendario y análisis de los rivales del Tri en casa.</p>
+                    <a href="nota-mexico-grupo.html" class="read-btn">VER CALENDARIO &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota: Sorteo General -->
+            <article class="news-card">
+                <a href="nota-sorteo.html"><img src="sorteo.png" class="card-img" alt="Sorteo"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">FIFA</span>
+                    <h3 class="card-title"><a href="nota-sorteo.html">Así quedaron los 12 grupos del Mundial</a></h3>
+                    <p class="card-excerpt">Consulta cómo quedaron conformados los 12 grupos.</p>
+                    <a href="nota-sorteo.html" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
+
+        </div> <!-- Fin del grid -->
+
+    </div> <!-- Fin del container -->
 
             <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
             <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
@@ -379,4 +433,5 @@
     </script>
 </body>
 </html>
+
 
