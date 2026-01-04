@@ -85,8 +85,21 @@
             overflow: hidden; border-bottom: 4px solid var(--accent);
             touch-action: pan-y;
         }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; pointer-events: none; }
-        .slide.active { opacity: 1; z-index: 1; pointer-events: auto; }
+        
+        /* Estilos Slide */
+        .slide { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; 
+            display: flex; 
+            pointer-events: none; /* Importante para que los botones funcionen */
+        }
+        
+        .slide.active { 
+            opacity: 1; 
+            z-index: 1; 
+            pointer-events: auto; 
+        }
         
         .slide img { 
             width: 100%; height: 100%; 
@@ -99,18 +112,25 @@
         .slide-tag { background: var(--accent); color: black; padding: 5px 15px; font-family: var(--font-head); font-weight: bold; text-transform: uppercase; font-size: 1rem; display: inline-block; margin-bottom: 15px; }
         .slide-title { font-family: var(--font-head); font-size: 4rem; margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black; }
         
+        /* FLECHAS DE CARRUSEL */
         .carousel-btn { 
             position: absolute; top: 50%; transform: translateY(-50%); 
             background: rgba(0,0,0,0.5); color: white; border: none; 
             font-size: 3rem; padding: 20px; cursor: pointer; 
-            z-index: 100; 
+            z-index: 100; /* Siempre encima */
             transition: 0.3s;
         }
         .carousel-btn:hover { background: var(--accent); color: black; }
-        .prev { left: 20px; } .next { right: 20px; }
+        .prev { left: 20px; } 
+        .next { right: 20px; }
 
-        /* --- NOTICIAS GRID --- */
-        .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
+        /* --- NOTICIAS GRID (Ajustado para 4 notas) --- */
+        .latest-news-grid { 
+            display: grid; 
+            /* Esto acomoda las notas automáticamente. Si son 4, hará 2 filas de 2 en pantallas medianas o 1 fila de 4 en pantallas muy grandes */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+            gap: 25px; 
+        }
         .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; }
         .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .card-img { width: 100%; height: 250px; object-fit: cover; }
@@ -149,7 +169,7 @@
             nav.active { display: flex; }
             .league-grid { grid-template-columns: repeat(2, 1fr); }
             .brand-text { font-size: 1.4rem; }
-            .carousel-btn { font-size: 2rem; padding: 10px; } 
+            .carousel-btn { font-size: 2rem; padding: 10px; display: block; } 
         }
     </style>
 </head>
@@ -194,22 +214,23 @@
             <span class="ticker-item">PSG CAMPEÓN INTERCONTINENTAL</span>
             <span class="ticker-item">TOLUCA CAMPEÓN DE LA LIGA MX</span>
             <span class="ticker-item">MÉXICO EN EL GRUPO A DEL MUNDIAL</span>
-            <span class="ticker-item">NUEVO AÑO, NUEVO DAKAR: COMIENZA LA PRUEBA MÁS DURA</span>
+            <span class="ticker-item">NUEVO AÑO, NUEVO DAKAR</span>
         </div>
     </div>
 
+    <!-- CONTENEDOR ANCHO COMPLETO -->
     <div class="container">
         
-      <!-- CARRUSEL -->
+        <!-- CARRUSEL -->
         <div class="carousel-container" id="mainCarousel">
             
-            <!-- Slide 1: DAKAR (ACTIVO) -->
+            <!-- Slide 1: WRC (ACTIVE) -->
             <div class="slide active">
-                <img src="mapa.png" alt="Dakar 2026">
+                <img src="wrc.jpg" alt="Ogier Campeón WRC">
                 <div class="slide-content">
                     <span class="slide-tag">MOTORSPORT</span>
-                    <h2 class="slide-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar: Comienza la prueba más dura</a></h2>
-                    <a href="nota-dakar-2026.html" class="read-btn">VER RUTA &rarr;</a>
+                    <h2 class="slide-title"><a href="nota-wrc.html">Sébastien Ogier: Nueve veces campeón del WRC</a></h2>
+                    <a href="nota-wrc.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
             </div>
 
@@ -243,28 +264,38 @@
                 </div>
             </div>
 
-            <!-- BOTONES CORRECTOS (DENTRO DEL DIV Y CON ID) -->
-            <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
-            <button class="carousel-btn next" id="nextBtn">&#10095;</button>
+            <!-- BOTONES MANUALES CON ONCLICK -->
+            <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
+        </div>
 
-        </div> <!-- AQUÍ CIERRA EL CAROUSEL-CONTAINER -->
-         
-
-        <!-- MÁS NOTICIAS -->
+        <!-- MÁS NOTICIAS (GRID CON 4 NOTAS) -->
         <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
         
         <div class="latest-news-grid">
-            <!-- Nota: TENIS -->
+            
+            <!-- Nota: Dakar (Bajada) -->
             <article class="news-card">
-                <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="TENIS"></a>
+                <a href="nota-raptor-dakar.html"><img src="raptor-dakar.jpg" class="card-img" alt="Raptor Dakar"></a>
                 <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">TENIS</span>
-                    <h3 class="card-title"><a href="nota-tenis.html">Revolución en el tenis: nuevos líderes, récords económicos y una temporada 2026 llena de expectativas</a></h3>
-                    <p class="card-excerpt">Favoritos y dudas de cara a la postemporada.</p>
-                    <a href="nota-nfl.html" class="read-btn">LEER &rarr;</a>
+                    <span style="color:var(--accent); font-weight:bold;">MOTORSPORT</span>
+                    <h3 class="card-title"><a href="nota-raptor-dakar.html">Raptor ataca de nuevo en el Dakar 2026</a></h3>
+                    <p class="card-excerpt">Ford regresa con un motor V8 y cuatro vehículos listos para las dunas.</p>
+                    <a href="nota-raptor-dakar.html" class="read-btn">LEER &rarr;</a>
                 </div>
             </article>
-            
+
+            <!-- Nota: Tenis -->
+            <article class="news-card">
+                <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">TENIS</span>
+                    <h3 class="card-title"><a href="nota-tenis.html">Revolución: Alcaraz y nuevos récords</a></h3>
+                    <p class="card-excerpt">El tenis vive una era dorada con premios históricos.</p>
+                    <a href="nota-tenis.html" class="read-btn">LEER &rarr;</a>
+                </div>
+            </article>
+
             <!-- Nota: México Grupo A -->
             <article class="news-card">
                 <a href="nota-mexico-grupo.html"><img src="mexico-grupo.jpg" class="card-img" alt="México Grupo A"></a>
@@ -288,7 +319,7 @@
             </article>
 
             <!-- Nota: NFL -->
-            <article class="news-card">
+             <article class="news-card">
                 <a href="nota-nfl.html"><img src="Super_Bowl_LIX.png" class="card-img" alt="NFL"></a>
                 <div class="card-body">
                     <span style="color:var(--accent); font-weight:bold;">NFL</span>
@@ -342,7 +373,7 @@
         <p class="copyright">&copy; 2025 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- JAVASCRIPT SEGURO -->
+    <!-- JAVASCRIPT CORREGIDO Y SEGURO -->
     <script>
         // 1. MENÚ
         const menuBtn = document.getElementById('menuBtn');
@@ -356,20 +387,26 @@
             }
         });
 
-        // 2. CARRUSEL MANUAL Y AUTOMÁTICO
+        // 2. CARRUSEL LÓGICA
         let slideIndex = 1;
         let slideTimer;
 
         showSlides(slideIndex);
 
-        // Control Manual
+        // Control Manual (llamado por los botones)
         function plusSlides(n) {
-            clearInterval(slideTimer); // Detiene el automático al hacer clic
+            clearInterval(slideTimer); // Pausa el automático
             showSlides(slideIndex += n);
-            slideTimer = setInterval(autoSlides, 5000); // Reinicia el automático
+            slideTimer = setInterval(autoSlides, 5000); // Reinicia
         }
 
-        // Función Principal
+        function currentSlide(n) {
+            clearInterval(slideTimer);
+            showSlides(slideIndex = n);
+            slideTimer = setInterval(autoSlides, 5000);
+        }
+
+        // Función Principal de mostrar
         function showSlides(n) {
             let i;
             let slides = document.getElementsByClassName("slide");
@@ -388,6 +425,7 @@
             plusSlides(1);
         }
 
+        // Iniciar
         slideTimer = setInterval(autoSlides, 5000);
 
         // 3. SWIPE TÁCTIL
@@ -414,8 +452,3 @@
 
 </body>
 </html>
-
-
-
-
-
