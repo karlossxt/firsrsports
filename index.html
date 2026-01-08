@@ -60,12 +60,25 @@
         .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.8rem; color: white; line-height: 1; letter-spacing: -1px; }
 
-        nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1.1rem; color: #ccc; }
+        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; align-items: center; }
+        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1rem; color: #ccc; }
         nav a:hover, nav a.active { color: white; border-bottom: 2px solid var(--accent); }
 
+        /* Botón Quiénes Somos */
+        .btn-qs {
+            border: 1px solid var(--accent);
+            color: var(--accent) !important;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .btn-qs:hover {
+            background: var(--accent);
+            color: black !important;
+        }
+
         .hamburger { display: none; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
-        .cta-btn { border:1px solid var(--accent); color:var(--accent); padding: 5px 15px; font-weight:bold; }
+        .cta-btn { background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; border-radius: 4px; }
+        .cta-btn:hover { background: var(--accent); color: black; }
 
         /* --- TICKER --- */
         .ticker-wrap { background: var(--primary); color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-family: var(--font-head); font-size: 0.9rem; font-weight: bold; }
@@ -97,10 +110,10 @@
         }
         
         .slide.active { opacity: 1; z-index: 1; pointer-events: auto; }
-        .slide img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: brightness(0.7); }
+        .slide img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: brightness(0.6); }
         .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(to top, black, transparent); z-index: 2; }
         .slide-tag { background: var(--accent); color: black; padding: 5px 15px; font-family: var(--font-head); font-weight: bold; text-transform: uppercase; font-size: 1rem; display: inline-block; margin-bottom: 15px; }
-        .slide-title { font-family: var(--font-head); font-size: 4rem; margin: 0 0 10px 0; line-height: 1; text-shadow: 2px 2px 4px black; }
+        .slide-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; text-shadow: 2px 2px 4px black; max-width: 900px; }
         .slide-title a { color: white; }
         
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 3rem; padding: 20px; cursor: pointer; z-index: 100; transition: 0.3s; }
@@ -112,11 +125,11 @@
         .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; }
         .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card-img { width: 100%; height: 250px; object-fit: cover; }
+        .card-img { width: 100%; height: 220px; object-fit: cover; }
         .card-body { padding: 25px; }
-        .card-title { font-family: var(--font-head); font-size: 1.5rem; margin: 10px 0; line-height: 1.2; }
-        .card-excerpt { font-size: 1rem; color: var(--text-sec); margin-bottom: 15px; }
-        .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; }
+        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 10px 0; line-height: 1.2; }
+        .card-excerpt { font-size: 0.95rem; color: var(--text-sec); margin-bottom: 15px; }
+        .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
 
         /* --- SECCIÓN LIGAS --- */
         .bottom-section { background: #111; padding: 40px; border-top: 3px solid var(--primary); margin-top: 20px; }
@@ -146,6 +159,7 @@
             .cta-btn { display: none; }
             nav { position: absolute; top: 80px; left: 0; width: 100%; background: var(--bg-dark); border-bottom: 3px solid var(--primary); display: none; flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.9); }
             nav.active { display: flex; }
+            nav a { width: 100%; display: block; padding: 10px 0; border-bottom: 1px solid #333; }
             .league-grid { grid-template-columns: repeat(2, 1fr); }
             .brand-text { font-size: 1.4rem; }
         }
@@ -154,7 +168,7 @@
 <body>
 
     <div class="top-bar">
-        <div>CDMX | 03 Enero 2026</div>
+        <div>CDMX | 07 Enero 2026</div>
         <div class="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -171,12 +185,12 @@
         <nav id="mainNav">
             <ul>
                 <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="nota-nfl.html">NFL</a></li>
-                <li><a href="nota-tenis.html">Tenis</a></li>
-                <li><a href="#">Liga MX</a></li>
-                <li><a href="#">BOX</a></li>
-                <li><a href="#">Champions</a></li>
-                <li><a href="#">Libertadores</a></li>
+                <li><a href="nfl-playoffs-2026.html">NFL</a></li>
+                <li><a href="australian-open-2026.html">Tenis</a></li>
+                <li><a href="ligamx.html">Liga MX</a></li>
+                <li><a href="boxeo.html">Boxeo</a></li>
+                <!-- Pestaña Nueva -->
+                <li><a href="quienes-somos.html" class="btn-qs">QUIÉNES SOMOS</a></li>
             </ul>
         </nav>
         <a href="nota-sorteo.html" class="cta-btn desktop-only">MUNDIAL '26</a>
@@ -184,13 +198,11 @@
 
     <div class="ticker-wrap">
         <div class="ticker">
+            <a href="australian-open-2026.html" class="ticker-item">AUSTRALIAN OPEN 2026: ARRANCA LA BATALLA</a>
             <a href="nfl-playoffs-2026.html" class="ticker-item">ANÁLISIS PLAYOFFS NFL 2026</a>
-            <a href="australian-open-2026.html" class="ticker-item">AUSTRALIAN OPEN 2026: ARRANCA LA PRIMERA GRAN BATALLA DEL AÑO</a>
-            <a href="guerramexicana.html" class="ticker-item">BOXEO • UNIFICACIÓN</a>
-            <a href="nota-dakar-2026.html" class="ticker-item">NUEVO AÑO, NUEVO DAKAR 2026</a>
-            <a href="nota-wrc.html" class="ticker-item">SÉBASTIEN OGIER SE CORONA EN WRC</a>          
-            <a href="nota-final-ligamx.html" class="ticker-item">TOLUCA CAMPEÓN DE LA LIGA MX</a>
-            
+            <a href="guerramexicana.html" class="ticker-item">BOXEO: GUERRA MEXICANA</a>
+            <a href="nota-dakar-2026.html" class="ticker-item">DAKAR 2026 EN MARCHA</a>
+            <a href="nota-final-ligamx.html" class="ticker-item">TOLUCA CAMPEÓN</a>
         </div>
     </div>
 
@@ -201,181 +213,8 @@
             
             <!-- Slide 1: TENIS (NUEVO) -->
             <div class="slide active">
-                <img src="australian-open-2023-tournament-image.jpg" alt="Dakar 2026">
+                <img src="australian-open-2023-tournament-image.jpg" alt="Australian Open 2026">
                 <div class="slide-content">
                     <span class="slide-tag">TENIS</span>
-                    <h2 class="slide-title"><a href="australian-open-2026.html">AUSTRALIAN OPEN 2026: ARRANCA LA PRIMERA GRAN BATALLA DEL AÑO</a></h2>
-                    <a href="australian-open-2026.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 2: NFL -->
-            <div class="slide">
-                <img src="playoffs-nfl-2026.png" alt="ANÁLISIS PLAYOFFS NFL 2026<">
-                <div class="slide-content">
-                    <span class="slide-tag">NFL</span>
-                    <h2 class="slide-title"><a href="nfl-playoffs-2026.html">Análisis Playoffs NFL 2026</a></h2>
-                    <a href="nfl-playoffs-2026.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 3: BOX -->
-            <div class="slide">
-                <img src="navarrete28defebrero.jpg" alt="Vaquero Navarrete anticipa “guerra mexicana” ante Eduardo ‘Sugar’ Núñez">
-                <div class="slide-content">
-                    <span class="slide-tag">BOX</span>
-                    <h2 class="slide-title"><a href="guerramexicana.html">El boxeo mexicano se prepara para vivir una nueva noche de alto voltaje</a></h2>
-                    <a href="nota-psg.html" class="read-btn">LEER CRÓNICA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 4: DAKAR -->
-              <div class="slide active">
-                <img src="raptor-dakar.jpg" alt="Dakar 2026">
-                <div class="slide-content">
-                    <span class="slide-tag">MOTORSPORT</span>
-                    <h2 class="slide-title"><a href="nota-dakar-2026.html">Dakar 2026: Comienza la odisea en el desierto</a></h2>
-                    <a href="nota-dakar-2026.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </div>
-
-            <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
-            <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
-        </div>
-
-        <!-- ÚLTIMAS NOTICIAS GRID -->
-        <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
-        
-        <div class="latest-news-grid">
-            
-            <article class="news-card">
-                <a href="nota-dakar-2026.html"><img src="raptor-dakar.jpg" class="card-img" alt="Dakar 2026"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">MOTORSPORT</span>
-                    <h3 class="card-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar 2026</a></h3>
-                    <p class="card-excerpt">La odisea en el desierto comienza. Conoce la ruta y al representante mexicano.</p>
-                    <a href="nota-dakar-2026.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <a href="nota-tenis.html"><img src="Carlos-Alcaraz.png" class="card-img" alt="Tenis"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">TENIS</span>
-                    <h3 class="card-title"><a href="nota-tenis.html">Revolución: Alcaraz y nuevos récords</a></h3>
-                    <p class="card-excerpt">El tenis vive una era dorada con premios históricos.</p>
-                    <a href="nota-tenis.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <a href="nota-mexico-grupo.html"><img src="mexico-grupo.jpg" class="card-img" alt="México Grupo A"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">MUNDIAL 2026</span>
-                    <h3 class="card-title"><a href="nota-mexico-grupo.html">México conoce a sus rivales en el Grupo A</a></h3>
-                    <p class="card-excerpt">Calendario y análisis de los rivales del Tri en casa.</p>
-                    <a href="nota-mexico-grupo.html" class="read-btn">VER CALENDARIO &rarr;</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <a href="nota-sorteo.html"><img src="sorteo.png" class="card-img" alt="Sorteo"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">FIFA</span>
-                    <h3 class="card-title"><a href="nota-sorteo.html">Así quedaron los 12 grupos del Mundial</a></h3>
-                    <p class="card-excerpt">Consulta cómo quedaron conformados los 12 grupos.</p>
-                    <a href="nota-sorteo.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-            <article class="news-card">
-                <a href="nota-nfl.html"><img src="Super_Bowl_LIX.png" class="card-img" alt="NFL"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">NFL</span>
-                    <h3 class="card-title"><a href="nota-nfl.html">Camino al Super Bowl LIX: Favoritos</a></h3>
-                    <p class="card-excerpt">Favoritos y dudas de cara a la postemporada.</p>
-                    <a href="nota-nfl.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-        </div>
-
-        <div class="bottom-section">
-            <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
-            <ul class="league-grid">
-                <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i> <span>NFL</span></a></li>
-                <li class="league-item"><a href="seccion-tenis.html"><i class="fa-solid fa-baseball"></i> <span>Tenis</span></a></li>
-                <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
-                <li class="league-item"><a href="#"><i class="fa-solid fa-futbol"></i> <span>La Liga</span></a></li>
-                <li class="league-item"><a href="seccion-motor.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
-                <li class="league-item"><a href="#"><i class="fa-solid fa-trophy"></i> <span>Champions</span></a></li>
-                <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i> <span>Boxeo</span></a></li>
-            </ul>
-        </div>
-    </div>
-
-    <footer>
-        <a href="index.html" class="footer-brand">
-            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
-            <span class="brand-text">F1RSTSPORTS</span>
-        </a>
-        <div class="footer-social">
-            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="mailto:frstsports2@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-        </div>
-        <p class="copyright">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
-    </footer>
-
-    <script>
-        // MENÚ
-        const menuBtn = document.getElementById('menuBtn');
-        const nav = document.getElementById('mainNav');
-        menuBtn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
-        });
-
-        // CARRUSEL
-        let slideIndex = 1;
-        let slideTimer;
-
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("slide");
-            if (n > slides.length) slideIndex = 1;
-            if (n < 1) slideIndex = slides.length;
-            for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active");
-            slides[slideIndex-1].classList.add("active");
-        }
-
-        function plusSlides(n) {
-            clearInterval(slideTimer);
-            showSlides(slideIndex += n);
-            slideTimer = setInterval(() => plusSlides(1), 5000);
-        }
-
-        showSlides(slideIndex);
-        slideTimer = setInterval(() => plusSlides(1), 5000);
-
-        // SWIPE TÁCTIL
-        let touchStartX = 0;
-        const sliderContainer = document.getElementById('mainCarousel');
-        sliderContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(slideTimer); }, {passive: true});
-        sliderContainer.addEventListener('touchend', e => { 
-            let touchEndX = e.changedTouches[0].screenX;
-            if (touchEndX < touchStartX - 50) plusSlides(1);
-            if (touchEndX > touchStartX + 50) plusSlides(-1);
-            slideTimer = setInterval(() => plusSlides(1), 5000);
-        }, {passive: true});
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-
+                    <h2 class="slide-title"><a href="australian-open-2026.html">Australian Open 2026: Arranca la primera gran batalla del año</a></h2>
+                    <a href="australian-open-2026.html" class="read-btn">LEER ANÁLISIS &ra
