@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CORREGIDO: Etiqueta title cerrada correctamente -->
-    <title>Noticias | F1rstSports</title>
+    <title>Sección NFL | F1rstSports</title>
     <link rel="icon" type="image/png" href="logof1.png">
+    
+    <!-- Meta etiquetas -->
+    <meta property="og:title" content="F1rstSports: Sección NFL">
+    <meta property="og:description" content="Toda la información de los Playoffs, Super Bowl y análisis de la NFL.">
+    <meta property="og:image" content="https://f1rstsports.com.mx/equipos-playoffs-nfl.jpg">
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ESTILOS BASE (Iguales al Index) */
+        /* ESTILOS BASE */
         :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
         body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
         a { text-decoration: none; color: white; transition: 0.3s; }
@@ -21,7 +25,8 @@
         header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
         .logo-img img { max-height: 50px; width: auto; display: block; }
         .logo-img:hover { opacity: 0.8; }
-        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; }
+        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 4px; }
+        .back-link:hover { background: var(--accent); color: black; }
 
         /* ENCABEZADO DE SECCIÓN */
         .section-header {
@@ -29,27 +34,30 @@
             padding: 60px 5%;
             text-align: center;
             margin-bottom: 40px;
+            border-bottom: 4px solid var(--accent);
         }
-        .section-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 0 black; }
-        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+        .section-title { font-family: var(--font-head); font-size: 4rem; margin: 0; text-transform: uppercase; text-shadow: 4px 4px 0 black; line-height: 1; }
+        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 4px; text-transform: uppercase; font-size: 1.2rem; }
 
         /* GRID DE NOTICIAS */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
         
-        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 10px 0; line-height: 1.2; }
-        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
-        .read-btn:hover { color: var(--accent); }
+        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; display: flex; flex-direction: column; }
+        .news-card:hover { transform: translateY(-7px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        
+        .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #333; }
+        
+        .card-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 10px; letter-spacing: 1px; }
+        .card-title { font-family: var(--font-head); font-size: 1.4rem; margin: 0 0 15px 0; line-height: 1.2; }
+        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: auto; display: inline-block; border-bottom: 2px solid var(--primary); width: fit-content; }
+        .read-btn:hover { color: var(--accent); border-color: var(--accent); }
 
         /* FOOTER */
         footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
 
-        @media (max-width: 768px) { .section-title { font-size: 2.5rem; } }
+        @media (max-width: 768px) { .section-title { font-size: 3rem; } }
     </style>
 </head>
 <body>
@@ -61,43 +69,56 @@
 
     <!-- TÍTULO DE LA SECCIÓN -->
     <div class="section-header">
-        <span class="section-subtitle">NOTICIAS DESTACADAS</span>
-        
-        <!-- ¡AQUÍ CAMBIA EL NOMBRE DE LA LIGA! -->
+        <span class="section-subtitle">RUMBO AL SUPER BOWL</span>
         <h1 class="section-title">NFL</h1>
     </div>
 
     <div class="container">
         <div class="news-grid">
             
-            <!-- TARJETA 1 (PLANTILLA) -->
-           <!-- Nota: NFL -->
+            <!-- TARJETA 1 (NUEVA): ANÁLISIS DE EQUIPOS -->
             <article class="news-card">
-                <a href="nota-nfl.html"><img src="Super_Bowl_LIX.png" class="card-img" alt="NFL"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">NFL</span>
-                    <h3 class="card-title"><a href="nota-nfl.html">Camino al Super Bowl LIX: Favoritos y dudas</a></h3>
-                    <p class="card-excerpt">Favoritos y dudas de cara a la postemporada.</p>
-                    <a href="nota-nfl.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>>
+                <a href="analisis-equipos-playoffs-nfl.html">
+                    <img src="equipos-playoffs-nfl.jpg" class="card-img" alt="Equipos Playoffs">
                 </a>
                 <div class="card-body">
-                    <span class="card-tag">CATEGORÍA</span>
-                    <h3 class="card-title"><a href="#">Próximamente más noticias...</a></h3>
-                    <a href="#" class="read-btn">LEER NOTA &rarr;</a>
+                    <span class="card-tag">PLAYOFFS 2026</span>
+                    <h3 class="card-title"><a href="analisis-equipos-playoffs-nfl.html">Análisis de los equipos clasificados y sus jugadores clave</a></h3>
+                    <a href="analisis-equipos-playoffs-nfl.html" class="read-btn">LEER ANÁLISIS &rarr;</a>
                 </div>
             </article>
-            
-            <!-- Aquí puedes copiar y pegar más tarjetas -->
+
+            <!-- TARJETA 2: TENDENCIAS Y CLAVES -->
+            <article class="news-card">
+                <a href="nfl-playoffs-2026.html">
+                    <img src="playoffs-nfl-2026.png" class="card-img" alt="Tendencias NFL">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">ANÁLISIS TÁCTICO</span>
+                    <h3 class="card-title"><a href="nfl-playoffs-2026.html">Tendencias, candidatos y claves del camino al Super Bowl</a></h3>
+                    <a href="nfl-playoffs-2026.html" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 3: CAMINO AL SUPER BOWL (Anterior) -->
+            <article class="news-card">
+                <a href="nota-nfl.html">
+                    <img src="Super_Bowl_LIX.png" class="card-img" alt="Super Bowl LIX">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">SUPER BOWL</span>
+                    <h3 class="card-title"><a href="nota-nfl.html">Camino al Super Bowl LIX: Favoritos y dudas</a></h3>
+                    <a href="nota-nfl.html" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </article>
 
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 F1rstSports Media.</p>
+        <span style="font-family:'Chakra Petch'; font-size:1.5rem; color:white; font-weight:bold;">F1RSTSPORTS</span>
+        <p style="margin-top:10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
 </body>
 </html>
-
