@@ -6,11 +6,11 @@
     <title>Análisis Equipos Playoffs NFL 2026 | F1rstSports</title>
     <link rel="icon" type="image/png" href="logof1.png">
     
-    <!-- Meta etiquetas para Redes Sociales -->
+    <!-- Meta etiquetas -->
     <meta property="og:site_name" content="F1rstSports">
     <meta property="og:title" content="Análisis de los equipos clasificados a los Playoffs NFL 2026">
     <meta property="og:description" content="Conoce a los clasificados, las sorpresas y el jugador clave de cada franquicia rumbo al Super Bowl.">
-    <meta property="og:image" content="https://f1rstsports.com.mx/equipos-playoffs-nfl.jpg">
+    <meta property="og:image" content="https://f1rstsports.com.mx/playoffs-general.jpg">
     <meta property="og:url" content="https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html">
     <meta property="og:type" content="article">
     
@@ -29,26 +29,24 @@
         .article-header h1 { font-family: var(--font-head); font-size: 2.5rem; line-height: 1.2; margin-bottom: 10px; }
         .meta-data { color: #888; font-size: 0.9rem; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 15px; }
         
-        /* ESTILOS BOTONES DE COMPARTIR */
+        /* BOTONES COMPARTIR */
         .share-box { margin-bottom: 25px; display: flex; gap: 10px; align-items: center; }
-        .share-label { font-size: 0.9rem; color: #888; margin-right: 10px; }
         .share-btn { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 1rem; transition: 0.3s; }
-        .sb-face { background: #1877F2; }
-        .sb-x { background: #000; border: 1px solid #333; }
-        .sb-whats { background: #25D366; }
+        .sb-face { background: #1877F2; } .sb-x { background: #000; border: 1px solid #333; } .sb-whats { background: #25D366; }
         .share-btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
 
         .main-image { width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; }
+        /* Clase especial para los brackets de conferencia para que no sean tan altos */
+        .bracket-image { width: 100%; height: auto; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
+
         .img-caption { font-size: 0.85rem; color: #aaa; border-left: 3px solid var(--accent); padding-left: 10px; margin-bottom: 30px; font-style: italic; }
         
         .article-body p { font-size: 1.1rem; line-height: 1.8; color: #d4d4d8; margin-bottom: 25px; }
         .article-body strong { color: var(--accent); }
         
-        /* Estilos Conferencias */
-        .conf-title { font-family: var(--font-head); font-size: 1.8rem; margin-top: 40px; margin-bottom: 20px; padding: 10px; border-radius: 4px; color: white; display: flex; align-items: center; gap: 10px; }
-        .afc { background: linear-gradient(90deg, #003366, transparent); border-left: 5px solid #d50a0a; } /* Rojo AFC (Broncos/Pats style mix) pero AFC suele ser rojo en logo viejo, aqui usaremos azul oscuro */
-        .afc-style { border-left: 5px solid #013369; background: linear-gradient(90deg, #013369, transparent); }
-        .nfc-style { border-left: 5px solid #D50A0A; background: linear-gradient(90deg, #D50A0A, transparent); }
+        .conf-title { font-family: var(--font-head); font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; padding: 10px; border-radius: 4px; color: white; display: flex; align-items: center; gap: 10px; }
+        .afc-style { border-left: 5px solid #d50a0a; background: linear-gradient(90deg, #222, transparent); }
+        .nfc-style { border-left: 5px solid #003369; background: linear-gradient(90deg, #222, transparent); }
 
         .team-block { margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px; }
         .team-name { font-size: 1.3rem; font-weight: bold; color: white; margin-bottom: 5px; display: block; }
@@ -77,22 +75,24 @@
             <h1>Análisis de los equipos clasificados a los Playoffs NFL 2025–2026</h1>
             <div class="meta-data">Por <strong>Carlos Abarca</strong> &bull; 08 Ene 2026</div>
             
-            <!-- BOTONES DE COMPARTIR -->
             <div class="share-box">
-                <span class="share-label">Compartir:</span>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html" target="_blank" class="share-btn sb-face"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://twitter.com/intent/tweet?text=Análisis Playoffs NFL 2026&url=https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html" target="_blank" class="share-btn sb-x"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://api.whatsapp.com/send?text=Mira este análisis de la NFL: https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html" target="_blank" class="share-btn sb-whats"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://api.whatsapp.com/send?text=Mira este análisis: https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html" target="_blank" class="share-btn sb-whats"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
 
         <div class="article-body">
             
-            <img src="equipos-playoffs-nfl.jpg" class="main-image" alt="Equipos Playoffs NFL">
-            <div class="img-caption">El camino al Super Bowl comienza con sorpresas y favoritos claros.</div>
+            <!-- IMAGEN PRINCIPAL (FULL BRACKET) -->
+            <img src="playoffs-general.jpg" class="main-image" alt="Bracket Playoffs NFL 2026">
+            <div class="img-caption">El camino al Super Bowl LX está definido.</div>
 
             <!-- CONFERENCIA AMERICANA -->
             <div class="conf-title afc-style">🔵 CONFERENCIA AMERICANA (AFC)</div>
+            
+            <!-- IMAGEN AFC AQUÍ -->
+            <img src="playoffs-afc.jpg" class="bracket-image" alt="Bracket AFC">
 
             <div class="team-block">
                 <span class="team-name">1. Denver Broncos</span>
@@ -138,6 +138,9 @@
 
             <!-- CONFERENCIA NACIONAL -->
             <div class="conf-title nfc-style">🔴 CONFERENCIA NACIONAL (NFC)</div>
+
+            <!-- IMAGEN NFC AQUÍ -->
+            <img src="playoffs-nfc.jpg" class="bracket-image" alt="Bracket NFC">
 
             <div class="team-block">
                 <span class="team-name">1. Seattle Seahawks</span>
@@ -205,5 +208,4 @@
         <p style="color:#555; font-size:0.8rem; margin-top:10px;">&copy; 2026 F1rstSports Media.</p>
     </footer>
 </body>
-
 </html>
