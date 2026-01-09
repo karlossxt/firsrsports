@@ -1,36 +1,20 @@
 <!DOCTYPE html>
+<html lang="es">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NS4CB5WH');</script>
-<!-- End Google Tag Manager -->
-  
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="HFRMvm-P14rn4hQcpcR68DwNBy7IzBzNGznY9rH2jxw" />
-
-  <title>First Sports | A otro Nivel</title>
-
-  <meta name="description" content="First Sports es un medio deportivo independiente con opinión, análisis y cobertura crítica del fútbol, la selección mexicana y el periodismo deportivo." />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-
-
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1rstSports | El Líder en Deportes</title>
+    <meta name="description" content="F1rstSports es un medio deportivo independiente con opinión, análisis y cobertura crítica del fútbol, NFL, F1 y más.">
+    <meta name="google-site-verification" content="HFRMvm-P14rn4hQcpcR68DwNBy7IzBzNGznY9rH2jxw" />
     <link rel="icon" type="image/png" href="logof1.png">
-    
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- Iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NS4CB5WH');</script>
+    <!-- End Google Tag Manager -->
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6PX8GFES3"></script>
@@ -40,6 +24,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       gtag('js', new Date());
       gtag('config', 'G-Q6PX8GFES3');
     </script>
+    
+    <!-- Fuentes y Estilos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
@@ -85,16 +74,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         nav a:hover, nav a.active { color: white; border-bottom: 2px solid var(--accent); }
 
         /* Botón Quiénes Somos */
-        .btn-qs {
-            border: 1px solid var(--accent);
-            color: var(--accent) !important;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        .btn-qs:hover {
-            background: var(--accent);
-            color: black !important;
-        }
+        .btn-qs { border: 1px solid var(--accent); color: var(--accent) !important; padding: 5px 10px; border-radius: 4px; }
+        .btn-qs:hover { background: var(--accent); color: black !important; }
 
         .hamburger { display: none; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
         .cta-btn { background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; border-radius: 4px; }
@@ -109,26 +90,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         /* --- LAYOUT --- */
-        .container { 
-            width: 98%; max-width: 1800px; margin: 20px auto; padding: 0 10px;
-            display: flex; flex-direction: column; gap: 40px;
-        }
+        .container { width: 98%; max-width: 1800px; margin: 20px auto; padding: 0 10px; display: flex; flex-direction: column; gap: 40px; }
 
         /* --- CARRUSEL --- */
-        .carousel-container {
-            position: relative; width: 100%; height: 600px; 
-            overflow: hidden; border-bottom: 4px solid var(--accent);
-            touch-action: pan-y;
-        }
-        
-        .slide { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            opacity: 0; 
-            transition: opacity 0.5s ease-in-out; 
-            display: flex; 
-            pointer-events: none; 
-        }
-        
+        .carousel-container { position: relative; width: 100%; height: 600px; overflow: hidden; border-bottom: 4px solid var(--accent); touch-action: pan-y; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; pointer-events: none; }
         .slide.active { opacity: 1; z-index: 1; pointer-events: auto; }
         .slide img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: brightness(0.6); }
         .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(to top, black, transparent); z-index: 2; }
@@ -138,18 +104,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
         .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 3rem; padding: 20px; cursor: pointer; z-index: 100; transition: 0.3s; }
         .carousel-btn:hover { background: var(--accent); color: black; }
-        .prev { left: 20px; } 
-        .next { right: 20px; }
+        .prev { left: 20px; } .next { right: 20px; }
 
         /* --- NOTICIAS GRID --- */
         .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
-        .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; }
+        .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
         .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         .card-img { width: 100%; height: 220px; object-fit: cover; }
-        .card-body { padding: 25px; }
+        .card-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
         .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 10px 0; line-height: 1.2; }
         .card-excerpt { font-size: 0.95rem; color: var(--text-sec); margin-bottom: 15px; }
-        .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
+        .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: auto; }
 
         /* --- SECCIÓN LIGAS --- */
         .bottom-section { background: #111; padding: 40px; border-top: 3px solid var(--primary); margin-top: 20px; }
@@ -170,7 +135,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .footer-social a:hover { color: var(--accent); transform: scale(1.2); }
         .copyright { color: #555; font-size: 0.8rem; text-align: center; }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .slide-title { font-size: 2rem; }
             .carousel-container { height: 450px; }
@@ -186,13 +150,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS4CB5WH"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS4CB5WH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <div class="top-bar">
-        <div>CDMX | 07 Enero 2026</div>
+        <div>CDMX | 08 Enero 2026</div>
         <div class="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -209,7 +172,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <nav id="mainNav">
             <ul>
                 <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="nfl-playoffs-2026.html">NFL</a></li>
+                <li><a href="seccion-nfl.html">NFL</a></li>
                 <li><a href="australian-open-2026.html">Tenis</a></li>
                 <li><a href="ligamx.html">Liga MX</a></li>
                 <li><a href="boxeo.html">Boxeo</a></li>
@@ -222,14 +185,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="ticker-wrap">
         <div class="ticker">
-            <a href="opinion-periodismo-deportivo.html" class="ticker-item">¿EL FIN DEL ANÁLISIS TÉCNICO?</a>
-            <a href="analisis-equipos-playoffs-nfl.html" class="ticker-item">ANÁLISIS DE LOS EQUIPOS CLASIFICADOS A LOS PLAYOFFS NFL 2025–2026</a>
+            <a href="analisis-equipos-playoffs-nfl.html" class="ticker-item">ANÁLISIS PLAYOFFS NFL 2026</a>
             <a href="australian-open-2026.html" class="ticker-item">AUSTRALIAN OPEN 2026: ARRANCA LA BATALLA</a>
-            <a href="calendario-seleccion-mexicana.html" class="ticker-item">CALENDARIO M¿EXICO 2026</a>
-            <a href="nfl-playoffs-2026.html" class="ticker-item">ANÁLISIS PLAYOFFS NFL 2026</a>
+            <a href="opinion-periodismo-deportivo.html" class="ticker-item">¿EL FIN DEL ANÁLISIS TÉCNICO?</a>
+            <a href="calendario-seleccion-mexicana.html" class="ticker-item">CALENDARIO MÉXICO 2026</a>
             <a href="guerramexicana.html" class="ticker-item">BOXEO: GUERRA MEXICANA</a>
             <a href="nota-dakar-2026.html" class="ticker-item">DAKAR 2026 EN MARCHA</a>
-            <a href="nota-final-ligamx.html" class="ticker-item">TOLUCA CAMPEÓN</a>
         </div>
     </div>
 
@@ -240,26 +201,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <!-- Slide 1: NFL (NUEVO) -->
             <div class="slide active">
-                <img src="playoffs-general.jpg" alt="nálisis de los equipos clasificados a los Playoffs NFL 2025–2026">
+                <img src="playoffs-general.jpg" alt="Análisis Playoffs NFL">
                 <div class="slide-content">
                     <span class="slide-tag">NFL</span>
                     <h2 class="slide-title"><a href="analisis-equipos-playoffs-nfl.html">Análisis de los equipos clasificados a los Playoffs NFL 2025–2026</a></h2>
-                    <a href="analisis-equipos-playoffs-nfl.html" class="read-btn">LEER ANÁLISIS &rarr;</a>
-                </div>
-            </div>
-            
-            <!-- Slide 2: LIGAMX -->
-            <div class="slide">
-                <img src="Transmisiones-deportivas-en-Mexico.jpg" alt="Por qué los programas de fútbol en México se convirtieron en "La Casa de los Famosos" de los deportes">
-                <div class="slide-content">
-                    <span class="slide-tag">LIGAMX</span>
-                    <h2 class="slide-title"><a href="opinion-periodismo-deportivo.html">Por qué los programas de fútbol en México se convirtieron en "La Casa de los Famosos" de los deportes</a></h2>
-                    <a href="opinion-periodismo-deportivo.html" class="read-btn">LEER CRÓNICA &rarr;</a>
+                    <a href="analisis-equipos-playoffs-nfl.html" class="read-btn">VER BRACKET &rarr;</a>
                 </div>
             </div>
                         
-            <!-- Slide 3: TENIS (NUEVO) -->
-            <div class="slide active">
+            <!-- Slide 2: TENIS -->
+            <div class="slide">
                 <img src="australian-open-2023-tournament-image.jpg" alt="Australian Open 2026">
                 <div class="slide-content">
                     <span class="slide-tag">TENIS</span>
@@ -268,23 +219,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
 
-            <!-- Slide 4: NFL (NUEVO) -->
-            <div class="slide">
-                <img src="playoffs-nfl-2026.png" alt="Playoffs NFL 2026">
-                <div class="slide-content">
-                    <span class="slide-tag">NFL</span>
-                    <h2 class="slide-title"><a href="nfl-playoffs-2026.html">Playoffs 2026: Tendencias, candidatos y claves del Super Bowl</a></h2>
-                    <a href="nfl-playoffs-2026.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Slide 5: BOX -->
+            <!-- Slide 3: BOXEO -->
             <div class="slide">
                 <img src="navarrete28defebrero.jpg" alt="Vaquero Navarrete">
                 <div class="slide-content">
                     <span class="slide-tag">BOXEO</span>
                     <h2 class="slide-title"><a href="guerramexicana.html">Vaquero Navarrete anticipa “guerra mexicana” en unificación</a></h2>
                     <a href="guerramexicana.html" class="read-btn">LEER CRÓNICA &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Slide 4: DAKAR -->
+            <div class="slide">
+                <img src="raptor-dakar.jpg" alt="Dakar 2026">
+                <div class="slide-content">
+                    <span class="slide-tag">MOTORSPORT</span>
+                    <h2 class="slide-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar 2026: La prueba más dura</a></h2>
+                    <a href="nota-dakar-2026.html" class="read-btn">VER RUTA &rarr;</a>
                 </div>
             </div>
 
@@ -297,58 +248,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         
         <div class="latest-news-grid">
             
-            <!-- Nota NFL -->
+            <!-- Nota 1: Polémica Liga MX -->
             <article class="news-card">
-                <a href="nfl-playoffs-2026.html"><img src="playoffs-nfl-2026.png" class="card-img" alt="NFL Playoffs"></a>
+                <a href="horarios-jornada1-clausura2026.html"><img src="streaming-ligamx.jpg" class="card-img" alt="Polémica Streaming Liga MX"></a>
                 <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">NFL</span>
-                    <h3 class="card-title"><a href="nfl-playoffs-2026.html">Análisis de los Playoffs 2026</a></h3>
-                    <p class="card-excerpt">Defensas híbridas y el factor localía: las claves del camino al título.</p>
-                    <a href="nfl-playoffs-2026.html" class="read-btn">LEER &rarr;</a>
+                    <span style="color:var(--primary); font-weight:bold;">LIGA MX</span>
+                    <h3 class="card-title"><a href="horarios-jornada1-clausura2026.html">¿Fútbol para ricos? El "secuestro" del streaming</a></h3>
+                    <p class="card-excerpt">Solo 3 partidos por TV abierta. Consulta la guía de supervivencia para ver la Jornada 1.</p>
+                    <a href="horarios-jornada1-clausura2026.html" class="read-btn">LEER NOTA &rarr;</a>
                 </div>
             </article>
 
-            <!-- Nota Tenis -->
+            <!-- Nota 2: Opinión Periodismo -->
             <article class="news-card">
-                <a href="australian-open-2026.html"><img src="australian-open-2023-tournament-image.jpg" class="card-img" alt="Australian Open"></a>
+                <a href="opinion-periodismo-deportivo.html"><img src="debate-tv-mexico.jpg" class="card-img" alt="Debate TV"></a>
                 <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">TENIS</span>
-                    <h3 class="card-title"><a href="australian-open-2026.html">Australian Open: La primera batalla</a></h3>
-                    <p class="card-excerpt">Melbourne está listo. Conoce el escenario y las figuras a seguir.</p>
-                    <a href="australian-open-2026.html" class="read-btn">LEER &rarr;</a>
+                    <span style="color:var(--accent); font-weight:bold;">OPINIÓN</span>
+                    <h3 class="card-title"><a href="opinion-periodismo-deportivo.html">¿El fin del análisis técnico en TV?</a></h3>
+                    <p class="card-excerpt">Por qué los programas deportivos se convirtieron en "La Casa de los Famosos".</p>
+                    <a href="opinion-periodismo-deportivo.html" class="read-btn">LEER OPINIÓN &rarr;</a>
                 </div>
             </article>
 
-            <!-- Nota Boxeo -->
+            <!-- Nota 3: Calendario Selección -->
             <article class="news-card">
-                <a href="guerramexicana.html"><img src="emanuel-navarrete-vs-eduardo-nunez.jpg" class="card-img" alt="Boxeo"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">BOXEO</span>
-                    <h3 class="card-title"><a href="guerramexicana.html">Navarrete vs Núñez: Guerra Mexicana</a></h3>
-                    <p class="card-excerpt">Choque de unificación entre campeones nacionales en Arizona.</p>
-                    <a href="guerramexicana.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-            <!-- Nota Dakar -->
-            <article class="news-card">
-                <a href="nota-dakar-2026.html"><img src="raptor-dakar.jpg" class="card-img" alt="Dakar 2026"></a>
-                <div class="card-body">
-                    <span style="color:var(--accent); font-weight:bold;">MOTOR</span>
-                    <h3 class="card-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar 2026</a></h3>
-                    <p class="card-excerpt">La odisea en el desierto ha comenzado. Conoce la ruta.</p>
-                    <a href="nota-dakar-2026.html" class="read-btn">LEER &rarr;</a>
-                </div>
-            </article>
-
-            <!-- Nota Mundial -->
-            <article class="news-card">
-                <a href="nota-mexico-grupo.html"><img src="mexico-grupo.jpg" class="card-img" alt="México Grupo A"></a>
+                <a href="calendario-seleccion-mexicana.html"><img src="mexico-calendario-2026.jpg" class="card-img" alt="Selección Mexicana"></a>
                 <div class="card-body">
                     <span style="color:var(--accent); font-weight:bold;">MUNDIAL 2026</span>
-                    <h3 class="card-title"><a href="nota-mexico-grupo.html">México conoce a sus rivales</a></h3>
-                    <p class="card-excerpt">Análisis del grupo A y el camino del Tri en casa.</p>
-                    <a href="nota-mexico-grupo.html" class="read-btn">LEER &rarr;</a>
+                    <h3 class="card-title"><a href="calendario-seleccion-mexicana.html">El calendario del Tri: Esperanza y realidad</a></h3>
+                    <p class="card-excerpt">Amistosos contra Portugal y Bélgica antes del debut en el Azteca.</p>
+                    <a href="calendario-seleccion-mexicana.html" class="read-btn">VER FECHAS &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota 4: NFL Claves -->
+            <article class="news-card">
+                <a href="nfl-playoffs-2026.html"><img src="playoffs-nfl-2026.png" class="card-img" alt="NFL Análisis"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">NFL</span>
+                    <h3 class="card-title"><a href="nfl-playoffs-2026.html">Claves del camino al Super Bowl</a></h3>
+                    <p class="card-excerpt">Defensas híbridas y factor localía: las tendencias de los Playoffs.</p>
+                    <a href="nfl-playoffs-2026.html" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota 5: Mundial Grupos -->
+            <article class="news-card">
+                <a href="mundial-2026.html"><img src="mundial-hero.jpg" class="card-img" alt="Mundial 2026"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">FIFA</span>
+                    <h3 class="card-title"><a href="mundial-2026.html">Cobertura Total: Copa Mundial 2026</a></h3>
+                    <p class="card-excerpt">Grupos, sedes y todo lo que debes saber del Mundial en casa.</p>
+                    <a href="mundial-2026.html" class="read-btn">IR AL HUB &rarr;</a>
                 </div>
             </article>
 
@@ -358,9 +309,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
             <ul class="league-grid">
                 <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i> <span>NFL</span></a></li>
-                <li class="league-item"><a href="seccion-tenis.html"><i class="fa-solid fa-baseball"></i> <span>Tenis</span></a></li>
+                <li class="league-item"><a href="australian-open-2026.html"><i class="fa-solid fa-baseball"></i> <span>Tenis</span></a></li>
                 <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
-                <li class="league-item"><a href="seccion-motor.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
+                <li class="league-item"><a href="nota-dakar-2026.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
                 <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i> <span>Boxeo</span></a></li>
                 <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a></li>
             </ul>
@@ -379,11 +330,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
             <a href="mailto:frstsports2@gmail.com"><i class="fa-solid fa-envelope"></i></a>
         </div>
-       <div style="margin-top: 20px; font-size: 0.8rem; text-align: center;">
-    <a href="aviso-privacidad.html" style="color: #888; text-decoration: underline;">Aviso de Privacidad</a> &bull; 
-    <a href="quienes-somos.html" style="color: #888; text-decoration: underline;">Quiénes Somos</a>
-</div>
-<p class="copyright" style="margin-top: 10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
+        <div style="margin-top: 20px; font-size: 0.8rem; text-align: center;">
+            <a href="aviso-privacidad.html" style="color: #888; text-decoration: underline;">Aviso de Privacidad</a> &bull; 
+            <a href="quienes-somos.html" style="color: #888; text-decoration: underline;">Quiénes Somos</a>
+        </div>
+        <p class="copyright" style="margin-top: 10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
     <script>
@@ -429,14 +380,3 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
