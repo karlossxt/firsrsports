@@ -180,6 +180,471 @@
                 <li><a href="quienes-somos.html" class="btn-qs">QUIÉNES SOMOS</a></li>
             </ul>
         </nav>
+<!-- CONTENEDOR DEL TICKER DE RESULTADOS -->
+<div class="score-ticker-container">
+    <div class="ticker-label">MARCADORES</div>
+    <div class="score-track" id="marcadores">
+        <!-- Aquí se inyectan los juegos con JS -->
+        <div style="color:white; padding:10px;">Cargando resultados...</div>
+    </div>
+</div>
+
+<style>
+    /* Estilos del Ticker */
+    .score-ticker-container {
+        background: #000;
+        border-bottom: 2px solid var(--primary); /* Azul F1rst */
+        display: flex;
+        height: 70px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .ticker-label {
+        background: var(--primary);
+        color: white;
+        font-family: 'Chakra Petch', sans-serif;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        font-size: 0.9rem;
+        z-index: 10;
+        box-shadow: 5px 0 10px rgba(0,0,0,0.5);
+    }
+
+    .score-track {
+        display: flex;
+        align-items: center;
+        gap: 1px; /* Espacio entre tarjetas */
+        animation: scroll-left 40s linear infinite; /* Animación opcional */
+        padding-left: 20px;
+    }
+    
+    /* Pausar animación al pasar el mouse */
+    .score-ticker-container:hover .score-track {
+        animation-play-state: paused;
+    }
+
+    .score-card {
+        background: #111;
+        border-right: 1px solid #333;
+        min-width: 200px;
+        padding: 8px 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-family: 'Inter', sans-serif;
+        position: relative;
+    }
+
+    .score-league {
+        font-size: 0.65rem;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .score-teams {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .score-val {
+        color: var(--accent); /* Verde Neón */
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 1.1rem;
+    }
+
+    /* Indicador EN VIVO */
+    .status-live {
+        color: #ff4444;
+        font-weight: bold;
+        animation: blink 1.5s infinite;
+    }
+    
+    .status-final { color: #666; }
+
+    @keyframes blink { 50% { opacity: 0.5; } }
+    
+    /* Si quieres que se muevan solos */
+    /* @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } } */
+</style>
+
+<script>
+    const contenedor = document.getElementById("marcadores");
+
+    async function cargarMarcadores() {
+        try {
+            // Simulamos la carga del archivo JSON (asegúrate de crear marcadores.json)
+            const res = await fetch("marcadores.json?ts=" + Date.now());
+            const data = await res.json();
+
+            let htmlContent = "";
+
+            data.forEach(juego => {
+                // Lógica para el puntito rojo si es EN VIVO
+                let estadoClass = juego.estado === "EN VIVO" ? "status-live" : "status-final";
+                let iconoEstado = juego.estado === "EN VIVO" ? "● " : "";
+
+                htmlContent += `
+                    <div class="score-card">
+                        <div class="score-league">
+                            <span>${juego.liga}</span>
+                            <span class="${estadoClass}">${iconoEstado}${juego.tiempo}</span>
+                        </div>
+                        <div class="score-teams">
+                            <div style="display:flex; flex-direction:column; gap:2px;">
+                                <span>${juego.local}</span>
+                                <span>${juego.visitante}</span>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:2px; text-align:right;">
+                                <span class="score-val">${juego.score_local}</span>
+                                <span class="score-val">${juego.score_visitante}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            contenedor.innerHTML = htmlContent;
+
+        } catch (error) {
+            console.error("Error cargando marcadores:", error);
+            // Opcional: No mostrar error al usuario para no ensuciar la UI
+        }
+    }
+
+    // Cargar al inicio
+    cargarMarcadores();
+    // Actualizar cada 30 segundos
+    setInterval(cargarMarcadores, 30000);
+</script>
+
+        <a href="mundial-2026.html" class="cta-btn desktop-only">MUNDIAL '26</a>
+    </header>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <a href="analisis-equipos-playoffs-nfl.html" class="ticker-item">ANÁLISIS PLAYOFFS NFL 2026</a>
+            <a href="australian-open-2026.html" class="ticker-item">AUSTRALIAN OPEN 2026: ARRANCA LA BATALLA</a>
+            <a href="opinion-periodismo-deportivo.html" class="ticker-item">¿EL FIN DEL ANÁLISIS TÉCNICO?</a>
+            <a href="calendario-seleccion-mexicana.html" class="ticker-item">CALENDARIO MÉXICO 2026</a>
+            <a href="guerramexicana.html" class="ticker-item">BOXEO: GUERRA MEXICANA</a>
+            <a href="nota-dakar-2026.html" class="ticker-item">DAKAR 2026 EN MARCHA</a>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- CARRUSEL -->
+        <div class="carousel-container" id="mainCarousel">
+
+            <!-- Slide 1: NFL (NUEVO) -->
+            <div class="slide active">
+                <img src="playoffs-general.jpg" alt="Análisis Playoffs NFL">
+                <div class="slide-content">
+                    <span class="slide-tag">NFL</span>
+                    <h2 class="slide-title"><a href="analisis-equipos-playoffs-nfl.html">Análisis de los equipos clasificados a los Playoffs NFL 2025–2026</a></h2>
+                    <a href="analisis-equipos-playoffs-nfl.html" class="read-btn">VER BRACKET &rarr;</a>
+                </div>
+            </div>
+                        
+            <!-- Slide 2: TENIS -->
+            <div class="slide">
+                <img src="australian-open-2023-tournament-image.jpg" alt="Australian Open 2026">
+                <div class="slide-content">
+                    <span class="slide-tag">TENIS</span>
+                    <h2 class="slide-title"><a href="australian-open-2026.html">Australian Open 2026: Arranca la primera gran batalla del año</a></h2>
+                    <a href="australian-open-2026.html" class="read-btn">LEER ANÁLISIS &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Slide 3: BOXEO -->
+            <div class="slide">
+                <img src="navarrete28defebrero.jpg" alt="Vaquero Navarrete">
+                <div class="slide-content">
+                    <span class="slide-tag">BOXEO</span>
+                    <h2 class="slide-title"><a href="guerramexicana.html">Vaquero Navarrete anticipa “guerra mexicana” en unificación</a></h2>
+                    <a href="guerramexicana.html" class="read-btn">LEER CRÓNICA &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Slide 4: DAKAR -->
+            <div class="slide">
+                <img src="raptor-dakar.jpg" alt="Dakar 2026">
+                <div class="slide-content">
+                    <span class="slide-tag">MOTORSPORT</span>
+                    <h2 class="slide-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar 2026: La prueba más dura</a></h2>
+                    <a href="nota-dakar-2026.html" class="read-btn">VER RUTA &rarr;</a>
+                </div>
+            </div>
+
+            <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
+        </div>
+
+        <!-- ÚLTIMAS NOTICIAS GRID -->
+        <h3 style="font-family:'Chakra Petch'; font-size:2rem; border-left:5px solid var(--accent); padding-left:15px; margin-bottom:10px;">ÚLTIMAS NOTICIAS</h3>
+        
+        <div class="latest-news-grid">
+            
+            <!-- Nota 1: Polémica Liga MX -->
+            <article class="news-card">
+                <a href="horarios-jornada1-clausura2026.html"><img src="streaming-ligamxx.png" class="card-img" alt="Polémica Streaming Liga MX"></a>
+                <div class="card-body">
+                    <span style="color:var(--primary); font-weight:bold;">LIGA MX</span>
+                    <h3 class="card-title"><a href="horarios-jornada1-clausura2026.html">¿Fútbol para ricos? El "secuestro" del streaming</a></h3>
+                    <p class="card-excerpt">Solo 3 partidos por TV abierta. Consulta la guía de supervivencia para ver la Jornada 1.</p>
+                    <a href="horarios-jornada1-clausura2026.html" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota 2: Opinión Periodismo -->
+            <article class="news-card">
+                <a href="opinion-periodismo-deportivo.html"><img src="debate-tv-mexico.jpg" class="card-img" alt="Debate TV"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">OPINIÓN</span>
+                    <h3 class="card-title"><a href="opinion-periodismo-deportivo.html">¿El fin del análisis técnico en TV?</a></h3>
+                    <p class="card-excerpt">Por qué los programas deportivos se convirtieron en "La Casa de los Famosos".</p>
+                    <a href="opinion-periodismo-deportivo.html" class="read-btn">LEER OPINIÓN &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota 3: Calendario Selección -->
+            <article class="news-card">
+                <a href="calendario-seleccion-mexicana.html"><img src="mexico-calendario-2026.jpg" class="card-img" alt="Selección Mexicana"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">MUNDIAL 2026</span>
+                    <h3 class="card-title"><a href="calendario-seleccion-mexicana.html">El calendario del Tri: Esperanza y realidad</a></h3>
+                    <p class="card-excerpt">Amistosos contra Portugal y Bélgica antes del debut en el Azteca.</p>
+                    <a href="calendario-seleccion-mexicana.html" class="read-btn">VER FECHAS &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota 4: NFL Claves -->
+            <article class="news-card">
+                <a href="nfl-playoffs-2026.html"><img src="playoffs-nfl-2026.png" class="card-img" alt="NFL Análisis"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">NFL</span>
+                    <h3 class="card-title"><a href="nfl-playoffs-2026.html">Claves del camino al Super Bowl</a></h3>
+                    <p class="card-excerpt">Defensas híbridas y factor localía: las tendencias de los Playoffs.</p>
+                    <a href="nfl-playoffs-2026.html" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </article>
+
+            <!-- Nota 5: Mundial Grupos -->
+            <article class="news-card">
+                <a href="mundial-2026.html"><img src="mundial-hero.jpg" class="card-img" alt="Mundial 2026"></a>
+                <div class="card-body">
+                    <span style="color:var(--accent); font-weight:bold;">FIFA</span>
+                    <h3 class="card-title"><a href="mundial-2026.html">Cobertura Total: Copa Mundial 2026</a></h3>
+                    <p class="card-excerpt">Grupos, sedes y todo lo que debes saber del Mundial en casa.</p>
+                    <a href="mundial-2026.html" class="read-btn">IR AL HUB &rarr;</a>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="bottom-section">
+            <h3 class="bottom-title">EXPLORA POR COMPETENCIA</h3>
+            <ul class="league-grid">
+                <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i> <span>NFL</span></a></li>
+                <li class="league-item"><a href="australian-open-2026.html"><i class="fa-solid fa-baseball"></i> <span>Tenis</span></a></li>
+                <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
+                <li class="league-item"><a href="nota-dakar-2026.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
+                <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i> <span>Boxeo</span></a></li>
+                <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <a href="index.html" class="footer-brand">
+            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
+            <span class="brand-text">F1RSTSPORTS</span>
+        </a>
+        <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="mailto:frstsports2@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <div style="margin-top: 20px; font-size: 0.8rem; text-align: center;">
+            <a href="aviso-privacidad.html" style="color: #888; text-decoration: underline;">Aviso de Privacidad</a> &bull; 
+            <a href="quienes-somos.html" style="color: #888; text-decoration: underline;">Quiénes Somos</a>
+        </div>
+        <p class="copyright" style="margin-top: 10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // MENÚ
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('mainNav');
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+        });
+
+        // CARRUSEL
+        let slideIndex = 1;
+        let slideTimer;
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+            for (let i = 0; i < slides.length; i++) slides[i].classList.remove("active");
+            slides[slideIndex-1].classList.add("active");
+        }
+
+        function plusSlides(n) {
+            clearInterval(slideTimer);
+            showSlides(slideIndex += n);
+            slideTimer = setInterval(() => plusSlides(1), 5000);
+        }
+
+        showSlides(slideIndex);
+        slideTimer = setInterval(() => plusSlides(1), 5000);
+
+        // SWIPE TÁCTIL
+        let touchStartX = 0;
+        const sliderContainer = document.getElementById('mainCarousel');
+        sliderContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(slideTimer); }, {passive: true});
+        sliderContainer.addEventListener('touchend', e => { 
+            let touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 50) plusSlides(1);
+            if (touchEndX > touchStartX + 50) plusSlides(-1);
+            slideTimer = setInterval(() => plusSlides(1), 5000);
+        }, {passive: true});
+    </script>
+</body>
+</html>        }
+        
+        .logo-img img { max-height: 50px; width: auto; display: block; }
+        .logo-img:hover { opacity: 0.8; }
+
+        .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.8rem; color: white; line-height: 1; letter-spacing: -1px; }
+
+        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; align-items: center; }
+        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1rem; color: #ccc; }
+        nav a:hover, nav a.active { color: white; border-bottom: 2px solid var(--accent); }
+
+        /* Botón Quiénes Somos */
+        .btn-qs { border: 1px solid var(--accent); color: var(--accent) !important; padding: 5px 10px; border-radius: 4px; }
+        .btn-qs:hover { background: var(--accent); color: black !important; }
+
+        .hamburger { display: none; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+        .cta-btn { background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; border-radius: 4px; }
+        .cta-btn:hover { background: var(--accent); color: black; }
+
+        /* --- TICKER --- */
+        .ticker-wrap { background: var(--primary); color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-family: var(--font-head); font-size: 0.9rem; font-weight: bold; }
+        .ticker { display: inline-block; animation: scroll 60s linear infinite; }
+        .ticker:hover { animation-play-state: paused; }
+        .ticker-item { margin-right: 40px; color: white; transition: color 0.3s; }
+        .ticker-item:hover { color: var(--accent); }
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* --- LAYOUT --- */
+        .container { width: 98%; max-width: 1800px; margin: 20px auto; padding: 0 10px; display: flex; flex-direction: column; gap: 40px; }
+
+        /* --- CARRUSEL --- */
+        .carousel-container { position: relative; width: 100%; height: 600px; overflow: hidden; border-bottom: 4px solid var(--accent); touch-action: pan-y; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; pointer-events: none; }
+        .slide.active { opacity: 1; z-index: 1; pointer-events: auto; }
+        .slide img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: brightness(0.6); }
+        .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(to top, black, transparent); z-index: 2; }
+        .slide-tag { background: var(--accent); color: black; padding: 5px 15px; font-family: var(--font-head); font-weight: bold; text-transform: uppercase; font-size: 1rem; display: inline-block; margin-bottom: 15px; }
+        .slide-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0 0 15px 0; line-height: 1.1; text-shadow: 2px 2px 4px black; max-width: 900px; }
+        .slide-title a { color: white; }
+        
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 3rem; padding: 20px; cursor: pointer; z-index: 100; transition: 0.3s; }
+        .carousel-btn:hover { background: var(--accent); color: black; }
+        .prev { left: 20px; } .next { right: 20px; }
+
+        /* --- NOTICIAS GRID --- */
+        .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+        .news-card { background: var(--bg-card); border: 1px solid #333; overflow: hidden; transition: 0.3s; display: flex; flex-direction: column; }
+        .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .card-img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 10px 0; line-height: 1.2; }
+        .card-excerpt { font-size: 0.95rem; color: var(--text-sec); margin-bottom: 15px; }
+        .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: auto; }
+
+        /* --- SECCIÓN LIGAS --- */
+        .bottom-section { background: #111; padding: 40px; border-top: 3px solid var(--primary); margin-top: 20px; }
+        .bottom-title { font-family: var(--font-head); font-size: 2rem; color: white; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
+        .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; list-style: none; padding: 0; }
+        .league-item { background: var(--bg-card); border: 1px solid #333; padding: 20px; text-align: center; transition: 0.3s; cursor: pointer; }
+        .league-item:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-5px); }
+        .league-item a { text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
+        .league-item span { display: block; font-family: var(--font-head); font-weight: bold; font-size: 1.1rem; margin-top: 10px; }
+        .league-item i { font-size: 2rem; color: var(--accent); }
+        .league-item:hover i { color: white; }
+
+        /* --- FOOTER --- */
+        footer { background: black; padding: 50px 20px; border-top: 1px solid #333; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+        .footer-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .footer-social { display: flex; gap: 30px; font-size: 1.8rem; }
+        .footer-social a { color: white; transition: 0.3s; }
+        .footer-social a:hover { color: var(--accent); transform: scale(1.2); }
+        .copyright { color: #555; font-size: 0.8rem; text-align: center; }
+
+        @media (max-width: 900px) {
+            .slide-title { font-size: 2rem; }
+            .carousel-container { height: 450px; }
+            .slide-content { padding: 20px; }
+            .hamburger { display: block; }
+            .cta-btn { display: none; }
+            nav { position: absolute; top: 80px; left: 0; width: 100%; background: var(--bg-dark); border-bottom: 3px solid var(--primary); display: none; flex-direction: column; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.9); }
+            nav.active { display: flex; }
+            nav a { width: 100%; display: block; padding: 10px 0; border-bottom: 1px solid #333; }
+            .league-grid { grid-template-columns: repeat(2, 1fr); }
+            .brand-text { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS4CB5WH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="top-bar">
+        <div>CDMX | 08 Enero 2026</div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <header>
+        <a href="index.html" class="brand-link">
+            <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
+            <span class="brand-text">F1RSTSPORTS</span>
+        </a>
+        <button class="hamburger" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
+        <nav id="mainNav">
+            <ul>
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="seccion-nfl.html">NFL</a></li>
+                <li><a href="australian-open-2026.html">Tenis</a></li>
+                <li><a href="ligamx.html">Liga MX</a></li>
+                <li><a href="boxeo.html">Boxeo</a></li>
+                <!-- Pestaña Nueva -->
+                <li><a href="quienes-somos.html" class="btn-qs">QUIÉNES SOMOS</a></li>
+            </ul>
+        </nav>
         <a href="mundial-2026.html" class="cta-btn desktop-only">MUNDIAL '26</a>
     </header>
 
@@ -380,5 +845,6 @@
     </script>
 </body>
 </html>
+
 
 
