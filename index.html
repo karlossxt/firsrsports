@@ -69,8 +69,8 @@
         .brand-link { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.8rem; color: white; line-height: 1; letter-spacing: -1px; }
 
-        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; align-items: center; }
-        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 1rem; color: #ccc; }
+        nav ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; align-items: center; }
+        nav a { font-family: var(--font-head); text-transform: uppercase; font-weight: 700; font-size: 0.95rem; color: #ccc; }
         nav a:hover, nav a.active { color: white; border-bottom: 2px solid var(--accent); }
 
         /* Botón Quiénes Somos */
@@ -203,10 +203,11 @@
             <ul>
                 <li><a href="index.html" class="active">Inicio</a></li>
                 <li><a href="seccion-nfl.html">NFL</a></li>
+                <li><a href="seccion-motor.html">Motor</a></li> <!-- ¡AQUÍ ESTÁ MOTOR! -->
                 <li><a href="australian-open-2026.html">Tenis</a></li>
                 <li><a href="ligamx.html">Liga MX</a></li>
                 <li><a href="boxeo.html">Boxeo</a></li>
-                <li><a href="#">Béisbol</a></li> 
+                <li><a href="#">Béisbol</a></li>
                 <li><a href="quienes-somos.html" class="btn-qs">QUIÉNES SOMOS</a></li>
             </ul>
         </nav>
@@ -350,7 +351,7 @@
                 <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i> <span>NFL</span></a></li>
                 <li class="league-item"><a href="australian-open-2026.html"><i class="fa-solid fa-baseball"></i> <span>Tenis</span></a></li>
                 <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
-                <li class="league-item"><a href="nota-dakar-2026.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
+                <li class="league-item"><a href="seccion-motor.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
                 <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i> <span>Boxeo</span></a></li>
                 <li class="league-item"><a href="#"><i class="fa-solid fa-baseball-bat-ball"></i> <span>Béisbol</span></a></li>
                 <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a></li>
@@ -377,9 +378,8 @@
         <p class="copyright" style="margin-top: 10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
-        // 1. MENÚ
+        // MENÚ
         const menuBtn = document.getElementById('menuBtn');
         const nav = document.getElementById('mainNav');
         menuBtn.addEventListener('click', () => {
@@ -387,7 +387,7 @@
             menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
 
-        // 2. CARRUSEL
+        // CARRUSEL
         let slideIndex = 1;
         let slideTimer;
 
@@ -408,7 +408,7 @@
         showSlides(slideIndex);
         slideTimer = setInterval(() => plusSlides(1), 5000);
 
-        // Swipe Táctil
+        // SWIPE TÁCTIL
         let touchStartX = 0;
         const sliderContainer = document.getElementById('mainCarousel');
         sliderContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(slideTimer); }, {passive: true});
@@ -419,26 +419,26 @@
             slideTimer = setInterval(() => plusSlides(1), 5000);
         }, {passive: true});
 
-        // 3. MARCADORES REALES
+        // --- MARCADORES REALES ---
         const marcadoresContainer = document.getElementById("marcadores");
         
         // Datos Actualizados (Domingo 11 Enero)
         const liveScores = [
-            // JUEGOS EN VIVO
+            // JUEGOS EN VIVO (Van primero)
             { liga: "NFL WC", local: "NE Patriots", vis: "LA Chargers", s1: "0", s2: "0", st: "EN VIVO", t: "Q1 10:48" },
             { liga: "LIGA MX", local: "San Luis", vis: "Tigres", s1: "0", s2: "0", st: "EN VIVO", t: "21'" },
             
-            // SUPERCOPA
+            // SUPERCOPA DE ESPAÑA
             { liga: "SUPERCOPA", local: "Barcelona", vis: "R. Madrid", s1: "3", s2: "2", st: "FINAL", t: "Fin" },
 
-            // NFL
+            // NFL FINALES
             { liga: "NFL WC", local: "PHI Eagles", vis: "SF 49ers", s1: "19", s2: "23", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "JAX Jaguars", vis: "BUF Bills", s1: "24", s2: "27", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "CHI Bears", vis: "GB Packers", s1: "31", s2: "27", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "CAR Panthers", vis: "LA Rams", s1: "31", s2: "34", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "PIT Steelers", vis: "BAL Ravens", s1: "26", s2: "24", st: "FINAL", t: "Fin" },
 
-            // LIGA MX
+            // LIGA MX FINALES
             { liga: "LIGA MX", local: "Pumas", vis: "Querétaro", s1: "1", s2: "1", st: "FINAL", t: "Fin" },
             { liga: "LIGA MX", local: "Monterrey", vis: "Toluca", s1: "0", s2: "1", st: "FINAL", t: "Fin" },
             { liga: "LIGA MX", local: "Santos", vis: "Necaxa", s1: "1", s2: "3", st: "FINAL", t: "Fin" },
@@ -454,6 +454,7 @@
             liveScores.forEach(game => {
                 let liveClass = game.st === "EN VIVO" ? "status-live" : "";
                 let dot = game.st === "EN VIVO" ? "● " : "";
+                // Color para el ganador en negrita (opcional, lógica simple)
                 let score1Style = parseInt(game.s1) > parseInt(game.s2) ? "color:#fff" : "";
                 let score2Style = parseInt(game.s2) > parseInt(game.s1) ? "color:#fff" : "";
 
