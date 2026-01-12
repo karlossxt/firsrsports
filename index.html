@@ -416,7 +416,8 @@
         }
         renderScores();
 
-        // --- 2. SCRIPT DEL MENÚ ---
+        <script>
+        // MENÚ
         const menuBtn = document.getElementById('menuBtn');
         const nav = document.getElementById('mainNav');
         menuBtn.addEventListener('click', () => {
@@ -424,7 +425,7 @@
             menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
 
-        // --- 3. SCRIPT DEL CARRUSEL ---
+        // CARRUSEL
         let slideIndex = 1;
         let slideTimer;
 
@@ -445,7 +446,7 @@
         showSlides(slideIndex);
         slideTimer = setInterval(() => plusSlides(1), 5000);
 
-        // Swipe Táctil
+        // SWIPE TÁCTIL
         let touchStartX = 0;
         const sliderContainer = document.getElementById('mainCarousel');
         sliderContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(slideTimer); }, {passive: true});
@@ -455,6 +456,67 @@
             if (touchEndX > touchStartX + 50) plusSlides(-1);
             slideTimer = setInterval(() => plusSlides(1), 5000);
         }, {passive: true});
+
+        // --- MARCADORES REALES ---
+        const marcadoresContainer = document.getElementById("marcadores");
+        
+        // Datos Actualizados (Domingo 11 Enero)
+        const liveScores = [
+            // JUEGOS EN VIVO (Van primero)
+            { liga: "NFL WC", local: "NE Patriots", vis: "LA Chargers", s1: "0", s2: "0", st: "EN VIVO", t: "Q1 10:48" },
+            { liga: "LIGA MX", local: "San Luis", vis: "Tigres", s1: "0", s2: "0", st: "EN VIVO", t: "21'" },
+            
+            // SUPERCOPA DE ESPAÑA
+            { liga: "SUPERCOPA", local: "Barcelona", vis: "R. Madrid", s1: "3", s2: "2", st: "FINAL", t: "Fin" },
+
+            // NFL FINALES
+            { liga: "NFL WC", local: "PHI Eagles", vis: "SF 49ers", s1: "19", s2: "23", st: "FINAL", t: "Fin" },
+            { liga: "NFL WC", local: "JAX Jaguars", vis: "BUF Bills", s1: "24", s2: "27", st: "FINAL", t: "Fin" },
+            { liga: "NFL WC", local: "CHI Bears", vis: "GB Packers", s1: "31", s2: "27", st: "FINAL", t: "Fin" },
+            { liga: "NFL WC", local: "CAR Panthers", vis: "LA Rams", s1: "31", s2: "34", st: "FINAL", t: "Fin" },
+            { liga: "NFL WC", local: "PIT Steelers", vis: "BAL Ravens", s1: "26", s2: "24", st: "FINAL", t: "Fin" },
+
+            // LIGA MX FINALES
+            { liga: "LIGA MX", local: "Pumas", vis: "Querétaro", s1: "1", s2: "1", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "Monterrey", vis: "Toluca", s1: "0", s2: "1", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "Santos", vis: "Necaxa", s1: "1", s2: "3", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "León", vis: "Cruz Azul", s1: "2", s2: "1", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "Chivas", vis: "Pachuca", s1: "2", s2: "0", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "Atlas", vis: "Puebla", s1: "1", s2: "0", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "Tijuana", vis: "América", s1: "0", s2: "0", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "Mazatlán", vis: "Juárez", s1: "1", s2: "2", st: "FINAL", t: "Fin" }
+        ];
+
+        function renderScores() {
+            let html = "";
+            liveScores.forEach(game => {
+                let liveClass = game.st === "EN VIVO" ? "status-live" : "";
+                let dot = game.st === "EN VIVO" ? "● " : "";
+                // Color para el ganador en negrita (opcional, lógica simple)
+                let score1Style = parseInt(game.s1) > parseInt(game.s2) ? "color:#fff" : "";
+                let score2Style = parseInt(game.s2) > parseInt(game.s1) ? "color:#fff" : "";
+
+                html += `
+                    <div class="score-card">
+                        <div class="score-league">
+                            <span>${game.liga}</span>
+                            <span class="${liveClass}">${dot}${game.t}</span>
+                        </div>
+                        <div class="score-teams">
+                            <div style="display:flex; flex-direction:column; gap:2px;">
+                                <span>${game.local}</span>
+                                <span>${game.vis}</span>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:2px; text-align:right;">
+                                <span class="score-val" style="${score1Style}">${game.s1}</span>
+                                <span class="score-val" style="${score2Style}">${game.s2}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            marcadoresContainer.innerHTML = html;
+        }
+        renderScores();
     </script>
-</body>
-</html>
+
