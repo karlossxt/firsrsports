@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1rstSports | El Líder en Deportes</title>
     <meta name="description" content="F1rstSports es un medio deportivo independiente con opinión, análisis y cobertura crítica del fútbol, NFL, F1 y más.">
+    <meta name="google-site-verification" content="HFRMvm-P14rn4hQcpcR68DwNBy7IzBzNGznY9rH2jxw" />
     <link rel="icon" type="image/png" href="logof1.png">
 
     <!-- Google Analytics -->
@@ -22,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- VARIABLES --- */
+        /* --- 1. VARIABLES --- */
         :root {
             --bg-body: #050505;
             --bg-card: #0a0a0a;
@@ -36,14 +37,17 @@
             --font-body: 'Inter', sans-serif;
         }
 
+        /* --- 2. BASES --- */
         body { margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-body); overflow-x: hidden; }
         a { text-decoration: none; color: white; transition: all 0.3s ease; }
 
-        /* --- TOP BAR & SOCIAL ICONS --- */
+        /* --- 3. HEADER & NAV --- */
         .top-bar { background: #000; padding: 8px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        /* Redes Sociales Mejoradas */
         .social-icons { display: flex; gap: 15px; }
         .social-icons a { color: var(--text-muted); font-size: 1rem; transition: 0.3s; }
-        .social-icons a:hover { color: var(--accent); transform: scale(1.1); }
+        .social-icons a:hover { color: var(--accent); transform: translateY(-2px); }
         
         header { 
             background: var(--glass); backdrop-filter: blur(10px);
@@ -54,57 +58,90 @@
         .logo-img img { height: 45px; width: auto; }
         .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.6rem; color: white; letter-spacing: -1px; }
 
-        nav { display: flex; gap: 20px; }
+        nav { display: flex; gap: 20px; align-items: center; }
         nav a { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); }
         nav a:hover, nav a.active { color: var(--accent); }
         .btn-qs { border: 1px solid var(--accent); color: var(--accent) !important; padding: 5px 12px; border-radius: 50px; }
         .btn-qs:hover { background: var(--accent); color: black !important; }
 
-        /* --- SCORE TICKER (AJUSTADO) --- */
+        .hamburger { display: none; color: white; font-size: 1.8rem; background: none; border: none; cursor: pointer; }
+        .cta-btn { background: var(--primary); padding: 8px 20px; border-radius: 4px; font-weight: bold; font-size: 0.9rem; }
+
+        /* --- 4. SCORE TICKER (CORREGIDO) --- */
         .score-ticker-container { background: #080808; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; height: 75px; overflow: hidden; position: relative; z-index: 100; }
-        .ticker-label { background: var(--primary); color: white; font-family: var(--font-head); font-weight: 800; display: flex; align-items: center; padding: 0 20px; font-size: 0.85rem; z-index: 10; text-transform: uppercase; box-shadow: 10px 0 20px rgba(0,0,0,0.5); }
+        .ticker-label { background: var(--primary); color: white; font-family: var(--font-head); font-weight: 800; display: flex; align-items: center; padding: 0 20px; font-size: 0.85rem; z-index: 10; text-transform: uppercase; box-shadow: 10px 0 20px black; }
         
-        .score-track { display: flex; align-items: center; white-space: nowrap; will-change: transform; animation: scroll-left 40s linear infinite; } 
+        .score-track { display: flex; align-items: center; animation: scroll-left 40s linear infinite; white-space: nowrap; } 
         .score-ticker-container:hover .score-track { animation-play-state: paused; }
         
         .score-card { background: transparent; border-right: 1px solid rgba(255,255,255,0.1); min-width: 220px; padding: 10px 20px; display: flex; flex-direction: column; justify-content: center; }
         .score-league-row { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 700; color: #666; text-transform: uppercase; margin-bottom: 4px; }
         .score-teams { display: flex; justify-content: space-between; font-weight: 600; color: white; font-size: 0.85rem; }
-        .score-val { color: var(--accent); font-family: 'Chakra Petch'; }
+        .score-val { color: var(--accent); font-family: var(--font-head); }
         
-        .status-live { color: #ff4444; animation: blink 1.5s infinite; }
-        .status-future { color: var(--accent); }
+        .status-live { color: #ff4444; animation: blink 1.5s infinite; font-weight: bold; }
+        .status-future { color: var(--accent); font-weight: bold; }
 
-        /* --- RESTO DE ESTILOS (IGUALES A TU BASE) --- */
+        /* --- 5. NEWS TICKER --- */
         .ticker-wrap { background: var(--bg-card); overflow: hidden; white-space: nowrap; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .ticker { display: inline-block; animation: scroll 60s linear infinite; }
         .ticker-item { margin-right: 50px; font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: #ddd; }
+        .ticker-item:hover { color: var(--accent); }
 
+        /* --- 6. HERO CAROUSEL --- */
         .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
         .carousel-container { position: relative; width: 100%; height: 65vh; min-height: 500px; overflow: hidden; border-bottom: 4px solid var(--accent); background: black; border-radius: 12px; }
+        
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
         .slide.active { display: flex; opacity: 1; z-index: 5; }
         .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
-        .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); z-index: 10; }
-        .slide-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0 0 20px; color: white; text-transform: uppercase; }
         
-        .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        .news-card { background: var(--bg-card); border: var(--border); border-radius: 12px; overflow: hidden; transition: 0.4s; }
-        .news-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .card-img { width: 100%; height: 220px; object-fit: cover; }
-        .card-body { padding: 25px; }
+        .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); z-index: 10; }
+        .slide-tag { background: var(--accent); color: black; padding: 6px 12px; font-family: var(--font-head); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; display: inline-block; margin-bottom: 15px; border-radius: 4px; }
+        .slide-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0 0 20px; line-height: 1.1; color: white; text-transform: uppercase; text-shadow: 2px 2px 10px black; max-width: 900px; }
+        .slide-btn { padding: 12px 30px; border: 1px solid white; color: white; font-weight: 700; text-transform: uppercase; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
+        .slide-btn:hover { background: white; color: black; }
+        
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 3rem; padding: 10px 20px; cursor: pointer; z-index: 20; transition: 0.3s; }
+        .carousel-btn:hover { background: var(--accent); color: black; }
+        .prev { left: 20px; } .next { right: 20px; }
 
+        /* --- 7. GRID NOTICIAS --- */
+        .section-header { margin: 60px 0 30px; display: flex; align-items: center; gap: 15px; }
+        .section-stripe { height: 30px; width: 5px; background: var(--accent); }
+        .section-title { font-family: var(--font-head); font-size: 2.5rem; line-height: 1; text-transform: uppercase; color: white; margin: 0; }
+
+        .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .news-card { background: var(--bg-card); border: var(--border); border-radius: 12px; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; }
+        .news-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 15px 30px rgba(204, 255, 0, 0.1); }
+        .card-img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-tag { color: var(--accent); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 10px; }
+        .card-title { font-family: var(--font-head); font-size: 1.4rem; line-height: 1.2; margin: 0 0 15px; color: white; }
+        .read-more { margin-top: auto; color: white; font-weight: 700; border-bottom: 1px solid var(--accent); width: fit-content; }
+
+        /* --- 8. TABLAS --- */
         .standings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .standing-card { background: #111; border: 1px solid #333; border-radius: 12px; overflow: hidden; }
-        .mini-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        .mini-table td { padding: 12px 15px; border-bottom: 1px solid #222; }
+        .standing-header { background: #1a1a1a; padding: 15px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
+        .standing-title { font-family: var(--font-head); font-weight: bold; color: white; }
+        .mini-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; color: #ccc; }
+        .mini-table td, .mini-table th { padding: 12px 15px; text-align: left; border-bottom: 1px solid #222; }
+        .rank-num { font-weight: 800; color: var(--accent); width: 20px; display: inline-block; }
+        .full-table-link { display: block; text-align: center; padding: 15px; background: #151515; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
+        .full-table-link:hover { background: var(--primary); color: white; }
 
+        /* --- 9. CATEGORÍAS --- */
         .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-top: 60px; padding: 0; list-style: none; }
-        .league-item { background: rgba(255,255,255,0.05); padding: 30px 10px; text-align: center; border-radius: 8px; }
+        .league-item { background: rgba(255,255,255,0.05); padding: 30px 10px; text-align: center; border-radius: 8px; transition: 0.3s; border: 1px solid transparent; }
+        .league-item:hover { background: var(--bg-card); border-color: var(--accent); transform: translateY(-5px); }
+        .league-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; display: block; }
+        .league-item span { display: block; font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; color: white; text-transform: uppercase; }
 
+        /* --- 10. FOOTER --- */
         footer { background: #000; border-top: 1px solid #222; padding: 60px 5%; margin-top: 80px; text-align: center; }
-        .footer-socials { margin: 20px 0; display: flex; justify-content: center; gap: 25px; }
-        .footer-socials a { font-size: 1.5rem; color: #fff; transition: 0.3s; }
+        .footer-socials { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
+        .footer-socials a { color: white; font-size: 1.5rem; transition: 0.3s; }
         .footer-socials a:hover { color: var(--accent); }
 
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
@@ -112,8 +149,12 @@
         @keyframes blink { 50% { opacity: 0.5; } }
 
         @media (max-width: 900px) {
-            .slide-title { font-size: 2rem; }
-            nav { display: none; }
+            .slide-title { font-size: 2.5rem; }
+            .carousel-container { height: 500px; }
+            nav { display: none; position: absolute; top: 75px; left: 0; width: 100%; background: #000; padding: 20px; flex-direction: column; border-bottom: 2px solid var(--accent); }
+            nav.active { display: flex; }
+            .hamburger { display: block; }
+            .cta-btn { display: none; }
         }
     </style>
 </head>
@@ -122,11 +163,11 @@
     <div class="top-bar">
         <div>CDMX | 12 ENE 2026</div>
         <div class="social-icons">
-            <a href="#" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="#" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
         </div>
     </div>
 
@@ -135,6 +176,7 @@
             <div class="logo-img"><img src="logof1.png" alt="Logo"></div>
             <span class="brand-text">F1RSTSPORTS</span>
         </a>
+        <button class="hamburger" id="menuBtn"><i class="fa-solid fa-bars"></i></button>
         <nav id="mainNav">
             <a href="index.html" class="active">Inicio</a>
             <a href="seccion-nfl.html">NFL</a>
@@ -142,31 +184,184 @@
             <a href="australian-open-2026.html">Tenis</a>
             <a href="ligamx.html">Liga MX</a>
             <a href="boxeo.html">Boxeo</a>
+            <a href="seccion-beisbol.html">Béisbol</a>
             <a href="quienes-somos.html" class="btn-qs">Nosotros</a>
         </nav>
-        <a href="mundial-2026.html" class="cta-btn desktop-only" style="background: var(--primary); padding: 8px 20px; border-radius: 4px; font-weight: bold;">MUNDIAL '26</a>
+        <a href="mundial-2026.html" class="cta-btn desktop-only">MUNDIAL '26</a>
     </header>
 
     <!-- SCORE TICKER -->
     <div class="score-ticker-container">
         <div class="ticker-label">Marcadores</div>
-        <div class="score-track" id="marcadores">
-            <!-- Los marcadores se cargan vía JS -->
-        </div>
+        <div class="score-track" id="marcadores"></div>
     </div>
 
     <!-- NEWS TICKER -->
     <div class="ticker-wrap">
         <div class="ticker">
-            <a href="#" class="ticker-item"><span style="color:var(--accent)">///</span> ANÁLISIS PLAYOFFS NFL 2026</a>
-            <a href="#" class="ticker-item"><span style="color:var(--accent)">///</span> AUSTRALIAN OPEN EN MARCHA</a>
-            <a href="#" class="ticker-item"><span style="color:var(--accent)">///</span> F1 2026: CHECO EN CADILLAC</a>
+            <a href="nfl-playoffs-2026.html" class="ticker-item"><span style="color:var(--accent)">///</span> ANÁLISIS PLAYOFFS NFL 2026</a>
+            <a href="australian-open-2026.html" class="ticker-item"><span style="color:var(--accent)">///</span> AUSTRALIAN OPEN EN MARCHA</a>
+            <a href="f1-2026-revolucion.html" class="ticker-item"><span style="color:var(--accent)">///</span> F1 2026: CHECO EN CADILLAC</a>
+            <a href="calendario-seleccion-mexicana.html" class="ticker-item"><span style="color:var(--accent)">///</span> CALENDARIO TRI 2026</a>
         </div>
     </div>
 
     <div class="container">
-        <!-- El resto de tu contenido (Carousel, Noticias, Tablas) se mantiene igual -->
-        <!-- ... (Contenido omitido por brevedad, usa tu código original aquí) ... -->
+        
+        <!-- HERO CAROUSEL -->
+        <div class="carousel-container" id="mainCarousel">
+            <div class="slide active">
+                <img src="playoffs-general.jpg" alt="NFL Playoffs">
+                <div class="slide-content">
+                    <span class="slide-tag">NFL PLAYOFFS</span>
+                    <h2 class="slide-title"><a href="analisis-equipos-playoffs-nfl.html">El Camino al Super Bowl: Análisis de Equipos</a></h2>
+                    <a href="analisis-equipos-playoffs-nfl.html" class="slide-btn">VER BRACKET</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="f1-2026-concept.jpg" alt="F1">
+                <div class="slide-content">
+                    <span class="slide-tag">FORMULA 1</span>
+                    <h2 class="slide-title"><a href="f1-2026-revolucion.html">2026: La Revolución de Audi, Cadillac y Motores Híbridos</a></h2>
+                    <a href="f1-2026-revolucion.html" class="slide-btn">LEER NOTA</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="navarrete28defebrero.jpg" alt="Boxeo">
+                <div class="slide-content">
+                    <span class="slide-tag">BOXEO</span>
+                    <h2 class="slide-title"><a href="guerramexicana.html">Navarrete vs Núñez: Guerra Civil Mexicana en Arizona</a></h2>
+                    <a href="guerramexicana.html" class="slide-btn">VER PREVIA</a>
+                </div>
+            </div>
+            <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
+        </div>
+
+        <!-- LATEST NEWS -->
+        <div class="section-header">
+            <div class="section-stripe"></div>
+            <h2 class="section-title">Últimas Noticias</h2>
+        </div>
+        
+        <div class="latest-news-grid">
+            <article class="news-card">
+                <div class="card-img-wrap"><a href="horarios-jornada1-clausura2026.html"><img src="streaming-ligamxx.png" class="card-img" alt="Liga MX"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">LIGA MX</span>
+                    <h3 class="card-title"><a href="horarios-jornada1-clausura2026.html">¿Fútbol para ricos? El secuestro del streaming</a></h3>
+                    <a href="horarios-jornada1-clausura2026.html" class="read-more">LEER OPINIÓN &rarr;</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="card-img-wrap"><a href="australian-open-2026.html"><img src="australian-open-2023-tournament-image.jpg" class="card-img" alt="Tenis"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">TENIS</span>
+                    <h3 class="card-title"><a href="australian-open-2026.html">Australian Open 2026: Arranca la batalla</a></h3>
+                    <a href="australian-open-2026.html" class="read-more">LEER NOTA &rarr;</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="card-img-wrap"><a href="nota-dakar-2026.html"><img src="raptor-dakar.jpg" class="card-img" alt="Dakar"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">MOTORSPORT</span>
+                    <h3 class="card-title"><a href="nota-dakar-2026.html">Dakar 2026: La prueba más dura</a></h3>
+                    <a href="nota-dakar-2026.html" class="read-more">VER RUTA &rarr;</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="card-img-wrap"><a href="nfl-playoffs-2026.html"><img src="playoffs-nfl-2026.png" class="card-img" alt="NFL"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">NFL</span>
+                    <h3 class="card-title"><a href="nfl-playoffs-2026.html">Claves tácticas del camino al Super Bowl</a></h3>
+                    <a href="nfl-playoffs-2026.html" class="read-more">LEER ANÁLISIS &rarr;</a>
+                </div>
+            </article>
+             <article class="news-card">
+                <div class="card-img-wrap"><a href="calendario-seleccion-mexicana.html"><img src="mexico-calendario-2026.jpg" class="card-img" alt="Tri"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">MUNDIAL 2026</span>
+                    <h3 class="card-title"><a href="calendario-seleccion-mexicana.html">El calendario del Tri: Esperanza y Realidad</a></h3>
+                    <a href="calendario-seleccion-mexicana.html" class="read-more">VER FECHAS &rarr;</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="card-img-wrap"><a href="mundial-2026.html"><img src="mundial-hero.jpg" class="card-img" alt="Mundial"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">FIFA</span>
+                    <h3 class="card-title"><a href="mundial-2026.html">Hub Mundial 2026: Cobertura Total</a></h3>
+                    <a href="mundial-2026.html" class="read-more">ENTRAR AL HUB &rarr;</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- POSICIONES -->
+        <div class="section-header">
+            <div class="section-stripe"></div>
+            <h2 class="section-title">Posiciones</h2>
+        </div>
+
+        <div class="standings-grid">
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">LIGA MX</span><i class="fa-solid fa-futbol" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Necaxa</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">2</span> Chivas</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">3</span> Juárez</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">4</span> León</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">5</span> Tigres</td><td>3</td></tr>
+                </table>
+                <a href="ligamx.html" class="full-table-link">VER TABLA</a>
+            </div>
+
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">LA LIGA</span><i class="fa-solid fa-flag" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Barcelona</td><td>49</td></tr>
+                    <tr><td><span class="rank-num">2</span> R. Madrid</td><td>45</td></tr>
+                    <tr><td><span class="rank-num">3</span> Villarreal</td><td>41</td></tr>
+                    <tr><td><span class="rank-num">4</span> Atlético</td><td>38</td></tr>
+                    <tr><td><span class="rank-num">5</span> Espanyol</td><td>34</td></tr>
+                </table>
+                <a href="#" class="full-table-link">VER TABLA</a>
+            </div>
+
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">NFL SEEDS</span><i class="fa-solid fa-football" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Broncos (AFC)</td><td>13-4</td></tr>
+                    <tr><td><span class="rank-num">2</span> Patriots (AFC)</td><td>12-5</td></tr>
+                    <tr><td><span class="rank-num">3</span> Jaguars (AFC)</td><td>11-6</td></tr>
+                    <tr><td><span class="rank-num">1</span> Seahawks (NFC)</td><td>14-3</td></tr>
+                    <tr><td><span class="rank-num">2</span> Bears (NFC)</td><td>12-5</td></tr>
+                </table>
+                <a href="nfl-playoffs-2026.html" class="full-table-link">VER BRACKET</a>
+            </div>
+
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">PREMIER</span><i class="fa-solid fa-crown" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Arsenal</td><td>49</td></tr>
+                    <tr><td><span class="rank-num">2</span> Man City</td><td>43</td></tr>
+                    <tr><td><span class="rank-num">3</span> Aston Villa</td><td>43</td></tr>
+                    <tr><td><span class="rank-num">4</span> Liverpool</td><td>35</td></tr>
+                    <tr><td><span class="rank-num">5</span> Brentford</td><td>33</td></tr>
+                </table>
+                <a href="#" class="full-table-link">VER TABLA</a>
+            </div>
+        </div>
+
+        <!-- CATEGORÍAS -->
+        <ul class="league-grid">
+            <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i><span>NFL</span></a></li>
+            <li class="league-item"><a href="australian-open-2026.html"><i class="fa-solid fa-baseball"></i><span>Tenis</span></a></li>
+            <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i><span>Fútbol</span></a></li>
+            <li class="league-item"><a href="seccion-motor.html"><i class="fa-solid fa-flag-checkered"></i><span>Motor</span></a></li>
+            <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i><span>Boxeo</span></a></li>
+            <li class="league-item"><a href="seccion-beisbol.html"><i class="fa-solid fa-baseball-bat-ball"></i><span>Béisbol</span></a></li>
+            <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i><span>Nosotros</span></a></li>
+        </ul>
+
     </div>
 
     <footer>
@@ -179,47 +374,45 @@
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
         </div>
         <div style="margin-bottom:10px; font-size:0.8rem;">
-            <a href="#" style="color:#888;">Aviso de Privacidad</a> &bull; 
-            <a href="#" style="color:#888;">Quiénes Somos</a>
+            <a href="aviso-privacidad.html" style="color:#888;">Aviso de Privacidad</a> &bull; 
+            <a href="quienes-somos.html" style="color:#888;">Quiénes Somos</a>
         </div>
         <p style="color:#555; font-size:0.8rem;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-        // 1. MARCADORES ACTUALIZADOS Y MEJORADOS
+        // 1. MENÚ MÓVIL
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('mainNav');
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+        });
+
+        // 2. MARCADORES (Scroll Infinito y Fecha/Hora)
         const marcadoresContainer = document.getElementById("marcadores");
-        
         const liveScores = [
             { liga: "NFL WC", local: "Steelers", vis: "Texans", s1: "7", s2: "3", st: "EN VIVO", fecha: "HOY", hora: "Q1 08:30" },
             { liga: "NFL WC", local: "Patriots", vis: "Chargers", s1: "16", s2: "3", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
-            { liga: "LIGA MX", local: "Puebla", vis: "Mazatlán", s1: "-", s2: "-", st: "PRÓX", fecha: "13 ENE", hora: "17:00" },
-            { liga: "LIGA MX", local: "Necaxa", vis: "Monterrey", s1: "-", s2: "-", st: "PRÓX", fecha: "13 ENE", hora: "19:00" },
-            { liga: "LIGA MX", local: "Juárez", vis: "Chivas", s1: "-", s2: "-", st: "PRÓX", fecha: "13 ENE", hora: "21:10" },
-            { liga: "LIGA MX", local: "América", vis: "San Luis", s1: "-", s2: "-", st: "PRÓX", fecha: "14 ENE", hora: "19:05" },
+            { liga: "LIGA MX", local: "Puebla", vis: "Mazatlán", s1: "-", s2: "-", st: "MAÑANA", fecha: "13 ENE", hora: "17:00" },
+            { liga: "LIGA MX", local: "Necaxa", vis: "Monterrey", s1: "-", s2: "-", st: "MAÑANA", fecha: "13 ENE", hora: "19:00" },
+            { liga: "LIGA MX", local: "Juárez", vis: "Chivas", s1: "-", s2: "-", st: "MAÑANA", fecha: "13 ENE", hora: "21:10" },
+            { liga: "LIGA MX", local: "América", vis: "San Luis", s1: "-", s2: "-", st: "MIÉRCOLES", fecha: "14 ENE", hora: "19:05" },
             { liga: "NFL DIV", local: "Broncos", vis: "Bills", s1: "-", s2: "-", st: "SÁBADO", fecha: "17 ENE", hora: "15:30" }
         ];
 
         function renderScores() {
             let html = "";
-            // Duplicamos el array para el efecto de scroll infinito
-            const doubleScores = [...liveScores, ...liveScores];
-            
-            doubleScores.forEach(game => {
-                let statusClass = "";
-                let statusIcon = "";
-                
-                if(game.st === "EN VIVO") {
-                    statusClass = "status-live";
-                    statusIcon = "● ";
-                } else if(game.st === "PRÓX" || game.st === "SÁBADO") {
-                    statusClass = "status-future";
-                }
-
+            // Duplicamos el contenido para que el scroll parezca no tener fin
+            const scrollData = [...liveScores, ...liveScores];
+            scrollData.forEach(game => {
+                let statusClass = (game.st === "EN VIVO") ? "status-live" : "status-future";
+                let dot = (game.st === "EN VIVO") ? "● " : "";
                 html += `
                     <div class="score-card">
                         <div class="score-league-row">
                             <span>${game.liga}</span>
-                            <span class="${statusClass}">${statusIcon}${game.fecha} | ${game.hora}</span>
+                            <span class="${statusClass}">${dot}${game.fecha} | ${game.hora}</span>
                         </div>
                         <div class="score-teams">
                             <div style="display:flex; flex-direction:column;">
@@ -235,11 +428,9 @@
             });
             marcadoresContainer.innerHTML = html;
         }
-
-        // Ejecutar funciones
         renderScores();
 
-        // 2. LÓGICA DEL CARRUSEL (Mantenida)
+        // 3. CARRUSEL
         let slideIndex = 1;
         function showSlides(n) {
             let slides = document.getElementsByClassName("slide");
