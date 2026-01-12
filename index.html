@@ -81,7 +81,7 @@
         .cta-btn { background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; border-radius: 4px; }
         .cta-btn:hover { background: var(--accent); color: black; }
 
-        /* --- SCORE TICKER (NUEVO) --- */
+        /* --- SCORE TICKER (MARCADORES) --- */
         .score-ticker-container {
             background: #000;
             border-bottom: 1px solid #333;
@@ -96,7 +96,7 @@
             display: flex; align-items: center; padding: 0 15px; font-size: 0.9rem; z-index: 10;
             box-shadow: 5px 0 10px rgba(0,0,0,0.5);
         }
-        .score-track { display: flex; align-items: center; gap: 1px; animation: scroll-left 45s linear infinite; padding-left: 20px; }
+        .score-track { display: flex; align-items: center; gap: 1px; animation: scroll-left 60s linear infinite; padding-left: 20px; }
         .score-ticker-container:hover .score-track { animation-play-state: paused; }
         
         .score-card {
@@ -116,7 +116,6 @@
         .ticker:hover { animation-play-state: paused; }
         .ticker-item { margin-right: 40px; color: white; transition: color 0.3s; text-decoration: none; }
         .ticker-item:hover { color: var(--accent); }
-        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         /* --- LAYOUT --- */
         .container { width: 98%; max-width: 1800px; margin: 20px auto; padding: 0 10px; display: flex; flex-direction: column; gap: 40px; }
@@ -204,7 +203,7 @@
                 <li><a href="australian-open-2026.html">Tenis</a></li>
                 <li><a href="ligamx.html">Liga MX</a></li>
                 <li><a href="boxeo.html">Boxeo</a></li>
-                <li><a href="#">Béisbol</a></li> <!-- ¡NUEVA SECCIÓN! -->
+                <li><a href="#">Béisbol</a></li> 
                 <li><a href="quienes-somos.html" class="btn-qs">QUIÉNES SOMOS</a></li>
             </ul>
         </nav>
@@ -350,7 +349,6 @@
                 <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
                 <li class="league-item"><a href="nota-dakar-2026.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
                 <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i> <span>Boxeo</span></a></li>
-                <!-- Botón de Béisbol Nuevo -->
                 <li class="league-item"><a href="#"><i class="fa-solid fa-baseball-bat-ball"></i> <span>Béisbol</span></a></li>
                 <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a></li>
             </ul>
@@ -377,46 +375,6 @@
     </footer>
 
     <script>
-        // --- 1. SCRIPT DE MARCADORES (DATOS FICTICIOS PARA DEMO) ---
-        const marcadoresContainer = document.getElementById("marcadores");
-        
-        // Datos simulados (Puedes editar esto libremente)
-        const liveScores = [
-            { liga: "NFL WC", local: "SF 49ers", vis: "PHI Eagles", s1: "10", s2: "13", st: "EN VIVO", t: "Q3" },
-            { liga: "NFL WC", local: "BUF Bills", vis: "JAX Jaguars", s1: "27", s2: "24", st: "FINAL", t: "Fin" },
-            { liga: "LIGA MX", local: "Pumas", vis: "Querétaro", s1: "2", s2: "0", st: "EN VIVO", t: "45'" },
-            { liga: "LMP", local: "Naranjeros", vis: "Tomateros", s1: "3", s2: "5", st: "FINAL", t: "9na" }
-        ];
-
-        function renderScores() {
-            let html = "";
-            liveScores.forEach(game => {
-                let liveClass = game.st === "EN VIVO" ? "status-live" : "";
-                let dot = game.st === "EN VIVO" ? "● " : "";
-                html += `
-                    <div class="score-card">
-                        <div class="score-league">
-                            <span>${game.liga}</span>
-                            <span class="${liveClass}">${dot}${game.t}</span>
-                        </div>
-                        <div class="score-teams">
-                            <div style="display:flex; flex-direction:column; gap:2px;">
-                                <span>${game.local}</span>
-                                <span>${game.vis}</span>
-                            </div>
-                            <div style="display:flex; flex-direction:column; gap:2px; text-align:right;">
-                                <span class="score-val">${game.s1}</span>
-                                <span class="score-val">${game.s2}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            marcadoresContainer.innerHTML = html;
-        }
-        renderScores();
-
-        <script>
         // MENÚ
         const menuBtn = document.getElementById('menuBtn');
         const nav = document.getElementById('mainNav');
@@ -460,7 +418,7 @@
         // --- MARCADORES REALES ---
         const marcadoresContainer = document.getElementById("marcadores");
         
-        // Datos Actualizados (Domingo 11 Enero)
+        // Datos Actualizados
         const liveScores = [
             // JUEGOS EN VIVO (Van primero)
             { liga: "NFL WC", local: "NE Patriots", vis: "LA Chargers", s1: "0", s2: "0", st: "EN VIVO", t: "Q1 10:48" },
@@ -519,4 +477,5 @@
         }
         renderScores();
     </script>
-
+</body>
+</html>
