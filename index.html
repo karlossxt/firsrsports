@@ -110,15 +110,15 @@
         
         /* --- NEWS TICKER (CINTA DE NOTICIAS) --- */
         .ticker-wrap { 
-            background: var(--bg-card); 
+            background: var(--primary); 
             color: white; 
             overflow: hidden; 
             white-space: nowrap; 
-            padding: 8px 0; 
+            padding: 12px 0; 
             font-family: var(--font-head); 
-            font-size: 0.9rem; 
+            font-size: 1rem; 
             font-weight: bold; 
-            border-bottom: 4px solid var(--accent);
+            border-bottom: 2px solid var(--accent);
             position: relative;
             z-index: 10;
         }
@@ -133,13 +133,15 @@
         .ticker:hover { animation-play-state: paused; }
 
         .ticker-item { 
-            margin-right: 40px; 
+            display: inline-block;
+            margin-right: 60px; 
             color: white; 
             text-decoration: none; 
-            transition: color 0.3s;
+            transition: all 0.3s ease;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .ticker-item:hover { color: var(--accent); }
+        .ticker-item:hover { color: var(--accent); text-shadow: 0 0 10px rgba(204, 255, 0, 0.8); }
 
         /* Animaciones */
         @keyframes news-scroll { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
@@ -173,7 +175,7 @@
         .card-excerpt { font-size: 0.95rem; color: var(--text-sec); margin-bottom: 15px; }
         .read-btn { color: var(--accent); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: auto; }
 
-        /* --- TABLAS DE POSICIONES (NUEVO) --- */
+        /* --- TABLAS DE POSICIONES (ACTUALIZADO) --- */
         .standings-section { margin-bottom: 60px; }
         .section-heading-tables { font-family: 'Chakra Petch', sans-serif; font-size: 2rem; border-left: 5px solid var(--accent); padding-left: 15px; margin-bottom: 25px; color: white; text-transform: uppercase; }
         .standings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
@@ -268,11 +270,17 @@
     <!-- CINTA DE NOTICIAS -->
     <div class="ticker-wrap">
         <div class="ticker">
+            <span style="color:var(--accent); margin-right:10px;">🔴 ÚLTIMA HORA:</span>
             <a href="analisis-equipos-playoffs-nfl.html" class="ticker-item">ANÁLISIS PLAYOFFS NFL 2026</a>
+            <span style="color:var(--accent); margin-right:10px;">🎾</span>
             <a href="australian-open-2026.html" class="ticker-item">AUSTRALIAN OPEN 2026: ARRANCA LA BATALLA</a>
+            <span style="color:var(--accent); margin-right:10px;">📺</span>
             <a href="opinion-periodismo-deportivo.html" class="ticker-item">¿EL FIN DEL ANÁLISIS TÉCNICO?</a>
+            <span style="color:var(--accent); margin-right:10px;">⚽</span>
             <a href="calendario-seleccion-mexicana.html" class="ticker-item">CALENDARIO MÉXICO 2026</a>
+            <span style="color:var(--accent); margin-right:10px;">🥊</span>
             <a href="guerramexicana.html" class="ticker-item">BOXEO: GUERRA MEXICANA</a>
+            <span style="color:var(--accent); margin-right:10px;">🚗</span>
             <a href="nota-dakar-2026.html" class="ticker-item">DAKAR 2026 EN MARCHA</a>
         </div>
     </div>
@@ -333,7 +341,7 @@
             
             <!-- Nota 1: F1 2026 (NUEVA) -->
             <article class="news-card">
-                <a href="f1-2026-revolucion.html"><img src="audi-f1-livery.png" class="card-img" alt="F1 2026"></a>
+                <a href="f1-2026-revolucion.html"><img src="f1-2026-concept.jpg" class="card-img" alt="F1 2026"></a>
                 <div class="card-body">
                     <span style="color:var(--accent); font-weight:bold;">FORMULA 1</span>
                     <h3 class="card-title"><a href="f1-2026-revolucion.html">F1 2026: La Revolución Total</a></h3>
@@ -344,7 +352,7 @@
 
             <!-- Nota 2: Polémica Liga MX -->
             <article class="news-card">
-                <a href="horarios-jornada1-clausura2026.html"><img src="futbolpicante.jpg" class="card-img" alt="Polémica Streaming Liga MX"></a>
+                <a href="horarios-jornada1-clausura2026.html"><img src="streaming-ligamxx.png" class="card-img" alt="Polémica Streaming Liga MX"></a>
                 <div class="card-body">
                     <span style="color:var(--primary); font-weight:bold;">LIGA MX</span>
                     <h3 class="card-title"><a href="horarios-jornada1-clausura2026.html">¿Fútbol para ricos? El "secuestro" del streaming</a></h3>
@@ -399,7 +407,7 @@
 
         </div>
 
-        <!-- SECCIÓN DE POSICIONES (NUEVO) -->
+        <!-- SECCIÓN DE POSICIONES (ACTUALIZADA) -->
         <div class="standings-section">
             <h3 class="section-heading-tables">TABLAS DE POSICIONES</h3>
             <div class="standings-grid">
@@ -413,11 +421,11 @@
                     <table class="mini-table">
                         <thead><tr><th>Club</th><th style="text-align:right;">PTS</th></tr></thead>
                         <tbody>
-                            <tr><td><span class="rank-num">1</span> <span class="team-name">Toluca</span></td><td style="text-align:right;">3</td></tr>
-                            <tr><td><span class="rank-num">2</span> <span class="team-name">Chivas</span></td><td style="text-align:right;">3</td></tr>
-                            <tr><td><span class="rank-num">3</span> <span class="team-name">León</span></td><td style="text-align:right;">3</td></tr>
-                            <tr><td><span class="rank-num">4</span> <span class="team-name">Necaxa</span></td><td style="text-align:right;">3</td></tr>
-                            <tr><td><span class="rank-num">5</span> <span class="team-name">FC Juárez</span></td><td style="text-align:right;">3</td></tr>
+                            <tr><td><span class="rank-num">1</span> <span class="team-name">Necaxa</span></td><td style="text-align:right;">3</td></tr>
+                            <tr><td><span class="rank-num">2</span> <span class="team-name">Guadalajara</span></td><td style="text-align:right;">3</td></tr>
+                            <tr><td><span class="rank-num">3</span> <span class="team-name">Juárez</span></td><td style="text-align:right;">3</td></tr>
+                            <tr><td><span class="rank-num">4</span> <span class="team-name">León</span></td><td style="text-align:right;">3</td></tr>
+                            <tr><td><span class="rank-num">5</span> <span class="team-name">Tigres</span></td><td style="text-align:right;">3</td></tr>
                         </tbody>
                     </table>
                     <a href="ligamx.html" class="full-table-link">VER TABLA COMPLETA</a>
@@ -432,11 +440,11 @@
                     <table class="mini-table">
                         <thead><tr><th>Club</th><th style="text-align:right;">PTS</th></tr></thead>
                         <tbody>
-                            <tr><td><span class="rank-num">1</span> <span class="team-name">Real Madrid</span></td><td style="text-align:right;">48</td></tr>
-                            <tr><td><span class="rank-num">2</span> <span class="team-name">Barcelona</span></td><td style="text-align:right;">45</td></tr>
-                            <tr><td><span class="rank-num">3</span> <span class="team-name">Atlético</span></td><td style="text-align:right;">41</td></tr>
-                            <tr><td><span class="rank-num">4</span> <span class="team-name">Girona</span></td><td style="text-align:right;">38</td></tr>
-                            <tr><td><span class="rank-num">5</span> <span class="team-name">Athletic</span></td><td style="text-align:right;">35</td></tr>
+                            <tr><td><span class="rank-num">1</span> <span class="team-name">Barcelona</span></td><td style="text-align:right;">49</td></tr>
+                            <tr><td><span class="rank-num">2</span> <span class="team-name">Real Madrid</span></td><td style="text-align:right;">45</td></tr>
+                            <tr><td><span class="rank-num">3</span> <span class="team-name">Villarreal</span></td><td style="text-align:right;">41</td></tr>
+                            <tr><td><span class="rank-num">4</span> <span class="team-name">Atlético</span></td><td style="text-align:right;">38</td></tr>
+                            <tr><td><span class="rank-num">5</span> <span class="team-name">Espanyol</span></td><td style="text-align:right;">34</td></tr>
                         </tbody>
                     </table>
                     <a href="#" class="full-table-link">VER TABLA COMPLETA</a>
@@ -445,20 +453,19 @@
                 <!-- NFL -->
                 <div class="standing-card">
                     <div class="standing-header">
-                        <span class="standing-title">NFL <small style="color:#888; font-size:0.7rem;">AFC SEEDS</small></span>
+                        <span class="standing-title">NFL <small style="color:#888; font-size:0.7rem;">PLAYOFFS</small></span>
                         <i class="fa-solid fa-football standing-icon"></i>
                     </div>
                     <table class="mini-table">
-                        <thead><tr><th>Equipo</th><th style="text-align:right;">REC</th></tr></thead>
+                        <thead><tr><th>Conf</th><th style="text-align:right;">Líder (#1 Seed)</th></tr></thead>
                         <tbody>
-                            <tr><td><span class="rank-num">1</span> <span class="team-name">Broncos</span></td><td style="text-align:right;">13-4</td></tr>
-                            <tr><td><span class="rank-num">2</span> <span class="team-name">Patriots</span></td><td style="text-align:right;">12-5</td></tr>
-                            <tr><td><span class="rank-num">3</span> <span class="team-name">Jaguars</span></td><td style="text-align:right;">11-6</td></tr>
-                            <tr><td><span class="rank-num">4</span> <span class="team-name">Steelers</span></td><td style="text-align:right;">11-6</td></tr>
-                            <tr><td><span class="rank-num">5</span> <span class="team-name">Texans</span></td><td style="text-align:right;">10-7</td></tr>
+                            <tr><td><span class="rank-num">AFC</span></td><td style="text-align:right;"><span class="team-name">Denver Broncos</span></td></tr>
+                            <tr><td><span class="rank-num">NFC</span></td><td style="text-align:right;"><span class="team-name">Seattle Seahawks</span></td></tr>
                         </tbody>
                     </table>
-                    <a href="nfl-playoffs-2026.html" class="full-table-link">VER BRACKET</a>
+                    <div style="padding:15px; text-align:center;">
+                        <a href="nfl-playoffs-2026.html" class="read-btn" style="width:100%;">VER BRACKET COMPLETO</a>
+                    </div>
                 </div>
 
                 <!-- PREMIER -->
@@ -470,11 +477,11 @@
                     <table class="mini-table">
                         <thead><tr><th>Club</th><th style="text-align:right;">PTS</th></tr></thead>
                         <tbody>
-                            <tr><td><span class="rank-num">1</span> <span class="team-name">Liverpool</span></td><td style="text-align:right;">45</td></tr>
+                            <tr><td><span class="rank-num">1</span> <span class="team-name">Arsenal</span></td><td style="text-align:right;">49</td></tr>
                             <tr><td><span class="rank-num">2</span> <span class="team-name">Man City</span></td><td style="text-align:right;">43</td></tr>
-                            <tr><td><span class="rank-num">3</span> <span class="team-name">Arsenal</span></td><td style="text-align:right;">40</td></tr>
-                            <tr><td><span class="rank-num">4</span> <span class="team-name">Aston Villa</span></td><td style="text-align:right;">39</td></tr>
-                            <tr><td><span class="rank-num">5</span> <span class="team-name">Tottenham</span></td><td style="text-align:right;">36</td></tr>
+                            <tr><td><span class="rank-num">3</span> <span class="team-name">Aston Villa</span></td><td style="text-align:right;">43</td></tr>
+                            <tr><td><span class="rank-num">4</span> <span class="team-name">Liverpool</span></td><td style="text-align:right;">35</td></tr>
+                            <tr><td><span class="rank-num">5</span> <span class="team-name">Brentford</span></td><td style="text-align:right;">33</td></tr>
                         </tbody>
                     </table>
                     <a href="#" class="full-table-link">VER TABLA COMPLETA</a>
@@ -620,4 +627,3 @@
     </script>
 </body>
 </html>
-
