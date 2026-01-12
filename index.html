@@ -17,7 +17,7 @@
       gtag('config', 'G-Q6PX8GFES3');
     </script>
     
-    <!-- Fuentes -->
+    <!-- Fuentes y Estilos -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -29,7 +29,7 @@
             --bg-card: #0a0a0a;
             --glass: rgba(20, 20, 20, 0.95);
             --accent: #ccff00;
-            --primary: #3b82f6;
+            --primary: #2563eb;
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
             --border: 1px solid rgba(255, 255, 255, 0.1);
@@ -37,44 +37,11 @@
             --font-body: 'Inter', sans-serif;
         }
 
-        /* --- 2. PRELOADER (CORREGIDO) --- */
-        #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 10000; /* Capa máxima */
-            display: flex; justify-content: center; align-items: center;
-            flex-direction: column; transition: opacity 0.5s ease;
-        }
-        .loader-logo { width: 120px; animation: pulse 1.5s infinite; }
-        .loader-bar { width: 200px; height: 4px; background: #333; margin-top: 20px; border-radius: 4px; overflow: hidden; }
-        .loader-progress { width: 0%; height: 100%; background: var(--accent); animation: load 1.5s ease-in-out forwards; }
-        
-        @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0.5; transform: scale(0.95); } }
-        @keyframes load { 0% { width: 0%; } 100% { width: 100%; } }
-
-        /* --- 3. COOKIES BANNER (CORREGIDO) --- */
-        #cookie-banner {
-            position: fixed; 
-            bottom: 20px; 
-            left: 5%; 
-            width: 90%;
-            background: rgba(15, 15, 15, 0.98); 
-            border: 1px solid var(--accent);
-            padding: 20px; 
-            z-index: 9999; 
-            border-radius: 8px;
-            display: none; /* JS lo activa */
-            align-items: center; 
-            justify-content: space-between;
-            box-shadow: 0 0 50px rgba(0,0,0,0.9);
-        }
-        .cookie-text { font-size: 0.9rem; color: #ddd; margin-right: 20px; font-family: var(--font-body); }
-        .cookie-btn { background: var(--accent); color: black; border: none; padding: 10px 30px; font-weight: bold; cursor: pointer; border-radius: 4px; font-family: var(--font-head); text-transform: uppercase; transition: 0.3s; }
-        .cookie-btn:hover { background: white; transform: scale(1.05); }
-
-        /* --- 4. BASES Y HEADER --- */
+        /* --- 2. BASES --- */
         body { margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-body); overflow-x: hidden; }
         a { text-decoration: none; color: white; transition: all 0.3s ease; }
 
+        /* --- 3. HEADER & NAV --- */
         .top-bar { background: #000; padding: 8px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.1); }
         .social-icons a { margin-left: 20px; color: var(--text-muted); }
         
@@ -89,21 +56,27 @@
 
         nav { display: flex; gap: 20px; }
         nav a { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); }
-        nav a:hover, nav a.active { color: var(--accent); }
+        nav a:hover, nav a.active { color: white; color: var(--accent); }
         .btn-qs { border: 1px solid var(--accent); color: var(--accent) !important; padding: 5px 12px; border-radius: 50px; }
         .btn-qs:hover { background: var(--accent); color: black !important; }
 
         .hamburger { display: none; color: white; font-size: 1.8rem; background: none; border: none; cursor: pointer; }
         .cta-btn { background: var(--primary); padding: 8px 20px; border-radius: 4px; font-weight: bold; font-size: 0.9rem; }
 
-        /* --- 5. TICKERS --- */
-        .score-ticker-container { background: #080808; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; height: 60px; overflow: hidden; position: relative; z-index: 100; }
+        /* --- 4. SCORE TICKER (MARCADORES) --- */
+        .score-ticker-container { background: #080808; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; height: 65px; overflow: hidden; position: relative; z-index: 100; }
         .ticker-label { background: var(--primary); color: white; font-family: var(--font-head); font-weight: 800; display: flex; align-items: center; padding: 0 20px; font-size: 0.85rem; z-index: 10; text-transform: uppercase; box-shadow: 5px 0 15px black; }
-        .score-track { display: flex; align-items: center; animation: scroll-left 50s linear infinite; }
+        
+        /* Aumenté el tiempo de animación porque ahora son muchos partidos */
+        .score-track { display: flex; align-items: center; animation: scroll-left 90s linear infinite; } 
+        .score-ticker-container:hover .score-track { animation-play-state: paused; }
+        
         .score-card { background: transparent; border-right: 1px solid rgba(255,255,255,0.1); min-width: 190px; padding: 0 20px; display: flex; flex-direction: column; justify-content: center; font-size: 0.8rem; color: #ccc; }
-        .score-teams { display: flex; justify-content: space-between; font-weight: 600; color: white; }
+        .score-teams { display: flex; justify-content: space-between; font-weight: 600; color: white; margin-top: 3px; }
         .status-live { color: #ff4444; animation: blink 2s infinite; font-weight: bold; font-size: 0.7rem; }
+        .status-future { color: var(--accent); font-weight: bold; font-size: 0.7rem; }
 
+        /* --- 5. NEWS TICKER --- */
         .ticker-wrap { background: var(--bg-card); overflow: hidden; white-space: nowrap; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .ticker { display: inline-block; animation: scroll 60s linear infinite; }
         .ticker-item { margin-right: 50px; font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; text-transform: uppercase; color: #ddd; }
@@ -120,6 +93,7 @@
         .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); z-index: 10; }
         .slide-tag { background: var(--accent); color: black; padding: 6px 12px; font-family: var(--font-head); font-weight: 800; font-size: 0.9rem; text-transform: uppercase; display: inline-block; margin-bottom: 15px; border-radius: 4px; }
         .slide-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0 0 20px; line-height: 1.1; color: white; text-transform: uppercase; text-shadow: 2px 2px 10px black; max-width: 900px; }
+        .slide-title a { color: white; }
         .slide-btn { padding: 12px 30px; border: 1px solid white; color: white; font-weight: 700; text-transform: uppercase; background: rgba(0,0,0,0.3); backdrop-filter: blur(5px); }
         .slide-btn:hover { background: white; color: black; }
         
@@ -127,7 +101,7 @@
         .carousel-btn:hover { background: var(--accent); color: black; }
         .prev { left: 20px; } .next { right: 20px; }
 
-        /* --- 7. GRID NOTICIAS Y TABLAS --- */
+        /* --- 7. GRID NOTICIAS --- */
         .section-header { margin: 60px 0 30px; display: flex; align-items: center; gap: 15px; }
         .section-stripe { height: 30px; width: 5px; background: var(--accent); }
         .section-title { font-family: var(--font-head); font-size: 2.5rem; line-height: 1; text-transform: uppercase; color: white; margin: 0; }
@@ -141,23 +115,29 @@
         .card-title { font-family: var(--font-head); font-size: 1.4rem; line-height: 1.2; margin: 0 0 15px; color: white; }
         .read-more { margin-top: auto; color: white; font-weight: 700; border-bottom: 1px solid var(--accent); width: fit-content; }
 
-        /* Tablas */
+        /* --- 8. TABLAS (CORREGIDO PARA QUE SE VEAN 5) --- */
         .standings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .standing-card { background: #111; border: 1px solid #333; border-radius: 12px; overflow: hidden; }
+        .standing-card { 
+            background: #111; border: 1px solid #333; border-radius: 12px; 
+            overflow: hidden; 
+            height: auto; /* IMPORTANTE: Permite que crezca para mostrar los 5 lugares */
+        }
         .standing-header { background: #1a1a1a; padding: 15px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
         .standing-title { font-family: var(--font-head); font-weight: bold; color: white; }
         .mini-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; color: #ccc; }
         .mini-table td, .mini-table th { padding: 12px 15px; text-align: left; border-bottom: 1px solid #222; }
-        .mini-table tbody tr:hover { background: var(--accent); color: black; transform: scale(1.02); font-weight: 700; }
+        .mini-table th { color: #666; font-size: 0.7rem; text-transform: uppercase; }
+        .mini-table tbody tr:hover { background: var(--accent); color: black; font-weight: 700; }
+        .rank-num { font-weight: 800; color: var(--accent); width: 20px; display: inline-block; }
         .full-table-link { display: block; text-align: center; padding: 15px; background: #151515; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
         .full-table-link:hover { background: var(--primary); color: white; }
 
-        /* Iconos Categoría */
-        .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-top: 40px; padding: 0; list-style: none; }
-        .league-item { background: rgba(255,255,255,0.05); padding: 30px 10px; text-align: center; border-radius: 12px; transition: 0.3s; }
-        .league-item:hover { background: var(--bg-card); border: 1px solid var(--accent); transform: translateY(-5px); }
+        /* --- 9. CATEGORÍAS (ÍCONOS) --- */
+        .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-top: 60px; padding: 0; list-style: none; }
+        .league-item { background: rgba(255,255,255,0.05); padding: 30px 10px; text-align: center; border-radius: 8px; transition: 0.3s; border: 1px solid transparent; }
+        .league-item:hover { background: var(--bg-card); border-color: var(--accent); transform: translateY(-5px); }
         .league-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; display: block; }
-        .league-item span { display: block; font-family: var(--font-head); font-weight: 700; color: white; text-transform: uppercase; }
+        .league-item span { display: block; font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; color: white; text-transform: uppercase; }
 
         footer { background: #000; border-top: 1px solid #222; padding: 60px 5%; margin-top: 80px; text-align: center; }
         
@@ -172,22 +152,10 @@
             nav.active { display: flex; }
             .hamburger { display: block; }
             .cta-btn { display: none; }
-            #cookie-banner { flex-direction: column; text-align: center; gap: 15px; }
-            .cookie-text { margin: 0; }
         }
     </style>
 </head>
 <body>
-    
-     
-
-    <!-- COOKIE BANNER -->
-    <div id="cookie-banner">
-        <div class="cookie-text">
-            <strong>🍪 Cookies:</strong> Usamos cookies para mejorar tu experiencia. Al navegar, aceptas nuestra política.
-        </div>
-        <button class="cookie-btn" onclick="acceptCookies()">ACEPTAR</button>
-    </div>
 
     <div class="top-bar">
         <div>CDMX | 12 ENE 2026</div>
@@ -304,6 +272,22 @@
                     <a href="nfl-playoffs-2026.html" class="read-more">LEER ANÁLISIS &rarr;</a>
                 </div>
             </article>
+             <article class="news-card">
+                <div class="card-img-wrap"><a href="calendario-seleccion-mexicana.html"><img src="mexico-calendario-2026.jpg" class="card-img" alt="Tri"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">MUNDIAL 2026</span>
+                    <h3 class="card-title"><a href="calendario-seleccion-mexicana.html">El calendario del Tri: Esperanza y Realidad</a></h3>
+                    <a href="calendario-seleccion-mexicana.html" class="read-more">VER FECHAS &rarr;</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="card-img-wrap"><a href="mundial-2026.html"><img src="mundial-hero.jpg" class="card-img" alt="Mundial"></a></div>
+                <div class="card-body">
+                    <span class="card-tag">FIFA</span>
+                    <h3 class="card-title"><a href="mundial-2026.html">Hub Mundial 2026: Cobertura Total</a></h3>
+                    <a href="mundial-2026.html" class="read-more">ENTRAR AL HUB &rarr;</a>
+                </div>
+            </article>
         </div>
 
         <!-- POSICIONES -->
@@ -313,30 +297,54 @@
         </div>
 
         <div class="standings-grid">
+            <!-- LIGA MX -->
             <div class="standing-card">
                 <div class="standing-header"><span class="standing-title">LIGA MX</span><i class="fa-solid fa-futbol" style="color:var(--accent)"></i></div>
                 <table class="mini-table">
                     <tr><td><span class="rank-num">1</span> Necaxa</td><td>3</td></tr>
                     <tr><td><span class="rank-num">2</span> Chivas</td><td>3</td></tr>
                     <tr><td><span class="rank-num">3</span> Juárez</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">4</span> León</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">5</span> Tigres</td><td>3</td></tr>
                 </table>
                 <a href="ligamx.html" class="full-table-link">VER TABLA</a>
             </div>
+
+            <!-- LA LIGA -->
             <div class="standing-card">
-                <div class="standing-header"><span class="standing-title">NFL SEEDS</span><i class="fa-solid fa-football" style="color:var(--accent)"></i></div>
-                <table class="mini-table">
-                    <tr><td><span class="rank-num">1</span> Broncos</td><td>13-4</td></tr>
-                    <tr><td><span class="rank-num">1</span> Seahawks</td><td>14-3</td></tr>
-                    <tr><td><span class="rank-num">2</span> Patriots</td><td>12-5</td></tr>
-                </table>
-                <a href="nfl-playoffs-2026.html" class="full-table-link">VER BRACKET</a>
-            </div>
-             <div class="standing-card">
                 <div class="standing-header"><span class="standing-title">LA LIGA</span><i class="fa-solid fa-flag" style="color:var(--accent)"></i></div>
                 <table class="mini-table">
                     <tr><td><span class="rank-num">1</span> Barcelona</td><td>49</td></tr>
                     <tr><td><span class="rank-num">2</span> R. Madrid</td><td>45</td></tr>
                     <tr><td><span class="rank-num">3</span> Villarreal</td><td>41</td></tr>
+                    <tr><td><span class="rank-num">4</span> Atlético</td><td>38</td></tr>
+                    <tr><td><span class="rank-num">5</span> Espanyol</td><td>34</td></tr>
+                </table>
+                <a href="#" class="full-table-link">VER TABLA</a>
+            </div>
+
+            <!-- NFL -->
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">NFL SEEDS</span><i class="fa-solid fa-football" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Broncos (AFC)</td><td>13-4</td></tr>
+                    <tr><td><span class="rank-num">2</span> Patriots (AFC)</td><td>12-5</td></tr>
+                    <tr><td><span class="rank-num">3</span> Jaguars (AFC)</td><td>11-6</td></tr>
+                    <tr><td><span class="rank-num">1</span> Seahawks (NFC)</td><td>14-3</td></tr>
+                    <tr><td><span class="rank-num">2</span> Bears (NFC)</td><td>12-5</td></tr>
+                </table>
+                <a href="nfl-playoffs-2026.html" class="full-table-link">VER BRACKET</a>
+            </div>
+
+            <!-- PREMIER -->
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">PREMIER</span><i class="fa-solid fa-crown" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Arsenal</td><td>49</td></tr>
+                    <tr><td><span class="rank-num">2</span> Man City</td><td>43</td></tr>
+                    <tr><td><span class="rank-num">3</span> Aston Villa</td><td>43</td></tr>
+                    <tr><td><span class="rank-num">4</span> Liverpool</td><td>35</td></tr>
+                    <tr><td><span class="rank-num">5</span> Brentford</td><td>33</td></tr>
                 </table>
                 <a href="#" class="full-table-link">VER TABLA</a>
             </div>
@@ -350,6 +358,7 @@
             <li class="league-item"><a href="seccion-motor.html"><i class="fa-solid fa-flag-checkered"></i><span>Motor</span></a></li>
             <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i><span>Boxeo</span></a></li>
             <li class="league-item"><a href="seccion-beisbol.html"><i class="fa-solid fa-baseball-bat-ball"></i><span>Béisbol</span></a></li>
+            <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i><span>Nosotros</span></a></li>
         </ul>
 
     </div>
@@ -365,39 +374,21 @@
             <a href="aviso-privacidad.html" style="color:#888;">Aviso de Privacidad</a> &bull; 
             <a href="quienes-somos.html" style="color:#888;">Quiénes Somos</a>
         </div>
-        <p style="color:#555; font-size:0.8rem;">&copy; 2026 F1rstSports Media.</p>
+        <p style="color:#555; font-size:0.8rem;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
     <!-- SCRIPTS -->
     <script>
-        // 1. PRELOADER (A PRUEBA DE FALLOS)
-        // Esto fuerza a que se quite a los 1.5 segundos, haya cargado o no.
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const preloader = document.getElementById('preloader');
-                if (preloader) {
-                    preloader.style.opacity = '0';
-                    setTimeout(() => { preloader.style.display = 'none'; }, 500);
-                }
-            }, 1500); // 1.5 segundos de espera
-        });
-
-        // 2. COOKIES (MODIFICADO PARA QUE SIEMPRE SALGA EN PRUEBA)
-        // Nota: Para producción, quita la línea 'localStorage.removeItem'
-        // localStorage.removeItem('cookiesAccepted'); // <--- ELIMINAR ESTA LÍNEA CUANDO YA NO QUIERAS PRUEBAS
-        
-        function checkCookies() {
-            if (!localStorage.getItem('cookiesAccepted')) {
-                document.getElementById('cookie-banner').style.display = 'flex';
-            }
+        // 1. COOKIES
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => document.getElementById('cookie-banner').style.display = 'flex', 1000);
         }
         function acceptCookies() {
             localStorage.setItem('cookiesAccepted', 'true');
             document.getElementById('cookie-banner').style.display = 'none';
         }
-        setTimeout(checkCookies, 1500);
 
-        // 3. MENÚ
+        // 2. MENÚ
         const menuBtn = document.getElementById('menuBtn');
         const nav = document.getElementById('mainNav');
         menuBtn.addEventListener('click', () => {
@@ -405,7 +396,7 @@
             menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
 
-        // 4. CARRUSEL (LÓGICA CORREGIDA)
+        // 3. CARRUSEL
         let slideIndex = 1;
         let slideTimer;
         
@@ -413,13 +404,10 @@
             let slides = document.getElementsByClassName("slide");
             if (n > slides.length) slideIndex = 1;
             if (n < 1) slideIndex = slides.length;
-            
-            // Ocultar todos
             for (let i = 0; i < slides.length; i++) {
                 slides[i].classList.remove("active");
-                slides[i].style.display = "none"; // Asegurar que se oculten
+                slides[i].style.display = "none";
             }
-            // Mostrar actual
             slides[slideIndex-1].style.display = "flex";
             setTimeout(() => slides[slideIndex-1].classList.add("active"), 10);
         }
@@ -437,30 +425,49 @@
         showSlides(slideIndex);
         startAutoSlide();
 
-        // 5. MARCADORES
+        // 4. MARCADORES ACTUALIZADOS
         const marcadoresContainer = document.getElementById("marcadores");
         const liveScores = [
-            { liga: "NFL WC", local: "NE Patriots", vis: "LA Chargers", s1: "3", s2: "16", st: "FINAL", t:  },
-            { liga: "LIGA MX", local: "San Luis", vis: "Tigres", s1: "1", s2: "2", st: "FINAL"  },
-            { liga: "SUPERCOPA", local: "Barcelona", vis: "R. Madrid", s1: "3", s2: "2", st: "FINAL", t: "Fin" },
-            { liga: "NFL WC", local: "PHI Eagles", vis: "SF 49ers", s1: "19", s2: "23", st: "FINAL", t: "Fin" },
-            { liga: "NFL WC", local: "JAX Jaguars", vis: "BUF Bills", s1: "24", s2: "27", st: "FINAL", t: "Fin" },
-            { liga: "LIGA MX", local: "Chivas", vis: "Pachuca", s1: "2", s2: "0", st: "FINAL", t: "Fin" }
+            // EN VIVO
+            { liga: "NFL WC", local: "Steelers", vis: "Texans", s1: "7", s2: "3", st: "EN VIVO", t: "Q1 08:30" },
+            
+            // FINALIZADOS
+            { liga: "NFL WC", local: "Patriots", vis: "Chargers", s1: "16", s2: "3", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "San Luis", vis: "Tigres", s1: "1", s2: "2", st: "FINAL", t: "Fin" },
+            
+            // MAÑANA (LIGA MX)
+            { liga: "LIGA MX", local: "Puebla", vis: "Mazatlán", s1: "-", s2: "-", st: "MAÑANA", t: "17:00" },
+            { liga: "LIGA MX", local: "Necaxa", vis: "Monterrey", s1: "-", s2: "-", st: "MAÑANA", t: "19:00" },
+            { liga: "LIGA MX", local: "Pachuca", vis: "León", s1: "-", s2: "-", st: "MAÑANA", t: "19:06" },
+            { liga: "LIGA MX", local: "Juárez", vis: "Chivas", s1: "-", s2: "-", st: "MAÑANA", t: "21:10" },
+
+            // MIÉRCOLES (LIGA MX)
+            { liga: "LIGA MX", local: "América", vis: "San Luis", s1: "-", s2: "-", st: "MIÉRCOLES", t: "19:05" },
+            
+            // FUTUROS (NFL)
+            { liga: "NFL DIV", local: "Broncos", vis: "Bills", s1: "-", s2: "-", st: "SÁB 17", t: "TBD" },
+            { liga: "NFL DIV", local: "Seahawks", vis: "49ers", s1: "-", s2: "-", st: "SÁB 17", t: "TBD" }
         ];
 
         function renderScores() {
             let html = "";
             liveScores.forEach(game => {
-                let liveClass = game.st === "EN VIVO" ? "status-live" : "";
-                let dot = game.st === "EN VIVO" ? "● " : "";
-                let s1Style = parseInt(game.s1) > parseInt(game.s2) ? "color:#fff" : "";
-                let s2Style = parseInt(game.s2) > parseInt(game.s1) ? "color:#fff" : "";
+                let liveClass = "";
+                let dot = "";
+                
+                if(game.st === "EN VIVO") {
+                    liveClass = "status-live";
+                    dot = "● ";
+                } else if(game.st === "MAÑANA" || game.st === "MIÉRCOLES" || game.st.includes("SÁB")) {
+                    liveClass = "status-future";
+                }
+
                 html += `
                     <div class="score-card">
                         <div class="score-league"><span>${game.liga}</span><span class="${liveClass}">${dot}${game.t}</span></div>
                         <div class="score-teams">
                             <div style="display:flex; flex-direction:column; gap:2px;"><span>${game.local}</span><span>${game.vis}</span></div>
-                            <div style="display:flex; flex-direction:column; gap:2px; text-align:right;"><span class="score-val" style="${s1Style}">${game.s1}</span><span class="score-val" style="${s2Style}">${game.s2}</span></div>
+                            <div style="display:flex; flex-direction:column; gap:2px; text-align:right;"><span class="score-val">${game.s1}</span><span class="score-val">${game.s2}</span></div>
                         </div>
                     </div>`;
             });
@@ -470,6 +477,3 @@
     </script>
 </body>
 </html>
-
-
-
