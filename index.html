@@ -81,23 +81,54 @@
         .cta-btn { background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; border-radius: 4px; }
         .cta-btn:hover { background: var(--accent); color: black; }
 
-        /* --- SCORE TICKER (MARCADORES) --- */
-        .score-ticker-container {
-            background: #000;
-            border-bottom: 1px solid #333;
-            display: flex;
-            height: 65px;
-            overflow: hidden;
+       /* --- NEWS TICKER (CINTA DE NOTICIAS) --- */
+        .ticker-wrap { 
+            background: var(--primary); /* Fondo Azul 'Breaking News' */
+            color: white; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            padding: 12px 0; 
+            font-family: var(--font-head); 
+            font-size: 1rem; 
+            font-weight: bold; 
+            border-bottom: 2px solid var(--accent); /* Línea neón abajo */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
             position: relative;
-            z-index: 1500;
+            z-index: 10;
         }
-        .ticker-label {
-            background: var(--primary); color: white; font-family: var(--font-head); font-weight: bold;
-            display: flex; align-items: center; padding: 0 15px; font-size: 0.9rem; z-index: 10;
-            box-shadow: 5px 0 10px rgba(0,0,0,0.5);
+
+        .ticker { 
+            display: inline-block; 
+            white-space: nowrap;
+            /* La animación inicia fuera de la pantalla a la derecha */
+            padding-left: 100%; 
+            animation: news-scroll 45s linear infinite; 
         }
-        .score-track { display: flex; align-items: center; gap: 1px; animation: scroll-left 60s linear infinite; padding-left: 20px; }
-        .score-ticker-container:hover .score-track { animation-play-state: paused; }
+
+        .ticker:hover { 
+            animation-play-state: paused; /* Se detiene si pones el mouse encima */
+        }
+
+        .ticker-item { 
+            display: inline-block;
+            margin-right: 60px; /* Espacio entre noticias */
+            color: white; 
+            text-decoration: none; 
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ticker-item:hover { 
+            color: var(--accent); /* Se pone verde neón al tocarlo */
+            text-shadow: 0 0 10px rgba(204, 255, 0, 0.8);
+        }
+
+        /* Definición del movimiento */
+        @keyframes news-scroll { 
+            0% { transform: translate3d(0, 0, 0); } 
+            100% { transform: translate3d(-100%, 0, 0); } 
+        }
         
         .score-card {
             background: #111; border-right: 1px solid #333; min-width: 180px; padding: 8px 15px;
@@ -479,3 +510,4 @@
     </script>
 </body>
 </html>
+
