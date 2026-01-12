@@ -1,10 +1,107 @@
-<div class="news-grid">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga MX | F1rstSports</title>
+    <link rel="icon" type="image/png" href="logof1.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
+        body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        a:hover { color: var(--accent); }
+
+        /* --- HEADER --- */
+        header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
+        .logo-img img { max-height: 50px; width: auto; display: block; }
+        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 4px; }
+        .back-link:hover { background: var(--accent); color: black; }
+
+        /* --- TÍTULO DE SECCIÓN --- */
+        .section-header {
+            background: linear-gradient(to right, #000, var(--primary));
+            padding: 60px 5%;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--accent);
+        }
+        .section-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 0 black; line-height: 1; }
+        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- GRID DE NOTICIAS (ESTO ES LO QUE ARREGLA EL DISEÑO) --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
+        
+        .news-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Esto crea las columnas */
+            gap: 30px; 
+            margin-bottom: 60px; 
+        }
+        
+        /* Tarjeta */
+        .news-card { 
+            background: var(--bg-card); 
+            border: 1px solid #333; 
+            transition: 0.3s; 
+            overflow: hidden; 
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        .news-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        
+        /* Imagen controlada */
+        .card-img { 
+            width: 100%; 
+            height: 220px; /* Altura fija para que no se vean gigantes */
+            object-fit: cover; 
+            border-bottom: 1px solid #333;
+        }
+
+        .card-body { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 10px; }
+        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 15px 0; line-height: 1.2; color: white; }
+        .card-title a { color: white; }
+        
+        .read-btn { 
+            color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; 
+            margin-top: auto; display: inline-block; 
+            border-bottom: 2px solid var(--primary); width: fit-content; 
+        }
+        .read-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* --- FOOTER --- */
+        footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
+
+        @media (max-width: 768px) { .section-title { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
+        <a href="index.html" class="back-link">VOLVER AL INICIO</a>
+    </header>
+
+    <!-- TÍTULO DE LA SECCIÓN -->
+    <div class="section-header">
+        <span class="section-subtitle">FÚTBOL MEXICANO</span>
+        <h1 class="section-title">LIGA MX</h1>
+    </div>
+
+    <div class="container">
+        <!-- AQUÍ EMPIEZA LA REJILLA DE TARJETAS -->
+        <div class="news-grid">
             
-            <!-- TARJETA 1: NOTA DEL CAMPEÓN -->
+            <!-- TARJETA 1: TOLUCA CAMPEÓN -->
             <article class="news-card">
                 <a href="nota-final-ligamx.html">
-                    <!-- CORREGIDO: Sintaxis limpia -->
-                    <img src="toluca-campeon.jpg" class="card-img" alt="Final Liga MX - Toluca Campeón">
+                    <img src="toluca-campeon.jpg" class="card-img" alt="Toluca Campeón">
                 </a>
                 <div class="card-body">
                     <span class="card-tag">GRAN FINAL</span>
@@ -13,11 +110,22 @@
                 </div>
             </article>
 
-            <!-- TARJETA 2: FICHAJES (Placeholder) -->
+            <!-- TARJETA 2: POLÉMICA STREAMING -->
+            <article class="news-card">
+                <a href="horarios-jornada1-clausura2026.html">
+                    <img src="streaming-ligamxx.png" class="card-img" alt="Polémica Streaming">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">POLÉMICA TV</span>
+                    <h3 class="card-title"><a href="horarios-jornada1-clausura2026.html">¿Fútbol para ricos? El Clausura 2026 arranca secuestrado por el streaming</a></h3>
+                    <a href="horarios-jornada1-clausura2026.html" class="read-btn">LEER OPINIÓN &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 3: MERCADO DE FICHAJES (GENÉRICA) -->
             <article class="news-card">
                 <a href="#">
-                    <!-- He puesto una imagen genérica para que no se repita la del Toluca -->
-                    <img src="https://placehold.co/600x400/003366/FFF?text=MERCADO+FICHAJES" class="card-img" alt="Fichajes Liga MX">
+                    <img src="https://placehold.co/600x400/003366/FFF?text=MERCADO+FICHAJES" class="card-img" alt="Fichajes">
                 </a>
                 <div class="card-body">
                     <span class="card-tag">RUMORES</span>
@@ -26,16 +134,24 @@
                 </div>
             </article>
 
-            <!-- TARJETA 3: SELECCIÓN (Placeholder) -->
+            <!-- TARJETA 4: SELECCIÓN -->
             <article class="news-card">
-                <a href="#">
-                    <img src="https://placehold.co/600x400/166534/FFF?text=SELECCION" class="card-img" alt="Selección Mexicana">
+                <a href="calendario-seleccion-mexicana.html">
+                    <img src="mexico-calendario-2026.jpg" class="card-img" alt="Selección Mexicana">
                 </a>
                 <div class="card-body">
                     <span class="card-tag">SELECCIÓN</span>
-                    <h3 class="card-title"><a href="#">Novedades en la convocatoria tricolor</a></h3>
-                    <a href="#" class="read-btn">LEER NOTA &rarr;</a>
+                    <h3 class="card-title"><a href="calendario-seleccion-mexicana.html">Calendario del Tri: El camino al Mundial 2026</a></h3>
+                    <a href="calendario-seleccion-mexicana.html" class="read-btn">VER FECHAS &rarr;</a>
                 </div>
             </article>
 
         </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 F1rstSports Media.</p>
+    </footer>
+
+</body>
+</html>
