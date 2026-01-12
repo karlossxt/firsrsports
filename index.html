@@ -81,11 +81,40 @@
         .cta-btn { background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; border-radius: 4px; }
         .cta-btn:hover { background: var(--accent); color: black; }
 
-        /* --- TICKER --- */
-        .ticker-wrap { background: var(--primary); color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-family: var(--font-head); font-size: 0.9rem; font-weight: bold; }
+        /* --- SCORE TICKER (NUEVO) --- */
+        .score-ticker-container {
+            background: #000;
+            border-bottom: 1px solid #333;
+            display: flex;
+            height: 65px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1500;
+        }
+        .ticker-label {
+            background: var(--primary); color: white; font-family: var(--font-head); font-weight: bold;
+            display: flex; align-items: center; padding: 0 15px; font-size: 0.9rem; z-index: 10;
+            box-shadow: 5px 0 10px rgba(0,0,0,0.5);
+        }
+        .score-track { display: flex; align-items: center; gap: 1px; animation: scroll-left 45s linear infinite; padding-left: 20px; }
+        .score-ticker-container:hover .score-track { animation-play-state: paused; }
+        
+        .score-card {
+            background: #111; border-right: 1px solid #333; min-width: 180px; padding: 8px 15px;
+            display: flex; flex-direction: column; justify-content: center; font-family: var(--font-body);
+        }
+        .score-league { font-size: 0.65rem; color: #888; text-transform: uppercase; margin-bottom: 4px; display: flex; justify-content: space-between; }
+        .score-teams { display: flex; justify-content: space-between; align-items: center; color: white; font-weight: bold; font-size: 0.85rem; }
+        .score-val { color: var(--accent); font-family: var(--font-head); font-size: 1rem; }
+        .status-live { color: #ff4444; font-weight: bold; animation: blink 1.5s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+        /* --- NEWS TICKER (CINTA) --- */
+        .ticker-wrap { background: var(--bg-card); color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-family: var(--font-head); font-size: 0.9rem; font-weight: bold; border-bottom: 4px solid var(--accent); }
         .ticker { display: inline-block; animation: scroll 60s linear infinite; }
         .ticker:hover { animation-play-state: paused; }
-        .ticker-item { margin-right: 40px; color: white; transition: color 0.3s; }
+        .ticker-item { margin-right: 40px; color: white; transition: color 0.3s; text-decoration: none; }
         .ticker-item:hover { color: var(--accent); }
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
@@ -152,10 +181,9 @@
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS4CB5WH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
+    
     <div class="top-bar">
-        <div>CDMX | 08 Enero 2026</div>
+        <div>CDMX | 11 Enero 2026</div>
         <div class="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -176,13 +204,22 @@
                 <li><a href="australian-open-2026.html">Tenis</a></li>
                 <li><a href="ligamx.html">Liga MX</a></li>
                 <li><a href="boxeo.html">Boxeo</a></li>
-                <!-- Pestaña Nueva -->
+                <li><a href="#">Béisbol</a></li> <!-- ¡NUEVA SECCIÓN! -->
                 <li><a href="quienes-somos.html" class="btn-qs">QUIÉNES SOMOS</a></li>
             </ul>
         </nav>
         <a href="mundial-2026.html" class="cta-btn desktop-only">MUNDIAL '26</a>
     </header>
 
+    <!-- BARRA DE MARCADORES -->
+    <div class="score-ticker-container">
+        <div class="ticker-label">MARCADORES</div>
+        <div class="score-track" id="marcadores">
+            <!-- Cargando datos... -->
+        </div>
+    </div>
+
+    <!-- CINTA DE NOTICIAS -->
     <div class="ticker-wrap">
         <div class="ticker">
             <a href="analisis-equipos-playoffs-nfl.html" class="ticker-item">ANÁLISIS PLAYOFFS NFL 2026</a>
@@ -199,7 +236,7 @@
         <!-- CARRUSEL -->
         <div class="carousel-container" id="mainCarousel">
 
-            <!-- Slide 1: NFL (NUEVO) -->
+            <!-- Slide 1: NFL -->
             <div class="slide active">
                 <img src="playoffs-general.jpg" alt="Análisis Playoffs NFL">
                 <div class="slide-content">
@@ -313,6 +350,8 @@
                 <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i> <span>Liga MX</span></a></li>
                 <li class="league-item"><a href="nota-dakar-2026.html"><i class="fa-solid fa-flag-checkered"></i> <span>Motor</span></a></li>
                 <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i> <span>Boxeo</span></a></li>
+                <!-- Botón de Béisbol Nuevo -->
+                <li class="league-item"><a href="#"><i class="fa-solid fa-baseball-bat-ball"></i> <span>Béisbol</span></a></li>
                 <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i> <span>Nosotros</span></a></li>
             </ul>
         </div>
@@ -338,7 +377,46 @@
     </footer>
 
     <script>
-        // MENÚ
+        // --- 1. SCRIPT DE MARCADORES (DATOS FICTICIOS PARA DEMO) ---
+        const marcadoresContainer = document.getElementById("marcadores");
+        
+        // Datos simulados (Puedes editar esto libremente)
+        const liveScores = [
+            { liga: "NFL WC", local: "SF 49ers", vis: "PHI Eagles", s1: "10", s2: "13", st: "EN VIVO", t: "Q3" },
+            { liga: "NFL WC", local: "BUF Bills", vis: "JAX Jaguars", s1: "27", s2: "24", st: "FINAL", t: "Fin" },
+            { liga: "LIGA MX", local: "Pumas", vis: "Querétaro", s1: "2", s2: "0", st: "EN VIVO", t: "45'" },
+            { liga: "LMP", local: "Naranjeros", vis: "Tomateros", s1: "3", s2: "5", st: "FINAL", t: "9na" }
+        ];
+
+        function renderScores() {
+            let html = "";
+            liveScores.forEach(game => {
+                let liveClass = game.st === "EN VIVO" ? "status-live" : "";
+                let dot = game.st === "EN VIVO" ? "● " : "";
+                html += `
+                    <div class="score-card">
+                        <div class="score-league">
+                            <span>${game.liga}</span>
+                            <span class="${liveClass}">${dot}${game.t}</span>
+                        </div>
+                        <div class="score-teams">
+                            <div style="display:flex; flex-direction:column; gap:2px;">
+                                <span>${game.local}</span>
+                                <span>${game.vis}</span>
+                            </div>
+                            <div style="display:flex; flex-direction:column; gap:2px; text-align:right;">
+                                <span class="score-val">${game.s1}</span>
+                                <span class="score-val">${game.s2}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            marcadoresContainer.innerHTML = html;
+        }
+        renderScores();
+
+        // --- 2. SCRIPT DEL MENÚ ---
         const menuBtn = document.getElementById('menuBtn');
         const nav = document.getElementById('mainNav');
         menuBtn.addEventListener('click', () => {
@@ -346,7 +424,7 @@
             menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
 
-        // CARRUSEL
+        // --- 3. SCRIPT DEL CARRUSEL ---
         let slideIndex = 1;
         let slideTimer;
 
@@ -367,7 +445,7 @@
         showSlides(slideIndex);
         slideTimer = setInterval(() => plusSlides(1), 5000);
 
-        // SWIPE TÁCTIL
+        // Swipe Táctil
         let touchStartX = 0;
         const sliderContainer = document.getElementById('mainCarousel');
         sliderContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(slideTimer); }, {passive: true});
