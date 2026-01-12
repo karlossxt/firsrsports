@@ -81,54 +81,23 @@
         .cta-btn { background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; border-radius: 4px; }
         .cta-btn:hover { background: var(--accent); color: black; }
 
-       /* --- NEWS TICKER (CINTA DE NOTICIAS) --- */
-        .ticker-wrap { 
-            background: var(--primary); /* Fondo Azul 'Breaking News' */
-            color: white; 
-            overflow: hidden; 
-            white-space: nowrap; 
-            padding: 12px 0; 
-            font-family: var(--font-head); 
-            font-size: 1rem; 
-            font-weight: bold; 
-            border-bottom: 2px solid var(--accent); /* Línea neón abajo */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        /* --- SCORE TICKER (MARCADORES) --- */
+        .score-ticker-container {
+            background: #000;
+            border-bottom: 1px solid #333;
+            display: flex;
+            height: 65px;
+            overflow: hidden;
             position: relative;
-            z-index: 10;
+            z-index: 1500;
         }
-
-        .ticker { 
-            display: inline-block; 
-            white-space: nowrap;
-            /* La animación inicia fuera de la pantalla a la derecha */
-            padding-left: 100%; 
-            animation: news-scroll 45s linear infinite; 
+        .ticker-label {
+            background: var(--primary); color: white; font-family: var(--font-head); font-weight: bold;
+            display: flex; align-items: center; padding: 0 15px; font-size: 0.9rem; z-index: 10;
+            box-shadow: 5px 0 10px rgba(0,0,0,0.5);
         }
-
-        .ticker:hover { 
-            animation-play-state: paused; /* Se detiene si pones el mouse encima */
-        }
-
-        .ticker-item { 
-            display: inline-block;
-            margin-right: 60px; /* Espacio entre noticias */
-            color: white; 
-            text-decoration: none; 
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .ticker-item:hover { 
-            color: var(--accent); /* Se pone verde neón al tocarlo */
-            text-shadow: 0 0 10px rgba(204, 255, 0, 0.8);
-        }
-
-        /* Definición del movimiento */
-        @keyframes news-scroll { 
-            0% { transform: translate3d(0, 0, 0); } 
-            100% { transform: translate3d(-100%, 0, 0); } 
-        }
+        .score-track { display: flex; align-items: center; gap: 1px; animation: scroll-left 60s linear infinite; padding-left: 20px; }
+        .score-ticker-container:hover .score-track { animation-play-state: paused; }
         
         .score-card {
             background: #111; border-right: 1px solid #333; min-width: 180px; padding: 8px 15px;
@@ -138,15 +107,18 @@
         .score-teams { display: flex; justify-content: space-between; align-items: center; color: white; font-weight: bold; font-size: 0.85rem; }
         .score-val { color: var(--accent); font-family: var(--font-head); font-size: 1rem; }
         .status-live { color: #ff4444; font-weight: bold; animation: blink 1.5s infinite; }
-        @keyframes blink { 50% { opacity: 0.5; } }
-        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-
+        
         /* --- NEWS TICKER (CINTA) --- */
         .ticker-wrap { background: var(--bg-card); color: white; overflow: hidden; white-space: nowrap; padding: 8px 0; font-family: var(--font-head); font-size: 0.9rem; font-weight: bold; border-bottom: 4px solid var(--accent); }
         .ticker { display: inline-block; animation: scroll 60s linear infinite; }
         .ticker:hover { animation-play-state: paused; }
         .ticker-item { margin-right: 40px; color: white; transition: color 0.3s; text-decoration: none; }
         .ticker-item:hover { color: var(--accent); }
+
+        /* Animaciones */
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        @keyframes blink { 50% { opacity: 0.5; } }
 
         /* --- LAYOUT --- */
         .container { width: 98%; max-width: 1800px; margin: 20px auto; padding: 0 10px; display: flex; flex-direction: column; gap: 40px; }
@@ -405,8 +377,9 @@
         <p class="copyright" style="margin-top: 10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
-        // MENÚ
+        // 1. MENÚ
         const menuBtn = document.getElementById('menuBtn');
         const nav = document.getElementById('mainNav');
         menuBtn.addEventListener('click', () => {
@@ -414,7 +387,7 @@
             menuBtn.innerHTML = nav.classList.contains('active') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
         });
 
-        // CARRUSEL
+        // 2. CARRUSEL
         let slideIndex = 1;
         let slideTimer;
 
@@ -435,7 +408,7 @@
         showSlides(slideIndex);
         slideTimer = setInterval(() => plusSlides(1), 5000);
 
-        // SWIPE TÁCTIL
+        // Swipe Táctil
         let touchStartX = 0;
         const sliderContainer = document.getElementById('mainCarousel');
         sliderContainer.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; clearInterval(slideTimer); }, {passive: true});
@@ -446,26 +419,26 @@
             slideTimer = setInterval(() => plusSlides(1), 5000);
         }, {passive: true});
 
-        // --- MARCADORES REALES ---
+        // 3. MARCADORES REALES
         const marcadoresContainer = document.getElementById("marcadores");
         
-        // Datos Actualizados
+        // Datos Actualizados (Domingo 11 Enero)
         const liveScores = [
-            // JUEGOS EN VIVO (Van primero)
+            // JUEGOS EN VIVO
             { liga: "NFL WC", local: "NE Patriots", vis: "LA Chargers", s1: "0", s2: "0", st: "EN VIVO", t: "Q1 10:48" },
             { liga: "LIGA MX", local: "San Luis", vis: "Tigres", s1: "0", s2: "0", st: "EN VIVO", t: "21'" },
             
-            // SUPERCOPA DE ESPAÑA
+            // SUPERCOPA
             { liga: "SUPERCOPA", local: "Barcelona", vis: "R. Madrid", s1: "3", s2: "2", st: "FINAL", t: "Fin" },
 
-            // NFL FINALES
+            // NFL
             { liga: "NFL WC", local: "PHI Eagles", vis: "SF 49ers", s1: "19", s2: "23", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "JAX Jaguars", vis: "BUF Bills", s1: "24", s2: "27", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "CHI Bears", vis: "GB Packers", s1: "31", s2: "27", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "CAR Panthers", vis: "LA Rams", s1: "31", s2: "34", st: "FINAL", t: "Fin" },
             { liga: "NFL WC", local: "PIT Steelers", vis: "BAL Ravens", s1: "26", s2: "24", st: "FINAL", t: "Fin" },
 
-            // LIGA MX FINALES
+            // LIGA MX
             { liga: "LIGA MX", local: "Pumas", vis: "Querétaro", s1: "1", s2: "1", st: "FINAL", t: "Fin" },
             { liga: "LIGA MX", local: "Monterrey", vis: "Toluca", s1: "0", s2: "1", st: "FINAL", t: "Fin" },
             { liga: "LIGA MX", local: "Santos", vis: "Necaxa", s1: "1", s2: "3", st: "FINAL", t: "Fin" },
@@ -481,7 +454,6 @@
             liveScores.forEach(game => {
                 let liveClass = game.st === "EN VIVO" ? "status-live" : "";
                 let dot = game.st === "EN VIVO" ? "● " : "";
-                // Color para el ganador en negrita (opcional, lógica simple)
                 let score1Style = parseInt(game.s1) > parseInt(game.s2) ? "color:#fff" : "";
                 let score2Style = parseInt(game.s2) > parseInt(game.s1) ? "color:#fff" : "";
 
@@ -510,4 +482,3 @@
     </script>
 </body>
 </html>
-
