@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Béisbol | F1rstSports</title>
+    <link rel="icon" type="image/png" href="logof1.png">
+    
+    <!-- Meta etiquetas -->
+    <meta property="og:title" content="F1rstSports: Béisbol">
+    <meta property="og:description" content="Playoffs LMP, MLB y Serie del Caribe. La mejor cobertura del rey de los deportes.">
+    <meta property="og:image" content="https://f1rstsports.com.mx/beisbol-cover.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ESTILOS BASE (Mismos que el resto del sitio) */
+        :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
+        body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        a:hover { color: var(--accent); }
+
+        /* HEADER */
+        header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
+        .logo-img img { max-height: 50px; width: auto; display: block; }
+        .logo-img:hover { opacity: 0.8; }
+        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 4px; }
+        .back-link:hover { background: var(--accent); color: black; }
+
+        /* ENCABEZADO DE SECCIÓN */
+        .section-header {
+            background: linear-gradient(to right, #000, var(--primary));
+            padding: 60px 5%;
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 4px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        /* Detalle de costuras de pelota de béisbol (decorativo) */
+        .section-header::after {
+            content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Textura sutil */
+            opacity: 0.2;
+        }
+
+        .section-title { font-family: var(--font-head); font-size: 4rem; margin: 0; text-transform: uppercase; text-shadow: 4px 4px 0 black; line-height: 1; }
+        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 4px; text-transform: uppercase; font-size: 1.2rem; }
+
+        /* GRID DE NOTICIAS */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        
+        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; display: flex; flex-direction: column; }
+        .news-card:hover { transform: translateY(-7px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        
+        .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #333; }
+        
+        .card-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 10px; letter-spacing: 1px; }
+        .card-title { font-family: var(--font-head); font-size: 1.4rem; margin: 0 0 15px 0; line-height: 1.2; }
+        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: auto; display: inline-block; border-bottom: 2px solid var(--primary); width: fit-content; }
+        .read-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* FOOTER */
+        footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
+
+        @media (max-width: 768px) { .section-title { font-size: 3rem; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
+        <a href="index.html" class="back-link">VOLVER AL INICIO</a>
+    </header>
+
+    <!-- TÍTULO DE LA SECCIÓN -->
+    <div class="section-header">
+        <span class="section-subtitle">LMP • MLB • SERIE DEL CARIBE</span>
+        <h1 class="section-title">BÉISBOL</h1>
+    </div>
+
+    <div class="container">
+        <div class="news-grid">
+            
+            <!-- TARJETA 1: LMP PLAYOFFS -->
+            <article class="news-card">
+                <a href="#">
+                    <!-- Usa una foto de un estadio de LMP o jugadores -->
+                    <img src="https://images.unsplash.com/photo-1590502160462-23259ce34a90?q=80&w=800" class="card-img" alt="Playoffs LMP">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">LIGA ARCO MEXICANA DEL PACÍFICO</span>
+                    <h3 class="card-title"><a href="#">Clásico en Semifinales: Naranjeros y Tomateros en busca de la final</a></h3>
+                    <a href="#" class="read-btn">LEER PREVIA &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 2: MLB RUMORES -->
+            <article class="news-card">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1508344928928-7165b67de128?q=80&w=800" class="card-img" alt="MLB Rumores">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">MLB 2026</span>
+                    <h3 class="card-title"><a href="#">Mercado de Invierno: Los fichajes bomba que definen la temporada</a></h3>
+                    <a href="#" class="read-btn">VER MOVIMIENTOS &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 3: SERIE DEL CARIBE -->
+            <article class="news-card">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1563616666874-a0349277d341?q=80&w=800" class="card-img" alt="Serie del Caribe">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">RUMBO AL CARIBE</span>
+                    <h3 class="card-title"><a href="#">Serie del Caribe 2026: Sedes, fechas y el camino de México</a></h3>
+                    <a href="#" class="read-btn">LEER NOTA &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 4: MEXICANOS EN EL EXTRANJERO -->
+            <article class="news-card">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1599583492804-0994f06d275d?q=80&w=800" class="card-img" alt="Mexicanos MLB">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">ORGULLO NACIONAL</span>
+                    <h3 class="card-title"><a href="#">La legión mexicana: Proyecciones para la temporada 2026 de Grandes Ligas</a></h3>
+                    <a href="#" class="read-btn">LEER ANÁLISIS &rarr;</a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <footer>
+        <span style="font-family:'Chakra Petch'; font-size:1.5rem; color:white; font-weight:bold;">F1RSTSPORTS</span>
+        <div style="margin-top: 10px; font-size: 0.8rem;">
+            <a href="aviso-privacidad.html" style="color: #888;">Aviso de Privacidad</a> &bull; 
+            <a href="quienes-somos.html" style="color: #888;">Quiénes Somos</a>
+        </div>
+        <p style="margin-top:10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
