@@ -374,12 +374,16 @@
 
     <!-- SCRIPTS -->
     <script>
-        // 1. PRELOADER
-        window.addEventListener('load', () => {
+        // 1. PRELOADER (A PRUEBA DE FALLOS)
+        // Esto fuerza a que se quite a los 1.5 segundos, haya cargado o no.
+        window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                document.getElementById('preloader').style.opacity = '0';
-                setTimeout(() => document.getElementById('preloader').style.display = 'none', 500);
-            }, 1000);
+                const preloader = document.getElementById('preloader');
+                if (preloader) {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => { preloader.style.display = 'none'; }, 500);
+                }
+            }, 1500); // 1.5 segundos de espera
         });
 
         // 2. COOKIES (MODIFICADO PARA QUE SIEMPRE SALGA EN PRUEBA)
@@ -470,4 +474,5 @@
     </script>
 </body>
 </html>
+
 
