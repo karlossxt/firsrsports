@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zona NFL | F1rstSports - Rumbo al Super Bowl LIX</title>
+    <title>NFL Hub | F1rstSports - Rumbo al Super Bowl LIX</title>
     <link rel="icon" type="image/png" href="logof1.png">
 
     <!-- Fuentes y Estilos -->
@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- VARIABLES --- */
         :root {
             --bg-body: #050505;
             --bg-card: #0a0a0a;
             --glass: rgba(15, 15, 15, 0.98);
             --accent: #ccff00;
-            --nfl-blue: #2563eb;
+            --nfl-blue: #013369; /* Azul Oficial NFL */
+            --nfl-red: #d50a0a;
             --text-main: #ffffff;
             --text-muted: #a1a1aa;
             --border: 1px solid rgba(255, 255, 255, 0.1);
@@ -33,59 +33,60 @@
         header { 
             background: var(--glass); backdrop-filter: blur(10px);
             padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; 
-            position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid var(--nfl-blue);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--nfl-blue);
         }
         .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.6rem; letter-spacing: -1px; }
         nav { display: flex; gap: 20px; }
         nav a { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); }
-        nav a:hover, nav a.active { color: var(--nfl-blue); }
+        nav a:hover, nav a.active { color: var(--accent); }
 
-        /* --- BARRA DE EQUIPOS (TEAM NAV) --- */
-        .team-nav { background: #000; padding: 15px 0; border-bottom: 1px solid #111; }
-        .team-wrapper { max-width: 1400px; margin: 0 auto; display: flex; justify-content: center; gap: 25px; overflow-x: auto; padding: 0 20px; }
+        /* --- BARRA DE EQUIPOS --- */
+        .team-nav { background: #000; padding: 12px 0; border-bottom: 1px solid #111; }
+        .team-wrapper { max-width: 1400px; margin: 0 auto; display: flex; justify-content: center; gap: 20px; overflow-x: auto; padding: 0 20px; }
         .team-wrapper::-webkit-scrollbar { display: none; }
-        
-        .team-icon { display: flex; flex-direction: column; align-items: center; min-width: 60px; opacity: 0.6; transition: 0.3s; }
-        .team-icon img { width: 40px; height: 40px; object-fit: contain; margin-bottom: 5px; }
-        .team-icon span { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; color: #fff; }
+        .team-icon { display: flex; flex-direction: column; align-items: center; min-width: 55px; opacity: 0.7; transition: 0.3s; cursor: pointer; }
+        .team-icon img { width: 35px; height: 35px; object-fit: contain; }
+        .team-icon span { font-size: 0.55rem; font-weight: 800; color: #888; margin-top: 5px; }
         .team-icon:hover { opacity: 1; transform: scale(1.1); }
 
-        /* --- HERO NFL --- */
+        /* --- HERO NFL (Nota Principal) --- */
         .nfl-hero { 
-            height: 500px; background: linear-gradient(0deg, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.3) 100%), url('Super_Bowl_LIX.png');
+            height: 550px; background: linear-gradient(0deg, rgba(0,0,0,1) 15%, rgba(0,0,0,0.2) 100%), url('playoffs-general.jpg');
             background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 60px 5%; margin-bottom: 40px;
         }
-        .hero-content { max-width: 900px; }
-        .hero-tag { background: var(--nfl-blue); color: white; padding: 5px 15px; font-weight: 800; font-family: var(--font-head); text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
-        .hero-title { font-family: var(--font-head); font-size: 3.5rem; text-transform: uppercase; margin: 0; line-height: 1; text-shadow: 3px 3px 10px black; }
+        .hero-tag { background: var(--nfl-red); color: white; padding: 5px 15px; font-weight: 800; font-family: var(--font-head); text-transform: uppercase; margin-bottom: 15px; display: inline-block; }
+        .hero-title { font-family: var(--font-head); font-size: 3.5rem; text-transform: uppercase; margin: 0; line-height: 1; text-shadow: 2px 2px 15px black; max-width: 800px; }
 
-        /* --- GRID CONTENIDO --- */
+        /* --- GRID DE NOTICIAS --- */
         .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-        .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
-        .stripe { width: 5px; height: 30px; background: var(--nfl-blue); }
-        
-        .nfl-main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-        
-        /* Artículos */
-        .news-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: var(--border); margin-bottom: 30px; transition: 0.3s; }
-        .news-card:hover { border-color: var(--nfl-blue); }
-        .news-card img { width: 100%; height: 300px; object-fit: cover; }
-        .card-content { padding: 30px; }
-        .card-title { font-family: var(--font-head); font-size: 1.8rem; margin: 10px 0; }
-        .card-text { color: var(--text-muted); line-height: 1.6; font-size: 1.05rem; }
+        .nfl-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
 
-        /* Sidebar: Tablas */
-        .sidebar-title { font-family: var(--font-head); font-size: 1.2rem; background: #111; padding: 10px 15px; border-left: 4px solid var(--nfl-blue); margin-bottom: 15px; }
-        .standing-table { width: 100%; border-collapse: collapse; background: #0a0a0a; margin-bottom: 30px; font-size: 0.9rem; }
-        .standing-table td { padding: 12px; border-bottom: 1px solid #111; }
-        .record { text-align: right; font-weight: 700; color: var(--accent); }
+        .section-title { font-family: var(--font-head); font-size: 1.5rem; border-left: 5px solid var(--accent); padding-left: 15px; margin-bottom: 25px; text-transform: uppercase; }
 
-        footer { background: #000; padding: 60px 5%; text-align: center; border-top: 1px solid #222; margin-top: 60px; }
+        /* Tarjetas de Notas */
+        .news-card { background: var(--bg-card); border-radius: 8px; overflow: hidden; border: var(--border); margin-bottom: 30px; transition: 0.3s; }
+        .news-card:hover { border-color: var(--accent); }
+        .news-card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card-category { color: var(--nfl-blue); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; background: #fff; padding: 2px 8px; border-radius: 3px; display: inline-block; margin-bottom: 10px; }
+        .card-title { font-family: var(--font-head); font-size: 1.6rem; margin: 0 0 15px; color: white; line-height: 1.2; }
+        .card-title a:hover { color: var(--accent); }
+        .card-excerpt { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+        /* Sidebar */
+        .sidebar-box { background: #111; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .sidebar-box h3 { font-family: var(--font-head); font-size: 1.1rem; margin-top: 0; color: var(--accent); border-bottom: 1px solid #222; padding-bottom: 10px; }
+        
+        .mini-standing { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .mini-standing td { padding: 10px 5px; border-bottom: 1px solid #222; }
+        .record { text-align: right; font-weight: bold; color: white; }
+
+        footer { background: #000; padding: 60px 5%; text-align: center; border-top: 1px solid #222; }
 
         @media (max-width: 900px) {
-            .nfl-main-grid { grid-template-columns: 1fr; }
+            .nfl-layout { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.5rem; }
-            .nfl-hero { height: 400px; }
+            .nfl-hero { height: 450px; }
         }
     </style>
 </head>
@@ -93,7 +94,7 @@
 
     <header>
         <a href="index.html" class="brand-link">
-            <span class="brand-text" style="color:white;">F1RST<span style="color:var(--nfl-blue);">SPORTS</span></span>
+            <span class="brand-text" style="color:white;">F1RST<span style="color:var(--accent);">SPORTS</span></span>
         </a>
         <nav>
             <a href="index.html">Inicio</a>
@@ -103,92 +104,103 @@
         </nav>
     </header>
 
-    <!-- BARRA DE EQUIPOS DESTACADOS (Logos ilustrativos) -->
+    <!-- BARRA DE EQUIPOS -->
     <section class="team-nav">
         <div class="team-wrapper">
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg" alt="Chiefs"><span>Chiefs</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Philadelphia_Eagles_logo.svg" alt="Eagles"><span>Eagles</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/1/16/Baltimore_Ravens_logo.svg" alt="Ravens"><span>Ravens</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/d/d2/San_Francisco_49ers_logo.svg" alt="49ers"><span>49ers</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/1/15/Dallas_Cowboys.svg" alt="Cowboys"><span>Cowboys</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Buffalo_Bills_logo.svg" alt="Bills"><span>Bills</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/b/b9/New_England_Patriots_logo.svg" alt="Patriots"><span>Patriots</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg" alt="KC"><span>Chiefs</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Philadelphia_Eagles_logo.svg" alt="PHI"><span>Eagles</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/1/16/Baltimore_Ravens_logo.svg" alt="BAL"><span>Ravens</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/d/d2/San_Francisco_49ers_logo.svg" alt="SF"><span>49ers</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Buffalo_Bills_logo.svg" alt="BUF"><span>Bills</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/7/77/Denver_Broncos_logo.svg" alt="DEN"><span>Broncos</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/3/3a/Pittsburgh_Steelers_logo.svg" alt="PIT"><span>Steelers</span></div>
+            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/1/15/Dallas_Cowboys.svg" alt="DAL"><span>Cowboys</span></div>
         </div>
     </section>
 
-    <!-- HERO -->
+    <!-- NOTA PRINCIPAL (HERO) -->
     <section class="nfl-hero">
         <div class="hero-content">
-            <span class="hero-tag">Rumbo al Super Bowl LIX</span>
-            <h1 class="hero-title">Favoritos, dudas y el camino a la gloria en New Orleans</h1>
+            <span class="hero-tag">Análisis Playoffs 2026</span>
+            <h1 class="hero-title"><a href="analisis-equipos-playoffs-nfl.html">El Camino al Super Bowl LIX: ¿Quién frenará a Mahomes y los Chiefs?</a></h1>
         </div>
     </section>
 
     <div class="container">
-        <div class="nfl-main-grid">
+        <div class="nfl-layout">
             
-            <!-- CONTENIDO PRINCIPAL -->
+            <!-- FEED DE NOTICIAS (TUS NOTAS) -->
             <main>
-                <div class="section-label">
-                    <div class="stripe"></div>
-                    <h2 style="font-family: var(--font-head); margin:0;">ANÁLISIS DE TEMPORADA</h2>
-                </div>
+                <h2 class="section-title">Últimas Notas</h2>
 
+                <!-- Nota 1: Favoritos y dudas -->
                 <article class="news-card">
-                    <div class="card-content">
-                        <p><strong>Estados Unidos.—</strong> La temporada 2025–26 de la NFL entra en su tramo decisivo y varios equipos ya despuntan como favoritos para alcanzar el Super Bowl que se celebrará en febrero de 2026. Entre los principales candidatos se encuentran <strong>Philadelphia Eagles, Kansas City Chiefs y Baltimore Ravens</strong>.</p>
-                        
-                        <p>Los Eagles se mantienen como uno de los equipos más balanceados, con una defensa dominante y un ataque eficiente. Los Chiefs, por su parte, buscan regresar al protagonismo apoyados en el talento de Patrick Mahomes, mientras que Baltimore ha impresionado por su explosividad ofensiva.</p>
-                        
-                        <p>Otro equipo que genera expectativas son los <strong>San Francisco 49ers</strong>, que podrían llegar al Super Bowl jugando en casa, aunque enfrentan un desafío serio: las lesiones. La ausencia prolongada de jugadores clave como Brandon Aiyuk ha puesto a prueba la profundidad del equipo.</p>
+                    <img src="Super_Bowl_LIX.png" alt="Super Bowl">
+                    <div class="card-body">
+                        <span class="card-category">Temporada 2025-26</span>
+                        <h3 class="card-title"><a href="#">NFL 2025–26: favoritos, dudas y el camino hacia New Orleans</a></h3>
+                        <p class="card-excerpt">
+                            Eagles, Chiefs y Ravens despuntan como los rivales a vencer. Mientras Philadelphia domina con su defensa, Baltimore impresiona por su explosividad ofensiva. ¿Podrá San Francisco superar las lesiones para llegar a la gran cita?
+                        </p>
                     </div>
                 </article>
 
-                <div class="section-label">
-                    <div class="stripe"></div>
-                    <h2 style="font-family: var(--font-head); margin:0;">NOTICIAS RECIENTES</h2>
-                </div>
+                <!-- Nota 2: Análisis Táctico -->
+                <article class="news-card">
+                    <img src="playoffs-nfl-2026.png" alt="Táctica NFL">
+                    <div class="card-body">
+                        <span class="card-category">Análisis Táctico</span>
+                        <h3 class="card-title"><a href="nfl-playoffs-2026.html">Claves tácticas: El cerrojo defensivo de los Eagles</a></h3>
+                        <p class="card-excerpt">
+                            Analizamos cómo el esquema de Philadelphia se ha convertido en la pesadilla de los QBs de la liga. La profundidad de su línea y la velocidad de sus linebackers son la base de su éxito esta temporada.
+                        </p>
+                    </div>
+                </article>
 
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="news-card">
-                        <img src="https://images.unsplash.com/photo-1629901976594-80c0953c1787?auto=format&fit=crop&q=80&w=600" style="height:150px;">
-                        <div class="card-content" style="padding:15px;">
-                            <h3 style="font-family:var(--font-head); font-size:1.1rem; margin:0;">MVP Race: Josh Allen toma la delantera</h3>
-                        </div>
+                <!-- Nota 3: Postemporada -->
+                <article class="news-card" style="display: flex; flex-direction: row; height: 200px;">
+                    <img src="https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&q=80&w=400" style="width: 250px; height: 100%;">
+                    <div class="card-body" style="padding: 15px;">
+                        <span class="card-category" style="font-size: 0.6rem;">PLAYOFFS</span>
+                        <h3 class="card-title" style="font-size: 1.1rem;"><a href="#">Escenarios de Postemporada: La AFC en llamas</a></h3>
+                        <p class="card-excerpt" style="font-size: 0.85rem;">Con los Broncos asegurando la ventaja de local, la pelea por los comodines se decide en la última semana.</p>
                     </div>
-                    <div class="news-card">
-                        <img src="https://images.unsplash.com/photo-1566577739112-5180d4bf9390?auto=format&fit=crop&q=80&w=600" style="height:150px;">
-                        <div class="card-content" style="padding:15px;">
-                            <h3 style="font-family:var(--font-head); font-size:1.1rem; margin:0;">Power Rankings: Semana 17</h3>
-                        </div>
-                    </div>
-                </div>
+                </article>
             </main>
 
-            <!-- SIDEBAR: TABLAS -->
+            <!-- SIDEBAR -->
             <aside>
-                <div class="sidebar-title">CONFERENCIA AMERICANA (AFC)</div>
-                <table class="standing-table">
-                    <tr><td>1. <strong>Chiefs</strong></td><td class="record">13-3</td></tr>
-                    <tr><td>2. <strong>Bills</strong></td><td class="record">12-4</td></tr>
-                    <tr><td>3. <strong>Ravens</strong></td><td class="record">11-5</td></tr>
-                    <tr><td>4. <strong>Broncos</strong></td><td class="record">10-6</td></tr>
-                    <tr><td>5. <strong>Texans</strong></td><td class="record">10-6</td></tr>
-                </table>
+                <div class="sidebar-box">
+                    <h3>PLAYOFF SEEDS (AFC)</h3>
+                    <table class="mini-standing">
+                        <tr><td>1. <strong>Broncos</strong>*</td><td class="record">13-4</td></tr>
+                        <tr><td>2. <strong>Patriots</strong></td><td class="record">12-5</td></tr>
+                        <tr><td>3. <strong>Jaguars</strong></td><td class="record">11-6</td></tr>
+                        <tr><td>4. <strong>Steelers</strong></td><td class="record">10-7</td></tr>
+                        <tr><td colspan="2" style="font-size: 0.7rem; color: #555;">* Ventaja de localía asegurada</td></tr>
+                    </table>
+                </div>
 
-                <div class="sidebar-title">CONFERENCIA NACIONAL (NFC)</div>
-                <table class="standing-table">
-                    <tr><td>1. <strong>Eagles</strong></td><td class="record">14-2</td></tr>
-                    <tr><td>2. <strong>Lions</strong></td><td class="record">12-4</td></tr>
-                    <tr><td>3. <strong>49ers</strong></td><td class="record">11-5</td></tr>
-                    <tr><td>4. <strong>Bears</strong></td><td class="record">10-6</td></tr>
-                    <tr><td>5. <strong>Seahawks</strong></td><td class="record">9-7</td></tr>
-                </table>
+                <div class="sidebar-box">
+                    <h3>PRÓXIMOS JUEGOS (DIV)</h3>
+                    <div style="font-size: 0.85rem; margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Bills @ Broncos</span>
+                            <span style="color: var(--accent);">SÁB 15:30</span>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>49ers @ Seahawks</span>
+                            <span style="color: var(--accent);">DOM 17:00</span>
+                        </div>
+                    </div>
+                </div>
 
-                <div style="background:var(--nfl-blue); padding:20px; border-radius:8px; text-align:center;">
-                    <i class="fa-solid fa-ticket" style="font-size:2rem; margin-bottom:10px;"></i>
-                    <h3 style="margin:0; font-family:var(--font-head);">SUPER BOWL LIX</h3>
-                    <p style="font-size:0.8rem;">9 de Febrero, 2026<br>New Orleans, LA</p>
+                <div style="background: linear-gradient(45deg, #013369, #d50a0a); padding: 25px; border-radius: 8px; text-align: center;">
+                    <h2 style="font-family: var(--font-head); margin: 0; font-size: 1.5rem;">SUPER BOWL LIX</h2>
+                    <p style="font-size: 0.8rem; margin: 10px 0;">New Orleans | 9 Feb 2026</p>
+                    <a href="#" style="background: white; color: black; padding: 8px 15px; border-radius: 4px; font-weight: bold; font-size: 0.7rem;">COBERTURA TOTAL</a>
                 </div>
             </aside>
 
@@ -197,9 +209,6 @@
 
     <footer>
         <span class="brand-text" style="font-size: 2rem;">F1RSTSPORTS</span>
-        <div style="margin-top:20px;">
-            <a href="index.html" style="color:var(--nfl-blue); font-weight:bold;">VOLVER AL INICIO</a>
-        </div>
         <p style="color:#555; font-size: 0.8rem; margin-top: 20px;">© 2026 F1rstSports Media. La autoridad en el emparrillado.</p>
     </footer>
 
