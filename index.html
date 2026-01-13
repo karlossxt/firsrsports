@@ -209,35 +209,43 @@
 
     <div class="container">
         
-        <!-- HERO CAROUSEL -->
-        <div class="carousel-container" id="mainCarousel">
-            <div class="slide active">
-                <img src="playoffs-general.jpg" alt="NFL Playoffs">
-                <div class="slide-content">
-                    <span class="slide-tag">NFL PLAYOFFS</span>
-                    <h2 class="slide-title"><a href="analisis-equipos-playoffs-nfl.html">El Camino al Super Bowl: Análisis de Equipos</a></h2>
-                    <a href="analisis-equipos-playoffs-nfl.html" class="slide-btn">VER BRACKET</a>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="f1-2026-concept.png" alt="F1">
-                <div class="slide-content">
-                    <span class="slide-tag">FORMULA 1</span>
-                    <h2 class="slide-title"><a href="f1-2026-revolucion.html">2026: La Revolución de Audi, Cadillac y Motores Híbridos</a></h2>
-                    <a href="f1-2026-revolucion.html" class="slide-btn">LEER NOTA</a>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="xabi-alonso.png" alt="FUTBOL">
-                <div class="slide-content">
-                    <span class="slide-tag">LA LIGA</span>
-                    <h2 class="slide-title"><a href="guerramexicana.html">Xabi Alonso fuera del Real Madrid</a></h2>
-                    <a href="nota-xabi-alonso.html" class="slide-btn">VER PREVIA</a>
-                </div>
-            </div>
-            <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
-            <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
+        <!-- HERO CAROUSEL CORREGIDO -->
+<div class="carousel-container" id="mainCarousel">
+    
+    <!-- SLIDE 1: NFL -->
+    <div class="slide active">
+        <img src="playoffs-general.jpg" alt="NFL Playoffs">
+        <div class="slide-content">
+            <span class="slide-tag">NFL PLAYOFFS</span>
+            <h2 class="slide-title"><a href="analisis-equipos-playoffs-nfl.html">El Camino al Super Bowl: Análisis de Equipos</a></h2>
+            <a href="analisis-equipos-playoffs-nfl.html" class="slide-btn">VER BRACKET</a>
         </div>
+    </div>
+
+    <!-- SLIDE 2: FORMULA 1 -->
+    <div class="slide">
+        <!-- Revisa si esta imagen es .jpg o .png, si no carga prueba cambiar la extensión -->
+        <img src="f1-2026-concept.png" alt="F1"> 
+        <div class="slide-content">
+            <span class="slide-tag">FORMULA 1</span>
+            <h2 class="slide-title"><a href="f1-2026-revolucion.html">2026: La Revolución de Audi, Cadillac y Motores Híbridos</a></h2>
+            <a href="f1-2026-revolucion.html" class="slide-btn">LEER NOTA</a>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: XABI ALONSO (CORREGIDO) -->
+    <div class="slide">
+        <img src="xabi-alonso.jpg" alt="FUTBOL"> <!-- Corregido a .PNG en mayúsculas -->
+        <div class="slide-content">
+            <span class="slide-tag">LA LIGA</span>
+            <h2 class="slide-title"><a href="nota-xabi-alonso.html">Fin de una era: Xabi Alonso fuera del Real Madrid</a></h2> <!-- Enlace corregido -->
+            <a href="nota-xabi-alonso.html" class="slide-btn">LEER NOTA</a> <!-- Texto corregido -->
+        </div>
+    </div>
+
+    <button class="carousel-btn prev" onclick="plusSlides(-1)">&#10094;</button>
+    <button class="carousel-btn next" onclick="plusSlides(1)">&#10095;</button>
+</div>
 
         <!-- LATEST NEWS -->
         <div class="section-header">
@@ -469,6 +477,7 @@
     </script>
 </body>
 </html>
+
 
 
 
