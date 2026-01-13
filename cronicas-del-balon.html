@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crónicas del Balón | F1rstSports</title>
+    <link rel="icon" type="image/png" href="logof1.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg: #050505;
+            --accent: #ccff00;
+            --card-bg: #0f0f0f;
+            --font-head: 'Chakra Petch', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Inter', sans-serif; }
+        a { text-decoration: none; color: white; transition: 0.3s; }
+
+        header { 
+            background: rgba(0,0,0,0.95); padding: 15px 5%; display: flex; 
+            align-items: center; justify-content: space-between; 
+            border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000;
+        }
+        .brand-text { font-family: var(--font-head); font-weight: 700; font-size: 1.6rem; font-style: italic; }
+
+        .hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.4), var(--bg)), url('https://images.unsplash.com/photo-1551952237-954a0e68786c?auto=format&fit=crop&q=80&w=1400');
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .hero h1 { font-family: var(--font-head); font-size: 4.5rem; text-transform: uppercase; margin: 0; line-height: 0.8; }
+        .hero span { font-family: var(--font-serif); font-style: italic; color: var(--accent); font-size: 1.5rem; margin-bottom: 15px; display: block; }
+
+        .container { max-width: 1200px; margin: -60px auto 100px; padding: 0 20px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
+
+        .card { background: var(--card-bg); border: 1px solid #222; border-radius: 15px; overflow: hidden; transition: 0.4s; }
+        .card:hover { transform: translateY(-15px); border-color: var(--accent); }
+        
+        .card-img { width: 100%; height: 350px; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: grayscale(0.6); }
+        .card:hover .card-img img { filter: grayscale(0); transform: scale(1.1); }
+
+        .card-body { padding: 30px; text-align: center; }
+        .card-date { font-family: var(--font-head); color: var(--accent); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+        .card-title { font-family: var(--font-serif); font-size: 1.8rem; margin: 15px 0; line-height: 1.1; }
+
+        footer { background: #000; padding: 60px 5%; text-align: center; border-top: 1px solid #222; }
+
+        @media (max-width: 768px) { .hero h1 { font-size: 2.8rem; } .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="brand-text">F1RST<span style="color:var(--accent)">SPORTS</span></a>
+        <nav><a href="futbol.html" style="font-family: 'Chakra Petch'; font-weight: bold; color: var(--accent);">VOLVER A FÚTBOL</a></nav>
+    </header>
+
+    <div class="hero">
+        <span>Crónicas del Balón</span>
+        <h1>Relatos con Historia</h1>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            
+            <!-- NOTA 1: PROSINECKI -->
+            <article class="card">
+                <a href="cronica-prosinecki.html">
+                    <div class="card-img">
+                        <Robert Prosinečki.jpg" alt="Robert Prosinečki">
+                    </div>
+                    <div class="card-body">
+                        <span class="card-date">12 ENE, 2026</span>
+                        <h2 class="card-title">Robert Prosinečki: El genio croata que deslumbró Europa</h2>
+                        <span style="color:#666; font-size:0.75rem; text-transform:uppercase;">Por Sergio López</span>
+                    </div>
+                </a>
+            </article>
+
+            <!-- ESPACIOS PARA FUTURAS CRÓNICAS -->
+            <article class="card" style="opacity: 0.3; pointer-events: none;">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?auto=format&fit=crop&q=80&w=800"></div>
+                <div class="card-body">
+                    <span class="card-date">PRÓXIMAMENTE</span>
+                    <h2 class="card-title">La noche mágica del Estrella Roja en 1991</h2>
+                </div>
+            </article>
+
+        </div>
+    </div>
+
+    <footer>
+        <span class="brand-text" style="font-size: 2rem; font-style: italic;">F1RSTSPORTS</span>
+        <p style="color:#555; margin-top:20px;">© 2026 F1rstSports Media. La historia vive aquí.</p>
+    </footer>
+
+</body>
+</html>
