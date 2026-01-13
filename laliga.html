@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaLiga | F1rstSports</title>
+    <title>LaLiga | F1rstSports - Resultados y Noticias</title>
     <link rel="icon" type="image/png" href="logof1.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
@@ -11,210 +11,182 @@
 
     <style>
         /* ESTILOS BASE */
-        :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
-        body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
+        :root { 
+            --bg-dark: #050505; 
+            --bg-card: #0a0a0a; 
+            --accent: #ccff00; 
+            --primary: #2563eb; 
+            --text-main: #ffffff; 
+            --font-head: 'Chakra Petch', sans-serif; 
+            --font-body: 'Inter', sans-serif; 
+            --border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); overflow-x: hidden; }
         a { text-decoration: none; color: white; transition: 0.3s; }
-        a:hover { color: var(--accent); }
 
         /* HEADER */
-        header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
-        .logo-img img { max-height: 50px; width: auto; display: block; }
-        .logo-img:hover { opacity: 0.8; }
-        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; text-transform: uppercase; font-size: 0.8rem; font-family: var(--font-head); }
-
-        /* ENCABEZADO DE SECCIÓN */
-        .section-header {
-            background: linear-gradient(to right, #000, var(--primary));
-            padding: 60px 5%;
-            text-align: center;
-            margin-bottom: 40px;
+        header { 
+            background: #000; padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; 
+            border-bottom: 2px solid var(--primary); position: sticky; top: 0; z-index: 1000;
         }
-        .section-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 0 black; }
-        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+        .logo-img img { max-height: 45px; width: auto; }
+        .back-link { font-family: var(--font-head); font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 4px; font-size: 0.8rem; }
+        .back-link:hover { background: var(--accent); color: black; }
+
+        /* SECCIÓN HERO DIVIDIDA (Título + Tabla) */
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .hero-info {
+            background: linear-gradient(45deg, #111, #000);
+            padding: 50px;
+            border-radius: 12px;
+            border-left: 5px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 3px; font-size: 0.9rem; text-transform: uppercase; }
+        .section-title { font-family: var(--font-head); font-size: 4rem; margin: 10px 0; text-transform: uppercase; line-height: 1; }
+
+        /* TABLA DE POSICIONES EN EL HEADER */
+        .standings-header-box {
+            background: #111;
+            border-radius: 12px;
+            border: var(--border);
+            overflow: hidden;
+        }
+        .table-title {
+            background: var(--primary);
+            padding: 12px;
+            font-family: var(--font-head);
+            font-weight: bold;
+            text-align: center;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .mini-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .mini-table th { padding: 10px; color: #555; text-align: left; font-size: 0.7rem; }
+        .mini-table td { padding: 12px 10px; border-bottom: 1px solid #1a1a1a; }
+        .rank { color: var(--accent); font-weight: 800; width: 20px; display: inline-block; }
+        .pts { font-weight: bold; color: white; text-align: right; }
 
         /* GRID DE NOTICIAS */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        .container { max-width: 1300px; margin: 60px auto; padding: 0 20px; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
         
-        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; border-radius: 4px; }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid var(--primary); }
-        .card-body { padding: 20px; }
-        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 8px; font-family: var(--font-head); }
-        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 12px 0; line-height: 1.2; text-transform: uppercase; }
-        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; margin-top: 10px; display: inline-block; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
-        .read-btn:hover { color: var(--accent); }
+        .news-card { background: var(--bg-card); border: var(--border); transition: 0.4s; overflow: hidden; border-radius: 8px; }
+        .news-card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .card-img { width: 100%; height: 220px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 10px; display: block; font-family: var(--font-head); }
+        .card-title { font-family: var(--font-head); font-size: 1.4rem; margin: 0 0 15px 0; line-height: 1.2; text-transform: uppercase; }
+        .read-btn { color: white; font-weight: bold; border-bottom: 1px solid var(--accent); padding-bottom: 2px; font-size: 0.8rem; }
 
         /* FOOTER */
-        footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
+        footer { background: black; padding: 60px; text-align: center; border-top: 1px solid #222; color: #555; margin-top: 100px; }
 
-        @media (max-width: 768px) { .section-title { font-size: 2.5rem; } }
+        @media (max-width: 900px) {
+            .hero-split { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.5rem; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
-        <a href="index.html" class="back-link">Volver al inicio</a>
+        <a href="index.html" class="back-link">VOLVER AL INICIO</a>
     </header>
 
-    <div class="section-header">
-        <span class="section-subtitle">Actualidad Europea</span>
-        <h1 class="section-title">LaLiga</h1>
-    </div>
+    <!-- HEADER DE SECCIÓN CON TABLA INTEGRADA -->
+    <section class="hero-split">
+        <div class="hero-info">
+            <span class="section-subtitle">Actualidad Europea</span>
+            <h1 class="section-title">LaLiga</h1>
+            <p style="color: #888; max-width: 500px;">Toda la pasión del fútbol español: crónicas, opinión y el seguimiento minuto a minuto del campeonato.</p>
+        </div>
+
+        <div class="standings-header-box">
+            <div class="table-title">
+                <i class="fa-solid fa-ranking-star"></i> CLASIFICACIÓN
+            </div>
+            <table class="mini-table">
+                <thead>
+                    <tr><th>POS</th><th>EQUIPO</th><th style="text-align: right;">PTS</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="rank">1</span></td><td>Barcelona</td><td class="pts">49</td></tr>
+                    <tr><td><span class="rank">2</span></td><td>R. Madrid</td><td class="pts">45</td></tr>
+                    <tr><td><span class="rank">3</span></td><td>Villarreal</td><td class="pts">41</td></tr>
+                    <tr><td><span class="rank">4</span></td><td>Atlético</td><td class="pts">38</td></tr>
+                    <tr><td><span class="rank">5</span></td><td>Espanyol</td><td class="pts">34</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
     <div class="container">
-        <div class="news-grid">
-            
-            <!-- NOTA: XABI ALONSO -->
-            <article class="news-card">
-                <a href="nota-xabi-alonso.html">
-                    <img src="xavi-alonso.jpg" alt="Xabi Alonso Madrid">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">Real Madrid</span>
-                    <h3 class="card-title"><a href="nota-xabi-alonso.html">Fin de una corta era: Florentino le hace las maletas a Xabi Alonso</a></h3>
-                    <p style="color:var(--text-sec); font-size:0.9rem; line-height:1.5;">Tras solo ocho meses, el Madrid destituye al técnico tras la derrota en la Supercopa.</p>
-                    <a href="nota-xabi-alonso.html" class="read-btn">Leer opinión &rarr;</a>
-                </div>
-            </article>
-
-            <!-- NOTA: PRÓXIMAMENTE -->
-            <article class="news-card">
-                <a href="#">
-                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=800" class="card-img" alt="LaLiga">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">FC Barcelona</span>
-                    <h3 class="card-title"><a href="#">El Barça de Flick se escapa en el liderato tras el Clásico</a></h3>
-                    <p style="color:var(--text-sec); font-size:0.9rem; line-height:1.5;">Aprovechando la crisis blanca, los culés ya sacan cinco puntos de ventaja.</p>
-                    <a href="#" class="read-btn">Ver análisis &rarr;</a>
-                </div>
-            </article>
-
-            <!-- TARJETA VACÍA (RELLENO) -->
-            <article class="news-card">
-                <div class="card-body" style="display: flex; align-items: center; justify-content: center; height: 250px; text-align: center;">
-                    <p style="color: #444; font-weight: bold; font-family: var(--font-head);">MÁS NOTICIAS EN DESARROLLO...</p>
-                </div>
-            </article>
-
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
-    </footer>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaLiga | F1rstSports</title>
-    <link rel="icon" type="image/png" href="logof1.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* ESTILOS BASE */
-        :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
-        body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
-        a { text-decoration: none; color: white; transition: 0.3s; }
-        a:hover { color: var(--accent); }
-
-        /* HEADER */
-        header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
-        .logo-img img { max-height: 50px; width: auto; display: block; }
-        .logo-img:hover { opacity: 0.8; }
-        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; text-transform: uppercase; font-size: 0.8rem; font-family: var(--font-head); }
-
-        /* ENCABEZADO DE SECCIÓN */
-        .section-header {
-            background: linear-gradient(to right, #000, var(--primary));
-            padding: 60px 5%;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 0 black; }
-        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* GRID DE NOTICIAS */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
+        <h2 style="font-family: var(--font-head); text-transform: uppercase; margin-bottom: 30px; border-left: 5px solid var(--accent); padding-left: 15px;">Últimas Noticias</h2>
         
-        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; border-radius: 4px; }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid var(--primary); }
-        .card-body { padding: 20px; }
-        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 8px; font-family: var(--font-head); }
-        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 12px 0; line-height: 1.2; text-transform: uppercase; }
-        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; margin-top: 10px; display: inline-block; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
-        .read-btn:hover { color: var(--accent); }
-
-        /* FOOTER */
-        footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
-
-        @media (max-width: 768px) { .section-title { font-size: 2.5rem; } }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
-        <a href="index.html" class="back-link">Volver al inicio</a>
-    </header>
-
-    <div class="section-header">
-        <span class="section-subtitle">Actualidad Europea</span>
-        <h1 class="section-title">LaLiga</h1>
-    </div>
-
-    <div class="container">
         <div class="news-grid">
             
             <!-- NOTA: XABI ALONSO -->
             <article class="news-card">
                 <a href="nota-xabi-alonso.html">
-                    <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Xabi Alonso Madrid">
+                    <img src="xabi-alonso.PNG" class="card-img" alt="Xabi Alonso Madrid">
                 </a>
                 <div class="card-body">
-                    <span class="card-tag">Real Madrid</span>
+                    <span class="card-tag">Opinión</span>
                     <h3 class="card-title"><a href="nota-xabi-alonso.html">Fin de una corta era: Florentino le hace las maletas a Xabi Alonso</a></h3>
-                    <p style="color:var(--text-sec); font-size:0.9rem; line-height:1.5;">Tras solo ocho meses, el Madrid destituye al técnico tras la derrota en la Supercopa.</p>
-                    <a href="nota-xabi-alonso.html" class="read-btn">Leer opinión &rarr;</a>
+                    <p style="color:#888; font-size: 0.9rem; margin-bottom: 20px;">Tras solo ocho meses, el Madrid destituye al técnico tras la debacle en la Supercopa ante el Barca.</p>
+                    <a href="nota-xabi-alonso.html" class="read-btn">LEER MÁS &rarr;</a>
                 </div>
             </article>
 
-            <!-- NOTA: PRÓXIMAMENTE -->
+            <!-- NOTA: BARCELONA -->
             <article class="news-card">
                 <a href="#">
-                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=800" class="card-img" alt="LaLiga">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Barca">
                 </a>
                 <div class="card-body">
                     <span class="card-tag">FC Barcelona</span>
-                    <h3 class="card-title"><a href="#">El Barça de Flick se escapa en el liderato tras el Clásico</a></h3>
-                    <p style="color:var(--text-sec); font-size:0.9rem; line-height:1.5;">Aprovechando la crisis blanca, los culés ya sacan cinco puntos de ventaja.</p>
-                    <a href="#" class="read-btn">Ver análisis &rarr;</a>
+                    <h3 class="card-title"><a href="#">El Barça de Flick se escapa en el liderato</a></h3>
+                    <p style="color:#888; font-size: 0.9rem; margin-bottom: 20px;">Los culés aprovechan la crisis blanca para afianzar su ventaja de cinco puntos.</p>
+                    <a href="#" class="read-btn">LEER MÁS &rarr;</a>
                 </div>
             </article>
 
-            <!-- TARJETA VACÍA (RELLENO) -->
+            <!-- NOTA: MERCADO -->
             <article class="news-card">
-                <div class="card-body" style="display: flex; align-items: center; justify-content: center; height: 250px; text-align: center;">
-                    <p style="color: #444; font-weight: bold; font-family: var(--font-head);">MÁS NOTICIAS EN DESARROLLO...</p>
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Fútbol">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">Mercado Invierno</span>
+                    <h3 class="card-title"><a href="#">Fichajes LaLiga: Movimientos de última hora</a></h3>
+                    <p style="color:#888; font-size: 0.9rem; margin-bottom: 20px;">Repaso a las altas y bajas más importantes del mercado invernal español.</p>
+                    <a href="#" class="read-btn">LEER MÁS &rarr;</a>
                 </div>
             </article>
-
+            
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
+        <span class="brand-text" style="font-family: var(--font-head); font-weight: bold; color: white; font-size: 1.5rem;">F1RSTSPORTS</span>
+        <p style="margin-top: 20px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
 </body>
 </html>
-
