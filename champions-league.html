@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions League | F1rstSports</title>
+    <link rel="icon" type="image/png" href="logof1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #050505; --accent: #ccff00; --ucl-blue: #003399; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Inter', sans-serif; }
+        header { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; border-bottom: 2px solid var(--ucl-blue); }
+        .hero-ucl { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://tdasport.com/wp-content/uploads/2023/06/619071.jpg'); background-size: cover; padding: 80px 5%; text-align: center; }
+        .hero-ucl h1 { font-family: 'Chakra Petch'; font-size: 3.5rem; text-transform: uppercase; margin: 0; }
+        
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .match-card { background: #111; border: 1px solid #222; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; padding: 25px; transition: 0.3s; }
+        .match-card:hover { border-color: var(--accent); background: #161616; }
+        
+        .team-box { flex: 1; display: flex; align-items: center; gap: 15px; font-weight: bold; font-size: 1.1rem; }
+        .team-box.right { justify-content: flex-end; }
+        .team-box img { width: 40px; height: 40px; object-fit: contain; }
+        
+        .match-info { flex: 0.5; text-align: center; border-left: 1px solid #333; border-right: 1px solid #333; }
+        .date { display: block; font-size: 0.7rem; color: #888; font-weight: bold; }
+        .time { font-family: 'Chakra Petch'; font-size: 1.2rem; color: var(--accent); }
+
+        .phase-title { font-family: 'Chakra Petch'; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; border-left: 4px solid var(--accent); padding-left: 15px; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="logof1.png" alt="Logo" style="height:40px;"></a>
+        <a href="futbol.html" style="color:white; text-decoration:none; font-weight:bold;">&larr; VOLVER</a>
+    </header>
+
+    <div class="hero-ucl">
+        <h1>UEFA Champions League</h1>
+        <p style="color:var(--accent); font-weight:bold;">CAMINO A LA FINAL - MÚNICH 2026</p>
+    </div>
+
+    <div class="container">
+        <span class="phase-title">Octavos de Final - Ida</span>
+
+        <!-- Partido 1 -->
+        <div class="match-card">
+            <div class="team-box">
+                <img src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg" alt="Real Madrid">
+                <span>Real Madrid</span>
+            </div>
+            <div class="match-info">
+                <span class="date">17 FEB</span>
+                <span class="time">14:00</span>
+            </div>
+            <div class="team-box right">
+                <span>Liverpool</span>
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" alt="Liverpool">
+            </div>
+        </div>
+
+        <!-- Partido 2 -->
+        <div class="match-card">
+            <div class="team-box">
+                <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg" alt="Man City">
+                <span>Man City</span>
+            </div>
+            <div class="match-info">
+                <span class="date">17 FEB</span>
+                <span class="time">14:00</span>
+            </div>
+            <div class="team-box right">
+                <span>Inter</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/FC_Internazionale_Milano_2021.svg" alt="Inter">
+            </div>
+        </div>
+
+        <!-- Partido 3 -->
+        <div class="match-card">
+            <div class="team-box">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28logo%29.svg" alt="Barcelona">
+                <span>FC Barcelona</span>
+            </div>
+            <div class="match-info">
+                <span class="date">18 FEB</span>
+                <span class="time">14:00</span>
+            </div>
+            <div class="team-box right">
+                <span>Bayern</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg" alt="Bayern">
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align:center; padding:40px; color:#444;">&copy; 2026 F1rstSports Media. Todos los horarios son CDMX.</footer>
+</body>
+</html>

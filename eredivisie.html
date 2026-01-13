@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posiciones | F1rstSports</title>
+    <link rel="icon" type="image/png" href="logof1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --bg: #050505; --card: #0a0a0a; --accent: #ccff00; --primary: #2563eb; --font-head: 'Chakra Petch', sans-serif; }
+        body { margin: 0; background: var(--bg); color: white; font-family: 'Inter', sans-serif; }
+        header { background: #000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); }
+        .back-link { color: var(--accent); font-family: var(--font-head); font-weight: bold; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 0.8rem; }
+        
+        .hero { background: linear-gradient(45deg, #000, #111); padding: 60px 5%; text-align: center; border-bottom: 1px solid #222; }
+        .hero h1 { font-family: var(--font-head); font-size: 3rem; margin: 0; text-transform: uppercase; }
+        .hero span { color: var(--accent); font-weight: bold; letter-spacing: 2px; }
+
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .table-container { background: var(--card); border-radius: 12px; border: 1px solid #222; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #151515; padding: 15px; text-align: left; font-family: var(--font-head); color: var(--accent); font-size: 0.8rem; }
+        td { padding: 15px; border-bottom: 1px solid #1a1a1a; }
+        tr:hover { background: #111; }
+        .rank { font-weight: bold; color: var(--accent); width: 30px; }
+        .team { font-weight: 600; }
+        .pts { font-weight: 800; text-align: right; }
+        footer { padding: 40px; text-align: center; color: #444; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="logof1.png" alt="Logo" style="height:40px;"></a>
+        <a href="futbol.html" class="back-link">VOLVER A FÚTBOL</a>
+    </header>
+
+    <div class="hero">
+        <span>TEMPORADA 2025/26</span>
+        <!-- CAMBIA ESTO SEGÚN LA LIGA -->
+        <h1>TABLA DE POSICIONES</h1>
+    </div>
+
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>POS</th>
+                        <th>EQUIPO</th>
+                        <th style="text-align:right;">PTS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Datos de ejemplo (Modificar por liga) -->
+                    <tr><td><span class="rank">1</span></td><td class="team">Barcelona / Arsenal / PSV</td><td class="pts">49</td></tr>
+                    <tr><td><span class="rank">2</span></td><td class="team">Real Madrid / Man City / Ajax</td><td class="pts">45</td></tr>
+                    <tr><td><span class="rank">3</span></td><td class="team">Atlético / Liverpool / Feyenoord</td><td class="pts">41</td></tr>
+                    <tr><td><span class="rank">4</span></td><td class="team">Villarreal / Aston Villa / AZ</td><td class="pts">38</td></tr>
+                    <tr><td><span class="rank">5</span></td><td class="team">Real Sociedad / Chelsea / Twente</td><td class="pts">34</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 F1rstSports Media. Datos actualizados al momento.</footer>
+</body>
+</html>
