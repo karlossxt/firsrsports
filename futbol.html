@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- VARIABLES Y BASES (Consistentes con tu Index) --- */
+        /* --- VARIABLES Y BASES --- */
         :root {
             --bg-body: #050505;
             --bg-card: #0a0a0a;
@@ -32,6 +32,7 @@
         /* --- HEADER --- */
         .top-bar { background: #000; padding: 8px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.1); }
         .social-icons { display: flex; gap: 15px; }
+        .social-icons a { color: var(--text-muted); transition: 0.3s; }
         .social-icons a:hover { color: var(--accent); }
 
         header { 
@@ -45,12 +46,12 @@
         nav a { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); }
         nav a:hover, nav a.active { color: var(--accent); }
 
-        /* --- NUEVA SECCIÓN: NAVEGACIÓN DE LIGAS --- */
+        /* --- NAVEGACIÓN DE LIGAS --- */
         .leagues-nav { background: #080808; padding: 30px 0; border-bottom: 1px solid #111; }
         .leagues-wrapper { max-width: 1200px; margin: 0 auto; display: flex; justify-content: center; gap: 30px; overflow-x: auto; padding: 0 20px; }
         .leagues-wrapper::-webkit-scrollbar { display: none; }
 
-        .league-item { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 90px; }
+        .league-item { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 90px; text-align: center; }
         .logo-circle { 
             width: 70px; height: 70px; background: #111; border-radius: 50%; 
             display: flex; align-items: center; justify-content: center; 
@@ -67,156 +68,3 @@
         .football-hero { 
             height: 400px; background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1400');
             background-size: cover; background-position: center; display: flex; align-items: center; padding: 0 10%; margin-bottom: 40px;
-        }
-        .hero-tag { background: var(--primary); color: white; padding: 5px 15px; font-weight: 800; font-family: var(--font-head); margin-bottom: 15px; display: inline-block; }
-        .hero-title { font-family: var(--font-head); font-size: 3.5rem; text-transform: uppercase; margin: 0; max-width: 700px; line-height: 1; }
-
-        /* --- GRID DE NOTICIAS --- */
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        .news-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: var(--border); transition: 0.4s; }
-        .news-card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        .news-card img { width: 100%; height: 200px; object-fit: cover; }
-        .news-card-content { padding: 20px; }
-        .news-card-tag { color: var(--accent); font-weight: 800; font-size: 0.8rem; }
-        .news-card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 10px 0; }
-
-        /* --- STANDINGS SECTION --- */
-        .standings-section { background: #080808; padding: 60px 0; border-top: 1px solid #111; }
-        .standings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .table-mini { width: 100%; border-collapse: collapse; background: #111; border-radius: 8px; overflow: hidden; }
-        .table-mini th { background: #1a1a1a; padding: 15px; text-align: left; font-family: var(--font-head); color: var(--accent); }
-        .table-mini td { padding: 12px 15px; border-bottom: 1px solid #222; font-size: 0.9rem; }
-        .rank { font-weight: 800; color: var(--accent); margin-right: 10px; }
-
-        footer { background: #000; padding: 60px 5%; text-align: center; border-top: 1px solid #222; }
-
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.2rem; }
-            .leagues-wrapper { justify-content: flex-start; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="top-bar">
-        <div>ZONA FÚTBOL | 2026</div>
-        <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-        </div>
-    </div>
-
-    <header>
-        <a href="index.html" class="brand-link">
-            <span class="brand-text" style="color:white;">F1RST<span style="color:var(--accent);">SPORTS</span></span>
-        </a>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="futbol.html" class="active">Fútbol</a>
-            <a href="seccion-nfl.html">NFL</a>
-            <a href="seccion-motor.html">Motor</a>
-        </nav>
-    </header>
-
-    <!-- NAVEGACIÓN DE LIGAS -->
-    <section class="leagues-nav">
-        <div class="leagues-wrapper">
-            <a href="#" class="league-item">
-                <div class="logo-circle"><img src="MX_logo.png" alt="Liga MX"></div>
-                <span class="ligamx.html">Liga MX</span>
-            </a>
-            <a href="#" class="league-item">
-                <div class="logo-circle"><img src="LaLiga-Logo.png" alt="La Liga"></div>
-                <span class="league-name">La Liga</span>
-            </a>
-            <a href="#" class="league-item">
-                <div class="logo-circle"><img src="premier-league.png" alt="Premier"></div>
-                <span class="premier.html">Premier</span>
-            </a>
-            <a href="#" class="league-item">
-                <div class="logo-circle"><img src="uefa-champions.png" alt="UCL"></div>
-                <span class="champions-league.html">Champions</span>
-            </a>
-            <a href="#" class="league-item">
-                <div class="logo-circle"><img src="Serie_A.png" alt="Serie A"></div>
-                <span class="seriea.html">Serie A</span>
-            </a>
-            <a href="#" class="league-item">
-                <div class="logo-circle"><img src="Eredivisie_v2.webp" alt="Eredivisie"></div>
-                <span class="eredivisie.html">Eredivisie</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- HERO DE LA SECCIÓN -->
-    <section class="football-hero">
-        <div>
-            <span class="hero-tag">MERCADO DE FICHAJES</span>
-            <h1 class="hero-title">Bombazos confirmados para el Clausura 2026</h1>
-        </div>
-    </section>
-
-    <div class="container">
-        <h2 style="font-family: var(--font-head); text-transform: uppercase; font-size: 2rem;">Noticias Destacadas</h2>
-        <div class="news-grid">
-            <!-- Nota 1 -->
-            <article class="news-card">
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=800" alt="Champions">
-                <div class="news-card-content">
-                    <span class="news-card-tag">CHAMPIONS LEAGUE</span>
-                    <h3 class="news-card-title">Sorteo de Cuartos: El camino a la final en Múnich</h3>
-                    <p style="color:var(--text-muted); font-size: 0.9rem;">Analizamos los cruces más letales de la máxima competición europea.</p>
-                </div>
-            </article>
-
-            <!-- Nota 2 -->
-            <article class="news-card">
-                <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&q=80&w=800" alt="Liga MX">
-                <div class="news-card-content">
-                    <span class="news-card-tag">LIGA MX</span>
-                    <h3 class="news-card-title">¿Crisis en Coapa? El América busca despertar</h3>
-                    <p style="color:var(--text-muted); font-size: 0.9rem;">Tres derrotas al hilo ponen en duda la continuidad del proyecto.</p>
-                </div>
-            </article>
-
-            <!-- Nota 3 -->
-            <article class="news-card">
-                <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&q=80&w=800" alt="Premier">
-                <div class="news-card-content">
-                    <span class="news-card-tag">PREMIER LEAGUE</span>
-                    <h3 class="news-card-title">El City de Guardiola no cede terreno</h3>
-                    <p style="color:var(--text-muted); font-size: 0.9rem;">Victoria clave ante el Arsenal para mantener el liderato inglés.</p>
-                </div>
-            </article>
-        </div>
-    </div>
-
-    <!-- SECCIÓN TABLAS -->
-    <section class="standings-section">
-        <div class="container">
-            <h2 style="font-family: var(--font-head); text-transform: uppercase; margin-bottom: 30px;">Tablas de Posiciones</h2>
-            <div class="standings-grid">
-                <!-- Tabla Liga MX -->
-                <table class="table-mini">
-                    <thead><tr><th colspan="2">LIGA MX</th></tr></thead>
-                    <tbody>
-                        <tr><td><span class="rank">1</span> Cruz Azul</td><td>12 pts</td></tr>
-                        <tr><td><span class="rank">2</span> Tigres</td><td>10 pts</td></tr>
-                        <tr><td><span class="rank">3</span> Monterrey</td><td>9 pts</td></tr>
-                        <tr><td><span class="rank">4</span> Chivas</td><td>7 pts</td></tr>
-                    </tbody>
-                </table>
-
-                <!-- Tabla Premier -->
-                <table class="table-mini">
-                    <thead><tr><th colspan="2">PREMIER LEAGUE</th></tr></thead>
-                    <tbody>
-                        <tr><td><span class="rank">1</span> Man. City</td><td>45 pts</td></tr>
-                        <tr><td><span class="rank">2</span> Arsenal</td><td>42 pts</td></tr>
-
-                        <tr><td><span class="rank">3</span> Liverpool</td><td>40 pts</td></tr>
-
-
