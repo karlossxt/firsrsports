@@ -296,60 +296,79 @@
         </div>
 
         <!-- POSICIONES -->
-        <div class="section-header">
-            <div class="section-stripe"></div>
-            <h2 class="section-title">Posiciones</h2>
+<div class="section-header">
+    <div class="section-stripe"></div>
+    <h2 class="section-title">Posiciones</h2>
+</div>
+
+<div class="standings-grid">
+    <!-- LIGA MX -->
+    <div class="standing-card">
+        <div class="standing-header">
+            <span class="standing-title">LIGA MX</span>
+            <i class="fa-solid fa-futbol" style="color:var(--accent)"></i>
         </div>
+        <table class="mini-table">
+            <tr><td><span class="rank-num">1</span> Necaxa</td><td>3</td></tr>
+            <tr><td><span class="rank-num">2</span> Chivas</td><td>3</td></tr>
+            <tr><td><span class="rank-num">3</span> Juárez</td><td>3</td></tr>
+            <tr><td><span class="rank-num">4</span> León</td><td>3</td></tr>
+            <tr><td><span class="rank-num">5</span> Tigres</td><td>3</td></tr>
+        </table>
+        <!-- CORRECCIÓN: href correcto y class correcto -->
+        <a href="ligamx.html" class="full-table-link">VER TABLA</a>
+    </div>
 
-        <div class="standings-grid">
-            <div class="standing-card">
-                <div class="standing-header"><span class="standing-title">LIGA MX</span><i class="fa-solid fa-futbol" style="color:var(--accent)"></i></div>
-                <table class="mini-table">
-                    <tr><td><span class="rank-num">1</span> Necaxa</td><td>3</td></tr>
-                    <tr><td><span class="rank-num">2</span> Chivas</td><td>3</td></tr>
-                    <tr><td><span class="rank-num">3</span> Juárez</td><td>3</td></tr>
-                    <tr><td><span class="rank-num">4</span> León</td><td>3</td></tr>
-                    <tr><td><span class="rank-num">5</span> Tigres</td><td>3</td></tr>
-                </table>
-                <a href="ligamx.html" class="ligamx.html">VER TABLA</a>
-            </div>
-
-            <div class="standing-card">
-                <div class="standing-header"><span class="standing-title">LA LIGA</span><i class="fa-solid fa-flag" style="color:var(--accent)"></i></div>
-                <table class="mini-table">
-                    <tr><td><span class="rank-num">1</span> Barcelona</td><td>49</td></tr>
-                    <tr><td><span class="rank-num">2</span> R. Madrid</td><td>45</td></tr>
-                    <tr><td><span class="rank-num">3</span> Villarreal</td><td>41</td></tr>
-                    <tr><td><span class="rank-num">4</span> Atlético</td><td>38</td></tr>
-                    <tr><td><span class="rank-num">5</span> Espanyol</td><td>34</td></tr>
-                </table>
-                <a href="#" class="laliga.html">VER TABLA</a>
-            </div>
-
-            <div class="standing-card">
-                <div class="standing-header"><span class="standing-title">NFL SEEDS</span><i class="fa-solid fa-football" style="color:var(--accent)"></i></div>
-                <table class="mini-table">
-                    <tr><td><span class="rank-num">1</span> Broncos (AFC)</td><td>13-4</td></tr>
-                    <tr><td><span class="rank-num">2</span> Patriots (AFC)</td><td>12-5</td></tr>
-                    <tr><td><span class="rank-num">3</span> Jaguars (AFC)</td><td>11-6</td></tr>
-                    <tr><td><span class="rank-num">1</span> Seahawks (NFC)</td><td>14-3</td></tr>
-                    <tr><td><span class="rank-num">2</span> Bears (NFC)</td><td>12-5</td></tr>
-                </table>
-                <a href="seccion-nfl.html" class="full-table-link">VER BRACKET</a>
-            </div>
-
-            <div class="standing-card">
-                <div class="standing-header"><span class="standing-title">PREMIER</span><i class="fa-solid fa-crown" style="color:var(--accent)"></i></div>
-                <table class="mini-table">
-                    <tr><td><span class="rank-num">1</span> Arsenal</td><td>49</td></tr>
-                    <tr><td><span class="rank-num">2</span> Man City</td><td>43</td></tr>
-                    <tr><td><span class="rank-num">3</span> Aston Villa</td><td>43</td></tr>
-                    <tr><td><span class="rank-num">4</span> Liverpool</td><td>35</td></tr>
-                    <tr><td><span class="rank-num">5</span> Brentford</td><td>33</td></tr>
-                </table>
-                <a href="#" class="premier.html">VER TABLA</a>
-            </div>
+    <!-- LA LIGA -->
+    <div class="standing-card">
+        <div class="standing-header">
+            <span class="standing-title">LA LIGA</span>
+            <i class="fa-solid fa-flag" style="color:var(--accent)"></i>
         </div>
+        <table class="mini-table">
+            <tr><td><span class="rank-num">1</span> Barcelona</td><td>49</td></tr>
+            <tr><td><span class="rank-num">2</span> R. Madrid</td><td>45</td></tr>
+            <tr><td><span class="rank-num">3</span> Villarreal</td><td>41</td></tr>
+            <tr><td><span class="rank-num">4</span> Atlético</td><td>38</td></tr>
+            <tr><td><span class="rank-num">5</span> Espanyol</td><td>34</td></tr>
+        </table>
+        <!-- CORRECCIÓN: href a laliga.html y class correcto -->
+        <a href="laliga.html" class="full-table-link">VER TABLA</a>
+    </div>
+
+    <!-- NFL SEEDS -->
+    <div class="standing-card">
+        <div class="standing-header">
+            <span class="standing-title">NFL SEEDS</span>
+            <i class="fa-solid fa-football" style="color:var(--accent)"></i>
+        </div>
+        <table class="mini-table">
+            <tr><td><span class="rank-num">1</span> Broncos (AFC)</td><td>13-4</td></tr>
+            <tr><td><span class="rank-num">2</span> Patriots (AFC)</td><td>12-5</td></tr>
+            <tr><td><span class="rank-num">3</span> Jaguars (AFC)</td><td>11-6</td></tr>
+            <tr><td><span class="rank-num">1</span> Seahawks (NFC)</td><td>14-3</td></tr>
+            <tr><td><span class="rank-num">2</span> Bears (NFC)</td><td>12-5</td></tr>
+        </table>
+        <a href="seccion-nfl.html" class="full-table-link">VER BRACKET</a>
+    </div>
+
+    <!-- PREMIER LEAGUE -->
+    <div class="standing-card">
+        <div class="standing-header">
+            <span class="standing-title">PREMIER</span>
+            <i class="fa-solid fa-crown" style="color:var(--accent)"></i>
+        </div>
+        <table class="mini-table">
+            <tr><td><span class="rank-num">1</span> Arsenal</td><td>49</td></tr>
+            <tr><td><span class="rank-num">2</span> Man City</td><td>43</td></tr>
+            <tr><td><span class="rank-num">3</span> Aston Villa</td><td>43</td></tr>
+            <tr><td><span class="rank-num">4</span> Liverpool</td><td>35</td></tr>
+            <tr><td><span class="rank-num">5</span> Brentford</td><td>33</td></tr>
+        </table>
+        <!-- CORRECCIÓN: href a premier.html y class correcto -->
+        <a href="premier.html" class="full-table-link">VER TABLA</a>
+    </div>
+</div>
 
         <!-- CATEGORÍAS -->
         <ul class="league-grid">
@@ -449,6 +468,7 @@
     </script>
 </body>
 </html>
+
 
 
 
