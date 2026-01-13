@@ -1,9 +1,24 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fin de una era: Xabi Alonso fuera del Real Madrid | F1rstSports</title>
+    
+    <!-- METATAGS PARA COMPARTIR EN REDES (Open Graph) -->
+    <meta property="og:title" content="Fin de una corta era: Florentino le hace las maletas a Xabi Alonso">
+    <meta property="og:description" content="Menos de ocho meses después la burbuja se rompió. Analizamos la destitución de Xabi Alonso como DT del Real Madrid.">
+    <!-- IMPORTANTE: Aquí debes poner la URL completa de tu imagen cuando subas la web -->
+    <meta property="og:image" content="xabi-alonso.PNG"> 
+    <meta property="og:url" content="https://tuweb.com/nota-xabi-alonso.html">
+    <meta property="og:type" content="article">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Xabi Alonso fuera del Real Madrid | F1rstSports">
+    <meta name="twitter:description" content="El Real Madrid destituye a Xabi Alonso tras la derrota en la Supercopa.">
+    <meta name="twitter:image" content="xabi-alonso.jpg">
+
     <link rel="icon" type="image/png" href="logof1.png">
 
     <!-- Fuentes y Estilos -->
@@ -36,33 +51,38 @@
         .back-btn { color: var(--accent); font-family: var(--font-head); font-weight: bold; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 4px; font-size: 0.8rem; }
         .back-btn:hover { background: var(--accent); color: black; }
 
+        /* --- SHARE ICONS --- */
+        .share-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 25px 0;
+            padding: 15px 0;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+        .share-label { font-family: var(--font-head); font-weight: bold; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
+        .share-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #111; color: white; transition: 0.3s; border: 1px solid #333; }
+        .share-btn:hover { background: var(--accent); color: black; transform: translateY(-3px); border-color: var(--accent); }
+        .share-btn.fb:hover { background: #1877f2; color: white; border-color: #1877f2; }
+        .share-btn.wa:hover { background: #25d366; color: white; border-color: #25d366; }
+        .share-btn.x:hover { background: #000; color: white; border-color: white; }
+
         /* --- ARTÍCULO LAYOUT --- */
         .article-container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
-        
         .category-tag { background: #ff4444; color: white; padding: 4px 12px; font-family: var(--font-head); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; border-radius: 3px; display: inline-block; margin-bottom: 15px; }
-        
         .main-title { font-family: var(--font-head); font-size: 3.5rem; line-height: 1.1; margin: 0 0 20px; text-transform: uppercase; font-weight: 800; }
-        
-        .meta-info { display: flex; align-items: center; gap: 20px; color: var(--text-muted); font-size: 0.9rem; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 30px; }
-        .meta-info span { display: flex; align-items: center; gap: 8px; }
+        .meta-info { display: flex; align-items: center; gap: 20px; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px; }
         .meta-info i { color: var(--accent); }
 
         .featured-image { width: 100%; border-radius: 12px; margin-bottom: 30px; border: 1px solid #333; }
-
         .article-body { font-size: 1.15rem; color: #e4e4e7; }
-        .article-body p { margin-bottom: 25px; }
-        .article-body strong { color: white; border-bottom: 2px solid var(--accent); }
-        
-        /* Cita o Bloque Crítico */
         .pull-quote { background: #111; border-left: 5px solid var(--accent); padding: 30px; font-family: var(--font-head); font-size: 1.5rem; font-style: italic; margin: 40px 0; color: white; }
 
-        /* Widget de Stats */
         .stats-box { background: linear-gradient(135deg, #111, #000); border: 1px solid #333; border-radius: 12px; padding: 25px; margin: 40px 0; display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; }
-        .stat-item span { display: block; font-family: var(--font-head); }
-        .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--accent); }
-        .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--accent); display: block; font-family: var(--font-head); }
+        .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
 
-        /* Footer */
         footer { background: #000; padding: 60px 5%; text-align: center; border-top: 1px solid #222; margin-top: 80px; }
 
         @media (max-width: 768px) {
@@ -87,23 +107,36 @@
             
             <div class="meta-info">
                 <span><i class="fa-solid fa-user"></i> Por Redacción F1rstSports</span>
-                <span><i class="fa-solid fa-calendar"></i> Lunes 12 de enero, 2026</span>
-                <span><i class="fa-solid fa-location-dot"></i> Madrid, España</span>
+                <span><i class="fa-solid fa-calendar"></i> 12 ENE, 2026</span>
             </div>
+        </div>
+
+        <!-- ICONOS DE COMPARTIR ARRIBA -->
+        <div class="share-bar">
+            <span class="share-label">Compartir:</span>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://tuweb.com/nota-xabi-alonso.html" target="_blank" class="share-btn fb" title="Compartir en Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Xabi Alonso fuera del Madrid&url=https://tuweb.com/nota-xabi-alonso.html" target="_blank" class="share-btn x" title="Compartir en X">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=Fin de una corta era: Xabi Alonso fuera del Madrid https://tuweb.com/nota-xabi-alonso.html" target="_blank" class="share-btn wa" title="Compartir en WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
         </div>
 
         <img src="xabi-alonso.jpg" alt="Xabi Alonso Real Madrid" class="featured-image">
 
         <div class="article-body">
-            <p>El 25 de mayo de 2025 el Real Madrid anunciaba al mundo el regreso de uno de sus hijos pródigos con el fichaje de <strong>Xabi Alonso</strong> como reemplazo de Carlo Ancelotti al mando del banquillo. Se presagiaba una nueva era de gloria para la legendaria institución, sobre todo porque el mítico dorsal 14 merengue venía de lograr algo casi imposible, ganar la Bundesliga destronando al todopoderoso Bayer Munich.</p>
+            <p>El 25 de mayo de 2025 el Real Madrid anunciaba al mundo el regreso de uno de sus hijos pródigos con el fichaje de <strong>Xabi Alonso</strong> como reemplazo de Carlo Ancelotti al mando del banquillo.</p>
 
-            <p>Las ilusiones se vendieron y la afición blanca volvió a creer luego de una temporada en la que su equipo se fue en blanco. El comienzo fue muy halagüeño con siete victorias en línea, seis en liga, daban a entender al mundo que todo regresaba a la normalidad.</p>
+            <p>Las ilusiones se vendieron y la afición blanca volvió a creer luego de una temporada en la que su equipo se fue en blanco. El comienzo fue muy halagüeño con siete victorias en línea.</p>
 
             <div class="pull-quote">
                 "La sensación que queda es que el Real Madrid no fracasó con Xabi Alonso, sino que no se le dio tiempo a triunfar."
             </div>
 
-            <p>Menos de ocho meses después la burbuja se rompió y este lunes 12 de enero el Real Madrid lanzó el comunicado oficial destituyendo a Alonso de sus funciones como DT del equipo principal. ¿Las razones? Haber perdido una ventaja de cinco puntos en la liga contra su acérrimo rival el Barcelona y haber perdido dos partidos en Champions, su competición predilecta. Pero lo que colmó la paciencia de Florentino Pérez fue la derrota sufrida el domingo en la <strong>final de la Supercopa de España</strong> contra los catalanes.</p>
+            <p>Menos de ocho meses después la burbuja se rompió y este lunes 12 de enero el Real Madrid lanzó el comunicado oficial destituyendo a Alonso de sus funciones. ¿Las razones? Haber perdido la ventaja de cinco puntos en liga y la derrota en la <strong>final de la Supercopa de España</strong> contra el Barcelona.</p>
 
             <div class="stats-box">
                 <div class="stat-item"><span class="stat-num">24</span><span class="stat-label">Victorias</span></div>
@@ -111,11 +144,17 @@
                 <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Derrotas</span></div>
             </div>
 
-            <p>Lo cierto es que el Real Madrid, con Xabi Alonso al frente, fue uno antes del primer clásico de temporada donde vencieron de manera convincente al Barcelona y otro completamente diferente después de ese juego. Vinieron disputas internas con Vinicius, y otros jugadores que al parecer le perdieron el respeto a su entrenador.</p>
-
-            <p>Más tarde la entidad blanca anunció que su sustituto sería otro exjugador, <strong>Álvaro Arbeloa</strong>. Y sinceramente, para tener a Arbeloa en el banquillo mejor se hubieran quedado con Alonso. ¡Que eres el Real Madrid, joder! Si vas a echar a tu entrenador antes de finalizar la temporada, tiene que ser para traer un Jurgen Klopp, un José Mourinho o alguien de la talla de ellos.</p>
+            <p>Lo cierto es que el Real Madrid anunció que su sustituto sería otro exjugador, <strong>Álvaro Arbeloa</strong>. Y sinceramente, para tener a Arbeloa en el banquillo mejor se hubieran quedado con Alonso. ¡Que eres el Real Madrid, joder!</p>
 
             <p>Títulos aún quedan tres en disputa (Champions, Copa del Rey y Liga) así que todavía habrá mucho que hablar. Amanecerá y veremos.</p>
+        </div>
+
+        <!-- ICONOS DE COMPARTIR ABAJO -->
+        <div class="share-bar">
+            <span class="share-label">¿Te gustó? Comparte:</span>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://tuweb.com/nota-xabi-alonso.html" target="_blank" class="share-btn fb"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://twitter.com/intent/tweet?text=Xabi Alonso fuera del Madrid&url=https://tuweb.com/nota-xabi-alonso.html" target="_blank" class="share-btn x"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://api.whatsapp.com/send?text=Xabi Alonso fuera del Madrid https://tuweb.com/nota-xabi-alonso.html" target="_blank" class="share-btn wa"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
     </article>
 
@@ -126,12 +165,8 @@
             <a href="#" style="color:white; font-size:1.5rem; margin:0 15px;"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="#" style="color:white; font-size:1.5rem; margin:0 15px;"><i class="fa-brands fa-instagram"></i></a>
         </div>
-        <p style="color:#555; font-size:0.8rem;">&copy; 2026 F1rstSports Media. Contenido de opinión independiente.</p>
+        <p style="color:#555; font-size:0.8rem;">&copy; 2026 F1rstSports Media.</p>
     </footer>
 
 </body>
-
 </html>
-
-
-
