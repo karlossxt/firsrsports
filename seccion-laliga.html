@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CORREGIDO: Etiqueta title cerrada correctamente -->
-    <title>Noticias | F1rstSports</title>
+    <title>LaLiga | F1rstSports</title>
     <link rel="icon" type="image/png" href="logof1.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ESTILOS BASE (Iguales al Index) */
+        /* ESTILOS BASE */
         :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
         body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
         a { text-decoration: none; color: white; transition: 0.3s; }
@@ -21,7 +20,7 @@
         header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
         .logo-img img { max-height: 50px; width: auto; display: block; }
         .logo-img:hover { opacity: 0.8; }
-        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; }
+        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; text-transform: uppercase; font-size: 0.8rem; font-family: var(--font-head); }
 
         /* ENCABEZADO DE SECCIÓN */
         .section-header {
@@ -37,13 +36,13 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
         
-        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; }
+        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; border-radius: 4px; }
+        .news-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; border-bottom: 2px solid var(--primary); }
         .card-body { padding: 20px; }
-        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 10px 0; line-height: 1.2; }
-        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
+        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 8px; font-family: var(--font-head); }
+        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 12px 0; line-height: 1.2; text-transform: uppercase; }
+        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; margin-top: 10px; display: inline-block; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
         .read-btn:hover { color: var(--accent); }
 
         /* FOOTER */
@@ -56,41 +55,55 @@
 
     <header>
         <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
-        <a href="index.html" class="back-link">VOLVER AL INICIO</a>
+        <a href="index.html" class="back-link">Volver al inicio</a>
     </header>
 
-    <!-- TÍTULO DE LA SECCIÓN -->
     <div class="section-header">
-        <span class="section-subtitle">NOTICIAS DESTACADAS</span>
-        
-        <!-- ¡AQUÍ CAMBIA EL NOMBRE DE LA LIGA! -->
+        <span class="section-subtitle">Actualidad Europea</span>
         <h1 class="section-title">LaLiga</h1>
     </div>
 
     <div class="container">
         <div class="news-grid">
             
-            <!-- TARJETA 1 (PLANTILLA) -->
+            <!-- NOTA: XABI ALONSO -->
             <article class="news-card">
-                <!-- Link a la nota -->
-                <a href="#">
-                    <!-- Imagen de la nota -->
-                    <img src="https://placehold.co/600x400/111/FFF?text=SIN+NOTICIAS" class="card-img" alt="Foto Nota">
+                <a href="nota-xabi-alonso.html">
+                    <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&q=80&w=800" class="card-img" alt="Xabi Alonso Madrid">
                 </a>
                 <div class="card-body">
-                    <span class="card-tag">CATEGORÍA</span>
-                    <h3 class="card-title"><a href="#">Próximamente más noticias...</a></h3>
-                    <a href="#" class="read-btn">LEER NOTA &rarr;</a>
+                    <span class="card-tag">Real Madrid</span>
+                    <h3 class="card-title"><a href="nota-xabi-alonso.html">Fin de una corta era: Florentino le hace las maletas a Xabi Alonso</a></h3>
+                    <p style="color:var(--text-sec); font-size:0.9rem; line-height:1.5;">Tras solo ocho meses, el Madrid destituye al técnico tras la derrota en la Supercopa.</p>
+                    <a href="nota-xabi-alonso.html" class="read-btn">Leer opinión &rarr;</a>
                 </div>
             </article>
-            
-            <!-- Aquí puedes copiar y pegar más tarjetas -->
+
+            <!-- NOTA: PRÓXIMAMENTE -->
+            <article class="news-card">
+                <a href="#">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=800" class="card-img" alt="LaLiga">
+                </a>
+                <div class="card-body">
+                    <span class="card-tag">FC Barcelona</span>
+                    <h3 class="card-title"><a href="#">El Barça de Flick se escapa en el liderato tras el Clásico</a></h3>
+                    <p style="color:var(--text-sec); font-size:0.9rem; line-height:1.5;">Aprovechando la crisis blanca, los culés ya sacan cinco puntos de ventaja.</p>
+                    <a href="#" class="read-btn">Ver análisis &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA VACÍA (RELLENO) -->
+            <article class="news-card">
+                <div class="card-body" style="display: flex; align-items: center; justify-content: center; height: 250px; text-align: center;">
+                    <p style="color: #444; font-weight: bold; font-family: var(--font-head);">MÁS NOTICIAS EN DESARROLLO...</p>
+                </div>
+            </article>
 
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 F1rstSports Media.</p>
+        <p>&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
 </body>
