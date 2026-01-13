@@ -206,6 +206,15 @@
         <div class="ticker-label">Marcadores</div>
         <div class="score-track" id="marcadores"></div>
     </div>
+    <!-- NEWS TICKER -->
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <a href="nota-xabi-alonso.html" class="ticker-item"><span style="color:var(--accent)">///</span> XABI ALONSO FUERA DEL MADRID</a>
+            <a href="nfl-playoffs-2026.html" class="ticker-item"><span style="color:var(--accent)">///</span> ANÁLISIS PLAYOFFS NFL 2026</a>
+            <a href="australian-open-2026.html" class="ticker-item"><span style="color:var(--accent)">///</span> AUSTRALIAN OPEN EN MARCHA</a>
+            <a href="f1-2026-revolucion.html" class="ticker-item"><span style="color:var(--accent)">///</span> F1 2026: CHECO EN CADILLAC</a>
+            <a href="calendario-seleccion-mexicana.html" class="ticker-item"><span style="color:var(--accent)">///</span> CALENDARIO TRI 2026</a>
+        </div>
 
     <div class="container">
         
@@ -313,37 +322,67 @@
             <div class="cronicas-img"></div>
         </section>
 
-        <!-- POSICIONES -->
-        <div class="section-header">
-            <div class="section-stripe"></div>
-            <h2 class="section-title">Posiciones</h2>
-        </div>
+        !-- POSICIONES (TODAS LAS LIGAS CON 5 EQUIPOS) -->
+        <div class="section-header"><div class="section-stripe"></div><h2 class="section-title">Posiciones</h2></div>
 
         <div class="standings-grid">
+            <!-- LIGA MX -->
             <div class="standing-card">
                 <div class="standing-header"><span class="standing-title">LIGA MX</span><i class="fa-solid fa-futbol" style="color:var(--accent)"></i></div>
                 <table class="mini-table">
                     <tr><td><span class="rank-num">1</span> Necaxa</td><td>3</td></tr>
                     <tr><td><span class="rank-num">2</span> Chivas</td><td>3</td></tr>
                     <tr><td><span class="rank-num">3</span> Juárez</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">4</span> León</td><td>3</td></tr>
+                    <tr><td><span class="rank-num">5</span> Tigres</td><td>3</td></tr>
                 </table>
                 <a href="ligamx.html" class="full-table-link">TABLA COMPLETA</a>
             </div>
+            <!-- LA LIGA -->
             <div class="standing-card">
                 <div class="standing-header"><span class="standing-title">LA LIGA</span><i class="fa-solid fa-flag" style="color:var(--accent)"></i></div>
                 <table class="mini-table">
                     <tr><td><span class="rank-num">1</span> Barcelona</td><td>49</td></tr>
                     <tr><td><span class="rank-num">2</span> R. Madrid</td><td>45</td></tr>
                     <tr><td><span class="rank-num">3</span> Villarreal</td><td>41</td></tr>
+                    <tr><td><span class="rank-num">4</span> Atlético</td><td>38</td></tr>
+                    <tr><td><span class="rank-num">5</span> Espanyol</td><td>34</td></tr>
                 </table>
                 <a href="laliga.html" class="full-table-link">CLASIFICACIÓN</a>
             </div>
+            <!-- PREMIER LEAGUE -->
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">PREMIER LEAGUE</span><i class="fa-solid fa-crown" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Arsenal</td><td>49</td></tr>
+                    <tr><td><span class="rank-num">2</span> Man City</td><td>43</td></tr>
+                    <tr><td><span class="rank-num">3</span> Aston Villa</td><td>43</td></tr>
+                    <tr><td><span class="rank-num">4</span> Liverpool</td><td>35</td></tr>
+                    <tr><td><span class="rank-num">5</span> Chelsea</td><td>34</td></tr>
+                </table>
+                <a href="premier.html" class="full-table-link">VER TABLA</a>
+            </div>
+            <!-- SERIE A -->
+            <div class="standing-card">
+                <div class="standing-header"><span class="standing-title">SERIE A</span><i class="fa-solid fa-shield-halved" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Napoli</td><td>45</td></tr>
+                    <tr><td><span class="rank-num">2</span> Juventus</td><td>44</td></tr>
+                    <tr><td><span class="rank-num">3</span> Inter</td><td>42</td></tr>
+                    <tr><td><span class="rank-num">4</span> Milan</td><td>39</td></tr>
+                    <tr><td><span class="rank-num">5</span> Lazio</td><td>35</td></tr>
+                </table>
+                <a href="seriea.html" class="full-table-link">VER TABLA</a>
+            </div>
+            <!-- NFL -->
             <div class="standing-card">
                 <div class="standing-header"><span class="standing-title">NFL SEEDS</span><i class="fa-solid fa-football" style="color:var(--accent)"></i></div>
                 <table class="mini-table">
                     <tr><td><span class="rank-num">1</span> Broncos (AFC)</td><td>13-4</td></tr>
                     <tr><td><span class="rank-num">2</span> Patriots (AFC)</td><td>12-5</td></tr>
+                    <tr><td><span class="rank-num">3</span> Jaguars (AFC)</td><td>11-6</td></tr>
                     <tr><td><span class="rank-num">1</span> Seahawks (NFC)</td><td>14-3</td></tr>
+                    <tr><td><span class="rank-num">2</span> Bears (NFC)</td><td>12-5</td></tr>
                 </table>
                 <a href="seccion-nfl.html" class="full-table-link">BRACKET PLAYOFFS</a>
             </div>
@@ -386,11 +425,23 @@
         // 2. MARCADORES
         const marcadoresContainer = document.getElementById("marcadores");
         const liveScores = [
-            { liga: "NFL WC", local: "Steelers", vis: "Texans", s1: "6", s2: "17", st: "EN VIVO", fecha: "EN VIVO", hora: "4to" },
-            { liga: "NFL WC", local: "Patriots", vis: "Chargers", s1: "16", s2: "3", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
-            { liga: "LIGA MX", local: "Puebla", vis: "Mazatlán", s1: "-", s2: "-", st: "MAÑANA", fecha: "13 ENE", hora: "17:00" },
-            { liga: "LIGA MX", local: "Necaxa", vis: "Monterrey", s1: "-", s2: "-", st: "MAÑANA", fecha: "13 ENE", hora: "19:00" }
-        ];
+             liga: "NFL WC", local: "Steelers", vis: "Texans", s1: "6", s2: "30", st: "FINAL", fecha: "12 ENE", hora: "Fin" },,
+            { liga: "NFL DIV", local: "Bills", vis: "Broncos", s1: "-", s2: "-", st: "SÁBADO", fecha: "17 ENE", hora: "16:30" },
+{ liga: "NFL DIV", local: "49ers", vis: "Seahawks", s1: "-", s2: "-", st: "SÁBADO", fecha: "17 ENE", hora: "20:00" },
+{ liga: "NFL DIV", local: "Texans", vis: "Patriots", s1: "-", s2: "-", st: "DOMINGO", fecha: "18 ENE", hora: "15:00" },
+{ liga: "NFL DIV", local: "Rams", vis: "Bears", s1: "-", s2: "-", st: "DOMINGO", fecha: "18 ENE", hora: "18:30" },
+{ liga: "LIGA MX", local: "Puebla", vis: "Mazatlán", s1: "-", s2: "-", st: "HOY", fecha: "13 ENE", hora: "19:00" },
+{ liga: "LIGA MX", local: "Pachuca", vis: "León", s1: "-", s2: "-", st: "HOY", fecha: "13 ENE", hora: "19:00" },
+{ liga: "LIGA MX", local: "Necaxa", vis: "Monterrey", s1: "-", s2: "-", st: "HOY", fecha: "13 ENE", hora: "19:00" },
+{ liga: "LIGA MX", local: "Cruz Azul", vis: "Atlas", s1: "-", s2: "-", st: "HOY", fecha: "13 ENE", hora: "21:00" },
+{ liga: "LIGA MX", local: "Juárez", vis: "Chivas", s1: "-", s2: "-", st: "HOY", fecha: "13 ENE", hora: "21:00" },
+
+{ liga: "LIGA MX", local: "Club América", vis: "Atlético San Luis", s1: "-", s2: "-", st: "MIÉRCOLES", fecha: "14 ENE", hora: "19:00" },
+{ liga: "LIGA MX", local: "Querétaro", vis: "Tijuana", s1: "-", s2: "-", st: "MIÉRCOLES", fecha: "14 ENE", hora: "19:00" },
+{ liga: "LIGA MX", local: "Tigres UANL", vis: "Pumas UNAM", s1: "-", s2: "-", st: "MIÉRCOLES", fecha: "14 ENE", hora: "21:00" },
+{ liga: "LIGA MX", local: "Toluca", vis: "Santos Laguna", s1: "-", s2: "-", st: "MIÉRCOLES", fecha: "14 ENE", hora: "21:00" },
+{ liga: "NFL WC", local: "Patriots", vis: "Chargers", s1: "16", s2: "3", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
+
 
         function renderScores() {
             let html = "";
@@ -423,3 +474,4 @@
     </script>
 </body>
 </html>
+
