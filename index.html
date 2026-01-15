@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F1rstSports | Siempre Pr1mero</title>
-    <meta name="description" content="F1rstSports es un medio deportivo independiente con opinión, análisis y cobertura crítica del fútbol, NFL, F1 y más.">
+    <meta name="description" content="F1rstSports es un medio deportivo independiente con opinión, análisis y cobertura crítica.">
     <link rel="icon" type="image/png" href="logof1.png">
 
     <!-- Google Analytics -->
@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- 1. VARIABLES --- */
         :root {
             --bg-body: #050505;
             --bg-card: #0a0a0a;
@@ -37,14 +36,12 @@
             --font-body: 'Inter', sans-serif;
         }
 
-        /* --- 2. BASES --- */
         body { margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-body); overflow-x: hidden; }
         a { text-decoration: none; color: white; transition: 0.3s; }
 
-        /* --- 3. HEADER & NAV --- */
+        /* --- HEADER & NAV --- */
         .top-bar { background: #000; padding: 8px 5%; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .social-icons { display: flex; gap: 15px; }
-        .social-icons a { color: var(--text-muted); font-size: 1rem; }
+        .social-icons a { color: var(--text-muted); font-size: 1rem; margin-left: 15px; }
         .social-icons a:hover { color: var(--accent); transform: translateY(-2px); }
         
         header { 
@@ -54,33 +51,32 @@
         }
         .brand-link { display: flex; align-items: center; gap: 10px; }
         .logo-img img { height: 45px; width: auto; }
-        .brand-text { font-family: var(--font-head); font-weight: 700; font-: italic; font-size: 1.6rem; color: white; letter-spacing: -1px; }
+        .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.6rem; color: white; letter-spacing: -1px; }
 
         nav { display: flex; gap: 20px; align-items: center; }
         nav a { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; color: var(--text-muted); }
         nav a:hover, nav a.active { color: var(--accent); }
-        .nav-special { color: var(--special) !important; }
+        .nav-special { color: var(--special) !important; border-bottom: 2px solid var(--special); }
 
         .hamburger { display: none; color: white; font-size: 1.8rem; background: none; border: none; cursor: pointer; }
         .cta-btn { background: var(--primary); padding: 8px 20px; border-radius: 4px; font-weight: bold; font-size: 0.9rem; }
 
-        /* --- 4. SCORE TICKER (CORREGIDO) --- */
+        /* --- SCORE TICKER --- */
         .score-ticker-container { background: #080808; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; height: 75px; overflow: hidden; position: relative; z-index: 100; }
         .ticker-label { background: var(--primary); color: white; font-family: var(--font-head); font-weight: 800; display: flex; align-items: center; padding: 0 20px; font-size: 0.85rem; z-index: 10; text-transform: uppercase; box-shadow: 10px 0 20px black; }
-        .score-track { display: flex; align-items: center; animation: scroll-left 50s linear infinite; white-space: nowrap; width: max-content; } 
+        .score-track { display: flex; align-items: center; animation: scroll-left 50s linear infinite; white-space: nowrap; } 
         .score-ticker-container:hover .score-track { animation-play-state: paused; }
         .score-card { border-right: 1px solid rgba(255,255,255,0.1); min-width: 240px; padding: 10px 20px; display: flex; flex-direction: column; justify-content: center; }
         .score-league-row { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 700; color: #666; text-transform: uppercase; }
         .score-teams { display: flex; justify-content: space-between; font-weight: 600; color: white; font-size: 0.85rem; margin-top: 5px; }
         .score-val { color: var(--accent); font-family: var(--font-head); }
-        .status-live { color: #ff4444; animation: blink 1.5s infinite; font-weight: bold; }
 
-        /* --- 5. NEWS TICKER --- */
+        /* --- NEWS TICKER --- */
         .ticker-wrap { background: #111; padding: 12px 0; overflow: hidden; border-bottom: 1px solid #222; }
-        .ticker { display: flex; gap: 50px; animation: scroll-left 40s linear infinite; white-space: nowrap; width: max-content; }
+        .ticker-items-container { display: flex; gap: 50px; animation: scroll-left 40s linear infinite; white-space: nowrap; }
         .ticker-item { color: #eee; font-family: var(--font-head); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
 
-        /* --- 6. CARRUSEL --- */
+        /* --- CARRUSEL --- */
         .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
         .carousel-container { position: relative; width: 100%; height: 65vh; min-height: 500px; overflow: hidden; border-bottom: 4px solid var(--accent); background: black; border-radius: 12px; }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
@@ -88,29 +84,29 @@
         .slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
         .slide-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 60px; background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%); z-index: 10; }
         .slide-tag { background: var(--accent); color: black; padding: 6px 12px; font-family: var(--font-head); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; display: inline-block; margin-bottom: 15px; border-radius: 4px; }
-        .slide-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0 0 20px; color: white; text-transform: uppercase; text-shadow: 2px 2px 15px black; max-width: 900px; line-height: 1; }
+        .slide-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0 0 20px; color: white; text-transform: uppercase; text-shadow: 2px 2px 15px black; line-height: 1; }
         .slide-btn { padding: 12px 30px; border: 1px solid white; color: white; font-weight: 700; text-transform: uppercase; background: rgba(0,0,0,0.3); border-radius: 4px; }
-        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 2rem; padding: 15px; cursor: pointer; z-index: 20; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; }
+        .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; font-size: 2rem; padding: 15px; cursor: pointer; z-index: 20; border-radius: 50%; }
 
-        /* --- 7. GRID NOTICIAS --- */
+        /* --- GRID NOTICIAS --- */
         .section-header { margin: 60px 0 30px; display: flex; align-items: center; gap: 15px; }
         .section-stripe { height: 30px; width: 5px; background: var(--accent); }
         .section-title { font-family: var(--font-head); font-size: 2.5rem; line-height: 1; text-transform: uppercase; color: white; margin: 0; }
         .latest-news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px; }
         .news-card { background: var(--bg-card); border: var(--border); border-radius: 12px; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; }
-        .news-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 15px 30px rgba(204, 255, 0, 0.1); }
+        .news-card:hover { transform: translateY(-10px); border-color: var(--accent); }
         .card-img { width: 100%; height: 220px; object-fit: cover; }
         .card-body { padding: 25px; flex-grow: 1; }
         .card-tag { color: var(--accent); font-weight: 800; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .card-title { font-family: var(--font-head); font-size: 1.4rem; line-height: 1.2; margin: 0 0 15px; color: white; }
         .read-more { color: white; font-weight: 700; border-bottom: 2px solid var(--accent); font-size: 0.8rem; padding-bottom: 2px; }
 
-        /* --- 8. BANNER CRÓNICAS --- */
+        /* --- BANNER CRÓNICAS --- */
         .cronicas-banner { margin: 80px 0; background: linear-gradient(45deg, #0a0a0a, #000); border: 1px solid #222; border-radius: 15px; overflow: hidden; display: flex; align-items: center; min-height: 350px; }
         .cronicas-text { flex: 1.2; padding: 60px; }
         .cronicas-img { flex: 0.8; height: 400px; background: url("Robert Prosinečki.jpg") center/cover no-repeat; display: block; }
 
-        /* --- 9. POSICIONES (GRID RESTAURADO) --- */
+        /* --- POSICIONES --- */
         .standings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 60px; }
         .standing-card { background: #111; border: 1px solid #333; border-radius: 12px; overflow: hidden; }
         .standing-header { background: #1a1a1a; padding: 15px; border-bottom: 2px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
@@ -119,14 +115,14 @@
         .rank-num { font-weight: 800; color: var(--accent); margin-right: 10px; }
         .full-table-link { display: block; text-align: center; padding: 12px; background: #151515; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
 
-        /* --- 10. CATEGORÍAS ICONOS (RESTAURADOS) --- */
-        .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-top: 60px; padding: 0; list-: none; }
-        .league-item { background: rgba(255,255,255,0.05); padding: 30px 10px; text-align: center; border-radius: 8px; transition: 0.3s; border: 1px solid transparent; }
+        /* --- CATEGORÍAS ICONOS --- */
+        .league-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin: 60px 0; padding: 0; list-style: none; }
+        .league-item { background: rgba(255,255,255,0.05); padding: 30px 10px; text-align: center; border-radius: 12px; border: 1px solid transparent; transition: 0.3s; }
         .league-item:hover { background: var(--bg-card); border-color: var(--accent); transform: translateY(-5px); }
         .league-item i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; display: block; }
         .league-item span { display: block; font-family: var(--font-head); font-weight: 700; font-size: 0.8rem; color: white; text-transform: uppercase; }
 
-        /* --- 11. FOOTER --- */
+        /* --- FOOTER --- */
         footer { background: #000; border-top: 1px solid #222; padding: 60px 5%; text-align: center; }
         .footer-socials a { color: white; font-size: 1.5rem; margin: 0 15px; }
 
@@ -138,22 +134,20 @@
             .hamburger { display: block; }
             .cronicas-img { display: none; }
             .cronicas-text { padding: 40px 20px; text-align: center; }
+            .slide-title { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
     <div class="top-bar">
-        <div>CDMX | 12 ENE 2026</div>
+        <div>CDMX | 14 ENE 2026</div>
         <div class="social-icons">
             <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/f1rs.tsports"><i class="fa-brands fa-instagram"></i></a>
             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
-            <a href="frstsports2@gmail.com"><i class="fa-solid fa-envelope"></i>
-</a>
-
         </div>
     </div>
 
@@ -172,7 +166,7 @@
             <a href="boxeo.html">Boxeo</a>
             <a href="quienes-somos.html">Nosotros</a>
         </nav>
-        <a href="mundial-2026.html" class="cta-btn">MUNDIAL '26</a>
+        <a href="mundial-2026.html" class="cta-btn desktop-only">MUNDIAL '26</a>
     </header>
 
     <!-- SCORE TICKER -->
@@ -183,29 +177,26 @@
 
     <!-- NEWS TICKER -->
     <div class="ticker-wrap">
-        <div class="ticker">
-            <a href="nota-chivas-lider.html" class="ticker-item"><span style="color:var(--accent)">///</span> CHIVAS DOS TRUINFOS AL HILO</a>
-            <a href="nota-xabi-alonso.html" class="ticker-item"><span style="color:var(--accent)">///</span> XABI ALONSO FUERA DEL MADRID</a>
-            <a href="nfl-playoffs-2026.html" class="ticker-item"><span style="color:var(--accent)">///</span> ANÁLISIS PLAYOFFS NFL 2026</a>
-            <a href="australian-open-2026.html" class="ticker-item"><span style="color:var(--accent)">///</span> AUSTRALIAN OPEN EN MARCHA</a>
-            <a href="f1-2026-revolucion.html" class="ticker-item"><span style="color:var(--accent)">///</span> F1 2026: CHECO EN CADILLAC</a>
-            <a href="calendario-seleccion-mexicana.html" class="ticker-item"><span style="color:var(--accent)">///</span> CALENDARIO TRI 2026</a>
+        <div class="ticker-items-container">
+            <a href="nota-chivas-lider.html" class="ticker-item"><span style="color:var(--accent)">///</span> CHIVAS LÍDER CON PASO PERFECTO</a>
+            <a href="nota-xabi-alonso.html" class="ticker-item"><span style="color:var(--accent)">///</span> COMUNICADO: XABI ALONSO FUERA DEL MADRID</a>
+            <a href="nfl-playoffs-2026.html" class="ticker-item"><span style="color:var(--accent)">///</span> CAMINO AL SUPER BOWL LIX</a>
+            <a href="cronica-prosinecki.html" class="ticker-item"><span style="color:var(--accent)">///</span> CRÓNICA: ROBERT PROSINEČKI</a>
         </div>
     </div>
 
     <div class="container">
-        
         <!-- HERO CAROUSEL -->
-          <div class="carousel-container" id="mainCarousel">
-            <div class="slide active">
-                <img src="chivas-2.jpg" alt="LIGA MX">
-                <div class="slide-content">
-                    <span class="slide-tag">LIGA MX</span>
-                    <h2 class="slide-title">CHIVAS DOS TRUINFOS AL HILO</h2>
-                    <a href="nota-chivas-lider.html" class="slide-btn">VER BRACKET</a>
-                </div>
         <div class="carousel-container" id="mainCarousel">
             <div class="slide active">
+                <img src="chivas-2.jpg" alt="Chivas">
+                <div class="slide-content">
+                    <span class="slide-tag">LIGA MX</span>
+                    <h2 class="slide-title">Chivas: Identidad clara y paso perfecto con Milito</h2>
+                    <a href="nota-chivas-lider.html" class="slide-btn">LEER NOTA</a>
+                </div>
+            </div>
+            <div class="slide">
                 <img src="playoffs-general.jpg" alt="NFL">
                 <div class="slide-content">
                     <span class="slide-tag">NFL PLAYOFFS</span>
@@ -214,15 +205,7 @@
                 </div>
             </div>
             <div class="slide">
-                <img src="f1-2026-concept.png" alt="F1"> 
-                <div class="slide-content">
-                    <span class="slide-tag">FORMULA 1</span>
-                    <h2 class="slide-title">2026: La Revolución de Audi y Cadillac</h2>
-                    <a href="f1-2026-revolucion.html" class="slide-btn">LEER NOTA</a>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="xabi-alonso.jpg" alt="Xabi">
+                <img src="xabi-alonso.jpg" alt="Xabi Alonso">
                 <div class="slide-content">
                     <span class="slide-tag">LA LIGA</span>
                     <h2 class="slide-title">Fin de una era: Xabi Alonso fuera del Madrid</h2>
@@ -233,58 +216,98 @@
             <button class="carousel-btn" onclick="plusSlides(1)" style="right:20px;">&#10095;</button>
         </div>
 
-        <!-- NOTICIAS (6 CARDS) -->
+        <!-- ÚLTIMAS NOTICIAS -->
         <div class="section-header"><div class="section-stripe"></div><h2 class="section-title">Últimas Noticias</h2></div>
         <div class="latest-news-grid">
             <article class="news-card">
-                <a href="nota-xabi-alonso.html"><img src="xabi-alonso.jpg" class="card-img"></a>
+                <a href="nota-chivas-lider.html"><img src="chivas-lider.jpg" class="card-img"></a>
                 <div class="card-body">
-                    <span class="card-tag">Real Madrid</span>
-                    <h3 class="card-title">Florentino Pérez le hace las maletas a Xabi Alonso</h3>
-                    <a href="nota-xabi-alonso.html" class="read-more">LEER OPINIÓN &rarr;</a>
+                    <span class="card-tag">LIGA MX</span>
+                    <h3 class="card-title">Chivas mantiene identidad y se perfila como candidato</h3>
+                    <a href="nota-chivas-lider.html" class="read-more">LEER NOTA &rarr;</a>
                 </div>
             </article>
             <article class="news-card">
-                 <a href="nota-chivas-lider.html"><img src="chivas-lider.jpg" class="card-img" alt="Chivas"></a>
-                 <div class="card-body">
-                 <span class="card-tag">LIGA MX</span>
-                 <h3 class="card-title">Chivas: Identidad clara y paso perfecto con Gabriel Milito</h3>
-                 <a href="nota-chivas-lider.html" class="read-more">LEER ANÁLISIS &rarr;</a>
-              </div>
+                <a href="nota-xabi-alonso.html"><img src="xabi-alonso.jpg" class="card-img"></a>
+                <div class="card-body">
+                    <span class="card-tag">LA LIGA</span>
+                    <h3 class="card-title">Florentino le hace las maletas a Xabi Alonso</h3>
+                    <a href="nota-xabi-alonso.html" class="read-more">LEER OPINIÓN &rarr;</a>
+                </div>
             </article>
             <article class="news-card">
                 <a href="nfl-playoffs-2026.html"><img src="playoffs-nfl-2026.png" class="card-img"></a>
                 <div class="card-body">
                     <span class="card-tag">NFL</span>
-                    <h3 class="card-title">Claves tácticas y favoritos al Super Bowl LIX</h3>
+                    <h3 class="card-title">Claves tácticas rumbo al Super Bowl LIX</h3>
                     <a href="nfl-playoffs-2026.html" class="read-more">ANÁLISIS &rarr;</a>
                 </div>
             </article>
-            <article class="news-card">
-                <a href="#"><img src="australian-open-2023-tournament-image.jpg" class="card-img"></a>
-                <div class="card-body">
-                    <span class="card-tag">TENIS</span>
-                    <h3 class="card-title">Australian Open 2026: Batalla en Melbourne</h3>
-                    <a href="#" class="read-more">RESULTADOS &rarr;</a>
-                </div>
-            </article>
-            <article class="news-card">
-                <a href="#"><img src="f1-2026-concept.png" class="card-img"></a>
-                <div class="card-body">
-                    <span class="card-tag">F1</span>
-                    <h3 class="card-title">Checo Pérez y el ambicioso proyecto Cadillac</h3>
-                    <a href="#" class="read-more">LEER NOTA &rarr;</a>
-                </div>
-            </article>
-            <article class="news-card">
-                <a href="#"><img src="raptor-dakar.jpg" class="card-img"></a>
-                <div class="card-body">
-                    <span class="card-tag">MOTOR</span>
-                    <h3 class="card-title">Dakar 2026: La odisea más dura del desierto</h3>
-                    <a href="#" class="read-more">VER RUTA &rarr;</a>
-                </div>
-            </article>
+            <!-- RELLENO NOTICIAS -->
+            <article class="news-card"><a href="#"><img src="australian-open-2023-tournament-image.jpg" class="card-img"></a><div class="card-body"><span class="card-tag">TENIS</span><h3 class="card-title">Australian Open 2026: Batalla en Melbourne</h3></div></article>
+            <article class="news-card"><a href="#"><img src="f1-2026-concept.png" class="card-img"></a><div class="card-body"><span class="card-tag">F1</span><h3 class="card-title">Proyecto Cadillac 2026 toma forma</h3></div></article>
+            <article class="news-card"><a href="#"><img src="raptor-dakar.jpg" class="card-img"></a><div class="card-body"><span class="card-tag">MOTOR</span><h3 class="card-title">Dakar 2026: La odisea del desierto</h3></div></article>
         </div>
+
+        <!-- BANNER CRÓNICAS -->
+        <section class="cronicas-banner">
+            <div class="cronicas-text">
+                <span style="font-family: 'Playfair Display', serif; font-style: italic; color: var(--special); font-size: 1.2rem;">Nueva Sección Editorial</span>
+                <h2 style="font-family: var(--font-head); font-size: 3rem; text-transform: uppercase; margin: 10px 0; line-height: 1;">Crónicas del Balón</h2>
+                <p style="color: #888; margin-bottom: 30px; max-width: 500px;">Relatos de leyenda y los genios que forjaron la historia del fútbol. Una columna de Sergio López.</p>
+                <a href="cronicas-del-balon.html" style="background: var(--special); color: black; padding: 12px 30px; font-weight: bold; font-family: var(--font-head); text-transform: uppercase; border-radius: 4px;">Explorar Historias</a>
+            </div>
+            <div class="cronicas-img"></div>
+        </section>
+
+        <!-- POSICIONES -->
+        <div class="standings-grid">
+            <!-- LIGA MX -->
+            <div class="standing-card">
+                <div class="standing-header"><span>LIGA MX</span><i class="fa-solid fa-futbol" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Necaxa</td><td style="text-align:right;">3</td></tr>
+                    <tr><td><span class="rank-num">2</span> Chivas</td><td style="text-align:right;">3</td></tr>
+                    <tr><td><span class="rank-num">3</span> Juárez</td><td style="text-align:right;">3</td></tr>
+                    <tr><td><span class="rank-num">4</span> León</td><td style="text-align:right;">3</td></tr>
+                    <tr><td><span class="rank-num">5</span> Tigres</td><td style="text-align:right;">3</td></tr>
+                </table>
+                <a href="ligamx.html" class="full-table-link">Ver Tabla Completa</a>
+            </div>
+            <!-- LA LIGA -->
+            <div class="standing-card">
+                <div class="standing-header"><span>LA LIGA</span><i class="fa-solid fa-flag" style="color:var(--accent)"></i></div>
+                <table class="mini-table">
+                    <tr><td><span class="rank-num">1</span> Barcelona</td><td style="text-align:right;">49</td></tr>
+                    <tr><td><span class="rank-num">2</span> R. Madrid</td><td style="text-align:right;">45</td></tr>
+                    <tr><td><span class="rank-num">3</span> Villarreal</td><td style="text-align:right;">41</td></tr>
+                    <tr><td><span class="rank-num">4</span> Atlético</td><td style="text-align:right;">38</td></tr>
+                    <tr><td><span class="rank-num">5</span> Espanyol</td><td style="text-align:right;">34</td></tr>
+                </table>
+                <a href="laliga.html" class="full-table-link">Ver Clasificación</a>
+            </div>
+        </div>
+
+        <!-- CATEGORÍAS ICONOS -->
+        <ul class="league-grid">
+            <li class="league-item"><a href="seccion-nfl.html"><i class="fa-solid fa-football"></i><span>NFL</span></a></li>
+            <li class="league-item"><a href="#"><i class="fa-solid fa-baseball"></i><span>Tenis</span></a></li>
+            <li class="league-item"><a href="ligamx.html"><i class="fa-solid fa-futbol"></i><span>Fútbol</span></a></li>
+            <li class="league-item"><a href="cronicas-del-balon.html"><i class="fa-solid fa-book-open" style="color:var(--special)"></i><span>Crónicas</span></a></li>
+            <li class="league-item"><a href="seccion-motor.html"><i class="fa-solid fa-flag-checkered"></i><span>Motor</span></a></li>
+            <li class="league-item"><a href="boxeo.html"><i class="fa-solid fa-hand-fist"></i><span>Boxeo</span></a></li>
+            <li class="league-item"><a href="quienes-somos.html"><i class="fa-solid fa-users"></i><span>Nosotros</span></a></li>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="footer-brand"><span class="brand-text" style="font-size:2rem;">F1RST<span style="color:var(--accent)">SPORTS</span></span></div>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61584755006338&locale=es_LA"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/f1rs.tsports"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <p style="color:#555; font-size:0
 
         <!-- BANNER CRÓNICAS -->
         <section class="cronicas-banner">
@@ -470,6 +493,7 @@
     </script>
 </body>
 </html>
+
 
 
 
