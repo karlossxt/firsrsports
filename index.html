@@ -453,55 +453,166 @@
     </footer>
 
     <script>
-        // 1. MENÚ MÓVIL
-        const menuBtn = document.getElementById('menuBtn');
-        const nav = document.getElementById('mainNav');
-        menuBtn.addEventListener('click', () => {
-            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-        });
+/* ===============================
+   1. MENÚ MÓVIL
+================================ */
+const menuBtn = document.getElementById('menuBtn');
+const nav = document.getElementById('mainNav');
 
-       // 2. MARCADORES (ACTUALIZADO JORNADA 3)
+menuBtn.addEventListener('click', () => {
+    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+});
+
+/* ===============================
+   2. MARCADORES
+================================ */
 const marcadoresContainer = document.getElementById('marcadores');
-const liveScores = [
-    // NFL Wild Card 2025-26
+
+let liveScores = [
+    // NFL (manual)
     { liga: "NFL WC", local: "Rams", vis: "Panthers", s1: "34", s2: "31", st: "FINAL", fecha: "10 ENE", hora: "Fin" },
     { liga: "NFL WC", local: "Bears", vis: "Packers", s1: "31", s2: "27", st: "FINAL", fecha: "10 ENE", hora: "Fin" },
     { liga: "NFL WC", local: "Bills", vis: "Jaguars", s1: "27", s2: "24", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
     { liga: "NFL WC", local: "49ers", vis: "Eagles", s1: "23", s2: "19", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
     { liga: "NFL WC", local: "Patriots", vis: "Chargers", s1: "16", s2: "3", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
     { liga: "NFL WC", local: "Texans", vis: "Steelers", s1: "30", s2: "6", st: "FINAL", fecha: "12 ENE", hora: "Fin" },
-    { liga: "NFL DIV", local: "Bills", vis: "Broncos", s1: "", s2: "", st: "PRÓXIMO", fecha: "17 ENE", hora: "16:30" },
-
-    // Liga MX Clausura 2026 – Jornada 3 (programados / resultados parciales)
-    { liga: "LIGA MX", local: "Mazatlán", vis: "Monterrey", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "16 ENE", hora: "21:00" },
-    { liga: "LIGA MX", local: "Necaxa", vis: "Atlas", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "17:00" },
-    { liga: "LIGA MX", local: "Chivas", vis: "Querétaro", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "17:00" },
-    { liga: "LIGA MX", local: "Tigres UANL", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "19:00" },
-    { liga: "LIGA MX", local: "Cruz Azul", vis: "Puebla", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "21:05" },
-    { liga: "LIGA MX", local: "Tijuana", vis: "Atl. San Luis", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "21:06" },
-    { liga: "LIGA MX", local: "Pumas UNAM", vis: "León", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "18 ENE", hora: "12:00" },
-    { liga: "LIGA MX", local: "Santos Laguna", vis: "FC Juárez", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "18 ENE", hora: "17:00" },
-    { liga: "LIGA MX", local: "Pachuca", vis: "América", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "18 ENE", hora: "19:06" }
+    { liga: "NFL DIV", local: "Bills", vis: "Broncos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "16:30" }
 ];
 
-    
+/* ===============================
+   3. RENDER DE MARCADORES
+================================ */
+function renderScores() {
+    marcadoresContainer.innerHTML = "";
 
-        function renderScores() {
-            let html = "";
-            const scrollData = [...liveScores, ...liveScores, ...liveScores]; // Triplicamos para flujo infinito
-            scrollData.forEach(game => {
-                html += `
-                <div class="score-card">
-                    <div class="score-league-row"><span>${game.liga}</span><span>${game.fecha} | ${game.hora}</span></div>
-                    <div class="score-teams">
-                        <div style="display:flex; flex-direction:column;"><span>${game.local}</span><span>${game.vis}</span></div>
-                        <div style="display:flex; flex-direction:column; text-align:right;">
-                            <span class="score-val">${game.s1}</span><span class="score-val">${game.s2}</span>
-                        </div>
-                    </div>
-                </div>`;
-            });
-            marcadoresContainer.innerHTML = html;
+    liveScores.forEach(game => {
+        const card = document.createElement("div");
+        card.className = "score-card";
+
+        card.innerHTML = `
+            <div class="score-league-row">
+                <span>${game.liga}</span>
+                <span>${game.st}</span>
+            </div>
+            <div class="score-teams">
+                <span>${game.local} <span class="score-val">${game.s1}</span></span>
+                <span>${game.vis} <span class="score-val">${game.s2}</span></span>
+            </div>
+        `;
+
+        marcadoresContainer.appendChild(card);
+    });
+}
+
+renderScores();
+
+/* ===============================
+   4. API FOOTBALL – LIGA MX
+================================ */
+const API_KEY = "00f4ae4c03780419af2a413aded999e3";
+
+function traducirEstado(code) {
+    if (code === "NS") return "PRÓXIMO";
+    if (code === "FT") return "FINAL";
+    return "EN VIVO";
+}
+
+async function fetchLigaMX() {
+    try {
+        const res = await fetch(
+            "https://v3.api-football.com/fixtures?league=307&season=2025&next=9",
+            {
+                headers: { "x-apisports-key": API_KEY }
+            }
+        );
+
+        const data = await res.json();
+
+        const ligaMX = data.response.map(match => ({
+            liga: "LIGA MX",
+            local: match.teams.home.name,
+            vis: match.teams.away.name,
+            s1: match.goals.home ?? "-",
+            s2: match.goals.away ?? "-",
+            st: traducirEstado(match.fixture.status.short),
+            fecha: "",
+            hora: ""
+        }));
+
+        liveScores = liveScores.filter(g => g.liga !== "LIGA MX");
+        liveScores.push(...ligaMX);
+
+        renderScores();
+
+    } catch (e) {
+        console.error("Error API Liga MX:", e);
+    }
+}
+
+fetchLigaMX();
+setInterval(fetchLigaMX, 60000);
+
+/* ===============================
+   5. CARRUSEL
+================================ */
+let slideIndex = 1;
+
+function showSlides(n) {
+    const slides = document.getElementsByClassName("slide");
+    if (n > slides.length) slideIndex = 1;
+    if (n < 1) slideIndex = slides.length;
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        slides[i].classList.remove("active");
+    }
+
+    slides[slideIndex - 1].style.display = "flex";
+    setTimeout(() => slides[slideIndex - 1].classList.add("active"), 10);
+}
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+setInterval(() => plusSlides(1), 3000);
+showSlides(slideIndex);
+</script>
+
+
+        const data = await response.json();
+
+        const ligaMXGames = data.response.map(match => ({
+            liga: "LIGA MX",
+            local: match.teams.home.name,
+            vis: match.teams.away.name,
+            s1: match.goals.home ?? "-",
+            s2: match.goals.away ?? "-",
+            st: match.fixture.status.short,
+            fecha: new Date(match.fixture.date).toLocaleDateString("es-MX", {
+                day: "2-digit",
+                month: "short"
+            }).toUpperCase(),
+            hora: new Date(match.fixture.date).toLocaleTimeString("es-MX", {
+                hour: "2-digit",
+                minute: "2-digit"
+            })
+        }));
+
+        // Quitamos los partidos LIGA MX manuales
+        liveScores = liveScores.filter(g => g.liga !== "LIGA MX");
+
+        // Agregamos los nuevos desde la API
+        liveScores.push(...ligaMXGames);
+
+        renderScores();
+
+    } catch (error) {
+        console.error("Error cargando Liga MX:", error);
+    }
+}
+</script>
+
         }
         renderScores();
 
@@ -524,7 +635,6 @@ const liveScores = [
     </script>
 </body>
 </html>
-
 
 
 
