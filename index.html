@@ -474,30 +474,25 @@
             nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
         });
 
-       // 2. MARCADORES (ACTUALIZADO JORNADA 3)
-const marcadoresContainer = document.getElementById('marcadores');
+      // MARCADORES ACTUALIZADOS AL 21 DE ENERO, 2026
 const liveScores = [
-    // NFL Wild Card 2025-26
-    { liga: "NFL WC", local: "Rams", vis: "Panthers", s1: "34", s2: "31", st: "FINAL", fecha: "10 ENE", hora: "Fin" },
-    { liga: "NFL WC", local: "Bears", vis: "Packers", s1: "31", s2: "27", st: "FINAL", fecha: "10 ENE", hora: "Fin" },
-    { liga: "NFL WC", local: "Bills", vis: "Jaguars", s1: "27", s2: "24", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
-    { liga: "NFL WC", local: "49ers", vis: "Eagles", s1: "23", s2: "19", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
-    { liga: "NFL WC", local: "Patriots", vis: "Chargers", s1: "16", s2: "3", st: "FINAL", fecha: "11 ENE", hora: "Fin" },
-    { liga: "NFL WC", local: "Texans", vis: "Steelers", s1: "30", s2: "6", st: "FINAL", fecha: "12 ENE", hora: "Fin" },
-    { liga: "NFL DIV", local: "Bills", vis: "Broncos", s1: "", s2: "", st: "PRÓXIMO", fecha: "17 ENE", hora: "16:30" },
+    // NFL - RESULTADOS RONDA DIVISIONAL
+    { liga: "NFL DIV", local: "Broncos", vis: "Bills", s1: "33", s2: "30", st: "FINAL (TE)", fecha: "17 ENE", hora: "Fin" },
+    { liga: "NFL DIV", local: "Seahawks", vis: "49ers", s1: "41", s2: "6", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
+    { liga: "NFL DIV", local: "Patriots", vis: "Texans", s1: "28", s2: "16", st: "FINAL", fecha: "18 ENE", hora: "Fin" },
+    { liga: "NFL DIV", local: "Rams", vis: "Bears", s1: "20", s2: "17", st: "FINAL (TE)", fecha: "18 ENE", hora: "Fin" },
+    
+    // NFL - PRÓXIMAS FINALES DE CONFERENCIA
+    { liga: "NFL CONF", local: "Broncos", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "14:00" },
+    { liga: "NFL CONF", local: "Seahawks", vis: "Rams", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "17:30" },
 
-    // Liga MX Clausura 2026 – Jornada 3 (programados / resultados parciales)
-    { liga: "LIGA MX", local: "Mazatlán", vis: "Monterrey", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "16 ENE", hora: "21:00" },
-    { liga: "LIGA MX", local: "Necaxa", vis: "Atlas", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "17:00" },
-    { liga: "LIGA MX", local: "Chivas", vis: "Querétaro", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "17:00" },
-    { liga: "LIGA MX", local: "Tigres UANL", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "19:00" },
-    { liga: "LIGA MX", local: "Cruz Azul", vis: "Puebla", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "21:05" },
-    { liga: "LIGA MX", local: "Tijuana", vis: "Atl. San Luis", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "17 ENE", hora: "21:06" },
-    { liga: "LIGA MX", local: "Pumas UNAM", vis: "León", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "18 ENE", hora: "12:00" },
-    { liga: "LIGA MX", local: "Santos Laguna", vis: "FC Juárez", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "18 ENE", hora: "17:00" },
-    { liga: "LIGA MX", local: "Pachuca", vis: "América", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "18 ENE", hora: "19:06" }
+    // LIGA MX - RESULTADOS JORNADA 3
+    { liga: "LIGA MX", local: "Mazatlán", vis: "Monterrey", s1: "1", s2: "5", st: "FINAL", fecha: "16 ENE", hora: "Fin" },
+    { liga: "LIGA MX", local: "Chivas", vis: "Querétaro", s1: "2", s2: "1", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
+    { liga: "LIGA MX", local: "Cruz Azul", vis: "Puebla", s1: "1", s2: "0", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
+    { liga: "LIGA MX", local: "Pachuca", vis: "América", s1: "1", s2: "1", st: "FINAL", fecha: "18 ENE", hora: "Fin" },
+    { liga: "LIGA MX", local: "Tigres", vis: "Toluca", s1: "0", s2: "0", st: "FINAL", fecha: "17 ENE", hora: "Fin" }
 ];
-
     
 
         function renderScores() {
@@ -538,6 +533,7 @@ const liveScores = [
     </script>
 </body>
 </html>
+
 
 
 
