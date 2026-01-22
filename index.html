@@ -466,74 +466,80 @@
         <p style="color:#555; font-size:0.8rem;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        // 1. MENÚ MÓVIL
-        const menuBtn = document.getElementById('menuBtn');
-        const nav = document.getElementById('mainNav');
+    <<script>
+    // 1. MENÚ MÓVIL
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('mainNav');
+    if(menuBtn && nav) {
         menuBtn.addEventListener('click', () => {
             nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
         });
+    }
 
-      // MARCADORES ACTUALIZADOS AL 21 DE ENERO, 2026
-const liveScores = [
-    // NFL - RESULTADOS RONDA DIVISIONAL
-    { liga: "NFL DIV", local: "Broncos", vis: "Bills", s1: "33", s2: "30", st: "FINAL (TE)", fecha: "17 ENE", hora: "Fin" },
-    { liga: "NFL DIV", local: "Seahawks", vis: "49ers", s1: "41", s2: "6", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
-    { liga: "NFL DIV", local: "Patriots", vis: "Texans", s1: "28", s2: "16", st: "FINAL", fecha: "18 ENE", hora: "Fin" },
-    { liga: "NFL DIV", local: "Rams", vis: "Bears", s1: "20", s2: "17", st: "FINAL (TE)", fecha: "18 ENE", hora: "Fin" },
-    
-    // NFL - PRÓXIMAS FINALES DE CONFERENCIA
-    { liga: "NFL CONF", local: "Broncos", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "14:00" },
-    { liga: "NFL CONF", local: "Seahawks", vis: "Rams", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "17:30" },
+    // --- AQUÍ ESTÁ EL CAMBIO ---
+    // Definimos el contenedor buscando el ID "marcadores" en tu HTML
+    const marcadoresContainer = document.getElementById('marcadores'); 
 
-    // LIGA MX - RESULTADOS JORNADA 3
-    { liga: "LIGA MX", local: "Mazatlán", vis: "Monterrey", s1: "1", s2: "5", st: "FINAL", fecha: "16 ENE", hora: "Fin" },
-    { liga: "LIGA MX", local: "Chivas", vis: "Querétaro", s1: "2", s2: "1", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
-    { liga: "LIGA MX", local: "Cruz Azul", vis: "Puebla", s1: "1", s2: "0", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
-    { liga: "LIGA MX", local: "Pachuca", vis: "América", s1: "1", s2: "1", st: "FINAL", fecha: "18 ENE", hora: "Fin" },
-    { liga: "LIGA MX", local: "Tigres", vis: "Toluca", s1: "0", s2: "0", st: "FINAL", fecha: "17 ENE", hora: "Fin" }
-];
-    
+    // MARCADORES ACTUALIZADOS AL 21 DE ENERO, 2026
+    const liveScores = [
+        // --- SELECCIÓN MEXICANA (MEXTOUR 2026) ---
+    { liga: "AMISTOSO", local: "México", vis: "Panama", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "22 ENE", hora: "20:00" },
+    { liga: "AMISTOSO", local: "México", vis: "Bolivia", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "19:30" },
+        { liga: "NFL DIV", local: "Broncos", vis: "Bills", s1: "33", s2: "30", st: "FINAL (TE)", fecha: "17 ENE", hora: "Fin" },
+        { liga: "NFL DIV", local: "Seahawks", vis: "49ers", s1: "41", s2: "6", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
+        { liga: "NFL DIV", local: "Patriots", vis: "Texans", s1: "28", s2: "16", st: "FINAL", fecha: "18 ENE", hora: "Fin" },
+        { liga: "NFL DIV", local: "Rams", vis: "Bears", s1: "20", s2: "17", st: "FINAL (TE)", fecha: "18 ENE", hora: "Fin" },
+        { liga: "NFL CONF", local: "Broncos", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "14:00" },
+        { liga: "NFL CONF", local: "Seahawks", vis: "Rams", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "17:30" },
+        { liga: "LIGA MX", local: "Mazatlán", vis: "Monterrey", s1: "1", s2: "5", st: "FINAL", fecha: "16 ENE", hora: "Fin" },
+        { liga: "LIGA MX", local: "Chivas", vis: "Querétaro", s1: "2", s2: "1", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
+        { liga: "LIGA MX", local: "Cruz Azul", vis: "Puebla", s1: "1", s2: "0", st: "FINAL", fecha: "17 ENE", hora: "Fin" },
+        { liga: "LIGA MX", local: "Pachuca", vis: "América", s1: "1", s2: "1", st: "FINAL", fecha: "18 ENE", hora: "Fin" },
+        { liga: "LIGA MX", local: "Tigres", vis: "Toluca", s1: "0", s2: "0", st: "FINAL", fecha: "17 ENE", hora: "Fin" }
+    ];
 
-        function renderScores() {
-            let html = "";
-            const scrollData = [...liveScores, ...liveScores, ...liveScores]; // Triplicamos para flujo infinito
-            scrollData.forEach(game => {
-                html += `
-                <div class="score-card">
-                    <div class="score-league-row"><span>${game.liga}</span><span>${game.fecha} | ${game.hora}</span></div>
-                    <div class="score-teams">
-                        <div style="display:flex; flex-direction:column;"><span>${game.local}</span><span>${game.vis}</span></div>
-                        <div style="display:flex; flex-direction:column; text-align:right;">
-                            <span class="score-val">${game.s1}</span><span class="score-val">${game.s2}</span>
-                        </div>
+    function renderScores() {
+        if (!marcadoresContainer) return; // Seguridad por si no existe el div
+        let html = "";
+        const scrollData = [...liveScores, ...liveScores, ...liveScores]; 
+        scrollData.forEach(game => {
+            html += `
+            <div class="score-card">
+                <div class="score-league-row"><span>${game.liga}</span><span>${game.fecha} | ${game.hora}</span></div>
+                <div class="score-teams">
+                    <div style="display:flex; flex-direction:column;"><span>${game.local}</span><span>${game.vis}</span></div>
+                    <div style="display:flex; flex-direction:column; text-align:right;">
+                        <span class="score-val">${game.s1}</span><span class="score-val">${game.s2}</span>
                     </div>
-                </div>`;
-            });
-            marcadoresContainer.innerHTML = html;
-        }
-        renderScores();
+                </div>
+            </div>`;
+        });
+        marcadoresContainer.innerHTML = html;
+    }
+    
+    // Ejecutar la función
+    renderScores();
 
-        // 3. CARRUSEL
-        let slideIndex = 1;
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("slide");
-            if (n > slides.length) slideIndex = 1;
-            if (n < 1) slideIndex = slides.length;
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                slides[i].classList.remove("active");
-            }
-            slides[slideIndex-1].style.display = "flex";
-            setTimeout(() => slides[slideIndex-1].classList.add("active"), 10);
+    // 3. CARRUSEL
+    let slideIndex = 1;
+    function showSlides(n) {
+        let slides = document.getElementsByClassName("slide");
+        if (slides.length === 0) return;
+        if (n > slides.length) slideIndex = 1;
+        if (n < 1) slideIndex = slides.length;
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            slides[i].classList.remove("active");
         }
-        function plusSlides(n) { showSlides(slideIndex += n); }
-        setInterval(() => plusSlides(1), 3000);
-        showSlides(slideIndex);
-    </script>
-</body>
-</html>
-
+        slides[slideIndex-1].style.display = "flex";
+        setTimeout(() => slides[slideIndex-1].classList.add("active"), 10);
+    }
+    function plusSlides(n) { showSlides(slideIndex += n); }
+    
+    // Iniciar carrusel automático
+    setInterval(() => plusSlides(1), 3000);
+    showSlides(slideIndex);
+</script>
 
 
 
