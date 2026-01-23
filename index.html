@@ -61,7 +61,7 @@
     <script type="text/babel">
       const { useState, useEffect } = React;
 
-      // --- CONSTANTS VINCULADAS ---
+      // --- DATOS ---
       const LIVE_SCORES = [
         { liga: "LIGA MX", local: "Puebla", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "19:00" },
         { liga: "LIGA MX", local: "Pumas", vis: "Santos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "21:00" },
@@ -69,10 +69,7 @@
         { liga: "NFL CONF", local: "Seahawks", vis: "Rams", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "17:30" },
         { liga: "NFL CONF", local: "Broncos", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "14:00" },
         { liga: "MÉXICO", local: "México", vis: "Panamá", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "22 ENE", hora: "20:00" },
-        { liga: "MÉXICO", local: "México", vis: "Bolivia", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "19:30" },
-        { liga: "LIGA MX", local: "Atl. San Luis", vis: "Chivas", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "17:00" },
-        { liga: "LIGA MX", local: "Monterrey", vis: "Tijuana", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "19:00" },
-        { liga: "LIGA MX", local: "América", vis: "Necaxa", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "21:00" }
+        { liga: "MÉXICO", local: "México", vis: "Bolivia", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "19:30" }
       ];
 
       const LATEST_NEWS = [
@@ -90,57 +87,14 @@
         { id: "hero-3", tag: "LA LIGA", title: "Barça se despega: Líder absoluto con 49 puntos", image: "https://picsum.photos/seed/madridhero/1200/600", link: "nota-barca-lider.html" }
       ];
 
-      // TABLAS CON LINKS ACTUALIZADOS
       const STANDINGS = [
-        { 
-          name: "LIGA MX", 
-          icon: "fa-futbol", 
-          link: "futbol.html",
-          rows: [{ name: "Chivas", val: "9" }, { name: "Toluca", val: "7" }, { name: "Monterrey", val: "6" }, { name: "Cruz Azul", val: "6" }, { name: "Atlas", val: "6" }] 
-        },
-        { 
-          name: "LA LIGA", 
-          icon: "fa-flag", 
-          link: "futbol.html",
-          rows: [{ name: "FC Barcelona", val: "49" }, { name: "Real Madrid", val: "48" }, { name: "Villarreal", val: "41" }, { name: "Atlético Madrid", val: "41" }, { name: "Espanyol", val: "34" }] 
-        },
-        { 
-          name: "PREMIER", 
-          icon: "fa-crown", 
-          link: "futbol.html",
-          rows: [{ name: "Arsenal FC", val: "50" }, { name: "Man City", val: "43" }, { name: "Aston Villa", val: "43" }, { name: "Liverpool FC", val: "36" }, { name: "Man United", val: "35" }] 
-        },
-        { 
-          name: "NFL SEEDS", 
-          icon: "fa-football", 
-          link: "seccion-nfl.html",
-          rows: [{ name: "Seahawks", val: "(1)" }, { name: "Broncos", val: "(1)" }, { name: "Patriots", val: "(2)" }, { name: "Rams", val: "(5)" }, { name: "Lions", val: "Finalista" }] 
-        }
+        { name: "LIGA MX", icon: "fa-futbol", link: "futbol.html", rows: [{ name: "Chivas", val: "9" }, { name: "Toluca", val: "7" }, { name: "Monterrey", val: "6" }, { name: "Cruz Azul", val: "6" }, { name: "Atlas", val: "6" }] },
+        { name: "LA LIGA", icon: "fa-flag", link: "futbol.html", rows: [{ name: "FC Barcelona", val: "49" }, { name: "Real Madrid", val: "48" }, { name: "Villarreal", val: "41" }, { name: "Atlético Madrid", val: "41" }, { name: "Espanyol", val: "34" }] },
+        { name: "PREMIER", icon: "fa-crown", link: "futbol.html", rows: [{ name: "Arsenal FC", val: "50" }, { name: "Man City", val: "43" }, { name: "Aston Villa", val: "43" }, { name: "Liverpool FC", val: "36" }, { name: "Man United", val: "35" }] },
+        { name: "NFL SEEDS", icon: "fa-football", link: "seccion-nfl.html", rows: [{ name: "Seahawks", val: "(1)" }, { name: "Broncos", val: "(1)" }, { name: "Patriots", val: "(2)" }, { name: "Rams", val: "(5)" }, { name: "Lions", val: "Finalista" }] }
       ];
 
-      const MENU_LINKS = [
-        { name: 'Inicio', link: 'index.html' },
-        { name: 'NFL', link: 'seccion-nfl.html' },
-        { name: 'Motor', link: 'seccion-motor.html' },
-        { name: 'Crónicas', link: 'cronicas-del-balon.html', special: true },
-        { name: 'Liga MX', link: 'futbol.html' },
-        { name: 'Beisbol', link: 'seccion-beisbol.html' },
-        { name: 'Boxeo', link: 'boxeo.html' },
-        { name: 'Nosotros', link: 'quienes-somos.html' }
-      ];
-
-      const LEAGUES_ICONS = [
-        { name: "NFL", icon: "fa-football", link: "seccion-nfl.html" },
-        { name: "Fútbol", icon: "fa-futbol", link: "futbol.html" },
-        { name: "Béisbol", icon: "fa-baseball-bat-ball", link: "seccion-beisbol.html" },
-        { name: "Tenis", icon: "fa-baseball", link: "australian-open-2026.html" },
-        { name: "Crónicas", icon: "fa-book-open", link: "cronicas-del-balon.html", special: true },
-        { name: "Motor", icon: "fa-flag-checkered", link: "seccion-motor.html" },
-        { name: "Boxeo", icon: "fa-hand-fist", link: "boxeo.html" },
-        { name: "Nosotros", icon: "fa-users", link: "quienes-somos.html" }
-      ];
-
-      // --- APP COMPONENT ---
+      // --- COMPONENTE PRINCIPAL ---
       const App = () => {
         const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
         const [activeSlide, setActiveSlide] = useState(0);
@@ -158,10 +112,9 @@
             <div className="bg-black py-2 px-[5%] flex justify-between items-center text-[0.7rem] text-f1-muted border-b border-white/10">
               <div className="uppercase tracking-widest">CDMX | 21 ENE 2026</div>
               <div className="flex gap-4">
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-facebook-f"></i></a>
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-x-twitter"></i></a>
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-instagram"></i></a>
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-tiktok"></i></a>
+                <i className="fa-brands fa-facebook-f hover:text-f1-accent cursor-pointer"></i>
+                <i className="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer"></i>
+                <i className="fa-brands fa-instagram hover:text-f1-accent cursor-pointer"></i>
               </div>
             </div>
 
@@ -174,26 +127,19 @@
                 </span>
               </a>
 
-              <button className="md:hidden text-2xl text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                <i className={`fa-solid ${mobileMenuOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
-              </button>
-
-              <nav className={`${mobileMenuOpen ? 'flex' : 'hidden'} md:flex absolute md:static top-full left-0 w-full md:w-auto flex-col md:flex-row bg-black md:bg-transparent p-6 md:p-0 gap-6 items-center border-b border-white/10 md:border-none`}>
-                {MENU_LINKS.map((item) => (
-                  <a key={item.name} href={item.link} className={`font-header font-bold text-sm uppercase tracking-wider transition-colors hover:text-f1-accent ${item.special ? 'text-f1-special border-b-2 border-f1-special' : 'text-f1-muted'}`}>
-                    {item.name}
+              <nav className="hidden md:flex gap-6 items-center">
+                {['Inicio', 'NFL', 'Motor', 'Crónicas', 'Liga MX', 'Beisbol', 'Boxeo'].map((item) => (
+                  <a key={item} href={item === 'NFL' ? 'seccion-nfl.html' : item === 'Motor' ? 'seccion-motor.html' : item === 'Crónicas' ? 'cronicas-del-balon.html' : item === 'Liga MX' ? 'futbol.html' : '#'} className="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent transition-colors">
+                    {item}
                   </a>
                 ))}
               </nav>
-
-              <a href="australian-open-2026.html" className="hidden lg:block bg-f1-primary hover:bg-f1-primary/80 transition-all px-6 py-2 rounded font-bold uppercase text-xs tracking-widest">Mundial '26</a>
+              <a href="australian-open-2026.html" className="hidden lg:block bg-f1-primary px-6 py-2 rounded font-bold uppercase text-xs tracking-widest">Mundial '26</a>
             </header>
 
             {/* SCORE TICKER */}
             <div className="bg-[#080808] border-b border-white/10 flex h-[75px] overflow-hidden relative z-100">
-              <div className="bg-f1-primary text-white font-header font-extrabold flex items-center px-6 text-[0.8rem] uppercase whitespace-nowrap z-20 shadow-[10px_0_20px_black]">
-                Marcadores
-              </div>
+              <div className="bg-f1-primary text-white font-header font-extrabold flex items-center px-6 text-[0.8rem] uppercase whitespace-nowrap z-20 shadow-[10px_0_20px_black]">Marcadores</div>
               <div className="flex animate-scroll whitespace-nowrap items-center">
                 {[...LIVE_SCORES, ...LIVE_SCORES].map((game, i) => (
                   <div key={i} className="min-w-[240px] px-6 border-r border-white/10 py-2 flex flex-col justify-center">
@@ -202,23 +148,16 @@
                       <span>{game.fecha} | {game.hora}</span>
                     </div>
                     <div className="flex justify-between font-semibold text-[0.85rem] mt-1">
-                      <div className="flex flex-col">
-                        <span>{game.local}</span>
-                        <span>{game.vis}</span>
-                      </div>
-                      <div className="flex flex-col text-right font-header text-f1-accent">
-                        <span>{game.s1}</span>
-                        <span>{game.s2}</span>
-                      </div>
+                      <div className="flex flex-col"><span>{game.local}</span><span>{game.vis}</span></div>
+                      <div className="flex flex-col text-right font-header text-f1-accent"><span>{game.s1}</span><span>{game.s2}</span></div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* MAIN CONTENT */}
             <main className="max-w-[1400px] mx-auto w-full px-5 py-10">
-              {/* HERO CAROUSEL */}
+              {/* HERO */}
               <div className="relative w-full h-[60vh] min-h-[450px] overflow-hidden rounded-xl border-b-4 border-f1-accent bg-black">
                 {CAROUSEL_ITEMS.map((slide, i) => (
                   <div key={slide.id} className={`absolute inset-0 transition-opacity duration-1000 flex flex-col justify-end p-10 md:p-16 ${i === activeSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}>
@@ -232,45 +171,60 @@
                 ))}
               </div>
 
-              {/* LATEST NEWS */}
+              {/* ÚLTIMAS NOTICIAS */}
               <div className="mt-16 mb-8 flex items-center gap-4">
                 <div className="w-1.5 h-10 bg-f1-accent"></div>
                 <h2 className="font-header text-3xl font-bold uppercase tracking-tight">Últimas Noticias</h2>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {LATEST_NEWS.map((item) => (
                   <article key={item.id} className="group bg-f1-card border border-white/10 rounded-xl overflow-hidden hover:border-f1-accent hover:-translate-y-2 transition-all flex flex-col">
                     <div className="h-[220px] overflow-hidden relative">
                       <img src={item.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={item.title} />
-                      {item.specialColor && (
-                        <div className="absolute top-4 left-4 z-10">
-                          <span style={{ backgroundColor: item.specialColor }} className="text-white text-[0.6rem] font-header font-black px-2 py-1 rounded shadow-lg uppercase">{item.tag}</span>
-                        </div>
-                      )}
+                      {item.specialColor && <div className="absolute top-4 left-4 z-10"><span style={{ backgroundColor: item.specialColor }} className="text-white text-[0.6rem] font-header font-black px-2 py-1 rounded shadow-lg uppercase">{item.tag}</span></div>}
                     </div>
                     <div className="p-6 flex flex-col flex-grow">
                       {!item.specialColor && <span className="text-f1-accent text-[0.65rem] font-extrabold uppercase mb-2">{item.tag}</span>}
                       <h3 className="font-header text-xl font-bold leading-tight mb-4 group-hover:text-f1-accent transition-colors">{item.title}</h3>
-                      {item.description && <p className="text-f1-muted text-sm mb-4 line-clamp-2">{item.description}</p>}
-                      <div className="mt-auto">
-                        <a href={item.link} className="inline-block font-bold text-xs uppercase border-b-2 border-f1-accent pb-0.5 tracking-wider hover:text-f1-accent">Leer más &rarr;</a>
-                      </div>
+                      <a href={item.link} className="mt-auto inline-block font-bold text-xs uppercase border-b-2 border-f1-accent pb-0.5 tracking-wider">Leer más &rarr;</a>
                     </div>
                   </article>
                 ))}
               </div>
 
-              {/* STANDINGS ACTUALIZADAS CON LINKS */}
-              <div className="mt-20 mb-8 flex items-center gap-4">
+              {/* --- SECTION: CRONICAS BANNER (AQUÍ ESTÁ DE VUELTA) --- */}
+              <section className="my-20 bg-gradient-to-r from-black via-[#0a0a0a] to-black border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row items-stretch">
+                <div className="flex-1 p-10 md:p-16 flex flex-col justify-center">
+                  <span className="font-italic italic text-f1-special text-lg mb-2">Nueva Sección Editorial</span>
+                  <h2 className="font-header text-4xl md:text-5xl font-black uppercase leading-none mb-6">Crónicas del Balón</h2>
+                  <p className="text-f1-muted text-lg mb-8 max-w-lg leading-relaxed">
+                    Relatos de leyenda y los genios que forjaron la historia del fútbol. Una columna exclusiva de Sergio López.
+                  </p>
+                  <div>
+                    <a href="cronicas-del-balon.html" className="inline-block bg-f1-special text-black font-header font-black px-8 py-3 rounded uppercase tracking-wider hover:scale-105 transition-transform">
+                      Explorar Historias
+                    </a>
+                  </div>
+                </div>
+                <div className="flex-1 min-h-[300px] relative">
+                  <img 
+                    src="https://picsum.photos/seed/vintage/800/600" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" 
+                    alt="Cronicas" 
+                  />
+                </div>
+              </section>
+
+              {/* POSICIONES */}
+              <div className="mb-8 flex items-center gap-4">
                 <div className="w-1.5 h-10 bg-f1-accent"></div>
                 <h2 className="font-header text-3xl font-bold uppercase tracking-tight">Posiciones</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 {STANDINGS.map((league) => (
-                  <div key={league.name} className="bg-f1-card border border-white/10 rounded-xl overflow-hidden flex flex-col hover:border-f1-accent/50 transition-colors">
-                    <a href={league.link} className="bg-white/5 p-4 border-b-2 border-f1-primary flex justify-between items-center group/header">
-                      <span className="font-header font-bold text-sm uppercase tracking-widest group-hover/header:text-f1-accent transition-colors">{league.name}</span>
+                  <div key={league.name} className="bg-f1-card border border-white/10 rounded-xl overflow-hidden flex flex-col">
+                    <a href={league.link} className="bg-white/5 p-4 border-b-2 border-f1-primary flex justify-between items-center hover:bg-white/10 transition-colors">
+                      <span className="font-header font-bold text-sm uppercase tracking-widest">{league.name}</span>
                       <i className={`fa-solid ${league.icon} text-f1-accent`}></i>
                     </a>
                     <div className="p-2 flex-grow">
@@ -278,30 +232,15 @@
                         <tbody>
                           {league.rows.map((row, idx) => (
                             <tr key={idx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                              <td className="py-3 px-3 flex items-center">
-                                <span className="w-5 font-black text-f1-accent">{idx + 1}</span>
-                                <span className="font-medium">{row.name}</span>
-                              </td>
+                              <td className="py-3 px-3 flex items-center"><span className="w-5 font-black text-f1-accent">{idx + 1}</span>{row.name}</td>
                               <td className="py-3 px-3 text-right font-header font-bold text-f1-accent">{row.val}</td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
                     </div>
-                    <a href={league.link} className="bg-black/40 text-center py-3 text-[0.65rem] font-bold uppercase tracking-widest text-white/60 hover:text-white hover:bg-black/60 transition-all border-t border-white/5">
-                      Ver Tabla Completa <i className="fa-solid fa-chevron-right ml-1"></i>
-                    </a>
+                    <a href={league.link} className="bg-black/40 text-center py-3 text-[0.65rem] font-bold uppercase tracking-widest text-white/60 hover:text-white transition-all">Ver Tabla Completa</a>
                   </div>
-                ))}
-              </div>
-
-              {/* CATEGORIES */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-20">
-                {LEAGUES_ICONS.map((league) => (
-                  <a key={league.name} href={league.link} className="group bg-white/5 p-6 rounded-xl border border-transparent hover:border-f1-accent hover:bg-f1-card transition-all flex flex-col items-center text-center">
-                    <i className={`fa-solid ${league.icon} text-3xl mb-4 group-hover:scale-110 transition-transform ${league.special ? 'text-f1-special' : 'text-f1-accent'}`}></i>
-                    <span className="font-header font-bold text-[0.7rem] uppercase tracking-widest group-hover:text-white text-f1-muted">{league.name}</span>
-                  </a>
                 ))}
               </div>
             </main>
@@ -309,32 +248,25 @@
             {/* FOOTER */}
             <footer className="bg-black py-20 px-5 text-center mt-auto">
               <div className="mb-6">
-                <span className="font-header font-black italic text-5xl tracking-tighter uppercase">
-                  F1RST<span className="text-f1-accent">SPORTS</span>
-                </span>
+                <span className="font-header font-black italic text-5xl tracking-tighter uppercase">F1RST<span className="text-f1-accent">SPORTS</span></span>
               </div>
               <div className="max-w-4xl mx-auto mb-12">
                 <p className="text-white text-[0.8rem] md:text-[0.95rem] font-bold uppercase tracking-widest leading-relaxed">
-                  SIEMPRE PR1MERO EN LA INFORMACIÓN DEPORTIVA. ANÁLISIS, OPINIÓN Y LA 
-                  <br className="hidden md:block" />
-                  COBERTURA MÁS COMPLETA DE TUS DEPORTES FAVORITOS.
+                  SIEMPRE PR1MERO EN LA INFORMACIÓN DEPORTIVA. ANÁLISIS, OPINIÓN Y LA <br className="hidden md:block" /> COBERTURA MÁS COMPLETA DE TUS DEPORTES FAVORITOS.
                 </p>
               </div>
               <div className="flex justify-center gap-10 mb-16 text-3xl text-white">
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-facebook"></i></a>
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-x-twitter"></i></a>
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-instagram"></i></a>
-                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-solid fa-envelope"></i></a>
+                <i className="fa-brands fa-facebook hover:text-f1-accent cursor-pointer"></i>
+                <i className="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer"></i>
+                <i className="fa-brands fa-instagram hover:text-f1-accent cursor-pointer"></i>
+                <i className="fa-solid fa-envelope hover:text-f1-accent cursor-pointer"></i>
               </div>
-              <div className="text-[0.65rem] text-white/30 font-black uppercase tracking-[0.3em]">
-                &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
-              </div>
+              <div className="text-[0.65rem] text-white/30 font-black uppercase tracking-[0.3em]">&copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.</div>
             </footer>
           </div>
         );
       };
 
-      // --- RENDER ---
       const root = ReactDOM.createRoot(document.getElementById('root'));
       root.render(<App />);
     </script>
