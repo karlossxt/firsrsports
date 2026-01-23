@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Análisis Equipos Playoffs NFL 2026 | F1rstSports</title>
+    <title>NFL Playoffs: Seattle vs LA Rams | F1rstSports</title>
     <link rel="icon" type="image/png" href="logof1.png">
     
-    <!-- Meta etiquetas -->
+    <!-- Meta etiquetas para Redes Sociales -->
     <meta property="og:site_name" content="F1rstSports">
-    <meta property="og:title" content="Análisis de los equipos clasificados a los Playoffs NFL 2026">
-    <meta property="og:description" content="Conoce a los clasificados, las sorpresas y el jugador clave de cada franquicia rumbo al Super Bowl.">
-    <meta property="og:image" content="https://f1rstsports.com.mx/playoffs-general.jpg">
-    <meta property="og:url" content="https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html">
+    <meta property="og:title" content="El camino al Super Bowl: Seattle vs. LA Rams">
+    <meta property="og:description" content="Duelo de titanes en la NFC Oeste: Seahawks y Rams buscan su lugar en la gloria de la NFL.">
+    <meta property="og:image" content="Super Bowl LIX.png">
     <meta property="og:type" content="article">
     
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
+        :root { --bg-dark: #050505; --bg-card: #0a0a0a; --accent: #ccff00; --primary: #013369; --text-main: #ffffff; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
         body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
         a { text-decoration: none; color: white; transition: 0.3s; }
         
@@ -26,36 +25,24 @@
         .logo-img img { max-height: 50px; width: auto; }
 
         .article-container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        .article-header h1 { font-family: var(--font-head); font-size: 2.5rem; line-height: 1.2; margin-bottom: 10px; }
+        .article-header h1 { font-family: var(--font-head); font-size: 2.5rem; line-height: 1.2; margin-bottom: 10px; text-transform: uppercase; font-weight: 700; }
         .meta-data { color: #888; font-size: 0.9rem; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 15px; }
         
-        /* BOTONES COMPARTIR */
         .share-box { margin-bottom: 25px; display: flex; gap: 10px; align-items: center; }
         .share-btn { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 1rem; transition: 0.3s; }
         .sb-face { background: #1877F2; } .sb-x { background: #000; border: 1px solid #333; } .sb-whats { background: #25D366; }
-        .share-btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
 
-        .main-image { width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; }
-        /* Clase especial para los brackets de conferencia para que no sean tan altos */
-        .bracket-image { width: 100%; height: auto; border-radius: 8px; margin: 20px 0; border: 1px solid #333; }
-
+        .main-image { width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; border: 1px solid #333; }
         .img-caption { font-size: 0.85rem; color: #aaa; border-left: 3px solid var(--accent); padding-left: 10px; margin-bottom: 30px; font-style: italic; }
         
-        .article-body p { font-size: 1.1rem; line-height: 1.8; color: #d4d4d8; margin-bottom: 25px; }
+        .article-body p { font-size: 1.1rem; line-height: 1.8; color: #d4d4d8; margin-bottom: 25px; text-align: justify; }
         .article-body strong { color: var(--accent); }
+        .article-body h3 { font-family: var(--font-head); font-size: 1.8rem; margin-top: 40px; margin-bottom: 15px; color: white; border-left: 5px solid var(--primary); padding-left: 15px; text-transform: uppercase; }
         
-        .conf-title { font-family: var(--font-head); font-size: 1.8rem; margin-top: 50px; margin-bottom: 20px; padding: 10px; border-radius: 4px; color: white; display: flex; align-items: center; gap: 10px; }
-        .afc-style { border-left: 5px solid #d50a0a; background: linear-gradient(90deg, #222, transparent); }
-        .nfc-style { border-left: 5px solid #003369; background: linear-gradient(90deg, #222, transparent); }
+        .highlight-box { background: #0a0a0a; border: 1px solid var(--primary); padding: 20px; border-radius: 8px; margin: 30px 0; }
+        .highlight-box h4 { margin-top: 0; color: var(--accent); font-family: var(--font-head); text-transform: uppercase; }
 
-        .team-block { margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 20px; }
-        .team-name { font-size: 1.3rem; font-weight: bold; color: white; margin-bottom: 5px; display: block; }
-        .key-player { color: var(--accent); font-weight: bold; font-style: italic; }
-
-        .conclusion-box { background: #111; border: 1px solid var(--accent); padding: 20px; border-radius: 8px; margin-top: 40px; }
-        .conclusion-box h3 { color: var(--accent); font-family: var(--font-head); margin-top: 0; }
-
-        .back-btn { display: inline-block; margin-top: 40px; padding: 10px 20px; background: var(--primary); color: white; font-weight: bold; border-radius: 4px; }
+        .back-btn { display: inline-block; margin-top: 40px; padding: 10px 20px; background: var(--primary); color: white; font-weight: bold; border-radius: 4px; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
         .back-btn:hover { background: var(--accent); color: black; }
 
         footer { background: black; padding: 40px 20px; border-top: 1px solid #333; display: flex; flex-direction: column; align-items: center; gap: 20px; }
@@ -66,134 +53,40 @@
 
     <header>
         <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
-        <a href="index.html" style="font-weight:bold; color:var(--accent);">VOLVER AL INICIO</a>
+        <a href="index.html" style="font-weight:bold; color:var(--accent); font-size: 0.8rem;">VOLVER AL INICIO</a>
     </header>
 
     <div class="article-container">
         <div class="article-header">
-            <span style="background:var(--accent); color:black; padding:2px 8px; font-weight:bold; font-size:0.8rem;">NFL &bull; PLAYOFFS</span>
-            <h1>Análisis de los equipos clasificados a los Playoffs NFL 2025–2026</h1>
-            <div class="meta-data">Por <strong>Carlos Abarca</strong> &bull; 08 Ene 2026</div>
-            
+            <span style="background:var(--accent); color:black; padding:2px 8px; font-weight:bold; font-size:0.8rem;">NFL PLAYOFFS &bull; NFC WEST</span>
+            <h1>El camino al Super Bowl: Seattle vs. LA Rams</h1>
+            <div class="meta-data">Por <strong>Redacción F1rstSports</strong> &bull; 21 Ene 2026</div>
+
             <div class="share-box">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html" target="_blank" class="share-btn sb-face"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://twitter.com/intent/tweet?text=Análisis Playoffs NFL 2026&url=https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html" target="_blank" class="share-btn sb-x"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://api.whatsapp.com/send?text=Mira este análisis: https://f1rstsports.com.mx/analisis-equipos-playoffs-nfl.html" target="_blank" class="share-btn sb-whats"><i class="fa-brands fa-whatsapp"></i></a>
+                <div class="share-btn sb-face"><i class="fa-brands fa-facebook-f"></i></div>
+                <div class="share-btn sb-x"><i class="fa-brands fa-x-twitter"></i></div>
+                <div class="share-btn sb-whats"><i class="fa-brands fa-whatsapp"></i></div>
             </div>
         </div>
 
         <div class="article-body">
-            
-            <!-- IMAGEN PRINCIPAL (FULL BRACKET) -->
-            <img src="playoffs-general.jpg" class="main-image" alt="Bracket Playoffs NFL 2026">
-            <div class="img-caption">El camino al Super Bowl LX está definido.</div>
+            <img src="Super Bowl LIX.png" class="main-image" alt="NFL Road to Super Bowl">
+            <div class="img-caption">La rivalidad de la NFC Oeste se traslada a la postemporada.</div>
 
-            <!-- CONFERENCIA AMERICANA -->
-            <div class="conf-title afc-style">🔵 CONFERENCIA AMERICANA (AFC)</div>
-            
-            <!-- IMAGEN AFC AQUÍ -->
-            <img src="playoffs-afc.jpg" class="bracket-image" alt="Bracket AFC">
+            <p><strong>Seattle Seahawks</strong> y <strong>Los Angeles Rams</strong> se enfrentan en un duelo decisivo que marca un paso clave en el camino hacia el Super Bowl. El choque entre dos rivales de la NFC Oeste no solo representa una nueva edición de una histórica rivalidad, sino también una prueba de carácter y estrategia en una instancia donde no hay margen de error.</p>
 
-            <div class="team-block">
-                <span class="team-name">1. Denver Broncos</span>
-                <p>Los Broncos llegan como el equipo más completo de la AFC, con una ofensiva balanceada y una defensa consistente que domina en casa.</p>
-                <p><span class="key-player">🔑 Clave: Bo Nix (QB)</span> — Su madurez y toma de decisiones han elevado el nivel ofensivo.</p>
+            <h3>Dominio y Experiencia</h3>
+            <p>Seattle llega al encuentro apoyado en su experiencia en partidos de alta presión y en un planteamiento equilibrado que combina solidez defensiva con efectividad ofensiva. La capacidad del equipo para manejar los tiempos del partido y capitalizar las oportunidades ha sido determinante a lo largo de la temporada, consolidándolo como un contendiente serio en la postemporada.</p>
+
+            <div class="highlight-box">
+                <h4>Factor Clave</h4>
+                <p>En los últimos 5 enfrentamientos directos, la diferencia de puntos promedio ha sido de apenas 4 unidades, lo que vaticina un duelo de pronóstico reservado.</p>
             </div>
 
-            <div class="team-block">
-                <span class="team-name">2. New England Patriots</span>
-                <p>Combinan disciplina, ejecución táctica y una defensa difícil de enfrentar. Saben jugar partidos cerrados.</p>
-                <p><span class="key-player">🔑 Clave: Drake Maye (QB)</span> — El novato ha sorprendido por su liderazgo.</p>
-            </div>
+            <h3>Dinamismo Angelino</h3>
+            <p>Por su parte, los LA Rams apuestan por un esquema agresivo y versátil, con una ofensiva dinámica y una defensa capaz de generar presión constante. El conjunto angelino ha mostrado regularidad y profundidad en su plantel, factores que lo mantienen como uno de los equipos más competitivos de la conferencia.</p>
 
-            <div class="team-block">
-                <span class="team-name">3. Jacksonville Jaguars</span>
-                <p>Proyecto joven pero estable, con una ofensiva capaz de producir puntos y una defensa que responde.</p>
-                <p><span class="key-player">🔑 Clave: Trevor Lawrence (QB)</span> — Su experiencia en playoffs puede marcar diferencia.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">4. Pittsburgh Steelers</span>
-                <p>Vuelven gracias a su identidad defensiva y fortaleza mental. Incómodos para cualquier rival.</p>
-                <p><span class="key-player">🔑 Clave: Jalen Ramsey (CB)</span> — Su impacto en la secundaria neutraliza a los mejores.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">5. Houston Texans (WC)</span>
-                <p>Una de las sorpresas del año, defensa agresiva y ofensiva eficiente sin depender de una sola estrella.</p>
-                <p><span class="key-player">🔑 Clave: Defensiva colectiva</span> — Presión al QB y entregas de balón.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">6. Buffalo Bills (WC)</span>
-                <p>Peligrosos por su explosividad. Cuando entran en ritmo, pueden vencer a cualquiera.</p>
-                <p><span class="key-player">🔑 Clave: Josh Allen (QB)</span> — Su brazo y movilidad son una amenaza constante.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">7. Los Angeles Chargers (WC)</span>
-                <p>Ofensiva capaz de anotar rápido, aunque su inconsistencia defensiva es su mayor riesgo.</p>
-                <p><span class="key-player">🔑 Clave: Justin Herbert (QB)</span> — Si juega sin errores, puede cargar al equipo.</p>
-            </div>
-
-            <!-- CONFERENCIA NACIONAL -->
-            <div class="conf-title nfc-style">🔴 CONFERENCIA NACIONAL (NFC)</div>
-
-            <!-- IMAGEN NFC AQUÍ -->
-            <img src="playoffs-nfc.jpg" class="bracket-image" alt="Bracket NFC">
-
-            <div class="team-block">
-                <span class="team-name">1. Seattle Seahawks</span>
-                <p>El equipo más sólido de la NFC, ofensiva explosiva y una localía difícil de superar.</p>
-                <p><span class="key-player">🔑 Clave: Jaxon Smith-Njigba (WR)</span> — Genera yardas después de la recepción.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">2. Chicago Bears</span>
-                <p>Renovación exitosa, defensa física y ofensiva dinámica liderada por su joven QB.</p>
-                <p><span class="key-player">🔑 Clave: Caleb Williams (QB)</span> — Creatividad y talento impredecible.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">3. Philadelphia Eagles</span>
-                <p>Saben jugar en playoffs. No tuvieron su mejor temporada, pero su experiencia pesa en enero.</p>
-                <p><span class="key-player">🔑 Clave: Lane Johnson (OT)</span> — Estabiliza la línea y permite que el ataque funcione.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">4. Carolina Panthers</span>
-                <p>Campeones divisionales con récord negativo, pero pueden ser un rival incómodo.</p>
-                <p><span class="key-player">🔑 Clave: Bryce Young (QB)</span> — Su improvisación es la esperanza del equipo.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">5. Los Angeles Rams (WC)</span>
-                <p>Experiencia y talento ofensivo. Peligrosos si controlan el ritmo.</p>
-                <p><span class="key-player">🔑 Clave: Matthew Stafford (QB)</span> — Su experiencia en postemporada es invaluable.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">6. San Francisco 49ers (WC)</span>
-                <p>Ofensiva creativa y física, capaz de dominar por tierra y aire.</p>
-                <p><span class="key-player">🔑 Clave: Christian McCaffrey (RB)</span> — El corazón del ataque.</p>
-            </div>
-
-            <div class="team-block">
-                <span class="team-name">7. Green Bay Packers (WC)</span>
-                <p>Último invitado, pero con defensa capaz de provocar errores.</p>
-                <p><span class="key-player">🔑 Clave: Defensiva colectiva</span> — Presión constante y robos de balón.</p>
-            </div>
-
-            <!-- CONCLUSIÓN -->
-            <div class="conclusion-box">
-                <h3>📌 Conclusión General</h3>
-                <ul style="color:#ddd; padding-left:20px; line-height:1.8;">
-                    <li><strong>Favoritos:</strong> Broncos y Seahawks.</li>
-                    <li><strong>Contendientes reales:</strong> Patriots, Bills, Eagles, 49ers.</li>
-                    <li><strong>Posibles sorpresas:</strong> Steelers, Rams, Packers.</li>
-                </ul>
-            </div>
-
+            <p>El enfrentamiento promete ser intenso y táctico, donde cada ajuste y cada jugada pueden inclinar la balanza. Más allá del resultado, el duelo entre Seattle y Rams simboliza la exigencia máxima de los playoffs de la NFL, con el <strong>Super Bowl</strong> como objetivo final y un solo boleto en juego para continuar el recorrido hacia la gloria.</p>
         </div>
 
         <a href="index.html" class="back-btn">&larr; Regresar a Portada</a>
@@ -202,7 +95,6 @@
     <footer>
         <span class="brand-text">F1RSTSPORTS</span>
         <div style="margin-top: 20px; font-size: 0.8rem; text-align: center;">
-            <a href="aviso-privacidad.html" style="color: #888; text-decoration: underline;">Aviso de Privacidad</a> &bull; 
             <a href="quienes-somos.html" style="color: #888; text-decoration: underline;">Quiénes Somos</a>
         </div>
         <p style="color:#555; font-size:0.8rem; margin-top:10px;">&copy; 2026 F1rstSports Media.</p>
