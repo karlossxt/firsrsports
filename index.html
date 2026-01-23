@@ -61,7 +61,7 @@
     <script type="text/babel">
       const { useState, useEffect } = React;
 
-      // --- CONSTANTS VINCULADAS A GITHUB ---
+      // --- CONSTANTS VINCULADAS ---
       const LIVE_SCORES = [
         { liga: "LIGA MX", local: "Puebla", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "19:00" },
         { liga: "LIGA MX", local: "Pumas", vis: "Santos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "21:00" },
@@ -77,7 +77,7 @@
 
       const LATEST_NEWS = [
         { id: "1", tag: "BÉISBOL", title: "Clásico Mundial 2026: Sedes, estrellas e historias", image: "https://picsum.photos/seed/wbc/800/600", link: "nota-wbc-2026.html" },
-        { id: "2", tag: "MLB | SALÓN DE LA FAMA", title: "Carlos Beltrán y Andrew Jones: los nuevos huéspedes de Cooperstown", image: "https://picsum.photos/seed/cooperstown/800/600", description: "Hitos históricos: El boricua y el curazoleño alcanzan la inmortalidad en la clase 2026.", link: "nota-cooperstown.html", specialColor: "#003278" },
+        { id: "2", tag: "MLB | SALÓN DE LA FAMA", title: "Carlos Beltrán y Andrew Jones: los nuevos huéspedes de Cooperstown", image: "https://picsum.photos/seed/cooperstown/800/600", description: "Hitos históricos: El boricua y el curazoleño alcanzan la inmortalidad.", link: "nota-cooperstown.html", specialColor: "#003278" },
         { id: "3", tag: "SELECCIÓN MEXICANA", title: "Invasión Rojiblanca: 8 jugadores de Chivas llamados al Tri", image: "https://picsum.photos/seed/chivas/800/600", link: "nota-chivas-seleccion.html", specialColor: "#d50a0a" },
         { id: "4", tag: "LA LIGA", title: "Florentino le hace las maletas a Xabi Alonso", image: "https://picsum.photos/seed/xabi/800/600", link: "nota-xabi-alonso.html" },
         { id: "5", tag: "BÉISBOL", title: "Kershaw pospone el retiro: Lanzará con EE. UU. en el Clásico Mundial", image: "https://picsum.photos/seed/kershaw/800/600", link: "nota-kershaw-wbc.html", specialColor: "#2563eb" },
@@ -90,11 +90,32 @@
         { id: "hero-3", tag: "LA LIGA", title: "Barça se despega: Líder absoluto con 49 puntos", image: "https://picsum.photos/seed/madridhero/1200/600", link: "nota-barca-lider.html" }
       ];
 
+      // TABLAS CON LINKS ACTUALIZADOS
       const STANDINGS = [
-        { name: "LIGA MX", icon: "fa-futbol", rows: [{ name: "Chivas", val: "9" }, { name: "Toluca", val: "7" }, { name: "Monterrey", val: "6" }, { name: "Cruz Azul", val: "6" }, { name: "Atlas", val: "6" }] },
-        { name: "LA LIGA", icon: "fa-flag", rows: [{ name: "FC Barcelona", val: "49" }, { name: "Real Madrid", val: "48" }, { name: "Villarreal", val: "41" }, { name: "Atlético Madrid", val: "41" }, { name: "Espanyol", val: "34" }] },
-        { name: "PREMIER", icon: "fa-crown", rows: [{ name: "Arsenal FC", val: "50" }, { name: "Man City", val: "43" }, { name: "Aston Villa", val: "43" }, { name: "Liverpool FC", val: "36" }, { name: "Man United", val: "35" }] },
-        { name: "NFL SEEDS", icon: "fa-football", rows: [{ name: "Seahawks", val: "(1)" }, { name: "Broncos", val: "(1)" }, { name: "Patriots", val: "(2)" }, { name: "Rams", val: "(5)" }, { name: "Lions", val: "Finalista" }] }
+        { 
+          name: "LIGA MX", 
+          icon: "fa-futbol", 
+          link: "futbol.html",
+          rows: [{ name: "Chivas", val: "9" }, { name: "Toluca", val: "7" }, { name: "Monterrey", val: "6" }, { name: "Cruz Azul", val: "6" }, { name: "Atlas", val: "6" }] 
+        },
+        { 
+          name: "LA LIGA", 
+          icon: "fa-flag", 
+          link: "futbol.html",
+          rows: [{ name: "FC Barcelona", val: "49" }, { name: "Real Madrid", val: "48" }, { name: "Villarreal", val: "41" }, { name: "Atlético Madrid", val: "41" }, { name: "Espanyol", val: "34" }] 
+        },
+        { 
+          name: "PREMIER", 
+          icon: "fa-crown", 
+          link: "futbol.html",
+          rows: [{ name: "Arsenal FC", val: "50" }, { name: "Man City", val: "43" }, { name: "Aston Villa", val: "43" }, { name: "Liverpool FC", val: "36" }, { name: "Man United", val: "35" }] 
+        },
+        { 
+          name: "NFL SEEDS", 
+          icon: "fa-football", 
+          link: "seccion-nfl.html",
+          rows: [{ name: "Seahawks", val: "(1)" }, { name: "Broncos", val: "(1)" }, { name: "Patriots", val: "(2)" }, { name: "Rams", val: "(5)" }, { name: "Lions", val: "Finalista" }] 
+        }
       ];
 
       const MENU_LINKS = [
@@ -106,6 +127,17 @@
         { name: 'Beisbol', link: 'seccion-beisbol.html' },
         { name: 'Boxeo', link: 'boxeo.html' },
         { name: 'Nosotros', link: 'quienes-somos.html' }
+      ];
+
+      const LEAGUES_ICONS = [
+        { name: "NFL", icon: "fa-football", link: "seccion-nfl.html" },
+        { name: "Fútbol", icon: "fa-futbol", link: "futbol.html" },
+        { name: "Béisbol", icon: "fa-baseball-bat-ball", link: "seccion-beisbol.html" },
+        { name: "Tenis", icon: "fa-baseball", link: "australian-open-2026.html" },
+        { name: "Crónicas", icon: "fa-book-open", link: "cronicas-del-balon.html", special: true },
+        { name: "Motor", icon: "fa-flag-checkered", link: "seccion-motor.html" },
+        { name: "Boxeo", icon: "fa-hand-fist", link: "boxeo.html" },
+        { name: "Nosotros", icon: "fa-users", link: "quienes-somos.html" }
       ];
 
       // --- APP COMPONENT ---
@@ -229,18 +261,18 @@
                 ))}
               </div>
 
-              {/* STANDINGS */}
+              {/* STANDINGS ACTUALIZADAS CON LINKS */}
               <div className="mt-20 mb-8 flex items-center gap-4">
                 <div className="w-1.5 h-10 bg-f1-accent"></div>
                 <h2 className="font-header text-3xl font-bold uppercase tracking-tight">Posiciones</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
                 {STANDINGS.map((league) => (
-                  <div key={league.name} className="bg-f1-card border border-white/10 rounded-xl overflow-hidden flex flex-col">
-                    <div className="bg-white/5 p-4 border-b-2 border-f1-primary flex justify-between items-center">
-                      <span className="font-header font-bold text-sm uppercase tracking-widest">{league.name}</span>
+                  <div key={league.name} className="bg-f1-card border border-white/10 rounded-xl overflow-hidden flex flex-col hover:border-f1-accent/50 transition-colors">
+                    <a href={league.link} className="bg-white/5 p-4 border-b-2 border-f1-primary flex justify-between items-center group/header">
+                      <span className="font-header font-bold text-sm uppercase tracking-widest group-hover/header:text-f1-accent transition-colors">{league.name}</span>
                       <i className={`fa-solid ${league.icon} text-f1-accent`}></i>
-                    </div>
+                    </a>
                     <div className="p-2 flex-grow">
                       <table className="w-full text-xs text-left">
                         <tbody>
@@ -256,19 +288,31 @@
                         </tbody>
                       </table>
                     </div>
+                    <a href={league.link} className="bg-black/40 text-center py-3 text-[0.65rem] font-bold uppercase tracking-widest text-white/60 hover:text-white hover:bg-black/60 transition-all border-t border-white/5">
+                      Ver Tabla Completa <i className="fa-solid fa-chevron-right ml-1"></i>
+                    </a>
                   </div>
+                ))}
+              </div>
+
+              {/* CATEGORIES */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-20">
+                {LEAGUES_ICONS.map((league) => (
+                  <a key={league.name} href={league.link} className="group bg-white/5 p-6 rounded-xl border border-transparent hover:border-f1-accent hover:bg-f1-card transition-all flex flex-col items-center text-center">
+                    <i className={`fa-solid ${league.icon} text-3xl mb-4 group-hover:scale-110 transition-transform ${league.special ? 'text-f1-special' : 'text-f1-accent'}`}></i>
+                    <span className="font-header font-bold text-[0.7rem] uppercase tracking-widest group-hover:text-white text-f1-muted">{league.name}</span>
+                  </a>
                 ))}
               </div>
             </main>
 
-            {/* --- FOOTER SEGÚN LA IMAGEN --- */}
+            {/* FOOTER */}
             <footer className="bg-black py-20 px-5 text-center mt-auto">
               <div className="mb-6">
                 <span className="font-header font-black italic text-5xl tracking-tighter uppercase">
                   F1RST<span className="text-f1-accent">SPORTS</span>
                 </span>
               </div>
-
               <div className="max-w-4xl mx-auto mb-12">
                 <p className="text-white text-[0.8rem] md:text-[0.95rem] font-bold uppercase tracking-widest leading-relaxed">
                   SIEMPRE PR1MERO EN LA INFORMACIÓN DEPORTIVA. ANÁLISIS, OPINIÓN Y LA 
@@ -276,14 +320,12 @@
                   COBERTURA MÁS COMPLETA DE TUS DEPORTES FAVORITOS.
                 </p>
               </div>
-
               <div className="flex justify-center gap-10 mb-16 text-3xl text-white">
                 <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-facebook"></i></a>
                 <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-x-twitter"></i></a>
                 <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-instagram"></i></a>
                 <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-solid fa-envelope"></i></a>
               </div>
-
               <div className="text-[0.65rem] text-white/30 font-black uppercase tracking-[0.3em]">
                 &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
               </div>
