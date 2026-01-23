@@ -93,7 +93,17 @@
         { name: "PREMIER", icon: "fa-crown", link: "futbol.html", rows: [{ name: "Arsenal FC", val: "50" }, { name: "Man City", val: "43" }, { name: "Aston Villa", val: "43" }, { name: "Liverpool FC", val: "36" }, { name: "Man United", val: "35" }] },
         { name: "NFL SEEDS", icon: "fa-football", link: "seccion-nfl.html", rows: [{ name: "Seahawks", val: "(1)" }, { name: "Broncos", val: "(1)" }, { name: "Patriots", val: "(2)" }, { name: "Rams", val: "(5)" }, { name: "Lions", val: "Finalista" }] }
       ];
-
+// DATA PARA EL GRID DE CATEGORÍAS (LA IMAGEN QUE PASASTE)
+      const CATEGORY_CARDS = [
+        { name: "NFL", icon: "fa-football", link: "seccion-nfl.html" },
+        { name: "Fútbol", icon: "fa-futbol", link: "futbol.html" },
+        { name: "Béisbol", icon: "fa-baseball-bat-ball", link: "seccion-beisbol.html" },
+        { name: "Tenis", icon: "fa-baseball", link: "australian-open-2026.html" },
+        { name: "Crónicas", icon: "fa-book-open", link: "cronicas-del-balon.html", special: true },
+        { name: "Motor", icon: "fa-flag-checkered", link: "seccion-motor.html" },
+        { name: "Boxeo", icon: "fa-hand-fist", link: "boxeo.html" },
+        { name: "Nosotros", icon: "fa-users", link: "quienes-somos.html" }
+      ];
       // --- COMPONENTE PRINCIPAL ---
       const App = () => {
         const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -266,10 +276,27 @@
           </div>
         );
       };
+        {/* --- GRID DE CATEGORÍAS (EL QUE FALTABA) --- */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-20">
+                {CATEGORY_CARDS.map((card) => (
+                  <a 
+                    key={card.name} 
+                    href={card.link} 
+                    className="group bg-white/5 p-6 rounded-xl border border-transparent hover:border-f1-accent hover:bg-f1-card transition-all flex flex-col items-center text-center"
+                  >
+                    <i className={`fa-solid ${card.icon} text-3xl mb-4 group-hover:scale-110 transition-transform ${card.special ? 'text-f1-special' : 'text-f1-accent'}`}></i>
+                    <span className="font-header font-bold text-[0.7rem] uppercase tracking-widest text-f1-muted group-hover:text-white transition-colors">
+                      {card.name}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            </main>
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
       root.render(<App />);
     </script>
 </body>
 </html>
+
 
