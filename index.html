@@ -58,11 +58,10 @@
 <body>
     <div id="root"></div>
 
-    <!-- Todo el código TSX y Constants convertido para ejecución en navegador -->
     <script type="text/babel">
       const { useState, useEffect } = React;
 
-      // --- CONSTANTS ---
+      // --- CONSTANTS VINCULADAS A GITHUB ---
       const LIVE_SCORES = [
         { liga: "LIGA MX", local: "Puebla", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "19:00" },
         { liga: "LIGA MX", local: "Pumas", vis: "Santos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "21:00" },
@@ -77,18 +76,18 @@
       ];
 
       const LATEST_NEWS = [
-        { id: "1", tag: "BÉISBOL", title: "Clásico Mundial 2026: Sedes, estrellas e historias", image: "https://picsum.photos/seed/wbc/800/600", link: "#" },
-        { id: "2", tag: "MLB | SALÓN DE LA FAMA", title: "Carlos Beltrán y Andrew Jones: los nuevos huéspedes de Cooperstown", image: "https://picsum.photos/seed/cooperstown/800/600", description: "Hitos históricos: El boricua y el curazoleño alcanzan la inmortalidad en la clase 2026. Revisa sus récords y la lista completa de latinos en el Salón.", link: "#", specialColor: "#003278" },
-        { id: "3", tag: "SELECCIÓN MEXICANA", title: "Invasión Rojiblanca: 8 jugadores de Chivas llamados al Tri", image: "https://picsum.photos/seed/chivas/800/600", link: "#", specialColor: "#d50a0a" },
-        { id: "4", tag: "LA LIGA", title: "Florentino le hace las maletas a Xabi Alonso", image: "https://picsum.photos/seed/xabi/800/600", link: "#" },
-        { id: "5", tag: "BÉISBOL", title: "Kershaw pospone el retiro: Lanzará con EE. UU. en el Clásico Mundial", image: "https://picsum.photos/seed/kershaw/800/600", link: "#", specialColor: "#2563eb" },
-        { id: "6", tag: "FÚTBOL INT.", title: "Senegal y Marruecos: La gran final de la Copa Africana", image: "https://picsum.photos/seed/afcon/800/600", link: "#" }
+        { id: "1", tag: "BÉISBOL", title: "Clásico Mundial 2026: Sedes, estrellas e historias", image: "https://picsum.photos/seed/wbc/800/600", link: "nota-wbc-2026.html" },
+        { id: "2", tag: "MLB | SALÓN DE LA FAMA", title: "Carlos Beltrán y Andrew Jones: los nuevos huéspedes de Cooperstown", image: "https://picsum.photos/seed/cooperstown/800/600", description: "Hitos históricos: El boricua y el curazoleño alcanzan la inmortalidad en la clase 2026.", link: "nota-cooperstown.html", specialColor: "#003278" },
+        { id: "3", tag: "SELECCIÓN MEXICANA", title: "Invasión Rojiblanca: 8 jugadores de Chivas llamados al Tri", image: "https://picsum.photos/seed/chivas/800/600", link: "nota-chivas-seleccion.html", specialColor: "#d50a0a" },
+        { id: "4", tag: "LA LIGA", title: "Florentino le hace las maletas a Xabi Alonso", image: "https://picsum.photos/seed/xabi/800/600", link: "nota-xabi-alonso.html" },
+        { id: "5", tag: "BÉISBOL", title: "Kershaw pospone el retiro: Lanzará con EE. UU. en el Clásico Mundial", image: "https://picsum.photos/seed/kershaw/800/600", link: "nota-kershaw-wbc.html", specialColor: "#2563eb" },
+        { id: "6", tag: "FÚTBOL INT.", title: "Senegal y Marruecos: La gran final de la Copa Africana", image: "https://picsum.photos/seed/afcon/800/600", link: "nota-afcon-final.html" }
       ];
 
       const CAROUSEL_ITEMS = [
-        { id: "hero-1", tag: "LIGA MX", title: "Chivas: Identidad clara y paso perfecto con Milito", image: "https://picsum.photos/seed/chivashero/1200/600", link: "#" },
-        { id: "hero-2", tag: "NFL PLAYOFFS", title: "El Camino al Super Bowl: Seattle vs LA Rams", image: "https://picsum.photos/seed/nflhero/1200/600", link: "#" },
-        { id: "hero-3", tag: "LA LIGA", title: "Barça se despega: Líder absoluto con 49 puntos", image: "https://picsum.photos/seed/madridhero/1200/600", link: "#" }
+        { id: "hero-1", tag: "LIGA MX", title: "Chivas: Identidad clara y paso perfecto con Milito", image: "https://picsum.photos/seed/chivashero/1200/600", link: "nota-chivas-lider.html" },
+        { id: "hero-2", tag: "NFL PLAYOFFS", title: "El Camino al Super Bowl: Seattle vs LA Rams", image: "https://picsum.photos/seed/nflhero/1200/600", link: "analisis-equipos-playoffs-nfl.html" },
+        { id: "hero-3", tag: "LA LIGA", title: "Barça se despega: Líder absoluto con 49 puntos", image: "https://picsum.photos/seed/madridhero/1200/600", link: "nota-barca-lider.html" }
       ];
 
       const STANDINGS = [
@@ -98,15 +97,15 @@
         { name: "NFL SEEDS", icon: "fa-football", rows: [{ name: "Seahawks", val: "(1)" }, { name: "Broncos", val: "(1)" }, { name: "Patriots", val: "(2)" }, { name: "Rams", val: "(5)" }, { name: "Lions", val: "Finalista" }] }
       ];
 
-      const LEAGUES = [
-        { name: "NFL", icon: "fa-football", link: "#" },
-        { name: "Fútbol", icon: "fa-futbol", link: "#" },
-        { name: "Béisbol", icon: "fa-baseball-bat-ball", link: "#" },
-        { name: "Tenis", icon: "fa-baseball", link: "#" },
-        { name: "Crónicas", icon: "fa-book-open", link: "#", special: true },
-        { name: "Motor", icon: "fa-flag-checkered", link: "#" },
-        { name: "Boxeo", icon: "fa-hand-fist", link: "#" },
-        { name: "Nosotros", icon: "fa-users", link: "#" }
+      const MENU_LINKS = [
+        { name: 'Inicio', link: 'index.html' },
+        { name: 'NFL', link: 'seccion-nfl.html' },
+        { name: 'Motor', link: 'seccion-motor.html' },
+        { name: 'Crónicas', link: 'cronicas-del-balon.html', special: true },
+        { name: 'Liga MX', link: 'futbol.html' },
+        { name: 'Beisbol', link: 'seccion-beisbol.html' },
+        { name: 'Boxeo', link: 'boxeo.html' },
+        { name: 'Nosotros', link: 'quienes-somos.html' }
       ];
 
       // --- APP COMPONENT ---
@@ -136,7 +135,7 @@
 
             {/* HEADER */}
             <header className="sticky top-0 z-[2000] bg-black/90 backdrop-blur-md border-b border-white/10 px-[5%] py-4 flex items-center justify-between">
-              <a href="#" className="flex items-center gap-3 group">
+              <a href="index.html" className="flex items-center gap-3 group">
                 <img src="https://picsum.photos/seed/logo/100/100" className="h-10 w-auto rounded" alt="Logo" />
                 <span className="font-header font-bold italic text-2xl tracking-tighter uppercase">
                   F1RST<span className="text-f1-accent group-hover:text-white transition-colors">SPORTS</span>
@@ -148,14 +147,14 @@
               </button>
 
               <nav className={`${mobileMenuOpen ? 'flex' : 'hidden'} md:flex absolute md:static top-full left-0 w-full md:w-auto flex-col md:flex-row bg-black md:bg-transparent p-6 md:p-0 gap-6 items-center border-b border-white/10 md:border-none`}>
-                {['Inicio', 'NFL', 'Motor', 'Crónicas', 'Liga MX', 'Beisbol', 'Boxeo', 'Nosotros'].map((item) => (
-                  <a key={item} href="#" className={`font-header font-bold text-sm uppercase tracking-wider transition-colors hover:text-f1-accent ${item === 'Crónicas' ? 'text-f1-special border-b-2 border-f1-special' : 'text-f1-muted'}`}>
-                    {item}
+                {MENU_LINKS.map((item) => (
+                  <a key={item.name} href={item.link} className={`font-header font-bold text-sm uppercase tracking-wider transition-colors hover:text-f1-accent ${item.special ? 'text-f1-special border-b-2 border-f1-special' : 'text-f1-muted'}`}>
+                    {item.name}
                   </a>
                 ))}
               </nav>
 
-              <a href="#" className="hidden lg:block bg-f1-primary hover:bg-f1-primary/80 transition-all px-6 py-2 rounded font-bold uppercase text-xs tracking-widest">Mundial '26</a>
+              <a href="australian-open-2026.html" className="hidden lg:block bg-f1-primary hover:bg-f1-primary/80 transition-all px-6 py-2 rounded font-bold uppercase text-xs tracking-widest">Mundial '26</a>
             </header>
 
             {/* SCORE TICKER */}
@@ -260,25 +259,34 @@
                   </div>
                 ))}
               </div>
-
-              {/* CATEGORIES */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-20">
-                {LEAGUES.map((league) => (
-                  <a key={league.name} href={league.link} className="group bg-white/5 p-6 rounded-xl border border-transparent hover:border-f1-accent hover:bg-f1-card transition-all flex flex-col items-center text-center">
-                    <i className={`fa-solid ${league.icon} text-3xl mb-4 group-hover:scale-110 transition-transform ${league.special ? 'text-f1-special' : 'text-f1-accent'}`}></i>
-                    <span className="font-header font-bold text-[0.7rem] uppercase tracking-widest group-hover:text-white text-f1-muted">{league.name}</span>
-                  </a>
-                ))}
-              </div>
             </main>
 
-            {/* FOOTER */}
-            <footer className="bg-black border-t border-white/10 py-16 px-5 text-center mt-auto">
-              <div className="mb-10">
-                <span className="font-header font-black italic text-4xl tracking-tighter uppercase">F1RST<span className="text-f1-accent">SPORTS</span></span>
-                <p className="mt-4 text-f1-muted max-w-xl mx-auto text-sm leading-relaxed uppercase tracking-wide">Siempre Pr1mero en la información deportiva.</p>
+            {/* --- FOOTER SEGÚN LA IMAGEN --- */}
+            <footer className="bg-black py-20 px-5 text-center mt-auto">
+              <div className="mb-6">
+                <span className="font-header font-black italic text-5xl tracking-tighter uppercase">
+                  F1RST<span className="text-f1-accent">SPORTS</span>
+                </span>
               </div>
-              <div className="text-[0.65rem] text-white/30 font-bold uppercase tracking-[0.2em]">&copy; 2026 F1RSTSPORTS MEDIA.</div>
+
+              <div className="max-w-4xl mx-auto mb-12">
+                <p className="text-white text-[0.8rem] md:text-[0.95rem] font-bold uppercase tracking-widest leading-relaxed">
+                  SIEMPRE PR1MERO EN LA INFORMACIÓN DEPORTIVA. ANÁLISIS, OPINIÓN Y LA 
+                  <br className="hidden md:block" />
+                  COBERTURA MÁS COMPLETA DE TUS DEPORTES FAVORITOS.
+                </p>
+              </div>
+
+              <div className="flex justify-center gap-10 mb-16 text-3xl text-white">
+                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-facebook"></i></a>
+                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-x-twitter"></i></a>
+                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-brands fa-instagram"></i></a>
+                <a href="#" className="hover:text-f1-accent transition-colors"><i className="fa-solid fa-envelope"></i></a>
+              </div>
+
+              <div className="text-[0.65rem] text-white/30 font-black uppercase tracking-[0.3em]">
+                &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
+              </div>
             </footer>
           </div>
         );
