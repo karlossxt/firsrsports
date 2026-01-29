@@ -3,124 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias Motor | F1rstSports</title>
+    <title>Motor Central | F1rstSports - Siempre Pr1mero</title>
     <link rel="icon" type="image/png" href="logof1.png">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Scripts Externos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'f1-bg': '#050505',
+              'f1-card': '#0a0a0a',
+              'f1-accent': '#ccff00',
+              'f1-motor': '#2563eb',
+              'f1-muted': '#a1a1aa'
+            },
+            fontFamily: {
+              header: ['Chakra Petch', 'sans-serif'],
+              body: ['Inter', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
 
     <style>
-        /* ESTILOS BASE */
-        :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
-        body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
-        a { text-decoration: none; color: white; transition: 0.3s; }
-        a:hover { color: var(--accent); }
+      body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; }
+      
+      /* Tarjeta Homologada F1rstSports */
+      .f1-card-standard {
+        background-color: #0a0a0a;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .f1-card-standard:hover {
+        border-color: #ccff00;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+      }
 
-        /* HEADER */
-        header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
-        .logo-img img { max-height: 50px; width: auto; display: block; }
-        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; }
+      .img-container { overflow: hidden; height: 220px; position: relative; }
+      .img-container img { 
+        width: 100%; height: 100%; object-fit: cover; 
+        transition: transform 0.6s ease;
+      }
+      .f1-card-standard:hover .img-container img { transform: scale(1.08); }
 
-        /* ENCABEZADO DE SECCIÓN */
-        .section-header {
-            background: linear-gradient(to right, #000, var(--primary));
-            padding: 60px 5%;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-title { font-family: var(--font-head); font-size: 3.5rem; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 0 black; }
-        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* GRID */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
-        
-        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .card-img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; }
-        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
-        .card-title { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 10px 0; line-height: 1.2; }
-        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: 10px; display: inline-block; }
-        .read-btn:hover { color: var(--accent); }
-
-        footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
+      .brand-scroll::-webkit-scrollbar { height: 4px; }
+      .brand-scroll::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
-        <a href="index.html" class="back-link">VOLVER AL INICIO</a>
+    <!-- TOP BAR -->
+    <div class="bg-black py-2 px-[5%] flex justify-between items-center text-[0.7rem] text-f1-muted border-b border-white/10">
+      <div class="uppercase tracking-widest font-bold text-white">MOTORSPORT CENTRAL | CDMX 2026</div>
+      <div class="flex gap-4 text-white">
+        <i class="fa-brands fa-facebook-f hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-instagram hover:text-f1-accent cursor-pointer transition-colors"></i>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-[2000] bg-black/95 backdrop-blur-md border-b-4 border-f1-motor px-[5%] py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logof1.png" class="h-10 w-auto rounded" alt="Logo" />
+        <span class="font-header font-bold italic text-2xl tracking-tighter uppercase">
+          F1RST<span class="text-white group-hover:text-f1-accent transition-colors">SPORTS</span>
+        </span>
+      </a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a href="index.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Inicio</a>
+        <a href="seccion-nfl.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">NFL</a>
+        <a href="seccion-motor.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-accent">Motor</a>
+        <a href="futbol.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Fútbol</a>
+      </nav>
+      <a href="index.html" class="hidden lg:block border-2 border-f1-accent text-f1-accent px-6 py-2 rounded font-black uppercase text-xs tracking-widest transition-all italic hover:bg-f1-accent hover:text-black">Portales</a>
     </header>
 
-    <div class="section-header">
-        <span class="section-subtitle"></span>
-        <h1 class="section-title">MOTORSPORT</h1>
-    </div>
-
-    <div class="container">
-        <div class="news-grid">
-            <!-- NOTA: F1 -->
-            <article class="news-card">
-                <a href="f1-2026-revolucion.html">
-                    <img src="audi-f1-livery.png" class="card-img" alt="F1">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">F1</span>
-                    <h3 class="card-title"><a href="nota-dakar-2026.html">F1 2026</a></h3>
-                    <a href="nota-dakar-2026.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </article>
-            
-            <!-- NOTA: DAKAR -->
-            <article class="news-card">
-                <a href="nota-dakar-2026.html">
-                    <img src="finalargentina.png" class="card-img" alt="DAKAR">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">DAKAR</span>
-                    <h3 class="card-title"><a href="nota-dakar-2026.html">Nuevo año, nuevo Dakar: Comienza la prueba más dura</a></h3>
-                    <a href="nota-dakar-2026.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </article>
-            
-            <!-- NOTA: RAPTOR DAKAR -->
-            <article class="news-card">
-                <a href="nota-raptor-dakar.html">
-                    <img src="raptor-dakar.jpg" class="card-img" alt="Dakar">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">DAKAR</span>
-                    <h3 class="card-title"><a href="nota-raptor-dakar.html">Raptor ataca de nuevo en el Dakar 2026</a></h3>
-                    <a href="nota-raptor-dakar.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </article>
-
-            <!-- NOTA: OGIER WRC -->
-            <article class="news-card">
-                <a href="nota-wrc.html">
-                    <img src="wrc.jpg" class="card-img" alt="WRC">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">WRC</span>
-                    <h3 class="card-title"><a href="nota-wrc.html">Sébastien Ogier: Nueve veces campeón del WRC</a></h3>
-                    <a href="nota-wrc.html" class="read-btn">LEER NOTA &rarr;</a>
-                </div>
-            </article>
-               
-            
+    <!-- BRAND BAR -->
+    <section class="bg-black border-b border-white/5 py-4">
+        <div class="max-w-[1400px] mx-auto flex gap-10 overflow-x-auto px-10 brand-scroll pb-2 items-center">
+          {[
+            {n: 'F1', l: 'https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg'},
+            {n: 'WRC', l: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/WRC_logo.svg'},
+            {n: 'Dakar', l: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Dakar_Logo.svg'},
+            {n: 'Toyota', l: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Toyota_Car_Logos.svg'},
+            {n: 'Audi', l: 'https://upload.wikimedia.org/wikipedia/commons/9/92/Audi-Logo_2016.svg'},
+            {n: 'Ford', l: 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Ford_Motor_Company_Logo.svg'}
+          ].map(brand => (
+            <div key={brand.n} class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+              <img src={brand.l} class="h-8 w-12 object-contain mb-1" alt={brand.n} />
+              <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">{brand.n}</span>
+            </div>
+          ))}
         </div>
-    </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2025 F1rstSports Media.</p>
+    <!-- HERO -->
+    <section class="relative h-[450px] flex items-end px-[5%] py-12 overflow-hidden border-b border-white/10">
+        <img src="wrc-montecarlo-1.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[0.25]" alt="Hero Motor" />
+        <div class="relative z-10 max-w-4xl">
+            <span class="bg-f1-motor text-white font-header font-black px-4 py-1 rounded text-xs uppercase mb-4 inline-block tracking-widest">WRC 2026: Crónica de Monte-Carlo</span>
+            <h1 class="font-header text-4xl md:text-6xl font-black uppercase leading-tight tracking-tighter mb-6">
+                Oliver Solberg: El Rey más joven de los Alpes
+            </h1>
+            <a href="nota-wrc-2026.html" class="inline-block bg-white text-black px-8 py-3 font-black uppercase text-sm hover:bg-f1-accent transition-all rounded shadow-lg">Leer Crónica Completa</a>
+        </div>
+    </section>
+
+    <!-- GRID -->
+    <main class="max-w-[1400px] mx-auto px-5 py-16">
+        
+        <div class="flex items-center gap-4 mb-12">
+            <div class="w-2 h-10 bg-f1-motor"></div>
+            <h2 class="font-header text-4xl font-black uppercase tracking-tighter text-white">Noticias de Motorsport</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- NOTA: WRC 2026 (SOLBERG) -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="wrc-montecarlo-1.jpg" alt="WRC Solberg">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">WRC Monte-Carlo</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">Oliver Solberg: El ganador más joven en la historia de Monte-Carlo</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Toyota Gazoo Racing domina con un 1-2-3 histórico en la prueba más exigente de los Alpes franceses.</p>
+                    <a href="nota-wrc-2026.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTA: DAKAR YANBU -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="luciano-benavides-win.jpg" alt="Dakar Yanbu">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Dakar 2026</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">Final memorable en Yanbu: Luciano Benavides derrota a Brabec</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Una diferencia de solo 2 segundos marca la historia en motos. Nasser Al-Attiyah logra su sexta corona en coches.</p>
+                    <a href="nota-dakar-2026.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTA: F1 2026 -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="audi-f1-livery.png" alt="F1 2026">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Fórmula 1</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">F1 2026: La Revolución Total de Motores y Aerodinámica</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Audi debuta, Cadillac regresa con Checo y la aerodinámica activa dice adiós al DRS tradicional.</p>
+                    <a href="f1-2026-revolucion.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTA: RAPTOR DAKAR -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="raptor-dakar.jpg" alt="Ford Raptor Dakar">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Dakar / Ford</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">Ford Raptor ataca de nuevo: Dominio en el desierto</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Analizamos el desempeño de los Ford Raptor en la edición 2026 frente a la armada de Dacia.</p>
+                    <a href="nota-raptor-dakar.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTA: WRC OGIER -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="wrc-montecarlo-2.jpg" alt="Sébastien Ogier">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Histórico WRC</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">Sébastien Ogier: Nueve veces campeón del mundo</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Un repaso por la trayectoria del piloto francés y su legado inalcanzable en el WRC.</p>
+                    <a href="nota-wrc.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FOOTER HOMOLOGADO -->
+    <footer class="bg-black py-20 px-5 text-center mt-auto border-t border-white/10">
+      <div class="mb-6">
+        <span class="font-header font-black italic text-5xl tracking-tighter uppercase text-white">
+          F1RST<span class="text-f1-accent">SPORTS</span>
+        </span>
+      </div>
+      <div class="max-w-4xl mx-auto mb-12">
+        <p class="text-white text-[0.8rem] md:text-[0.95rem] font-bold uppercase tracking-widest leading-relaxed">
+          SIEMPRE PR1MERO EN LA INFORMACIÓN DEPORTIVA. ANÁLISIS, OPINIÓN Y LA <br class="hidden md:block" /> COBERTURA MÁS COMPLETA DE TUS DEPORTES FAVORITOS.
+        </p>
+      </div>
+      <div class="flex justify-center gap-10 mb-16 text-3xl text-white">
+        <i class="fa-brands fa-facebook hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-instagram hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-solid fa-envelope hover:text-f1-accent cursor-pointer transition-colors"></i>
+      </div>
+      <div class="text-[0.65rem] text-white/30 font-black uppercase tracking-[0.3em]">
+        &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
+      </div>
     </footer>
 
 </body>
 </html>
-
-
-
-
-
