@@ -3,233 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFL Hub | F1rstSports - Noticias y Resultados</title>
+    <title>NFL Central | F1rstSports - Siempre Pr1mero</title>
     <link rel="icon" type="image/png" href="logof1.png">
 
-    <!-- Fuentes y Estilos -->
+    <!-- Scripts Externos -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'f1-bg': '#050505',
+              'f1-card': '#0a0a0a',
+              'f1-accent': '#ccff00',
+              'f1-nfl': '#0b1a3c',
+              'f1-muted': '#a1a1aa'
+            },
+            fontFamily: {
+              header: ['Chakra Petch', 'sans-serif'],
+              body: ['Inter', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+
     <style>
-        :root {
-            --bg-body: #050505;
-            --bg-card: #0a0a0a;
-            --accent: #ccff00;
-            --nfl-blue: #013369;
-            --text-main: #ffffff;
-            --text-muted: #a1a1aa;
-            --border: 1px solid rgba(255, 255, 255, 0.1);
-            --font-head: 'Chakra Petch', sans-serif;
-            --font-body: 'Inter', sans-serif;
-        }
+      body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; }
+      
+      /* Tarjeta Homologada F1rstSports */
+      .f1-card-standard {
+        background-color: #0a0a0a;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .f1-card-standard:hover {
+        border-color: #ccff00;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+      }
 
-        body { margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-body); overflow-x: hidden; }
-        a { text-decoration: none; color: white; transition: 0.3s; }
+      .img-container { overflow: hidden; height: 220px; position: relative; }
+      .img-container img { 
+        width: 100%; height: 100%; object-fit: cover; 
+        transition: transform 0.6s ease;
+      }
+      .f1-card-standard:hover .img-container img { transform: scale(1.08); }
 
-        /* --- HEADER --- */
-        header { 
-            background: rgba(10,10,10,0.98); backdrop-filter: blur(10px);
-            padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; 
-            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--nfl-blue);
-        }
-        .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.6rem; letter-spacing: -1px; }
-        nav a { font-family: var(--font-head); font-weight: 700; margin-left: 20px; color: var(--text-muted); text-transform: uppercase; font-size: 0.9rem; }
-        nav a:hover, nav a.active { color: var(--accent); }
-
-        /* --- TEAM NAV --- */
-        .team-nav { background: #000; padding: 12px 0; border-bottom: 1px solid #111; }
-        .team-wrapper { max-width: 1400px; margin: 0 auto; display: flex; justify-content: center; gap: 20px; overflow-x: auto; padding: 0 10px; }
-        .team-icon { display: flex; flex-direction: column; align-items: center; min-width: 60px; opacity: 0.7; }
-        .team-icon img { width: 35px; height: 35px; object-fit: contain; }
-        .team-icon span { font-size: 0.55rem; color: #888; margin-top: 5px; font-weight: bold; }
-
-        /* --- HERO --- */
-        .nfl-hero { 
-            height: 450px; background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.2) 100%), url('Super_Bowl_LIX.png');
-            background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 50px 5%; margin-bottom: 40px;
-        }
-        .hero-title { font-family: var(--font-head); font-size: 3rem; text-transform: uppercase; margin: 0; line-height: 1; text-shadow: 2px 2px 10px black; }
-
-        /* --- LAYOUT --- */
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-        .nfl-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-
-        .section-label { display: flex; align-items: center; gap: 10px; margin: 40px 0 20px; }
-        .stripe { width: 5px; height: 25px; background: var(--nfl-blue); }
-
-        /* --- NOTICIAS --- */
-        .news-card { background: var(--bg-card); border-radius: 8px; border: var(--border); overflow: hidden; margin-bottom: 25px; }
-        .news-card img { width: 100%; height: 280px; object-fit: cover; }
-        .card-body { padding: 25px; }
-        .card-title { font-family: var(--font-head); font-size: 1.6rem; margin: 0 0 15px; }
-
-        /* --- TABLA DE PARTIDOS (NUEVA) --- */
-        .games-container { background: #0f0f0f; border-radius: 12px; border: 1px solid #222; overflow: hidden; margin-top: 20px; }
-        .games-table { width: 100%; border-collapse: collapse; color: white; }
-        .games-table th { background: #151515; padding: 15px; text-align: left; font-family: var(--font-head); font-size: 0.8rem; color: var(--accent); text-transform: uppercase; border-bottom: 1px solid #222; }
-        .games-table td { padding: 15px; border-bottom: 1px solid #1a1a1a; vertical-align: middle; }
-        .game-teams { display: flex; flex-direction: column; gap: 8px; }
-        .team-item { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.9rem; }
-        .team-item img { width: 22px; height: 22px; object-fit: contain; }
-        .game-info { text-align: right; border-left: 1px solid #222; padding-left: 20px; }
-        .game-date { font-size: 0.85rem; font-weight: 800; display: block; }
-        .game-round { font-size: 0.65rem; color: #555; text-transform: uppercase; display: block; margin-bottom: 4px; }
-        .live-tag { color: #ff4444; font-weight: bold; animation: blink 1.5s infinite; }
-
-        /* --- SIDEBAR --- */
-        .sidebar-box { background: #111; padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #222; }
-        .sidebar-box h3 { font-family: var(--font-head); font-size: 1rem; color: var(--accent); margin-top: 0; text-transform: uppercase; }
-        .standing-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #222; font-size: 0.9rem; }
-
-        @keyframes blink { 50% { opacity: 0.5; } }
-        @media (max-width: 900px) { 
-            .nfl-grid { grid-template-columns: 1fr; } 
-            .hero-title { font-size: 2.2rem; }
-        }
+      /* Scrollbar de Equipos Personalizada */
+      .team-scroll::-webkit-scrollbar { height: 4px; }
+      .team-scroll::-webkit-scrollbar-track { background: transparent; }
+      .team-scroll::-webkit-scrollbar-thumb { background: #ccff00; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="brand-link">
-            <span class="brand-text" style="color:white;">F1RST<span style="color:var(--nfl-blue);">SPORTS</span></span>
-        </a>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="futbol.html">Fútbol</a>
-            <a href="seccion-nfl.html" class="active">NFL</a>
-        </nav>
-    </header>
-
-    <section class="team-nav">
-        <div class="team-wrapper">
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg" alt="KC"><span>Chiefs</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Philadelphia_Eagles_logo.svg" alt="PHI"><span>Eagles</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/1/16/Baltimore_Ravens_logo.svg" alt="BAL"><span>Ravens</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/San_Francisco_49ers_logo.svg" alt="SF"><span>49ers</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/4/44/Denver_Broncos_logo.svg" alt="DEN"><span>Broncos</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg" alt="BUF"><span>Bills</span></div>
-            <div class="team-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Pittsburgh_Steelers_logo.svg" alt="PIT"><span>Steelers</span></div>
-        </div>
-    </section>
-
-    <section class="nfl-hero">
-        <h1 class="hero-title">Favoritos y el camino al Super Bowl LIX</h1>
-    </section>
-
-    <div class="container">
-        <div class="nfl-grid">
-            
-            <main>
-                <!-- NOTICIA PRINCIPAL -->
-                <div class="section-label"><div class="stripe"></div><h2 style="font-family: var(--font-head); margin:0;">ANÁLISIS</h2></div>
-                <article class="news-card">
-                    <img src="Super_Bowl_LIX.png" alt="NFL">
-                    <div class="card-body">
-                        <h3 class="card-title">NFL 2025–26: Favoritos, dudas y el camino a New Orleans</h3>
-                        <p style="color: var(--text-muted); line-height: 1.6;">La temporada entra en su tramo más físico y mental. Analizamos a los candidatos más sólidos para levantar el Vince Lombardi en febrero de 2026.</p>
-                    </div>
-                </article>
-
-                <!-- PRÓXIMOS PARTIDOS (LA TABLA) -->
-                <div class="section-label"><div class="stripe"></div><h2 style="font-family: var(--font-head); margin:0;">PRÓXIMOS PARTIDOS</h2></div>
-                <div class="games-container">
-                    <table class="games-table">
-                        <thead>
-                            <tr>
-                                <th>Encuentro</th>
-                                <th>Fecha / Horario</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Juego 1 -->
-                            <tr>
-                                <td>
-                                    <div class="game-teams">
-                                        <span class="game-round">Ronda de Comodines</span>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Pittsburgh_Steelers_logo.svg"> Steelers</div>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/en/2/28/Houston_Texans_logo.svg"> Texans</div>
-                                    </div>
-                                </td>
-                                <td class="game-info">
-                                    <span class="game-date live-tag">FIN</span>
-                                    <span class="game-time" style="font-weight:bold;">6-30</span>
-                                </td>
-                            </tr>
-                            <!-- Juego 2 -->
-                            <tr>
-                                <td>
-                                    <div class="game-teams">
-                                        <span class="game-round">Ronda Divisional</span>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Seattle_Seahawks_logo.svg"> Seahawks</div>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/San_Francisco_49ers_logo.svg"> 49ers</div>
-                                    </div>
-                                </td>
-                                <td class="game-info">
-                                    <span class="game-date">SÁB 17/01</span>
-                                    <span class="game-time">TBD</span>
-                                </td>
-                            </tr>
-                            <!-- Juego 3 -->
-                            <tr>
-                                <td>
-                                    <div class="game-teams">
-                                        <span class="game-round">Ronda Divisional</span>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/en/4/44/Denver_Broncos_logo.svg"> Broncos</div>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg"> Bills</div>
-                                    </div>
-                                </td>
-                                <td class="game-info">
-                                    <span class="game-date">SÁB 17/01</span>
-                                    <span class="game-time">TBD</span>
-                                </td>
-                            </tr>
-                            <!-- Juego 4 -->
-                            <tr>
-                                <td>
-                                    <div class="game-teams">
-                                        <span class="game-round">Campeonato de Conferencia</span>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/White_flag_icon.svg" style="opacity:0.2;"> Por definir</div>
-                                        <div class="team-item"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/White_flag_icon.svg" style="opacity:0.2;"> Por definir</div>
-                                    </div>
-                                </td>
-                                <td class="game-info">
-                                    <span class="game-date">DOM 25/01</span>
-                                    <span class="game-time">2:00 P.M.</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-
-            <aside>
-                <div class="sidebar-box">
-                    <h3>Playoff Seeds (AFC)</h3>
-                    <div class="standing-row"><span>1. Broncos</span> <strong>13-4</strong></div>
-                    <div class="standing-row"><span>2. Patriots</span> <strong>12-5</strong></div>
-                    <div class="standing-row"><span>3. Jaguars</span> <strong>11-6</strong></div>
-                </div>
-                <div class="sidebar-box">
-                    <h3>Playoff Seeds (NFC)</h3>
-                    <div class="standing-row"><span>1. Seahawks</span> <strong>14-3</strong></div>
-                    <div class="standing-row"><span>2. Bears</span> <strong>12-5</strong></div>
-                </div>
-                <div style="background: var(--nfl-blue); padding: 25px; border-radius: 8px; text-align: center; border-bottom: 4px solid var(--accent);">
-                    <h2 style="font-family: var(--font-head); margin:0;">SUPER BOWL LIX</h2>
-                    <p style="font-size: 0.8rem; opacity: 0.8;">NEW ORLEANS | 9 FEB</p>
-                </div>
-            </aside>
-
-        </div>
+    <!-- TOP BAR -->
+    <div class="bg-black py-2 px-[5%] flex justify-between items-center text-[0.7rem] text-f1-muted border-b border-white/10">
+      <div class="uppercase tracking-widest font-bold">NFL CENTRAL | CDMX 2026</div>
+      <div class="flex gap-4 text-white">
+        <i class="fa-brands fa-facebook-f hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-instagram hover:text-f1-accent cursor-pointer transition-colors"></i>
+      </div>
     </div>
 
-    <footer style="background: #000; padding: 40px; text-align: center; border-top: 1px solid #222; margin-top: 60px;">
-        <span class="brand-text">F1RSTSPORTS</span>
-        <p style="color: #444; font-size: 0.8rem; margin-top: 15px;">© 2026 F1rstSports Media. La autoridad en el emparrillado.</p>
+    <!-- HEADER -->
+    <header class="sticky top-0 z-[2000] bg-black/95 backdrop-blur-md border-b-4 border-f1-nfl px-[5%] py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logof1.png" class="h-10 w-auto rounded" alt="Logo" />
+        <span class="font-header font-bold italic text-2xl tracking-tighter uppercase">
+          F1RST<span class="text-white group-hover:text-f1-accent transition-colors">SPORTS</span>
+        </span>
+      </a>
+      <nav class="hidden md:flex gap-8 items-center">
+        <a href="index.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Inicio</a>
+        <a href="seccion-nfl.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-accent">NFL</a>
+        <a href="seccion-motor.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Motor</a>
+        <a href="futbol.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Fútbol</a>
+      </nav>
+      <a href="nota-superbowl-lx.html" class="hidden lg:block bg-f1-accent text-black px-6 py-2 rounded font-black uppercase text-xs tracking-widest transition-all italic">Super Bowl LX</a>
+    </header>
+
+    <!-- BARRA DE EQUIPOS (TEAM NAV) REINTEGRADA -->
+    <section class="bg-black border-b border-white/5 py-3">
+        <div class="max-w-[1400px] mx-auto flex gap-10 overflow-x-auto px-10 team-scroll pb-2 items-center">
+          {[
+            {n: 'Chiefs', l: 'https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg'},
+            {n: 'Eagles', l: 'https://upload.wikimedia.org/wikipedia/en/8/8e/Philadelphia_Eagles_logo.svg'},
+            {n: 'Ravens', l: 'https://upload.wikimedia.org/wikipedia/en/1/16/Baltimore_Ravens_logo.svg'},
+            {n: '49ers', l: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/San_Francisco_49ers_logo.svg'},
+            {n: 'Broncos', l: 'https://upload.wikimedia.org/wikipedia/en/4/44/Denver_Broncos_logo.svg'},
+            {n: 'Bills', l: 'https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg'},
+            {n: 'Steelers', l: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Pittsburgh_Steelers_logo.svg'},
+            {n: 'Seahawks', l: 'https://upload.wikimedia.org/wikipedia/en/8/8e/Seattle_Seahawks_logo.svg'},
+            {n: 'Patriots', l: 'https://upload.wikimedia.org/wikipedia/en/b/b9/New_England_Patriots_logo.svg'},
+            {n: 'Cowboys', l: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Dallas_Cowboys.svg'},
+            {n: 'Lions', l: 'https://upload.wikimedia.org/wikipedia/en/7/71/Detroit_Lions_logo.svg'}
+          ].map(team => (
+            <div key={team.n} class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+              <img src={team.l} class="h-9 w-9 object-contain mb-1" alt={team.n} />
+              <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">{team.n}</span>
+            </div>
+          ))}
+        </div>
+    </section>
+
+    <!-- HERO -->
+    <section class="relative h-[450px] flex items-end px-[5%] py-12 overflow-hidden border-b border-white/10">
+        <img src="superbowl-lx-hero.jpg" class="absolute inset-0 w-full h-full object-cover brightness-[0.25]" alt="SB LX" />
+        <div class="relative z-10 max-w-4xl">
+            <span class="bg-f1-accent text-black font-header font-black px-4 py-1 rounded text-xs uppercase mb-4 inline-block tracking-widest">Road to Santa Clara</span>
+            <h1 class="font-header text-4xl md:text-6xl font-black uppercase leading-tight tracking-tighter mb-6">
+                Patriots vs Seahawks: La Revancha de la Yarda 1
+            </h1>
+            <a href="nota-superbowl-lx.html" class="inline-block bg-white text-black px-8 py-3 font-black uppercase text-sm hover:bg-f1-accent transition-all rounded shadow-lg">Leer Especial de la Final</a>
+        </div>
+    </section>
+
+    <!-- GRID DE NOTAS NFL -->
+    <main class="max-w-[1400px] mx-auto px-5 py-16">
+        
+        <div class="flex items-center gap-4 mb-12">
+            <div class="w-2 h-10 bg-f1-accent"></div>
+            <h2 class="font-header text-4xl font-black uppercase tracking-tighter">Archivo de Noticias</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- NOTA 1 -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="superbowl-lx-hero.jpg" alt="SB LX">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Super Bowl LX</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">El Regreso a la Bahía: Todo sobre el Patriots vs Seahawks</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Diez años después, la NFL conmemora su edición 60 con la revancha más esperada de la década en Santa Clara.</p>
+                    <a href="nota-superbowl-lx.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTICIA 2 -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="Super Bowl LIX.png" alt="Análisis Playoffs">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Análisis Táctico</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">Seattle vs. LA Rams: El Camino al Super Bowl</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Un duelo divisional de alta tensión que definió el destino de la NFC. Analizamos las claves de la victoria de los Seahawks.</p>
+                    <a href="analisis-equipos-playoffs-nfl.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTICIA 3 -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="Super_Bowl_LIX.png" alt="Bracket Playoffs">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Playoffs 2026</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">NFL Playoffs 2026: El Cuadro Completo y Resultados</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Revisa cómo quedaron sembrados los equipos y el camino que recorrieron Patriots y Seahawks para llegar a la final.</p>
+                    <a href="nfl-playoffs-2026.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+            <!-- NOTICIA 4 -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="Super_Bowl_LIX.png" alt="NFL General">
+                </div>
+                <div class="p-6 flex flex-grow flex-col">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Actualidad NFL</span>
+                    <h3 class="font-header text-xl font-bold mb-4 leading-tight">Favoritos, Dudas y el Estado de la Liga</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Un repaso por las noticias más importantes de la temporada y el análisis de las futuras potencias de la NFL.</p>
+                    <a href="nota-nfl.html" class="mt-auto font-black text-[0.7rem] uppercase border-b border-f1-accent w-fit hover:text-f1-accent transition-colors">Leer más &rarr;</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- FOOTER HOMOLOGADO (ESTILO IMAGEN) -->
+    <footer class="bg-black py-20 px-5 text-center mt-auto border-t border-white/10">
+      <div class="mb-6">
+        <span class="font-header font-black italic text-5xl tracking-tighter uppercase text-white">
+          F1RST<span class="text-f1-accent">SPORTS</span>
+        </span>
+      </div>
+      <div class="max-w-4xl mx-auto mb-12">
+        <p class="text-white text-[0.8rem] md:text-[0.95rem] font-bold uppercase tracking-widest leading-relaxed">
+          SIEMPRE PR1MERO EN LA INFORMACIÓN DEPORTIVA. ANÁLISIS, OPINIÓN Y LA <br class="hidden md:block" /> COBERTURA MÁS COMPLETA DE TUS DEPORTES FAVORITOS.
+        </p>
+      </div>
+      <div class="flex justify-center gap-10 mb-16 text-3xl text-white">
+        <i class="fa-brands fa-facebook hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-instagram hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-solid fa-envelope hover:text-f1-accent cursor-pointer transition-colors"></i>
+      </div>
+      <div class="text-[0.65rem] text-white/30 font-black uppercase tracking-[0.3em]">
+        &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
+      </div>
     </footer>
 
 </body>
 </html>
-
