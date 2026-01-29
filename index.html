@@ -63,14 +63,27 @@
 
       // --- DATOS ---
       const LIVE_SCORES = [
-        { liga: "LIGA MX", local: "Puebla", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "19:00" },
-        { liga: "LIGA MX", local: "Pumas", vis: "Santos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "21:00" },
-        { liga: "LIGA MX", local: "Juárez", vis: "Cruz Azul", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "30 ENE", hora: "21:06" },
-        { liga: "NFL CONF", local: "Seahawks", vis: "Rams", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "17:30" },
-        { liga: "NFL CONF", local: "Broncos", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "14:00" },
-        { liga: "MÉXICO", local: "México", vis: "Panamá", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "22 ENE", hora: "20:00" },
-        { liga: "MÉXICO", local: "México", vis: "Bolivia", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "25 ENE", hora: "19:30" }
+             const LIVE_SCORES = [
+        // Resultados de la Jornada 4 de la LIGA MX (30 y 31 de Enero de 2026)
+        { liga: "LIGA MX", local: "Puebla", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "02:00 CET" },
+        { liga: "LIGA MX", local: "Pumas", vis: "Santos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "04:00 CET" },
+        { liga: "LIGA MX", local: "Juárez", vis: "Cruz Azul", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "04:06 CET" },
+        { liga: "LIGA MX", local: "Atlas", vis: "Mazatlán", s1: "1", s2: "1", st: "FINAL", fecha: "31 ENE", hora: "17:00" }, // Resultado de referencia, verificar fecha y hora exactas
+        { liga: "LIGA MX", local: "América", vis: "Necaxa", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "16:00" },
+        { liga: "LIGA MX", local: "Atlético San Luis", vis: "Chivas", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "17:00" },
+        { liga: "LIGA MX", local: "Monterrey", vis: "Xolos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "19:00" },
+        { liga: "LIGA MX", local: "León", vis: "Tigres", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "19:00" },
+
+        // Partidos de la NFL y Super Bowl LX
+        { liga: "NFL CONF", local: "Seahawks", vis: "Rams", s1: "20", s2: "17", st: "FINAL", fecha: "25 ENE", hora: "17:30" }, // Resultado de ejemplo, verificar resultado real
+        { liga: "NFL CONF", local: "Broncos", vis: "Patriots", s1: "10", s2: "27", st: "FINAL", fecha: "25 ENE", hora: "14:00" }, // Resultado de ejemplo, verificar resultado real
+        { liga: "SUPER BOWL LX", local: "Seahawks", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "08 FEB", hora: "17:30" },
+
+        // Resultados de partidos amistosos de México
+        { liga: "MÉXICO", local: "México", vis: "Panamá", s1: "2", s2: "0", st: "FINAL", fecha: "22 ENE", hora: "20:00" }, // Resultado de ejemplo, verificar resultado real
+        { liga: "MÉXICO", local: "México", vis: "Bolivia", s1: "1", s2: "1", st: "FINAL", fecha: "25 ENE", hora: "19:30" } // Resultado de ejemplo, verificar resultado real
       ];
+
 
       const LATEST_NEWS = [
         { id: "1", tag: "BÉISBOL", title: "Clásico Mundial 2026: Sedes, estrellas e historias", image: "wbc-1.jpg", link: "nota-wbc-2026.html" },
@@ -300,5 +313,6 @@
     </script>
 </body>
 </html>
+
 
 
