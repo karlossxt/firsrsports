@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFL Central | F1rstSports - Siempre Pr1mero</title>
+    <title>NFL Central | F1rstSports - Rumbo al Super Bowl LX</title>
     <link rel="icon" type="image/png" href="logof1.png">
 
     <!-- Scripts Externos -->
@@ -83,36 +83,73 @@
           F1RST<span class="text-white group-hover:text-f1-accent transition-colors">SPORTS</span>
         </span>
       </a>
-      <nav class="hidden md:flex gap-8 items-center">
-        <a href="index.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Inicio</a>
-        <a href="seccion-nfl.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-accent">NFL</a>
-        <a href="seccion-motor.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Motor</a>
-        <a href="futbol.html" class="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent">Fútbol</a>
+      <nav class="hidden md:flex gap-8 items-center font-header font-bold text-sm uppercase tracking-wider">
+        <a href="index.html" class="text-f1-muted hover:text-f1-accent transition-colors">Inicio</a>
+        <a href="seccion-nfl.html" class="text-f1-accent">NFL</a>
+        <a href="seccion-motor.html" class="text-f1-muted hover:text-f1-accent transition-colors">Motor</a>
+        <a href="futbol.html" class="text-f1-muted hover:text-f1-accent transition-colors">Fútbol</a>
       </nav>
       <a href="nota-superbowl-lx.html" class="hidden lg:block bg-f1-accent text-black px-6 py-2 rounded font-black uppercase text-xs tracking-widest transition-all italic">Super Bowl LX</a>
     </header>
 
-    <!-- BARRA DE EQUIPOS (TEAM NAV) REINTEGRADA -->
+    <!-- BARRA DE EQUIPOS (TEAM NAV) CORREGIDA -->
     <section class="bg-black border-b border-white/5 py-3">
         <div class="max-w-[1400px] mx-auto flex gap-10 overflow-x-auto px-10 team-scroll pb-2 items-center">
-          {[
-            {n: 'Chiefs', l: 'https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg'},
-            {n: 'Eagles', l: 'https://upload.wikimedia.org/wikipedia/en/8/8e/Philadelphia_Eagles_logo.svg'},
-            {n: 'Ravens', l: 'https://upload.wikimedia.org/wikipedia/en/1/16/Baltimore_Ravens_logo.svg'},
-            {n: '49ers', l: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/San_Francisco_49ers_logo.svg'},
-            {n: 'Broncos', l: 'https://upload.wikimedia.org/wikipedia/en/4/44/Denver_Broncos_logo.svg'},
-            {n: 'Bills', l: 'https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg'},
-            {n: 'Steelers', l: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Pittsburgh_Steelers_logo.svg'},
-            {n: 'Seahawks', l: 'https://upload.wikimedia.org/wikipedia/en/8/8e/Seattle_Seahawks_logo.svg'},
-            {n: 'Patriots', l: 'https://upload.wikimedia.org/wikipedia/en/b/b9/New_England_Patriots_logo.svg'},
-            {n: 'Cowboys', l: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Dallas_Cowboys.svg'},
-            {n: 'Lions', l: 'https://upload.wikimedia.org/wikipedia/en/7/71/Detroit_Lions_logo.svg'}
-          ].map(team => (
-            <div key={team.n} class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
-              <img src={team.l} class="h-9 w-9 object-contain mb-1" alt={team.n} />
-              <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">{team.n}</span>
+            <!-- Chiefs -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Kansas_City_Chiefs_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Chiefs">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Chiefs</span>
             </div>
-          ))}
+            <!-- Eagles -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Philadelphia_Eagles_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Eagles">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Eagles</span>
+            </div>
+            <!-- Ravens -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/1/16/Baltimore_Ravens_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Ravens">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Ravens</span>
+            </div>
+            <!-- 49ers -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/San_Francisco_49ers_logo.svg" class="h-9 w-9 object-contain mb-1" alt="49ers">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">49ers</span>
+            </div>
+            <!-- Broncos -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/44/Denver_Broncos_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Broncos">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Broncos</span>
+            </div>
+            <!-- Bills -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Bills">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Bills</span>
+            </div>
+            <!-- Steelers -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Pittsburgh_Steelers_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Steelers">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Steelers</span>
+            </div>
+            <!-- Seahawks -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/8/8e/Seattle_Seahawks_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Seahawks">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Seahawks</span>
+            </div>
+            <!-- Patriots -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/New_England_Patriots_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Patriots">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Patriots</span>
+            </div>
+            <!-- Cowboys -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Dallas_Cowboys.svg" class="h-9 w-9 object-contain mb-1" alt="Cowboys">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Cowboys</span>
+            </div>
+            <!-- Lions -->
+            <div class="flex flex-col items-center min-w-[65px] opacity-50 hover:opacity-100 transition-all cursor-pointer hover:scale-110">
+                <img src="https://upload.wikimedia.org/wikipedia/en/7/71/Detroit_Lions_logo.svg" class="h-9 w-9 object-contain mb-1" alt="Lions">
+                <span class="text-[0.55rem] font-bold uppercase text-f1-muted tracking-tighter">Lions</span>
+            </div>
         </div>
     </section>
 
@@ -193,7 +230,7 @@
         </div>
     </main>
 
-    <!-- FOOTER HOMOLOGADO (ESTILO IMAGEN) -->
+    <!-- FOOTER HOMOLOGADO -->
     <footer class="bg-black py-20 px-5 text-center mt-auto border-t border-white/10">
       <div class="mb-6">
         <span class="font-header font-black italic text-5xl tracking-tighter uppercase text-white">
