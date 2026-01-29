@@ -3,169 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Béisbol | F1rstSports</title>
+    <title>Béisbol Central | F1rstSports - Siempre Pr1mero</title>
     <link rel="icon" type="image/png" href="logof1.png">
-    
-    <!-- Meta etiquetas -->
-    <meta property="og:title" content="F1rstSports: Béisbol">
-    <meta property="og:description" content="Playoffs LMP, MLB y Serie del Caribe. La mejor cobertura del rey de los deportes.">
-    <meta property="og:image" content="https://f1rstsports.com.mx/beisbol-cover.jpg">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Scripts Externos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'f1-bg': '#050505',
+              'f1-card': '#0a0a0a',
+              'f1-accent': '#ccff00',
+              'f1-baseball': '#003278',
+              'f1-muted': '#a1a1aa'
+            },
+            fontFamily: {
+              header: ['Chakra Petch', 'sans-serif'],
+              body: ['Inter', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
 
     <style>
-        /* ESTILOS BASE (Mismos que el resto del sitio) */
-        :root { --bg-dark: #09090b; --bg-card: #18181b; --accent: #ccff00; --primary: #2563eb; --text-main: #ffffff; --text-sec: #a1a1aa; --font-head: 'Chakra Petch', sans-serif; --font-body: 'Inter', sans-serif; }
-        body { margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-body); }
-        a { text-decoration: none; color: white; transition: 0.3s; }
-        a:hover { color: var(--accent); }
+      body { background-color: #050505; color: white; font-family: 'Inter', sans-serif; }
+      
+      /* Tarjeta Homologada F1rstSports */
+      .f1-card-standard {
+        background-color: #0a0a0a;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .f1-card-standard:hover {
+        border-color: #ccff00;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7);
+      }
 
-        /* HEADER */
-        header { background: var(--bg-dark); padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--primary); }
-        .logo-img img { max-height: 50px; width: auto; display: block; }
-        .logo-img:hover { opacity: 0.8; }
-        .back-link { font-weight: bold; color: var(--accent); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 4px; }
-        .back-link:hover { background: var(--accent); color: black; }
+      .img-container { overflow: hidden; height: 240px; position: relative; }
+      .img-container img { 
+        width: 100%; height: 100%; object-fit: cover; 
+        transition: transform 0.6s ease;
+      }
+      .f1-card-standard:hover .img-container img { transform: scale(1.08); }
 
-        /* ENCABEZADO DE SECCIÓN */
-        .section-header {
-            background: linear-gradient(to right, #000, var(--primary));
-            padding: 60px 5%;
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 4px solid var(--accent);
-            position: relative;
-            overflow: hidden;
-        }
-        /* Detalle de costuras de pelota de béisbol (decorativo) */
-        .section-header::after {
-            content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Textura sutil */
-            opacity: 0.2;
-        }
-
-        .section-title { font-family: var(--font-head); font-size: 4rem; margin: 0; text-transform: uppercase; text-shadow: 4px 4px 0 black; line-height: 1; }
-        .section-subtitle { color: var(--accent); font-weight: bold; letter-spacing: 4px; text-transform: uppercase; font-size: 1.2rem; }
-
-        /* GRID DE NOTICIAS */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; min-height: 50vh; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px; }
-        
-        .news-card { background: var(--bg-card); border: 1px solid #333; transition: 0.3s; overflow: hidden; display: flex; flex-direction: column; }
-        .news-card:hover { transform: translateY(-7px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        
-        .card-img { width: 100%; height: 220px; object-fit: cover; border-bottom: 1px solid #333; }
-        
-        .card-body { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
-        .card-tag { color: var(--accent); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 10px; letter-spacing: 1px; }
-        .card-title { font-family: var(--font-head); font-size: 1.4rem; margin: 0 0 15px 0; line-height: 1.2; }
-        .read-btn { color: white; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-top: auto; display: inline-block; border-bottom: 2px solid var(--primary); width: fit-content; }
-        .read-btn:hover { color: var(--accent); border-color: var(--accent); }
-
-        /* FOOTER */
-        footer { background: black; padding: 40px; text-align: center; border-top: 1px solid #333; color: #555; }
-
-        @media (max-width: 768px) { .section-title { font-size: 3rem; } }
+      /* Efecto de fondo en el Hero */
+      .baseball-pattern {
+        background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+        opacity: 0.1;
+      }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo-img"><img src="logof1.png" alt="F1rstSports"></a>
-        <a href="index.html" class="back-link">VOLVER AL INICIO</a>
+    <!-- TOP BAR -->
+    <div class="bg-black py-2 px-[5%] flex justify-between items-center text-[0.7rem] text-f1-muted border-b border-white/10">
+      <div class="uppercase tracking-widest font-bold text-white">BÉISBOL CENTRAL | CDMX 2026</div>
+      <div class="flex gap-4 text-white">
+        <i class="fa-brands fa-facebook hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-instagram hover:text-f1-accent cursor-pointer transition-colors"></i>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-[2000] bg-black/95 backdrop-blur-md border-b-4 border-f1-baseball px-[5%] py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logof1.png" class="h-10 w-auto rounded" alt="Logo" />
+        <span class="font-header font-bold italic text-2xl tracking-tighter uppercase">
+          F1RST<span class="text-white group-hover:text-f1-accent transition-colors">SPORTS</span>
+        </span>
+      </a>
+      <nav class="hidden md:flex gap-8 items-center font-header font-bold text-sm uppercase tracking-wider">
+        <a href="index.html" class="text-f1-muted hover:text-f1-accent transition-colors">Inicio</a>
+        <a href="seccion-nfl.html" class="text-f1-muted hover:text-f1-accent transition-colors">NFL</a>
+        <a href="seccion-motor.html" class="text-f1-muted hover:text-f1-accent transition-colors">Motor</a>
+        <a href="seccion-beisbol.html" class="text-f1-accent">Béisbol</a>
+        <a href="futbol.html" class="text-f1-muted hover:text-f1-accent transition-colors">Fútbol</a>
+      </nav>
+      <a href="index.html" class="hidden lg:block border-2 border-f1-accent text-f1-accent px-6 py-2 rounded font-black uppercase text-xs tracking-widest transition-all italic hover:bg-f1-accent hover:text-black">Portada</a>
     </header>
 
-    <!-- TÍTULO DE LA SECCIÓN -->
-    <div class="section-header">
-        <span class="section-subtitle">LMP • MLB • SERIE DEL CARIBE</span>
-        <h1 class="section-title">BÉISBOL</h1>
-    </div>
+    <!-- HERO SECCIÓN BÉISBOL -->
+    <section class="relative h-[400px] flex items-center justify-center text-center overflow-hidden border-b-4 border-f1-accent">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-f1-baseball to-black"></div>
+        <div class="absolute inset-0 baseball-pattern"></div>
+        <div class="relative z-10 px-5">
+            <span class="text-f1-accent font-header font-bold tracking-[0.4em] uppercase text-sm mb-2 block">LMP • MLB • SERIE DEL CARIBE</span>
+            <h1 class="font-header text-6xl md:text-8xl font-black uppercase tracking-tighter text-white drop-shadow-2xl">
+                BÉISBOL
+            </h1>
+        </div>
+    </section>
 
-    <div class="container">
-        <div class="news-grid">
+    <!-- GRID DE NOTAS HOMOLOGADO -->
+    <main class="max-w-[1400px] mx-auto px-5 py-16">
+        
+        <div class="flex items-center gap-4 mb-12">
+            <div class="w-2 h-10 bg-f1-baseball"></div>
+            <h2 class="font-header text-4xl font-black uppercase tracking-tighter text-white">Diamante de Noticias</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
-            <!-- TARJETA DESTACADA BEISBOL -->
-<article class="news-card" style="border-color: var(--primary);">
-    <a href="nota-wbc-2026.html">
-        <img src="wbc-1.jpg" class="card-img" alt="World Baseball Classic" style="height: 300px;">
-    </a>
-    <div class="card-body">
-        <span class="card-tag" style="background: var(--primary); color: white; padding: 2px 8px; border-radius: 3px;">WBC 2026</span>
-        <h3 class="card-title" style="font-size: 1.8rem;">El Clásico Mundial ya está aquí: ¿Podrá Ohtani repetir la hazaña?</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-            Conoce el calendario oficial, las sedes en Miami, Tokio y San Juan, y el Dream Team que prepara Estados Unidos con Aaron Judge.
-        </p>
-        <a href="nota-wbc-2026.html" class="read-more" style="border-bottom: 2px solid var(--accent); font-weight: 800;">LEER ANÁLISIS &rarr;</a>
-    </div>
-</article>
-
-            <article class="news-card" style="border-color: #003278;">
-    <a href="nota-cooperstown.html">
-        <img src="national.jpg" class="card-img" alt="Beltrán y Jones Cooperstown" style="height: 300px; width: 100%; object-fit: cover;">
-    </a>
-    <div class="card-body">
-        <span class="card-tag" style="background: #003278; color: white; padding: 2px 8px; border-radius: 3px; font-family: var(--font-head); font-weight: bold;">MLB | SALÓN DE LA FAMA</span>
-        <h3 class="card-title" style="font-size: 1.8rem; margin-top: 15px;">Carlos Beltrán y Andrew Jones: los nuevos huéspedes de Cooperstown</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
-            Hitos históricos: El boricua y el curazoleño alcanzan la inmortalidad en la clase 2026. Revisa sus récords y la lista completa de latinos en el Salón.
-        </p>
-        <a href="nota-cooperstown.html" class="read-more" style="border-bottom: 2px solid var(--accent); font-weight: 800; font-family: var(--font-head); color: white;">LEER NOTA &rarr;</a>
-    </div>
-</article>
-
-            <article class="news-card">
-    <a href="nota-kershaw-wbc.html">
-        <img src="kershaw-1.jpg" class="card-img" alt="Clayton Kershaw WBC">
-    </a>
-    <div class="card-body">
-        <span class="card-tag" style="color: #2563eb;">BÉISBOL</span>
-        <h3 class="card-title">Kershaw pospone el retiro: Lanzará con EE. UU. en el Clásico Mundial</h3>
-        <a href="nota-kershaw-wbc.html" class="read-more">LA HISTORIA CONTINÚA &rarr;</a>
-    </div>
-</article>
-
-            <!-- TARJETA 3: SERIE DEL CARIBE -->
-            <article class="news-card">
-                <a href="#">
-                    <img src="randy-arozarena.jpeg" class="card-img" alt="Serie del Caribe">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">RUMBO AL CARIBE</span>
-                    <h3 class="card-title"><a href="#">Serie del Caribe 2026: Sedes, fechas y el camino de México</a></h3>
-                    <a href="#" class="read-btn">LEER NOTA &rarr;</a>
+            <!-- TARJETA 1: WBC -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="wbc-1.jpg" alt="WBC 2026">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <span class="bg-f1-baseball text-white text-[0.65rem] font-black px-2 py-1 rounded w-fit mb-4 uppercase tracking-widest">WBC 2026</span>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">El Clásico Mundial ya está aquí: ¿Podrá Ohtani repetir la hazaña?</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Conoce el calendario oficial, las sedes en Miami y el Dream Team que prepara Estados Unidos con Aaron Judge.</p>
+                    <a href="nota-wbc-2026.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Análisis &rarr;</a>
                 </div>
             </article>
 
-            <!-- TARJETA 4: MEXICANOS EN EL EXTRANJERO -->
-            <article class="news-card">
-                <a href="#">
-                    <img src="randy-arozarena.jpeg" class="card-img" alt="Mexicanos MLB">
-                </a>
-                <div class="card-body">
-                    <span class="card-tag">ORGULLO NACIONAL</span>
-                    <h3 class="card-title"><a href="#">La legión mexicana: Proyecciones para la temporada 2026 de Grandes Ligas</a></h3>
-                    <a href="#" class="read-btn">LEER ANÁLISIS &rarr;</a>
+            <!-- TARJETA 2: COOPERSTOWN -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden" style="border-color: #003278;">
+                <div class="img-container">
+                    <img src="national.jpg" alt="Cooperstown">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">MLB | SALÓN DE LA FAMA</span>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Carlos Beltrán y Andrew Jones: Nuevos huéspedes de Cooperstown</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Hitos históricos: El boricua y el curazoleño alcanzan la inmortalidad en la clase 2026. Revisa sus récords.</p>
+                    <a href="nota-cooperstown.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Nota &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 3: KERSHAW -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="kershaw-1.jpg" alt="Clayton Kershaw">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <span class="text-f1-baseball text-[0.65rem] font-black uppercase mb-2 tracking-widest">MLB Actualidad</span>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Kershaw pospone el retiro: Lanzará con EE. UU. en el Clásico</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">La leyenda de los Dodgers confirma su participación internacional en lo que podría ser su "Last Dance".</p>
+                    <a href="nota-kershaw-wbc.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">La Historia Continúa &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 4: SERIE DEL CARIBE -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="randy-arozarena.jpeg" alt="Serie del Caribe">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Rumbo al Caribe</span>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Serie del Caribe 2026: Sedes, fechas y el camino de México</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Todo lo que necesitas saber sobre el torneo que reúne a los campeones de las ligas invernales.</p>
+                    <a href="#" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Nota &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA 5: MEXICANOS MLB -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="randy-arozarena.jpeg" alt="Mexicanos MLB">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Orgullo Nacional</span>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">La legión mexicana: Proyecciones para la temporada 2026</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Analizamos el impacto de los jugadores mexicanos que buscan brillar en las Grandes Ligas este año.</p>
+                    <a href="#" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Análisis &rarr;</a>
                 </div>
             </article>
 
         </div>
-    </div>
+    </main>
 
-    <footer>
-        <span style="font-family:'Chakra Petch'; font-size:1.5rem; color:white; font-weight:bold;">F1RSTSPORTS</span>
-        <div style="margin-top: 10px; font-size: 0.8rem;">
-            <a href="aviso-privacidad.html" style="color: #888;">Aviso de Privacidad</a> &bull; 
-            <a href="quienes-somos.html" style="color: #888;">Quiénes Somos</a>
-        </div>
-        <p style="margin-top:10px;">&copy; 2026 F1rstSports Media. Todos los derechos reservados.</p>
+    <!-- FOOTER HOMOLOGADO -->
+    <footer class="bg-black py-20 px-5 text-center mt-auto border-t border-white/10">
+      <div class="mb-6">
+        <span class="font-header font-black italic text-5xl tracking-tighter uppercase text-white">
+          F1RST<span class="text-f1-accent">SPORTS</span>
+        </span>
+      </div>
+      <div class="max-w-4xl mx-auto mb-12 text-white">
+        <p class="text-[0.8rem] md:text-[0.95rem] font-bold uppercase tracking-widest leading-relaxed">
+          SIEMPRE PR1MERO EN LA INFORMACIÓN DEPORTIVA. ANÁLISIS, OPINIÓN Y LA <br class="hidden md:block" /> COBERTURA MÁS COMPLETA DE TUS DEPORTES FAVORITOS.
+        </p>
+      </div>
+      <div class="flex justify-center gap-10 mb-16 text-3xl text-white">
+        <i class="fa-brands fa-facebook hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-brands fa-instagram hover:text-f1-accent cursor-pointer transition-colors"></i>
+        <i class="fa-solid fa-envelope hover:text-f1-accent cursor-pointer transition-colors"></i>
+      </div>
+      <div class="text-[0.65rem] text-white/30 font-black uppercase tracking-[0.3em]">
+        &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
+      </div>
     </footer>
 
 </body>
-
 </html>
-
-
-
-
-
