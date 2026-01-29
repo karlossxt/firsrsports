@@ -57,7 +57,6 @@
       }
       .f1-card-standard:hover .img-container img { transform: scale(1.08); }
 
-      /* Efecto de fondo en el Hero */
       .baseball-pattern {
         background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
         opacity: 0.1;
@@ -94,7 +93,7 @@
       <a href="index.html" class="hidden lg:block border-2 border-f1-accent text-f1-accent px-6 py-2 rounded font-black uppercase text-xs tracking-widest transition-all italic hover:bg-f1-accent hover:text-black">Portada</a>
     </header>
 
-    <!-- HERO SECCIÓN BÉISBOL -->
+    <!-- HERO SECCIÓN -->
     <section class="relative h-[400px] flex items-center justify-center text-center overflow-hidden border-b-4 border-f1-accent">
         <div class="absolute inset-0 bg-gradient-to-r from-black via-f1-baseball to-black"></div>
         <div class="absolute inset-0 baseball-pattern"></div>
@@ -106,7 +105,7 @@
         </div>
     </section>
 
-    <!-- GRID DE NOTAS HOMOLOGADO -->
+    <!-- GRID DE NOTAS -->
     <main class="max-w-[1400px] mx-auto px-5 py-16">
         
         <div class="flex items-center gap-4 mb-12">
@@ -116,7 +115,20 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
-            <!-- TARJETA 1: WBC -->
+            <!-- NUEVA NOTA: FREDDY PERALTA -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
+                <div class="img-container">
+                    <img src="freddy-peralta-mets.jpg" alt="Freddy Peralta Mets">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <span class="bg-f1-baseball text-white text-[0.65rem] font-black px-2 py-1 rounded w-fit mb-4 uppercase tracking-widest">MLB | HOT STOVE</span>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white text-white">Freddy Peralta a los Mets, ¿el mejor movimiento del año?</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Analizamos el impacto de 'La Piedra' en Queens y por qué David Stearns realizó una jugada maestra en este mercado invernal.</p>
+                    <a href="nota-freddy-peralta-mets.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Análisis &rarr;</a>
+                </div>
+            </article>
+
+            <!-- TARJETA: WBC -->
             <article class="f1-card-standard rounded-2xl overflow-hidden">
                 <div class="img-container">
                     <img src="wbc-1.jpg" alt="WBC 2026">
@@ -125,37 +137,37 @@
                     <span class="bg-f1-baseball text-white text-[0.65rem] font-black px-2 py-1 rounded w-fit mb-4 uppercase tracking-widest">WBC 2026</span>
                     <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">El Clásico Mundial ya está aquí: ¿Podrá Ohtani repetir la hazaña?</h3>
                     <p class="text-f1-muted text-sm mb-6 line-clamp-3">Conoce el calendario oficial, las sedes en Miami y el Dream Team que prepara Estados Unidos con Aaron Judge.</p>
-                    <a href="nota-wbc-2026.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Análisis &rarr;</a>
+                    <a href="nota-wbc-2026.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Nota &rarr;</a>
                 </div>
             </article>
 
-            <!-- TARJETA 2: COOPERSTOWN -->
-            <article class="f1-card-standard rounded-2xl overflow-hidden" style="border-color: #003278;">
+            <!-- TARJETA: COOPERSTOWN -->
+            <article class="f1-card-standard rounded-2xl overflow-hidden">
                 <div class="img-container">
                     <img src="national.jpg" alt="Cooperstown">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
                     <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">MLB | SALÓN DE LA FAMA</span>
-                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Carlos Beltrán y Andrew Jones: Nuevos huéspedes de Cooperstown</h3>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Beltrán y Jones: Los nuevos huéspedes de Cooperstown</h3>
                     <p class="text-f1-muted text-sm mb-6 line-clamp-3">Hitos históricos: El boricua y el curazoleño alcanzan la inmortalidad en la clase 2026. Revisa sus récords.</p>
                     <a href="nota-cooperstown.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Nota &rarr;</a>
                 </div>
             </article>
 
-            <!-- TARJETA 3: KERSHAW -->
+            <!-- TARJETA: KERSHAW -->
             <article class="f1-card-standard rounded-2xl overflow-hidden">
                 <div class="img-container">
                     <img src="kershaw-1.jpg" alt="Clayton Kershaw">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
                     <span class="text-f1-baseball text-[0.65rem] font-black uppercase mb-2 tracking-widest">MLB Actualidad</span>
-                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Kershaw pospone el retiro: Lanzará con EE. UU. en el Clásico</h3>
-                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">La leyenda de los Dodgers confirma su participación internacional en lo que podría ser su "Last Dance".</p>
+                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Kershaw pospone el retiro: Lanzará en el Clásico Mundial</h3>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">La leyenda de los Dodgers confirma su participación internacional en lo que podría ser su "Last Dance" antes de la campaña 2026.</p>
                     <a href="nota-kershaw-wbc.html" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">La Historia Continúa &rarr;</a>
                 </div>
             </article>
 
-            <!-- TARJETA 4: SERIE DEL CARIBE -->
+            <!-- TARJETA: SERIE DEL CARIBE -->
             <article class="f1-card-standard rounded-2xl overflow-hidden">
                 <div class="img-container">
                     <img src="randy-arozarena.jpeg" alt="Serie del Caribe">
@@ -163,21 +175,8 @@
                 <div class="p-8 flex flex-col flex-grow">
                     <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Rumbo al Caribe</span>
                     <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">Serie del Caribe 2026: Sedes, fechas y el camino de México</h3>
-                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Todo lo que necesitas saber sobre el torneo que reúne a los campeones de las ligas invernales.</p>
-                    <a href="#" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Nota &rarr;</a>
-                </div>
-            </article>
-
-            <!-- TARJETA 5: MEXICANOS MLB -->
-            <article class="f1-card-standard rounded-2xl overflow-hidden">
-                <div class="img-container">
-                    <img src="randy-arozarena.jpeg" alt="Mexicanos MLB">
-                </div>
-                <div class="p-8 flex flex-col flex-grow">
-                    <span class="text-f1-accent text-[0.65rem] font-black uppercase mb-2 tracking-widest">Orgullo Nacional</span>
-                    <h3 class="font-header text-2xl font-bold mb-4 leading-tight text-white">La legión mexicana: Proyecciones para la temporada 2026</h3>
-                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Analizamos el impacto de los jugadores mexicanos que buscan brillar en las Grandes Ligas este año.</p>
-                    <a href="#" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Leer Análisis &rarr;</a>
+                    <p class="text-f1-muted text-sm mb-6 line-clamp-3">Todo lo que necesitas saber sobre el torneo que reúne a los campeones de las ligas invernales latinas.</p>
+                    <a href="#" class="mt-auto font-black text-sm uppercase border-b-2 border-f1-accent w-fit text-white hover:text-f1-accent transition-colors">Próximamente</a>
                 </div>
             </article>
 
