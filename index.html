@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -61,30 +61,17 @@
     <script type="text/babel">
       const { useState, useEffect } = React;
 
-      // --- DATOS ---
+      // --- DATOS ACTUALIZADOS SEGÚN IMAGEN ---
       const LIVE_SCORES = [
-        
-        // Resultados de la Jornada 4 de la LIGA MX (30 y 31 de Enero de 2026)
-        { liga: "LIGA MX", local: "Puebla", vis: "Toluca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "02:00 CET" },
-        { liga: "LIGA MX", local: "Pumas", vis: "Santos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "04:00 CET" },
-        { liga: "LIGA MX", local: "Juárez", vis: "Cruz Azul", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "04:06 CET" },
-        { liga: "LIGA MX", local: "Atlas", vis: "Mazatlán", s1: "1", s2: "1", st: "FINAL", fecha: "31 ENE", hora: "17:00" }, // Resultado de referencia, verificar fecha y hora exactas
-        { liga: "LIGA MX", local: "América", vis: "Necaxa", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "16:00" },
-        { liga: "LIGA MX", local: "Atlético San Luis", vis: "Chivas", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "17:00" },
-        { liga: "LIGA MX", local: "Monterrey", vis: "Xolos", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "19:00" },
-        { liga: "LIGA MX", local: "León", vis: "Tigres", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "31 ENE", hora: "19:00" },
-
-        // Partidos de la NFL y Super Bowl LX
-        { liga: "NFL CONF", local: "Seahawks", vis: "Rams", s1: "20", s2: "17", st: "FINAL", fecha: "25 ENE", hora: "17:30" }, // Resultado de ejemplo, verificar resultado real
-        { liga: "NFL CONF", local: "Broncos", vis: "Patriots", s1: "10", s2: "27", st: "FINAL", fecha: "25 ENE", hora: "14:00" }, // Resultado de ejemplo, verificar resultado real
-        { liga: "SUPER BOWL LX", local: "Seahawks", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "08 FEB", hora: "17:30" },
-
-        // Resultados de partidos amistosos de México
-        { liga: "MÉXICO", local: "México", vis: "Panamá", s1: "2", s2: "0", st: "FINAL", fecha: "22 ENE", hora: "20:00" }, // Resultado de ejemplo, verificar resultado real
-        { liga: "MÉXICO", local: "México", vis: "Bolivia", s1: "1", s2: "1", st: "FINAL", fecha: "25 ENE", hora: "19:30" } // Resultado de ejemplo, verificar resultado real
+        { liga: "LIGA MX - SEMI IDA", local: "Cruz Azul", vis: "Guadalajara", s1: "2", s2: "2", st: "FINAL", fecha: "MIÉ 13/5", hora: "FIN" },
+        { liga: "LIGA MX - SEMI IDA", local: "Pachuca", vis: "Pumas", s1: "1", s2: "0", st: "FINAL", fecha: "AYER", hora: "FIN" },
+        { liga: "LIGA MX - SEMI VUELTA", local: "Guadalajara", vis: "Cruz Azul", s1: "-", s2: "-", st: "MAÑANA", fecha: "16 MAY", hora: "19:07" },
+        { liga: "LIGA MX - SEMI VUELTA", local: "Pumas", vis: "Pachuca", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "DOM 17/5", hora: "19:00" },
+        // NFL Y OTROS
+        { liga: "SUPER BOWL LX", local: "Seahawks", vis: "Patriots", s1: "-", s2: "-", st: "PRÓXIMO", fecha: "08 FEB", hora: "17:30" }
       ];
 
-
+      // --- TUS NOTAS ORIGINALES RESTAURADAS ---
       const LATEST_NEWS = [
         { id: "1", tag: "WRC", title: "Equipo Toyota sorprende con una victoria histórica más en el Rally de Suecia.", image: "evans-suecia-1.png", link: "WRC2026–SEUCIA.html" },
         { id: "1", tag: "LIGAMX", title: "Chivas: Súper Líder Absoluto con Paso Perfecto", image: "chivas-festejo-sanluis.jpg", link: "nota-chivas-superlider.html" },
@@ -108,19 +95,11 @@
         { id: "hero-5", tag: "LA LIGA", title: "Barça se despega: Líder absoluto con 49 puntos", image: "barcelona.jpg", link: "nota-barca-lider.html" }
       ];
 
-      const STANDINGS = [
-        { name: "LIGA MX", icon: "fa-futbol", link: "futbol.html", rows: [{ name: "Chivas", val: "9" }, { name: "Toluca", val: "7" }, { name: "Monterrey", val: "6" }, { name: "Cruz Azul", val: "6" }, { name: "Atlas", val: "6" }] },
-        { name: "LA LIGA", icon: "fa-flag", link: "futbol.html", rows: [{ name: "FC Barcelona", val: "49" }, { name: "Real Madrid", val: "48" }, { name: "Villarreal", val: "41" }, { name: "Atlético Madrid", val: "41" }, { name: "Espanyol", val: "34" }] },
-        { name: "PREMIER", icon: "fa-crown", link: "futbol.html", rows: [{ name: "Arsenal FC", val: "50" }, { name: "Man City", val: "43" }, { name: "Aston Villa", val: "43" }, { name: "Liverpool FC", val: "36" }, { name: "Man United", val: "35" }] },
-        { name: "NFL SEEDS", icon: "fa-football", link: "seccion-nfl.html", rows: [{ name: "Seahawks", val: "(1)" }, { name: "Broncos", val: "(1)" }, { name: "Patriots", val: "(2)" }, { name: "Rams", val: "(5)" }, { name: "Lions", val: "Finalista" }] }
-      ];
-
       const CATEGORY_CARDS = [
         { name: "NFL", icon: "fa-football", link: "seccion-nfl.html" },
         { name: "Fútbol", icon: "fa-futbol", link: "futbol.html" },
         { name: "Béisbol", icon: "fa-baseball-bat-ball", link: "seccion-beisbol.html" },
         { name: "Tenis", icon: "fa-baseball", link: "australian-open-2026.html" },
-        { name: "Crónicas", icon: "fa-book-open", link: "cronicas-del-balon.html", special: true },
         { name: "Motor", icon: "fa-flag-checkered", link: "seccion-motor.html" },
         { name: "Boxeo", icon: "fa-hand-fist", link: "boxeo.html" },
         { name: "Nosotros", icon: "fa-users", link: "quienes-somos.html" }
@@ -128,7 +107,6 @@
 
       // --- COMPONENTE PRINCIPAL ---
       const App = () => {
-        const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
         const [activeSlide, setActiveSlide] = useState(0);
 
         useEffect(() => {
@@ -142,7 +120,7 @@
           <div className="min-h-screen flex flex-col font-body bg-f1-bg text-white">
             {/* TOP BAR */}
             <div className="bg-black py-2 px-[5%] flex justify-between items-center text-[0.7rem] text-f1-muted border-b border-white/10">
-              <div className="uppercase tracking-widest">CDMX | 21 ENE 2026</div>
+              <div className="uppercase tracking-widest">CDMX | 15 MAY 2026</div>
               <div className="flex gap-4">
                 <i className="fa-brands fa-facebook-f hover:text-f1-accent cursor-pointer"></i>
                 <i className="fa-brands fa-x-twitter hover:text-f1-accent cursor-pointer"></i>
@@ -150,7 +128,7 @@
               </div>
             </div>
 
-            {/* HEADER */}
+            {/* HEADER (Sin Crónicas) */}
             <header className="sticky top-0 z-[2000] bg-black/90 backdrop-blur-md border-b border-white/10 px-[5%] py-4 flex items-center justify-between">
               <a href="index.html" className="flex items-center gap-3 group">
                 <img src="logof1.png" className="h-10 w-auto rounded" alt="Logo" />
@@ -160,8 +138,8 @@
               </a>
 
               <nav className="hidden md:flex gap-6 items-center">
-                {['Inicio', 'NFL', 'Motor', 'Crónicas', 'Liga MX', 'Beisbol', 'Boxeo'].map((item) => (
-                  <a key={item} href={item === 'NFL' ? 'seccion-nfl.html' : item === 'Motor' ? 'seccion-motor.html' : item === 'Crónicas' ? 'cronicas-del-balon.html' : item === 'Liga MX' ? 'futbol.html' : '#'} className="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent transition-colors">
+                {['Inicio', 'NFL', 'Motor', 'Liga MX', 'Beisbol', 'Boxeo'].map((item) => (
+                  <a key={item} href={item === 'NFL' ? 'seccion-nfl.html' : item === 'Motor' ? 'seccion-motor.html' : item === 'Liga MX' ? 'futbol.html' : '#'} className="font-header font-bold text-sm uppercase tracking-wider text-f1-muted hover:text-f1-accent transition-colors">
                     {item}
                   </a>
                 ))}
@@ -171,7 +149,7 @@
 
             {/* SCORE TICKER */}
             <div className="bg-[#080808] border-b border-white/10 flex h-[75px] overflow-hidden relative z-100">
-              <div className="bg-f1-primary text-white font-header font-extrabold flex items-center px-6 text-[0.8rem] uppercase whitespace-nowrap z-20 shadow-[10px_0_20px_black]">Marcadores</div>
+              <div className="bg-f1-primary text-white font-header font-extrabold flex items-center px-6 text-[0.8rem] uppercase whitespace-nowrap z-20 shadow-[10px_0_20px_black]">Liguilla MX</div>
               <div className="flex animate-scroll whitespace-nowrap items-center">
                 {[...LIVE_SCORES, ...LIVE_SCORES].map((game, i) => (
                   <div key={i} className="min-w-[240px] px-6 border-r border-white/10 py-2 flex flex-col justify-center">
@@ -181,7 +159,10 @@
                     </div>
                     <div className="flex justify-between font-semibold text-[0.85rem] mt-1">
                       <div className="flex flex-col"><span>{game.local}</span><span>{game.vis}</span></div>
-                      <div className="flex flex-col text-right font-header text-f1-accent"><span>-</span><span>-</span></div>
+                      <div className="flex flex-col text-right font-header text-f1-accent">
+                        <span>{game.s1}</span>
+                        <span>{game.s2}</span>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -203,13 +184,12 @@
                 ))}
               </div>
                 
-  
-              {/* ÚLTIMAS NOTICIAS */}
+              {/* ÚLTIMAS NOTICIAS (Tus notas originales) */}
               <div className="mt-16 mb-8 flex items-center gap-4">
                 <div className="w-1.5 h-10 bg-f1-accent"></div>
                 <h2 className="font-header text-3xl font-bold uppercase tracking-tight">Últimas Noticias</h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
                 {LATEST_NEWS.map((item) => (
                   <article key={item.id} className="group bg-f1-card border border-white/10 rounded-xl overflow-hidden hover:border-f1-accent hover:-translate-y-2 transition-all flex flex-col">
                     <div className="h-[220px] overflow-hidden relative">
@@ -225,67 +205,15 @@
                 ))}
               </div>
 
-              {/* SECTION: CRONICAS BANNER */}
-              <section className="my-20 bg-gradient-to-r from-black via-[#0a0a0a] to-black border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row items-stretch">
-                <div className="flex-1 p-10 md:p-16 flex flex-col justify-center">
-                  <span className="font-italic italic text-f1-special text-lg mb-2">Nueva Sección Editorial</span>
-                  <h2 className="font-header text-4xl md:text-5xl font-black uppercase leading-none mb-6">Crónicas del Balón</h2>
-                  <p className="text-f1-muted text-lg mb-8 max-w-lg leading-relaxed">
-                    Relatos de leyenda y los genios que forjaron la historia del fútbol. Una columna exclusiva de Sergio López.
-                  </p>
-                  <div>
-                    <a href="cronicas-del-balon.html" className="inline-block bg-f1-special text-black font-header font-black px-8 py-3 rounded uppercase tracking-wider hover:scale-105 transition-transform">
-                      Explorar Historias
-                    </a>
-                  </div>
-                </div>
-                <div className="flex-1 min-h-[300px] relative">
-                  <img 
-                    src="Robert Prosinečki.jpg" 
-                    className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" 
-                    alt="Cronicas" 
-                  />
-                </div>
-              </section>
-
-              {/* POSICIONES */}
-              <div className="mb-8 flex items-center gap-4">
-                <div className="w-1.5 h-10 bg-f1-accent"></div>
-                <h2 className="font-header text-3xl font-bold uppercase tracking-tight">Posiciones</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                {STANDINGS.map((league) => (
-                  <div key={league.name} className="bg-f1-card border border-white/10 rounded-xl overflow-hidden flex flex-col">
-                    <a href={league.link} className="bg-white/5 p-4 border-b-2 border-f1-primary flex justify-between items-center hover:bg-white/10 transition-colors">
-                      <span className="font-header font-bold text-sm uppercase tracking-widest">{league.name}</span>
-                      <i className={`fa-solid ${league.icon} text-f1-accent`}></i>
-                    </a>
-                    <div className="p-2 flex-grow">
-                      <table className="w-full text-xs text-left">
-                        <tbody>
-                          {league.rows.map((row, idx) => (
-                            <tr key={idx} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                              <td className="py-3 px-3 flex items-center"><span className="w-5 font-black text-f1-accent">{idx + 1}</span>{row.name}</td>
-                              <td className="py-3 px-3 text-right font-header font-bold text-f1-accent">{row.val}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                    <a href={league.link} className="bg-black/40 text-center py-3 text-[0.65rem] font-bold uppercase tracking-widest text-white/60 hover:text-white transition-all">Ver Tabla Completa</a>
-                  </div>
-                ))}
-              </div>
-
-              {/* --- GRID DE CATEGORÍAS --- */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 mb-20">
+              {/* GRID DE CATEGORÍAS (Sin Crónicas) */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-20">
                 {CATEGORY_CARDS.map((card) => (
                   <a 
                     key={card.name} 
                     href={card.link} 
                     className="group bg-white/5 p-6 rounded-xl border border-transparent hover:border-f1-accent hover:bg-f1-card transition-all flex flex-col items-center text-center"
                   >
-                    <i className={`fa-solid ${card.icon} text-3xl mb-4 group-hover:scale-110 transition-transform ${card.special ? 'text-f1-special' : 'text-f1-accent'}`}></i>
+                    <i className={`fa-solid ${card.icon} text-3xl mb-4 group-hover:scale-110 transition-transform text-f1-accent`}></i>
                     <span className="font-header font-bold text-[0.7rem] uppercase tracking-widest text-f1-muted group-hover:text-white transition-colors">
                       {card.name}
                     </span>
@@ -321,22 +249,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
