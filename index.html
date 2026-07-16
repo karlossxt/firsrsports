@@ -147,7 +147,6 @@
     <div id="root"></div>
 
     <script type="text/babel">
-    <script type="text/babel">
       const { useState, useEffect, useMemo } = React;
 
       // ===== API CONFIGURATION =====
@@ -178,8 +177,16 @@
         }
       }
 
+      async function getLigaMXFixtures() {
+        return fetchAPI(`/fixtures?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
+      }
+
       async function getLigaMXStandings() {
         return fetchAPI(`/standings?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
+      }
+
+      async function getLiveMatches() {
+        return fetchAPI('/fixtures?live=all', 30000);
       }
 
       async function getMexicoNextFixtures() {
@@ -197,9 +204,9 @@
           { id: 2, local: "Tijuana", visitante: "Tigres", fecha: "Jueves 16 de julio", hora: "21:10 hrs.", tv: "Fox One / Caliente.mx" },
           { id: 3, local: "Atlético San Luis", visitante: "Cruz Azul", fecha: "Viernes 17 de julio", hora: "19:00 hrs.", tv: "ESPN / ViX Premium" },
           { id: 4, local: "León", visitante: "Atlas", fecha: "Viernes 17 de julio", hora: "19:00 hrs.", tv: "Fox One" },
-          { id: 5, local: "FC Juárez", visitante: "Puebla", fecha: "Viernes 17 de julio", hora: "21:00 hrs.", tv: "Canal 7 / Fox One" },
-          { id: 6, local: "Pumas", visitante: "Pachuca", fecha: "Sábado 18 de julio", hora: "17:00 hrs.", tv: "Canal 5 / TUDN / ViX" },
-          { id: 7, local: "Monterrey", visitante: "Santos Laguna", fecha: "Sábado 18 de julio", hora: "19:05 hrs.", tv: "Canal 5 / TUDN / ViX" },
+          { id: 5, local: "FC Juárez", visitante: "Puebla", fecha: "Viernes 17 de julio", hora: "21:00 hrs.", tv: "Canal 7 (Abierta) / Fox One" },
+          { id: 6, local: "Pumas", visitante: "Pachuca", fecha: "Sábado 18 de julio", hora: "17:00 hrs.", tv: "Canal 5 (Abierta) / TUDN / ViX" },
+          { id: 7, local: "Monterrey", visitante: "Santos Laguna", fecha: "Sábado 18 de julio", hora: "19:05 hrs.", tv: "Canal 5 (Abierta) / TUDN / ViX" },
           { id: 8, local: "Chivas", visitante: "Toluca", fecha: "Sábado 18 de julio", hora: "19:07 hrs.", tv: "Amazon Prime Video" },
           { id: 9, local: "Querétaro", visitante: "América", fecha: "Sábado 18 de julio", hora: "21:10 hrs.", tv: "Fox One / Caliente.mx" }
         ],
@@ -270,7 +277,7 @@
         return (
           <header className={`fixed top-0 left-0 right-0 z-[2000] transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
             <div className="max-w-[1400px] mx-auto px-5 py-4 flex items-center justify-between">
-              <a href="#" onClick={() => setActiveTab('inicio')} className="flex items-center gap-3 group">
+              <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('inicio'); }} className="flex items-center gap-3 group">
                 <span className="font-header font-black italic text-2xl tracking-tighter uppercase text-white">
                   F1RST<span className="text-accent group-hover:text-white transition-colors">SPORTS</span>
                 </span>
@@ -294,510 +301,6 @@
                     {item.name}
                   </button>
                 ))}
-              </nav>
-
-              <button className="md:hidden text-white text-xl">
-                <i className="fas fa-bars"></i>
-              </button>
-            </div>
-          </header>
-        );
-      }
-
-      // Hero Banner
-      function HeroBanner({ setActiveTab }) {
-        return (
-          <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-bg/80 to-transparent"></div>
-            
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
-              <div className="max-w-[1400px] mx-auto">
-                <span className="inline-flex items-center gap-2 bg-green-mx/90 text-white font-header font-bold text-xs px-4 py-2 rounded-full uppercase mb-4">
-                  <span className="text-lg">🇲🇽</span>
-                  Portal del Fútbol Mexicano
-                </span>
-                <h1 className="font-header text-4xl md:text-6xl font-black uppercase leading-none tracking-tighter mb-4">
-                  <span className="gradient-text">F1RST SPORTS</span>
-                  <br />
-                  <span className="text-white">COBERTURA & SCOUTING</span>
-                </h1>
-                <p className="text-white/70 text-base md:text-lg max-w-2xl mb-6">
-                  Sigue las jornadas de la Liga MX, Liga de Expansión, Selección Nacional y descubre el talento joven de nuestro fútbol.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <button onClick={() => setActiveTab('scouting')} className="bg-accent text-bg font-header font-bold px-6 py-2.5 rounded-lg uppercase tracking-wider text-xs hover:bg-accent-dark transition-colors">
-                    Explorar Scouting
-                  </button>
-                </div>
-              </div>
-            </div>
-          </section>
-        );
-      }
-
-      // NUEVO COMPONENTE: CALENDARIO DE JORNADAS (LIGA MX Y EXPANSIÓN)
-      function CalendarioPartidos() {
-        const [subLiga, setSubLiga] = useState('ligamx');
-
-        const partidos = JORNADA_1_DATA[subLiga];
-
-        return (
-          <section className="py-12 bg-card/30 rounded-2xl border border-border p-6 mt-8">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-              <div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-8 bg-accent rounded-full"></div>
-                  <h3 className="font-header text-2xl font-bold uppercase tracking-tight">Jornada 1 - Apertura 2026</h3>
-                </div>
-                <p className="text-white/40 text-xs mt-1">Fechas oficiales, horarios y canales de transmisión</p>
-              </div>
-
-              {/* Selector de Liga */}
-              <div className="flex bg-black/40 p-1 rounded-lg border border-border">
-                <button
-                  onClick={() => setSubLiga('ligamx')}
-                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    subLiga === 'ligamx' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
-                  }`}
-                >
-                  Liga MX
-                </button>
-                <button
-                  onClick={() => setSubLiga('expansion')}
-                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    subLiga === 'expansion' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
-                  }`}
-                >
-                  Liga Expansión
-                </button>
-              </div>
-            </div>
-
-            {/* Grid de Partidos */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {partidos.map((partido) => (
-                <div 
-                  key={partido.id} 
-                  className="bg-card/80 border border-border rounded-xl p-5 hover:border-accent/40 transition-all flex flex-col justify-between h-44"
-                >
-                  {/* Fecha y Hora */}
-                  <div className="flex justify-between items-center text-[10px] text-white/50 uppercase font-bold tracking-wider mb-3">
-                    <span>{partido.fecha}</span>
-                    <span className="text-accent">{partido.hora}</span>
-                  </div>
-
-                  {/* Versus */}
-                  <div className="flex flex-col gap-2 my-2">
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-sm text-white/90">{partido.local}</span>
-                      <span className="text-xs text-white/30 font-header">L</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-sm text-white/90">{partido.visitante}</span>
-                      <span className="text-xs text-white/30 font-header">V</span>
-                    </div>
-                  </div>
-
-                  {/* Canal de Transmisión */}
-                  <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-white/60">
-                    <div className="flex items-center gap-1.5 text-white/40">
-                      <i className="fas fa-tv text-[10px]"></i>
-                      <span className="text-[10px] uppercase font-bold tracking-wider">Transmisión:</span>
-                    </div>
-                    <span className="font-semibold text-accent text-[11px] max-w-[180px] truncate text-right">{partido.tv}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        );
-      }
-
-      // Standings Table Component
-      function StandingsTable() {
-        const [standings, setStandings] = useState([]);
-
-        useEffect(() => {
-          const fetchStandings = async () => {
-            const data = await getLigaMXStandings();
-            if (data?.response?.[0]?.league?.standings?.[0]) {
-              setStandings(data.response[0].league.standings[0]);
-            }
-          };
-          fetchStandings();
-        }, []);
-
-        if (standings.length === 0) return null;
-
-        return (
-          <div className="glass-card rounded-2xl overflow-hidden mt-8">
-            <div className="p-5 border-b border-border">
-              <h3 className="font-header text-lg font-bold uppercase">Tabla general - Liga MX</h3>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="text-[10px] uppercase text-white/40 bg-white/5">
-                  <tr>
-                    <th className="text-left p-4 w-12">#</th>
-                    <th className="text-left p-4">Equipo</th>
-                    <th className="text-center p-4 w-12">PJ</th>
-                    <th className="text-center p-4 w-12">PTS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {standings.slice(0, 10).map((team) => (
-                    <tr key={team.team.id} className="border-t border-border hover:bg-white/5 transition-colors">
-                      <td className="p-4">{team.rank}</td>
-                      <td className="p-4 flex items-center gap-3">
-                        <img src={team.team.logo} className="w-6 h-6" alt="" />
-                        <span>{team.team.name}</span>
-                      </td>
-                      <td className="p-4 text-center">{team.all.played}</td>
-                      <td className="p-4 text-center font-bold text-accent">{team.points}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        );
-      }
-
-      // COMPONENTE: RADAR CHART EN SVG
-      function RadarChart({ metrics }) {
-        const keys = Object.keys(metrics);
-        const values = Object.values(metrics);
-        const numPoints = keys.length;
-        const size = 180;
-        const center = size / 2;
-        const radius = size * 0.35;
-
-        const getCoordinates = (valFactor, i) => {
-          const angle = (Math.PI * 2 / numPoints) * i - Math.PI / 2;
-          const r = radius * (valFactor / 100);
-          return { x: center + r * Math.cos(angle), y: center + r * Math.sin(angle) };
-        };
-
-        const gridPolygons = [0.2, 0.4, 0.6, 0.8, 1].map((factor) => {
-          return Array.from({ length: numPoints }).map((_, i) => {
-            const { x, y } = getCoordinates(factor * 100, i);
-            return `${x},${y}`;
-          }).join(" ");
-        });
-
-        const playerPoints = values.map((val, i) => {
-          const { x, y } = getCoordinates(val, i);
-          return `${x},${y}`;
-        }).join(" ");
-
-        return (
-          <div className="flex flex-col items-center">
-            <svg width={size} height={size} className="overflow-visible">
-              {gridPolygons.map((points, idx) => (
-                <polygon key={idx} points={points} fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
-              ))}
-              {Array.from({ length: numPoints }).map((_, i) => {
-                const outerPoint = getCoordinates(100, i);
-                return <line key={i} x1={center} y1={center} x2={outerPoint.x} y2={outerPoint.y} stroke="rgba(255, 255, 255, 0.1)" />;
-              })}
-              <polygon points={playerPoints} fill="rgba(204, 255, 0, 0.2)" stroke="#ccff00" strokeWidth="2" />
-              {values.map((val, i) => {
-                const { x, y } = getCoordinates(val, i);
-                return <circle key={i} cx={x} cy={y} r="3" fill="#ccff00" />;
-              })}
-              {keys.map((key, i) => {
-                const labelPos = getCoordinates(125, i);
-                let textAnchor = "middle";
-                if (labelPos.x > center + 10) textAnchor = "start";
-                if (labelPos.x < center - 10) textAnchor = "end";
-
-                return (
-                  <text key={key} x={labelPos.x} y={labelPos.y + 3} fill="#a1a1aa" fontSize="8" textAnchor={textAnchor} className="font-header font-bold uppercase tracking-wider">
-                    {key}
-                  </text>
-                );
-              })}
-            </svg>
-          </div>
-        );
-      }
-
-      // SECCIÓN: MÓDULO DE SCOUTING
-      function ScoutingSection() {
-        const [filterPos, setFilterPos] = useState('Todos');
-        const [search, setSearch] = useState('');
-
-        const posiciones = ['Todos', 'Defensa Central', 'Pivote', 'Extremo'];
-
-        const filtrados = useMemo(() => {
-          return PROSPECTOS_MOCK.filter(p => {
-            const matchesPos = filterPos === 'Todos' || p.posicion === filterPos;
-            const matchesSearch = p.nombre.toLowerCase().includes(search.toLowerCase()) || p.club.toLowerCase().includes(search.toLowerCase());
-            return matchesPos && matchesSearch;
-          });
-        }, [filterPos, search]);
-
-        return (
-          <section className="py-12 px-5 max-w-[1400px] mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-              <div>
-                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Scouting / Prospectos</h2>
-                <p className="text-white/50 text-sm mt-1">Base de datos de rendimiento y fuerzas básicas</p>
-              </div>
-              <div className="relative">
-                <input 
-                  type="text" 
-                  placeholder="Buscar jugador..." 
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="bg-card border border-border rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-accent w-full md:w-64 text-white"
-                />
-                <i className="fas fa-search absolute left-3.5 top-3.5 text-white/30 text-xs"></i>
-              </div>
-            </div>
-
-            <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
-              {posiciones.map(pos => (
-                <button
-                  key={pos}
-                  onClick={() => setFilterPos(pos)}
-                  className={`px-4 py-2 rounded-lg font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    filterPos === pos ? 'bg-accent text-bg' : 'bg-card text-muted hover:text-white border border-border'
-                  }`}
-                >
-                  {pos}
-                </button>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {filtrados.map(jugador => (
-                <div key={jugador.id} className="glass-card rounded-2xl p-6 flex flex-col md:flex-row gap-6 hover:border-accent/30 transition-all">
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="bg-accent/10 text-accent font-header font-bold text-[9px] px-2.5 py-1 rounded-full uppercase">{jugador.posicion}</span>
-                        <span className="text-white/40 text-xs">{jugador.categoria}</span>
-                      </div>
-                      <h3 className="text-2xl font-black uppercase mb-1 font-header tracking-tight">{jugador.nombre}</h3>
-                      <div className="text-xs text-white/60 mb-1"><i className="fas fa-birthday-cake mr-2 text-accent"></i>{jugador.edad} años</div>
-                      <div className="text-xs text-white/60"><i className="fas fa-shield-halved mr-2 text-accent"></i>{jugador.club}</div>
-                    </div>
-                    <div className="mt-6 space-y-2">
-                      {Object.entries(jugador.metricas).slice(0, 3).map(([key, val]) => (
-                        <div key={key} className="flex justify-between text-xs border-b border-white/5 pb-1">
-                          <span className="text-white/60">{key}</span>
-                          <span className="font-bold text-accent">{val}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center p-4 bg-black/40 rounded-xl border border-border/50">
-                    <RadarChart metrics={jugador.metricas} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        );
-      }
-
-      // SECCIÓN: SELECCIÓN NACIONAL
-      function MexicoSection() {
-        const [nextMatches, setNextMatches] = useState([]);
-        const [lastResults, setLastResults] = useState([]);
-        const [activeTab, setActiveTab] = useState('next');
-
-        useEffect(() => {
-          const fetchData = async () => {
-            const next = await getMexicoNextFixtures();
-            if (next?.response) setNextMatches(next.response);
-            
-            const last = await getMexicoLastResults();
-            if (last?.response) setLastResults(last.response);
-          };
-          fetchData();
-        }, []);
-
-        return (
-          <section className="py-12 px-5 max-w-[1400px] mx-auto">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-1.5 h-12 bg-green-mx rounded-full"></div>
-              <div>
-                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Selección Mexicana</h2>
-                <p className="text-white/50 text-sm mt-1">Estatus y partidos</p>
-              </div>
-            </div>
-
-            <div className="flex gap-2 mb-6">
-              <button
-                onClick={() => setActiveTab('next')}
-                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                  activeTab === 'next' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
-                }`}
-              >
-                Próximos Partidos
-              </button>
-              <button
-                onClick={() => setActiveTab('results')}
-                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                  activeTab === 'results' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
-                }`}
-              >
-                Últimos Resultados
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              {activeTab === 'next' ? (
-                nextMatches.length > 0 ? (
-                  nextMatches.map((match) => (
-                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
-                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
-                      <span className="text-sm font-bold text-accent">{new Date(match.fixture.date).toLocaleDateString('es-MX')}</span>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-white/50">No hay partidos próximos registrados.</p>
-                )
-              ) : (
-                lastResults.length > 0 ? (
-                  lastResults.map((match) => (
-                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
-                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
-                      <span className="font-bold text-accent">{match.goals.home} - {match.goals.away}</span>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-white/50">Cargando...</p>
-                )
-              )}
-            </div>
-          </section>
-        );
-      }
-
-      // Footer Component
-      function Footer() {
-        return (
-          <footer className="bg-card border-t border-border mt-auto">
-            <div className="max-w-[1400px] mx-auto px-5 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-xs text-white/30 uppercase tracking-widest">
-                &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
-              </div>
-              <div className="text-[10px] text-white/20">
-                F1RSTSPORTS es una plataforma libre de costo.
-              </div>
-            </div>
-          </footer>
-        );
-      }
-
-      // ===== MAIN APP =====
-      function App() {
-        const [activeTab, setActiveTab] = useState('inicio');
-
-        return (
-          <div className="min-h-screen flex flex-col bg-bg">
-            <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-            
-            <main className="flex-1 pt-[90px]">
-              {activeTab === 'inicio' && (
-                <>
-                  <HeroBanner setActiveTab={setActiveTab} />
-                  <div className="max-w-[1400px] mx-auto px-5">
-                    <CalendarioPartidos />
-                    <StandingsTable />
-                  </div>
-                </>
-              )}
-
-              {activeTab === 'scouting' && <ScoutingSection />}
-              {activeTab === 'seleccion' && <MexicoSection />}
-            </main>
-
-            <Footer />
-          </div>
-        );
-      }
-
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<App />);
-    </script>
-
-      // ===== API FUNCTIONS =====
-      async function getLigaMXFixtures() {
-        return fetchAPI(`/fixtures?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
-      }
-
-      async function getLigaMXStandings() {
-        return fetchAPI(`/standings?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
-      }
-
-      async function getLiveMatches() {
-        return fetchAPI('/fixtures?live=all', 30000);
-      }
-
-      async function getMexicoNextFixtures() {
-        return fetchAPI(`/fixtures?team=${MEXICO_TEAM_ID}&next=5`, 3600000);
-      }
-
-      async function getMexicoLastResults() {
-        return fetchAPI(`/fixtures?team=${MEXICO_TEAM_ID}&last=5`, 3600000);
-      }
-
-      async function getLigaMXTopScorers() {
-        return fetchAPI(`/players/topscorers?league=${LIGA_MX_ID}&season=${SEASON}`, 3600000);
-      }
-
-      // ===== COMPONENTS =====
-
-      // Header Component
-      function Header() {
-        const [scrolled, setScrolled] = useState(false);
-
-        useEffect(() => {
-          const handleScroll = () => setScrolled(window.scrollY > 50);
-          window.addEventListener('scroll', handleScroll);
-          return () => window.removeEventListener('scroll', handleScroll);
-        }, []);
-
-        return (
-          <header className={`fixed top-0 left-0 right-0 z-[2000] transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-            <div className="max-w-[1400px] mx-auto px-5 py-4 flex items-center justify-between">
-              <a href="index.html" className="flex items-center gap-3 group">
-                <div className="relative">
-                  <img src="logof1.png" className="h-10 w-auto rounded" alt="Logo" />
-                  <div className="absolute -inset-1 bg-accent/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                <span className="font-header font-bold italic text-2xl tracking-tighter uppercase">
-                  F1RST<span className="text-accent group-hover:text-white transition-colors">SPORTS</span>
-                </span>
-              </a>
-              
-              <nav className="hidden md:flex items-center gap-1">
-                {[
-                  { name: 'Inicio', href: 'index.html', active: true },
-                  { name: 'Liga MX', href: '#liga-mx' },
-                  { name: 'Selección', href: '#seleccion' },
-                  { name: 'Estadísticas', href: '#stats' },
-                ].map((item) => (
-                  <a 
-                    key={item.name} 
-                    href={item.href} 
-                    className={`px-4 py-2 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                      item.active 
-                        ? 'text-bg bg-accent' 
-                        : 'text-muted hover:text-white hover:bg-white/10'
-                    }`}
-                  >
-                    {item.name}
-                  </a>
-                ))}
-                <a href="mundial-2026.html" className="ml-2 bg-primary px-5 py-2 rounded-lg font-bold uppercase text-xs tracking-widest hover:bg-blue-600 transition-colors">
-                  Mundial '26
-                </a>
               </nav>
 
               <button className="md:hidden text-white text-xl">
@@ -891,14 +394,9 @@
       }
 
       // Hero Banner
-      function HeroBanner() {
+      function HeroBanner({ setActiveTab }) {
         return (
-          <section className="relative h-[60vh] min-h-[500px] overflow-hidden">
-            <img 
-              src="mexico-grupo.jpg" 
-              className="absolute inset-0 w-full h-full object-cover" 
-              alt="Selección Mexicana" 
-            />
+          <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-bg/80 to-transparent"></div>
             
@@ -908,23 +406,94 @@
                   <span className="text-lg">🇲🇽</span>
                   Portal del Fútbol Mexicano
                 </span>
-                <h1 className="font-header text-5xl md:text-7xl font-black uppercase leading-none tracking-tighter mb-4">
-                  <span className="gradient-text">LIGA MX</span>
+                <h1 className="font-header text-4xl md:text-6xl font-black uppercase leading-none tracking-tighter mb-4">
+                  <span className="gradient-text">F1RST SPORTS</span>
                   <br />
-                  <span className="text-white">& SELECCIÓN</span>
+                  <span className="text-white">COBERTURA & SCOUTING</span>
                 </h1>
-                <p className="text-white/70 text-lg md:text-xl max-w-2xl mb-8">
-                  Resultados en vivo, estadísticas completas y la mejor cobertura del fútbol mexicano.
+                <p className="text-white/70 text-base md:text-lg max-w-2xl mb-6">
+                  Sigue las jornadas de la Liga MX, Liga de Expansión, Selección Nacional y descubre el talento joven de nuestro fútbol.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <a href="#liga-mx" className="bg-accent text-bg font-header font-bold px-8 py-3 rounded-lg uppercase tracking-wider hover:bg-accent-dark transition-colors">
-                    Ver Resultados
-                  </a>
-                  <a href="#seleccion" className="bg-white/10 text-white font-header font-bold px-8 py-3 rounded-lg uppercase tracking-wider hover:bg-white/20 transition-colors border border-white/20">
-                    Selección Mexicana
-                  </a>
+                  <button onClick={() => setActiveTab('scouting')} className="bg-accent text-bg font-header font-bold px-6 py-2.5 rounded-lg uppercase tracking-wider text-xs hover:bg-accent-dark transition-colors">
+                    Explorar Scouting
+                  </button>
                 </div>
               </div>
+            </div>
+          </section>
+        );
+      }
+
+      // Calendario de Partidos (Jornada 1)
+      function CalendarioPartidos() {
+        const [subLiga, setSubLiga] = useState('ligamx');
+        const partidos = JORNADA_1_DATA[subLiga];
+
+        return (
+          <section className="py-12 bg-card/30 rounded-2xl border border-border p-6 mt-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+              <div>
+                <div className="flex items-center gap-3">
+                  <div className="w-1.5 h-8 bg-accent rounded-full"></div>
+                  <h3 className="font-header text-2xl font-bold uppercase tracking-tight">Jornada 1 - Apertura 2026</h3>
+                </div>
+                <p className="text-white/40 text-xs mt-1">Fechas oficiales, horarios y canales de transmisión</p>
+              </div>
+
+              {/* Selector de Liga */}
+              <div className="flex bg-black/40 p-1 rounded-lg border border-border">
+                <button
+                  onClick={() => setSubLiga('ligamx')}
+                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    subLiga === 'ligamx' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
+                  }`}
+                >
+                  Liga MX
+                </button>
+                <button
+                  onClick={() => setSubLiga('expansion')}
+                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    subLiga === 'expansion' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
+                  }`}
+                >
+                  Liga Expansión
+                </button>
+              </div>
+            </div>
+
+            {/* Grid de Partidos */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {partidos.map((partido) => (
+                <div 
+                  key={partido.id} 
+                  className="bg-card/80 border border-border rounded-xl p-5 hover:border-accent/40 transition-all flex flex-col justify-between h-44"
+                >
+                  <div className="flex justify-between items-center text-[10px] text-white/50 uppercase font-bold tracking-wider mb-3">
+                    <span>{partido.fecha}</span>
+                    <span className="text-accent">{partido.hora}</span>
+                  </div>
+
+                  <div className="flex flex-col gap-2 my-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-sm text-white/90">{partido.local}</span>
+                      <span className="text-xs text-white/30 font-header">L</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-sm text-white/90">{partido.visitante}</span>
+                      <span className="text-xs text-white/30 font-header">V</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-white/60">
+                    <div className="flex items-center gap-1.5 text-white/40">
+                      <i className="fas fa-tv text-[10px]"></i>
+                      <span className="text-[10px] uppercase font-bold tracking-wider">Transmisión:</span>
+                    </div>
+                    <span className="font-semibold text-accent text-[11px] max-w-[180px] truncate text-right">{partido.tv}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         );
@@ -947,16 +516,13 @@
 
         if (standings.length === 0) {
           return (
-            <div className="glass-card rounded-2xl overflow-hidden">
+            <div className="glass-card rounded-2xl overflow-hidden mt-8">
               <div className="p-5 border-b border-border">
-                <div className="flex items-center gap-3">
-                  <div className="w-1 h-8 bg-accent rounded-full"></div>
-                  <h3 className="font-header text-xl font-bold uppercase">Tabla de Posiciones</h3>
-                </div>
+                <h3 className="font-header text-xl font-bold uppercase">Tabla general - Liga MX</h3>
               </div>
               <div className="p-5 space-y-3">
-                {[...Array(8)].map((_, i) => (
-                  <div key={i} className="skeleton h-14"></div>
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="skeleton h-12"></div>
                 ))}
               </div>
             </div>
@@ -966,13 +532,10 @@
         const displayStandings = showAll ? standings : standings.slice(0, 10);
 
         return (
-          <div className="glass-card rounded-2xl overflow-hidden">
+          <div className="glass-card rounded-2xl overflow-hidden mt-8">
             <div className="p-5 border-b border-border">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-1 h-8 bg-accent rounded-full"></div>
-                  <h3 className="font-header text-xl font-bold uppercase">Tabla de Posiciones</h3>
-                </div>
+                <h3 className="font-header text-lg font-bold uppercase">Tabla General - Liga MX</h3>
                 <img src="MX_logo.png" className="w-8 h-8 opacity-50" alt="Liga MX" />
               </div>
             </div>
@@ -993,29 +556,11 @@
                 </thead>
                 <tbody>
                   {displayStandings.map((team, idx) => (
-                    <tr 
-                      key={team.team.id} 
-                      className={`border-t border-border hover:bg-white/5 transition-colors ${
-                        idx < 4 ? 'bg-accent/5' : ''
-                      }`}
-                    >
-                      <td className="p-4">
-                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                          idx < 4 ? 'bg-accent text-bg' : 'bg-white/10 text-white/60'
-                        }`}>
-                          {team.rank}
-                        </span>
-                      </td>
-                      <td className="p-4">
-                        <div className="flex items-center gap-3">
-                          <img src={team.team.logo} className="w-8 h-8" alt="" />
-                          <div>
-                            <span className="font-medium">{team.team.name}</span>
-                            {team.team.id && (
-                              <div className="text-[10px] text-white/40 uppercase">{team.form}</div>
-                            )}
-                          </div>
-                        </div>
+                    <tr key={team.team.id} className="border-t border-border hover:bg-white/5 transition-colors">
+                      <td className="p-4">{team.rank}</td>
+                      <td className="p-4 flex items-center gap-3">
+                        <img src={team.team.logo} className="w-6 h-6" alt="" />
+                        <span className="font-medium">{team.team.name}</span>
                       </td>
                       <td className="p-4 text-center text-white/60">{team.all.played}</td>
                       <td className="p-4 text-center text-white/60">{team.all.win}</td>
@@ -1024,9 +569,7 @@
                       <td className={`p-4 text-center font-medium ${team.goalsDiff > 0 ? 'text-green-500' : team.goalsDiff < 0 ? 'text-red-500' : 'text-white/60'}`}>
                         {team.goalsDiff > 0 ? '+' : ''}{team.goalsDiff}
                       </td>
-                      <td className="p-4 text-center font-header text-lg font-bold text-accent">
-                        {team.points}
-                      </td>
+                      <td className="p-4 text-center font-header text-lg font-bold text-accent">{team.points}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1047,7 +590,146 @@
         );
       }
 
-      // Match Card Component
+      // Radar Chart SVG Component
+      function RadarChart({ metrics }) {
+        const keys = Object.keys(metrics);
+        const values = Object.values(metrics);
+        const numPoints = keys.length;
+        const size = 180;
+        const center = size / 2;
+        const radius = size * 0.35;
+
+        const getCoordinates = (valFactor, i) => {
+          const angle = (Math.PI * 2 / numPoints) * i - Math.PI / 2;
+          const r = radius * (valFactor / 100);
+          return { x: center + r * Math.cos(angle), y: center + r * Math.sin(angle) };
+        };
+
+        const gridPolygons = [0.2, 0.4, 0.6, 0.8, 1].map((factor) => {
+          return Array.from({ length: numPoints }).map((_, i) => {
+            const { x, y } = getCoordinates(factor * 100, i);
+            return `${x},${y}`;
+          }).join(" ");
+        });
+
+        const playerPoints = values.map((val, i) => {
+          const { x, y } = getCoordinates(val, i);
+          return `${x},${y}`;
+        }).join(" ");
+
+        return (
+          <div className="flex flex-col items-center">
+            <svg width={size} height={size} className="overflow-visible">
+              {gridPolygons.map((points, idx) => (
+                <polygon key={idx} points={points} fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
+              ))}
+              {Array.from({ length: numPoints }).map((_, i) => {
+                const outerPoint = getCoordinates(100, i);
+                return <line key={i} x1={center} y1={center} x2={outerPoint.x} y2={outerPoint.y} stroke="rgba(255, 255, 255, 0.1)" />;
+              })}
+              <polygon points={playerPoints} fill="rgba(204, 255, 0, 0.2)" stroke="#ccff00" strokeWidth="2" />
+              {values.map((val, i) => {
+                const { x, y } = getCoordinates(val, i);
+                return <circle key={i} cx={x} cy={y} r="3" fill="#ccff00" />;
+              })}
+              {keys.map((key, i) => {
+                const labelPos = getCoordinates(125, i);
+                let textAnchor = "middle";
+                if (labelPos.x > center + 10) textAnchor = "start";
+                if (labelPos.x < center - 10) textAnchor = "end";
+
+                return (
+                  <text key={key} x={labelPos.x} y={labelPos.y + 3} fill="#a1a1aa" fontSize="8" textAnchor={textAnchor} className="font-header font-bold uppercase tracking-wider">
+                    {key}
+                  </text>
+                );
+              })}
+            </svg>
+          </div>
+        );
+      }
+
+      // Scouting Section Component
+      function ScoutingSection() {
+        const [filterPos, setFilterPos] = useState('Todos');
+        const [search, setSearch] = useState('');
+
+        const posiciones = ['Todos', 'Defensa Central', 'Pivote', 'Extremo'];
+
+        const filtrados = useMemo(() => {
+          return PROSPECTOS_MOCK.filter(p => {
+            const matchesPos = filterPos === 'Todos' || p.posicion === filterPos;
+            const matchesSearch = p.nombre.toLowerCase().includes(search.toLowerCase()) || p.club.toLowerCase().includes(search.toLowerCase());
+            return matchesPos && matchesSearch;
+          });
+        }, [filterPos, search]);
+
+        return (
+          <section className="py-12 px-5 max-w-[1400px] mx-auto">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+              <div>
+                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Scouting / Prospectos</h2>
+                <p className="text-white/50 text-sm mt-1">Base de datos de rendimiento y fuerzas básicas</p>
+              </div>
+              <div className="relative">
+                <input 
+                  type="text" 
+                  placeholder="Buscar jugador..." 
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="bg-card border border-border rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-accent w-full md:w-64 text-white"
+                />
+                <i className="fas fa-search absolute left-3.5 top-3.5 text-white/30 text-xs"></i>
+              </div>
+            </div>
+
+            <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+              {posiciones.map(pos => (
+                <button
+                  key={pos}
+                  onClick={() => setFilterPos(pos)}
+                  className={`px-4 py-2 rounded-lg font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    filterPos === pos ? 'bg-accent text-bg' : 'bg-card text-muted hover:text-white border border-border'
+                  }`}
+                >
+                  {pos}
+                </button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {filtrados.map(jugador => (
+                <div key={jugador.id} className="glass-card rounded-2xl p-6 flex flex-col md:flex-row gap-6 hover:border-accent/30 transition-all">
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="bg-accent/10 text-accent font-header font-bold text-[9px] px-2.5 py-1 rounded-full uppercase">{jugador.posicion}</span>
+                        <span className="text-white/40 text-xs">{jugador.categoria}</span>
+                      </div>
+                      <h3 className="text-2xl font-black uppercase mb-1 font-header tracking-tight">{jugador.nombre}</h3>
+                      <div className="text-xs text-white/60 mb-1"><i className="fas fa-birthday-cake mr-2 text-accent"></i>{jugador.edad} años</div>
+                      <div className="text-xs text-white/60"><i className="fas fa-shield-halved mr-2 text-accent"></i>{jugador.club}</div>
+                    </div>
+                    <div className="mt-6 space-y-2">
+                      {Object.entries(jugador.metricas).slice(0, 3).map(([key, val]) => (
+                        <div key={key} className="flex justify-between text-xs border-b border-white/5 pb-1">
+                          <span className="text-white/60">{key}</span>
+                          <span className="font-bold text-accent">{val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center p-4 bg-black/40 rounded-xl border border-border/50">
+                    <RadarChart metrics={jugador.metricas} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      }
+
+      // Match Card Component for API Fixtures
       function MatchCard({ match, isNext = true }) {
         const isHome = match.teams?.home?.id === MEXICO_TEAM_ID;
         const opponent = isHome ? match.teams?.away : match.teams?.home;
@@ -1069,7 +751,7 @@
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 flex-1">
-                <img src={mexicoTeam?.logo} className="w-12 h-12" alt="" />
+                <img src={mexicoTeam?.logo} className="w-10 h-10" alt="" />
                 <div>
                   <div className="font-bold text-green-light">MÉXICO</div>
                   <div className="text-xs text-white/40">{isHome ? 'Local' : 'Visitante'}</div>
@@ -1079,13 +761,12 @@
               <div className="flex flex-col items-center px-4">
                 {isNext ? (
                   <div className="text-center">
-                    <div className="font-header text-2xl font-bold text-accent">
+                    <div className="font-header text-lg font-bold text-accent">
                       {new Date(match.fixture.date).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' })}
                     </div>
-                    <div className="text-[10px] text-white/40 uppercase">Hora local</div>
                   </div>
                 ) : (
-                  <div className="font-header text-3xl font-bold">
+                  <div className="font-header text-2xl font-bold">
                     <span className="text-accent">{match.goals?.home}</span>
                     <span className="text-white/30 mx-2">-</span>
                     <span className="text-accent">{match.goals?.away}</span>
@@ -1095,19 +776,12 @@
 
               <div className="flex items-center gap-3 flex-1 justify-end">
                 <div className="text-right">
-                  <div className="font-bold">{opponent?.name}</div>
+                  <div className="font-bold text-sm">{opponent?.name}</div>
                   <div className="text-xs text-white/40">{isHome ? 'Visitante' : 'Local'}</div>
                 </div>
-                <img src={opponent?.logo} className="w-12 h-12" alt="" />
+                <img src={opponent?.logo} className="w-10 h-10" alt="" />
               </div>
             </div>
-
-            {match.venue?.name && (
-              <div className="mt-3 pt-3 border-t border-border flex items-center justify-center gap-2 text-xs text-white/40">
-                <i className="fas fa-map-marker-alt"></i>
-                <span>{match.venue.name}</span>
-              </div>
-            )}
           </div>
         );
       }
@@ -1130,261 +804,68 @@
         }, []);
 
         return (
-          <section id="seleccion" className="py-16">
-            <div className="max-w-[1400px] mx-auto px-5">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1.5 h-12 bg-green-mx rounded-full"></div>
-                <div>
-                  <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">
-                    Selección Mexicana
-                  </h2>
-                  <p className="text-white/50 text-sm mt-1">La verde de los nuestros</p>
-                </div>
-                <img src="MX_logo.png" className="w-12 h-12 ml-auto opacity-30" alt="FMF" />
+          <section className="py-12 px-5 max-w-[1400px] mx-auto">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-1.5 h-12 bg-green-mx rounded-full"></div>
+              <div>
+                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Selección Mexicana</h2>
+                <p className="text-white/50 text-sm mt-1">Estatus y calendario de juegos oficiales</p>
               </div>
+              <img src="MX_logo.png" className="w-12 h-12 ml-auto opacity-30" alt="FMF" />
+            </div>
 
-              {/* Tabs */}
-              <div className="flex gap-2 mb-6">
-                <button
-                  onClick={() => setActiveTab('next')}
-                  className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                    activeTab === 'next' 
-                      ? 'bg-green-mx text-white' 
-                      : 'bg-white/5 text-white/50 hover:bg-white/10'
-                  }`}
-                >
-                  <i className="fas fa-calendar-alt mr-2"></i>
-                  Próximos Partidos
-                </button>
-                <button
-                  onClick={() => setActiveTab('results')}
-                  className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                    activeTab === 'results' 
-                      ? 'bg-green-mx text-white' 
-                      : 'bg-white/5 text-white/50 hover:bg-white/10'
-                  }`}
-                >
-                  <i className="fas fa-history mr-2"></i>
-                  Últimos Resultados
-                </button>
-              </div>
+            <div className="flex gap-2 mb-6">
+              <button
+                onClick={() => setActiveTab('next')}
+                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
+                  activeTab === 'next' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
+                }`}
+              >
+                Próximos Partidos
+              </button>
+              <button
+                onClick={() => setActiveTab('results')}
+                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
+                  activeTab === 'results' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
+                }`}
+              >
+                Últimos Resultados
+              </button>
+            </div>
 
-              {/* Content */}
-              <div className="space-y-4 animate-fade-in">
-                {activeTab === 'next' ? (
-                  nextMatches.length > 0 ? (
-                    nextMatches.map((match) => (
-                      <MatchCard key={match.fixture.id} match={match} isNext={true} />
-                    ))
-                  ) : (
-                    <div className="glass-card rounded-xl p-8 text-center">
-                      <i className="fas fa-calendar-times text-4xl text-white/20 mb-4"></i>
-                      <p className="text-white/50">Cargando próximos partidos...</p>
-                    </div>
-                  )
+            <div className="space-y-4">
+              {activeTab === 'next' ? (
+                nextMatches.length > 0 ? (
+                  nextMatches.map((match) => <MatchCard key={match.fixture.id} match={match} isNext={true} />)
                 ) : (
-                  lastResults.length > 0 ? (
-                    lastResults.map((match) => (
-                      <MatchCard key={match.fixture.id} match={match} isNext={false} />
-                    ))
-                  ) : (
-                    <div className="glass-card rounded-xl p-8 text-center">
-                      <i className="fas fa-spinner fa-spin text-4xl text-white/20 mb-4"></i>
-                      <p className="text-white/50">Cargando resultados...</p>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          </section>
-        );
-      }
-
-      // Liga MX Section
-      function LigaMXSection() {
-        const [fixtures, setFixtures] = useState([]);
-        const [activeRound, setActiveRound] = useState(null);
-
-        useEffect(() => {
-          const fetchFixtures = async () => {
-            const data = await getLigaMXFixtures();
-            if (data?.response) {
-              const upcoming = data.response.filter(f => f.fixture.status.short === 'NS');
-              setFixtures(upcoming.slice(0, 18));
-              if (upcoming.length > 0) {
-                setActiveRound(upcoming[0]?.league?.round);
-              }
-            }
-          };
-          fetchFixtures();
-        }, []);
-
-        if (fixtures.length === 0) return null;
-
-        // Group by date
-        const groupedByDate = fixtures.reduce((acc, match) => {
-          const date = new Date(match.fixture.date).toLocaleDateString('es-MX', { 
-            weekday: 'long', 
-            day: 'numeric', 
-            month: 'long' 
-          });
-          if (!acc[date]) acc[date] = [];
-          acc[date].push(match);
-          return acc;
-        }, {});
-
-        return (
-          <section id="liga-mx" className="py-16 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
-            <div className="max-w-[1400px] mx-auto px-5">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-1.5 h-12 bg-accent rounded-full"></div>
-                <div>
-                  <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">
-                    Liga MX
-                  </h2>
-                  <p className="text-white/50 text-sm mt-1">Calendario de partidos</p>
-                </div>
-                <img src="MX_logo.png" className="w-12 h-12 ml-auto opacity-30" alt="Liga MX" />
-              </div>
-
-              <div className="space-y-8">
-                {Object.entries(groupedByDate).slice(0, 3).map(([date, matches]) => (
-                  <div key={date}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
-                        <i className="fas fa-calendar-day text-accent text-sm"></i>
-                      </div>
-                      <h3 className="font-header text-lg font-bold uppercase text-white/80">{date}</h3>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {matches.map((match) => (
-                        <div key={match.fixture.id} className="match-card glass-card rounded-xl p-4 border border-border">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-[10px] text-white/40 uppercase">{match.league?.round}</span>
-                            <span className="text-accent font-header font-bold text-sm">
-                              {new Date(match.fixture.date).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' })}
-                            </span>
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3 flex-1">
-                              <img src={match.teams.home.logo} className="w-10 h-10" alt="" />
-                              <span className="font-medium text-sm">{match.teams.home.name}</span>
-                            </div>
-                            <span className="text-white/30 text-xs mx-2">VS</span>
-                            <div className="flex items-center gap-3 flex-1 justify-end">
-                              <span className="font-medium text-sm text-right">{match.teams.away.name}</span>
-                              <img src={match.teams.away.logo} className="w-10 h-10" alt="" />
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="glass-card rounded-xl p-8 text-center">
+                    <p className="text-white/50 text-sm">No hay partidos próximos agendados.</p>
                   </div>
-                ))}
-              </div>
-
-              <div className="mt-8 text-center">
-                <button className="bg-white/5 text-white/70 font-header font-bold px-8 py-3 rounded-lg uppercase tracking-wider hover:bg-white/10 transition-colors border border-border">
-                  Ver todos los partidos <i className="fas fa-arrow-right ml-2"></i>
-                </button>
-              </div>
-            </div>
-          </section>
-        );
-      }
-
-      // Quick Stats Section
-      function QuickStats() {
-        const stats = [
-          { label: 'Equipos', value: '18', icon: 'fa-shield-halved', color: 'text-accent' },
-          { label: 'Jornadas', value: '17', icon: 'fa-calendar-check', color: 'text-blue-500' },
-          { label: 'Mundiales', value: '17', icon: 'fa-trophy', color: 'text-yellow-500' },
-          { label: 'Copas', value: '11', icon: 'fa-medal', color: 'text-green-500' },
-        ];
-
-        return (
-          <section className="py-12">
-            <div className="max-w-[1400px] mx-auto px-5">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="glass-card rounded-xl p-6 text-center group hover:border-accent/30 transition-all">
-                    <i className={`fas ${stat.icon} text-3xl ${stat.color} mb-3 group-hover:scale-110 transition-transform`}></i>
-                    <div className="font-header text-3xl font-bold mb-1">{stat.value}</div>
-                    <div className="text-xs text-white/50 uppercase tracking-wider">{stat.label}</div>
+                )
+              ) : (
+                lastResults.length > 0 ? (
+                  lastResults.map((match) => <MatchCard key={match.fixture.id} match={match} isNext={false} />)
+                ) : (
+                  <div className="glass-card rounded-xl p-8 text-center">
+                    <p className="text-white/50 text-sm">Cargando últimos resultados de la selección...</p>
                   </div>
-                ))}
-              </div>
+                )
+              )}
             </div>
           </section>
         );
       }
-        
 
       // Footer Component
       function Footer() {
         return (
           <footer className="bg-card border-t border-border mt-auto">
-            <div className="max-w-[1400px] mx-auto px-5 py-16">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                {/* Brand */}
-                <div className="md:col-span-2">
-                  <div className="flex items-center gap-3 mb-4">
-                    <img src="logof1.png" className="h-12 w-auto rounded" alt="Logo" />
-                    <span className="font-header font-black italic text-3xl tracking-tighter uppercase">
-                      F1RST<span className="text-accent">SPORTS</span>
-                    </span>
-                  </div>
-                  <p className="text-white/50 text-sm max-w-md mb-6">
-                    El portal del fútbol mexicano. Resultados en vivo, estadísticas y la mejor cobertura de la Liga MX y la Selección Mexicana.
-                  </p>
-                  <div className="flex gap-4">
-                    <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-accent hover:text-bg transition-all">
-                      <i className="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-accent hover:text-bg transition-all">
-                      <i className="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-accent hover:text-bg transition-all">
-                      <i className="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-accent hover:text-bg transition-all">
-                      <i className="fab fa-youtube"></i>
-                    </a>
-                  </div>
-                </div>
-
-                {/* Links */}
-                <div>
-                  <h4 className="font-header font-bold uppercase tracking-wider text-sm mb-4">Secciones</h4>
-                  <ul className="space-y-3">
-                    <li><a href="#liga-mx" className="text-white/50 hover:text-accent transition-colors text-sm">Liga MX</a></li>
-                    <li><a href="#seleccion" className="text-white/50 hover:text-accent transition-colors text-sm">Selección Mexicana</a></li>
-                    <li><a href="mundial-2026.html" className="text-white/50 hover:text-accent transition-colors text-sm">Mundial 2026</a></li>
-                    <li><a href="#" className="text-white/50 hover:text-accent transition-colors text-sm">Estadísticas</a></li>
-                  </ul>
-                </div>
-
-                {/* Info */}
-                <div>
-                  <h4 className="font-header font-bold uppercase tracking-wider text-sm mb-4">Información</h4>
-                  <ul className="space-y-3">
-                    <li><a href="#" className="text-white/50 hover:text-accent transition-colors text-sm">Quiénes Somos</a></li>
-                    <li><a href="#" className="text-white/50 hover:text-accent transition-colors text-sm">Contacto</a></li>
-                    <li><a href="#" className="text-white/50 hover:text-accent transition-colors text-sm">Aviso de Privacidad</a></li>
-                    <li><a href="https://www.api-football.com" className="text-white/50 hover:text-accent transition-colors text-sm">API-Football</a></li>
-                  </ul>
-                </div>
+            <div className="max-w-[1400px] mx-auto px-5 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="text-xs text-white/30 uppercase tracking-widest">
+                &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
               </div>
-
-              <div className="border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <div className="text-xs text-white/30 uppercase tracking-widest">
-                  &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
-                </div>
-                <div className="text-[10px] text-white/20">
-                  Datos proporcionados por <a href="https://www.api-football.com" className="underline hover:text-white/40">API-Football</a>
-                </div>
+              <div className="text-[10px] text-white/20">
+                F1RSTSPORTS es una plataforma libre de costo. Datos provistos por API-Football.
               </div>
             </div>
           </footer>
@@ -1393,19 +874,27 @@
 
       // ===== MAIN APP =====
       function App() {
+        const [activeTab, setActiveTab] = useState('inicio');
+
         return (
           <div className="min-h-screen flex flex-col bg-bg">
-            <Header />
+            <Header activeTab={activeTab} setActiveTab={setActiveTab} />
             <ScoreTicker />
             
             <main className="flex-1 pt-[140px]">
-              <HeroBanner />
-              <QuickStats />
-              <LigaMXSection />
-              <MexicoSection />
-            </main>
+              {activeTab === 'inicio' && (
+                <>
+                  <HeroBanner setActiveTab={setActiveTab} />
+                  <div className="max-w-[1400px] mx-auto px-5">
+                    <CalendarioPartidos />
+                    <StandingsTable />
+                  </div>
+                </>
+              )}
 
-            <StandingsTable />
+              {activeTab === 'scouting' && <ScoutingSection />}
+              {activeTab === 'seleccion' && <MexicoSection />}
+            </main>
 
             <Footer />
           </div>
