@@ -181,10 +181,6 @@
         return fetchAPI(`/fixtures?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
       }
 
-      async function getLigaMXStandings() {
-        return fetchAPI(`/standings?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
-      }
-
       async function getLiveMatches() {
         return fetchAPI('/fixtures?live=all', 30000);
       }
@@ -221,6 +217,47 @@
           { id: 17, local: "Tampico Madero", visitante: "Piratas", fecha: "Por definir", hora: "TBD", tv: "Por confirmar" }
         ]
       };
+
+      // ===== DATOS LOCALES: TABLAS TEMPORADA 2026-27 =====
+      const TABLA_LIGA_MX_27 = [
+        { rank: 1, club: "Atlante", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 2, club: "Atlas", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 3, club: "San Luis", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 4, club: "Guadalajara", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 5, club: "América", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 6, club: "Cruz Azul", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 7, club: "Monterrey", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 8, club: "Pachuca", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
+        { rank: 9, club: "León", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 10, club: "Necaxa", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 11, club: "Puebla", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 12, club: "Santos", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 13, club: "Tijuana", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 14, club: "Toluca", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 15, club: "Juárez", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 16, club: "Pumas", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 17, club: "Querétaro", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
+        { rank: 18, club: "Tigres", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false }
+      ];
+
+      const TABLA_EXPANSION_27 = [
+        { rank: 1, club: "Alebrijes", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 2, club: "Cancún FC", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 3, club: "Club Atlético La Paz", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 4, club: "CA Morelia", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 5, club: "Correcaminos", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 6, club: "Cruz Azul Hidalgo", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 7, club: "Dorados", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 8, club: "Durango", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 9, club: "JAIBA BRAVA", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 10, club: "Mineros Zacatecas", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 11, club: "Piratas FC", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 12, club: "Tapatío", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 13, club: "Tepatitlán FC", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 14, club: "Tlaxcala", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 15, club: "U. de G.", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
+        { rank: 16, club: "Venados", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } }
+      ];
 
       // ===== BASE DE DATOS LOCAL JUGADORES (SCOUTING) =====
       const PROSPECTOS_MOCK = [
@@ -499,98 +536,166 @@
         );
       }
 
-      // Standings Table Component
+      // NUEVO COMPONENTE: STANDINGS TABLE TEMPORADA 2026-27 (LIGA MX & EXPANSIÓN)
       function StandingsTable() {
-        const [standings, setStandings] = useState([]);
-        const [showAll, setShowAll] = useState(false);
-
-        useEffect(() => {
-          const fetchStandings = async () => {
-            const data = await getLigaMXStandings();
-            if (data?.response?.[0]?.league?.standings?.[0]) {
-              setStandings(data.response[0].league.standings[0]);
-            }
-          };
-          fetchStandings();
-        }, []);
-
-        if (standings.length === 0) {
-          return (
-            <div className="glass-card rounded-2xl overflow-hidden mt-8">
-              <div className="p-5 border-b border-border">
-                <h3 className="font-header text-xl font-bold uppercase">Tabla general - Liga MX</h3>
-              </div>
-              <div className="p-5 space-y-3">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="skeleton h-12"></div>
-                ))}
-              </div>
-            </div>
-          );
-        }
-
-        const displayStandings = showAll ? standings : standings.slice(0, 10);
+        const [ligaSeleccionada, setLigaSeleccionada] = useState('ligamx');
+        const [filtroExpansion, setFiltroExpansion] = useState('gen'); // gen, loc, vis
 
         return (
           <div className="glass-card rounded-2xl overflow-hidden mt-8">
-            <div className="p-5 border-b border-border">
-              <div className="flex items-center justify-between">
-                <h3 className="font-header text-lg font-bold uppercase">Tabla General - Liga MX</h3>
-                <img src="MX_logo.png" className="w-8 h-8 opacity-50" alt="Liga MX" />
+            {/* Header del modulo de tablas */}
+            <div className="p-5 border-b border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div>
+                <h3 className="font-header text-xl font-bold uppercase tracking-tight">Tablas de Posiciones</h3>
+                <p className="text-white/40 text-xs mt-1">Temporada 2026–27 (Estadísticas Iniciales)</p>
+              </div>
+
+              {/* Toggles de Ligas */}
+              <div className="flex bg-black/40 p-1 rounded-lg border border-border">
+                <button
+                  onClick={() => setLigaSeleccionada('ligamx')}
+                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    ligaSeleccionada === 'ligamx' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
+                  }`}
+                >
+                  Liga MX
+                </button>
+                <button
+                  onClick={() => setLigaSeleccionada('expansion')}
+                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    ligaSeleccionada === 'expansion' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
+                  }`}
+                >
+                  Liga Expansión
+                </button>
               </div>
             </div>
-            
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="text-[10px] uppercase text-white/40 bg-white/5">
-                  <tr>
-                    <th className="text-left p-4 w-12">#</th>
-                    <th className="text-left p-4">Equipo</th>
-                    <th className="text-center p-4 w-12">PJ</th>
-                    <th className="text-center p-4 w-12">PG</th>
-                    <th className="text-center p-4 w-12">PE</th>
-                    <th className="text-center p-4 w-12">PP</th>
-                    <th className="text-center p-4 w-16">DG</th>
-                    <th className="text-center p-4 w-14 font-bold text-accent">PTS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {displayStandings.map((team, idx) => (
-                    <tr key={team.team.id} className="border-t border-border hover:bg-white/5 transition-colors">
-                      <td className="p-4">{team.rank}</td>
-                      <td className="p-4 flex items-center gap-3">
-                        <img src={team.team.logo} className="w-6 h-6" alt="" />
-                        <span className="font-medium">{team.team.name}</span>
-                      </td>
-                      <td className="p-4 text-center text-white/60">{team.all.played}</td>
-                      <td className="p-4 text-center text-white/60">{team.all.win}</td>
-                      <td className="p-4 text-center text-white/60">{team.all.draw}</td>
-                      <td className="p-4 text-center text-white/60">{team.all.lose}</td>
-                      <td className={`p-4 text-center font-medium ${team.goalsDiff > 0 ? 'text-green-500' : team.goalsDiff < 0 ? 'text-red-500' : 'text-white/60'}`}>
-                        {team.goalsDiff > 0 ? '+' : ''}{team.goalsDiff}
-                      </td>
-                      <td className="p-4 text-center font-header text-lg font-bold text-accent">{team.points}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
 
-            {!showAll && standings.length > 10 && (
-              <div className="p-4 border-t border-border">
-                <button 
-                  onClick={() => setShowAll(true)}
-                  className="w-full py-3 text-accent font-bold text-sm uppercase hover:bg-accent/10 rounded-lg transition-colors"
-                >
-                  Ver tabla completa <i className="fas fa-arrow-down ml-2"></i>
-                </button>
+            {/* Sub-toggles específicos para Liga de Expansión (Local / Visitante / General) */}
+            {ligaSeleccionada === 'expansion' && (
+              <div className="p-3 bg-white/[0.02] border-b border-border/50 flex gap-2 overflow-x-auto">
+                {[
+                  { id: 'gen', name: 'General' },
+                  { id: 'loc', name: 'Local' },
+                  { id: 'vis', name: 'Visitante' }
+                ].map(sub => (
+                  <button
+                    key={sub.id}
+                    onClick={() => setFiltroExpansion(sub.id)}
+                    className={`px-3 py-1.5 rounded-lg font-header font-bold text-[10px] uppercase tracking-widest transition-all ${
+                      filtroExpansion === sub.id ? 'bg-white/10 text-accent border border-accent/20' : 'text-muted hover:text-white border border-transparent'
+                    }`}
+                  >
+                    {sub.name}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* TABLA LIGA MX */}
+            {ligaSeleccionada === 'ligamx' && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="text-[10px] uppercase text-white/40 bg-white/5">
+                    <tr>
+                      <th className="text-left p-4 w-12">Rank</th>
+                      <th className="text-left p-4">Club</th>
+                      <th className="text-center p-4 w-12">PJ</th>
+                      <th className="text-center p-4 w-12">G</th>
+                      <th className="text-center p-4 w-12">E</th>
+                      <th className="text-center p-4 w-12">P</th>
+                      <th className="text-center p-4 w-12">GF</th>
+                      <th className="text-center p-4 w-12">GC</th>
+                      <th className="text-center p-4 w-12">DG</th>
+                      <th className="text-center p-4 w-14 font-bold text-accent">PTS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {TABLA_LIGA_MX_27.map((team) => (
+                      <tr 
+                        key={team.rank} 
+                        className={`border-t border-border hover:bg-white/5 transition-colors ${
+                          team.cupo ? 'bg-accent/[0.01]' : ''
+                        }`}
+                      >
+                        <td className="p-4">
+                          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                            team.cupo ? 'bg-accent text-bg' : 'bg-white/10 text-white/60'
+                          }`}>
+                            {team.rank}
+                          </span>
+                        </td>
+                        <td className="p-4">
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-white">{team.club}</span>
+                            {team.cupo && (
+                              <span className="text-[8px] bg-accent/20 text-accent font-extrabold uppercase px-1.5 py-0.5 rounded tracking-wider">
+                                Liguilla
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="p-4 text-center text-white/60">{team.pj}</td>
+                        <td className="p-4 text-center text-white/60">{team.g}</td>
+                        <td className="p-4 text-center text-white/60">{team.e}</td>
+                        <td className="p-4 text-center text-white/60">{team.p}</td>
+                        <td className="p-4 text-center text-white/60">{team.gf}</td>
+                        <td className="p-4 text-center text-white/60">{team.gc}</td>
+                        <td className="p-4 text-center text-white/60">{team.dg}</td>
+                        <td className="p-4 text-center font-header text-base font-bold text-accent">{team.pts}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
+            {/* TABLA LIGA EXPANSIÓN */}
+            {ligaSeleccionada === 'expansion' && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="text-[10px] uppercase text-white/40 bg-white/5">
+                    <tr>
+                      <th className="text-left p-4 w-12">Pos</th>
+                      <th className="text-left p-4">Club</th>
+                      <th className="text-center p-4 w-12">JJ</th>
+                      <th className="text-center p-4 w-12">JG</th>
+                      <th className="text-center p-4 w-12">JE</th>
+                      <th className="text-center p-4 w-12">JP</th>
+                      <th className="text-center p-4 w-12">GF</th>
+                      <th className="text-center p-4 w-12">GC</th>
+                      <th className="text-center p-4 w-12">Dif</th>
+                      <th className="text-center p-4 w-14 font-bold text-accent">PTS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {TABLA_EXPANSION_27.map((team) => {
+                      // Elegir el set de datos segun el filtro (gen, loc, vis)
+                      const stats = team[filtroExpansion];
+                      return (
+                        <tr key={team.rank} className="border-t border-border hover:bg-white/5 transition-colors">
+                          <td className="p-4 text-white/60 font-medium text-center">{team.rank}</td>
+                          <td className="p-4 font-semibold text-white">{team.club}</td>
+                          <td className="p-4 text-center text-white/60">{stats.jj}</td>
+                          <td className="p-4 text-center text-white/60">{stats.jg}</td>
+                          <td className="p-4 text-center text-white/60">{stats.je}</td>
+                          <td className="p-4 text-center text-white/60">{stats.jp}</td>
+                          <td className="p-4 text-center text-white/60">{stats.gf}</td>
+                          <td className="p-4 text-center text-white/60">{stats.gc}</td>
+                          <td className="p-4 text-center text-white/60">{stats.dif}</td>
+                          <td className="p-4 text-center font-header text-base font-bold text-accent">{stats.pts}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             )}
           </div>
         );
       }
 
-      // Radar Chart SVG Component
+      // COMPONENTE: RADAR CHART EN SVG
       function RadarChart({ metrics }) {
         const keys = Object.keys(metrics);
         const values = Object.values(metrics);
@@ -649,7 +754,7 @@
         );
       }
 
-      // Scouting Section Component
+      // SECCIÓN: MÓDULO DE SCOUTING
       function ScoutingSection() {
         const [filterPos, setFilterPos] = useState('Todos');
         const [search, setSearch] = useState('');
@@ -729,64 +834,7 @@
         );
       }
 
-      // Match Card Component for API Fixtures
-      function MatchCard({ match, isNext = true }) {
-        const isHome = match.teams?.home?.id === MEXICO_TEAM_ID;
-        const opponent = isHome ? match.teams?.away : match.teams?.home;
-        const mexicoTeam = isHome ? match.teams?.home : match.teams?.away;
-
-        return (
-          <div className="match-card glass-card rounded-xl p-4 border border-border">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] text-white/40 uppercase font-medium">{match.league?.name}</span>
-              <span className={`text-[10px] px-2 py-1 rounded-full font-bold ${
-                isNext ? 'bg-accent/20 text-accent' : 'bg-white/10 text-white/60'
-              }`}>
-                {isNext 
-                  ? new Date(match.fixture.date).toLocaleDateString('es-MX', { weekday: 'short', day: 'numeric', month: 'short' })
-                  : match.fixture?.status?.short
-                }
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3 flex-1">
-                <img src={mexicoTeam?.logo} className="w-10 h-10" alt="" />
-                <div>
-                  <div className="font-bold text-green-light">MÉXICO</div>
-                  <div className="text-xs text-white/40">{isHome ? 'Local' : 'Visitante'}</div>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-center px-4">
-                {isNext ? (
-                  <div className="text-center">
-                    <div className="font-header text-lg font-bold text-accent">
-                      {new Date(match.fixture.date).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' })}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="font-header text-2xl font-bold">
-                    <span className="text-accent">{match.goals?.home}</span>
-                    <span className="text-white/30 mx-2">-</span>
-                    <span className="text-accent">{match.goals?.away}</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex items-center gap-3 flex-1 justify-end">
-                <div className="text-right">
-                  <div className="font-bold text-sm">{opponent?.name}</div>
-                  <div className="text-xs text-white/40">{isHome ? 'Visitante' : 'Local'}</div>
-                </div>
-                <img src={opponent?.logo} className="w-10 h-10" alt="" />
-              </div>
-            </div>
-          </div>
-        );
-      }
-
-      // Mexico National Team Section
+      // SECCIÓN: SELECCIÓN NACIONAL
       function MexicoSection() {
         const [nextMatches, setNextMatches] = useState([]);
         const [lastResults, setLastResults] = useState([]);
@@ -809,9 +857,8 @@
               <div className="w-1.5 h-12 bg-green-mx rounded-full"></div>
               <div>
                 <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Selección Mexicana</h2>
-                <p className="text-white/50 text-sm mt-1">Estatus y calendario de juegos oficiales</p>
+                <p className="text-white/50 text-sm mt-1">Estatus y partidos</p>
               </div>
-              <img src="MX_logo.png" className="w-12 h-12 ml-auto opacity-30" alt="FMF" />
             </div>
 
             <div className="flex gap-2 mb-6">
@@ -836,19 +883,25 @@
             <div className="space-y-4">
               {activeTab === 'next' ? (
                 nextMatches.length > 0 ? (
-                  nextMatches.map((match) => <MatchCard key={match.fixture.id} match={match} isNext={true} />)
+                  nextMatches.map((match) => (
+                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
+                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
+                      <span className="text-sm font-bold text-accent">{new Date(match.fixture.date).toLocaleDateString('es-MX')}</span>
+                    </div>
+                  ))
                 ) : (
-                  <div className="glass-card rounded-xl p-8 text-center">
-                    <p className="text-white/50 text-sm">No hay partidos próximos agendados.</p>
-                  </div>
+                  <p className="text-white/50">No hay partidos próximos registrados.</p>
                 )
               ) : (
                 lastResults.length > 0 ? (
-                  lastResults.map((match) => <MatchCard key={match.fixture.id} match={match} isNext={false} />)
+                  lastResults.map((match) => (
+                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
+                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
+                      <span className="font-bold text-accent">{match.goals.home} - {match.goals.away}</span>
+                    </div>
+                  ))
                 ) : (
-                  <div className="glass-card rounded-xl p-8 text-center">
-                    <p className="text-white/50 text-sm">Cargando últimos resultados de la selección...</p>
-                  </div>
+                  <p className="text-white/50">Cargando...</p>
                 )
               )}
             </div>
@@ -865,7 +918,7 @@
                 &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
               </div>
               <div className="text-[10px] text-white/20">
-                F1RSTSPORTS es una plataforma libre de costo. Datos provistos por API-Football.
+                F1RSTSPORTS es una plataforma libre de costo.
               </div>
             </div>
           </footer>
@@ -879,9 +932,8 @@
         return (
           <div className="min-h-screen flex flex-col bg-bg">
             <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-            <ScoreTicker />
             
-            <main className="flex-1 pt-[140px]">
+            <main className="flex-1 pt-[90px]">
               {activeTab === 'inicio' && (
                 <>
                   <HeroBanner setActiveTab={setActiveTab} />
