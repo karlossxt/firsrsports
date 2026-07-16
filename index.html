@@ -147,6 +147,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
+    <script type="text/babel">
       const { useState, useEffect, useMemo } = React;
 
       // ===== API CONFIGURATION =====
@@ -176,6 +177,554 @@
           return cached ? cached.data : null;
         }
       }
+
+      async function getLigaMXStandings() {
+        return fetchAPI(`/standings?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
+      }
+
+      async function getMexicoNextFixtures() {
+        return fetchAPI(`/fixtures?team=${MEXICO_TEAM_ID}&next=5`, 3600000);
+      }
+
+      async function getMexicoLastResults() {
+        return fetchAPI(`/fixtures?team=${MEXICO_TEAM_ID}&last=5`, 3600000);
+      }
+
+      // ===== BASE DE DATOS LOCAL: JORNADA 1 (LIGA MX Y EXPANSIÓN) =====
+      const JORNADA_1_DATA = {
+        ligamx: [
+          { id: 1, local: "Necaxa", visitante: "Atlante", fecha: "Jueves 16 de julio", hora: "19:00 hrs.", tv: "Fox One" },
+          { id: 2, local: "Tijuana", visitante: "Tigres", fecha: "Jueves 16 de julio", hora: "21:10 hrs.", tv: "Fox One / Caliente.mx" },
+          { id: 3, local: "Atlético San Luis", visitante: "Cruz Azul", fecha: "Viernes 17 de julio", hora: "19:00 hrs.", tv: "ESPN / ViX Premium" },
+          { id: 4, local: "León", visitante: "Atlas", fecha: "Viernes 17 de julio", hora: "19:00 hrs.", tv: "Fox One" },
+          { id: 5, local: "FC Juárez", visitante: "Puebla", fecha: "Viernes 17 de julio", hora: "21:00 hrs.", tv: "Canal 7 / Fox One" },
+          { id: 6, local: "Pumas", visitante: "Pachuca", fecha: "Sábado 18 de julio", hora: "17:00 hrs.", tv: "Canal 5 / TUDN / ViX" },
+          { id: 7, local: "Monterrey", visitante: "Santos Laguna", fecha: "Sábado 18 de julio", hora: "19:05 hrs.", tv: "Canal 5 / TUDN / ViX" },
+          { id: 8, local: "Chivas", visitante: "Toluca", fecha: "Sábado 18 de julio", hora: "19:07 hrs.", tv: "Amazon Prime Video" },
+          { id: 9, local: "Querétaro", visitante: "América", fecha: "Sábado 18 de julio", hora: "21:10 hrs.", tv: "Fox One / Caliente.mx" }
+        ],
+        expansion: [
+          { id: 10, local: "Tepatitlán", visitante: "Durango", fecha: "Viernes 24 de julio", hora: "19:00 hrs.", tv: "Por confirmar" },
+          { id: 11, local: "Tlaxcala", visitante: "Leones Negros", fecha: "Sábado 25 de julio", hora: "16:00 hrs.", tv: "Por confirmar" },
+          { id: 12, local: "Venados", visitante: "Oaxaca", fecha: "Sábado 25 de julio", hora: "17:00 hrs.", tv: "Por confirmar" },
+          { id: 13, local: "Atlético Morelia", visitante: "Atlético La Paz", fecha: "Sábado 25 de julio", hora: "19:00 hrs.", tv: "Por confirmar" },
+          { id: 14, local: "Tapatío", visitante: "Cruz Azul Hidalgo", fecha: "Domingo 26 de julio", hora: "17:00 hrs.", tv: "Por confirmar" },
+          { id: 15, local: "Zacatecas", visitante: "Correcaminos", fecha: "Por definir", hora: "TBD", tv: "Por confirmar" },
+          { id: 16, local: "Dorados", visitante: "Cancún", fecha: "Por definir", hora: "TBD", tv: "Por confirmar" },
+          { id: 17, local: "Tampico Madero", visitante: "Piratas", fecha: "Por definir", hora: "TBD", tv: "Por confirmar" }
+        ]
+      };
+
+      // ===== BASE DE DATOS LOCAL JUGADORES (SCOUTING) =====
+      const PROSPECTOS_MOCK = [
+        {
+          id: 1,
+          nombre: "Fidel Ambríz",
+          edad: 21,
+          club: "Monterrey",
+          categoria: "Liga MX / Selección Mayor",
+          posicion: "Pivote",
+          metricas: { "Pases Clave": 85, "Intercepciones": 90, "Recuperaciones": 88, "Duelos Ganados": 78, "Precisión Pases": 92 }
+        },
+        {
+          id: 2,
+          nombre: "Yael Padilla",
+          edad: 18,
+          club: "Guadalajara",
+          categoria: "Liga MX / Sub-23",
+          posicion: "Extremo",
+          metricas: { "Regates": 92, "Pases Clave": 78, "Goles Esperados": 80, "Centros": 75, "Precisión Pases": 81 }
+        },
+        {
+          id: 3,
+          nombre: "Heriberto Jurado",
+          edad: 19,
+          club: "Necaxa",
+          categoria: "Sub-23",
+          posicion: "Extremo",
+          metricas: { "Regates": 88, "Pases Clave": 85, "Goles Esperados": 70, "Centros": 82, "Precisión Pases": 79 }
+        },
+        {
+          id: 4,
+          nombre: "Ramón Juárez",
+          edad: 23,
+          club: "América",
+          categoria: "Liga MX",
+          posicion: "Defensa Central",
+          metricas: { "Juego Aéreo": 92, "Intercepciones": 85, "Despejes": 89, "Duelos Suelo": 82, "Precisión Pases": 88 }
+        }
+      ];
+
+      // ===== COMPONENTS =====
+
+      // Header Component
+      function Header({ activeTab, setActiveTab }) {
+        const [scrolled, setScrolled] = useState(false);
+
+        useEffect(() => {
+          const handleScroll = () => setScrolled(window.scrollY > 50);
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
+        return (
+          <header className={`fixed top-0 left-0 right-0 z-[2000] transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+            <div className="max-w-[1400px] mx-auto px-5 py-4 flex items-center justify-between">
+              <a href="#" onClick={() => setActiveTab('inicio')} className="flex items-center gap-3 group">
+                <span className="font-header font-black italic text-2xl tracking-tighter uppercase text-white">
+                  F1RST<span className="text-accent group-hover:text-white transition-colors">SPORTS</span>
+                </span>
+              </a>
+              
+              <nav className="hidden md:flex items-center gap-1">
+                {[
+                  { id: 'inicio', name: 'Inicio / Calendario' },
+                  { id: 'scouting', name: 'Scouting / Radars' },
+                  { id: 'seleccion', name: 'Selección' },
+                ].map((item) => (
+                  <button 
+                    key={item.id} 
+                    onClick={() => setActiveTab(item.id)}
+                    className={`px-4 py-2 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
+                      activeTab === item.id 
+                        ? 'text-bg bg-accent' 
+                        : 'text-muted hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {item.name}
+                  </button>
+                ))}
+              </nav>
+
+              <button className="md:hidden text-white text-xl">
+                <i className="fas fa-bars"></i>
+              </button>
+            </div>
+          </header>
+        );
+      }
+
+      // Hero Banner
+      function HeroBanner({ setActiveTab }) {
+        return (
+          <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-bg/80 to-transparent"></div>
+            
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
+              <div className="max-w-[1400px] mx-auto">
+                <span className="inline-flex items-center gap-2 bg-green-mx/90 text-white font-header font-bold text-xs px-4 py-2 rounded-full uppercase mb-4">
+                  <span className="text-lg">🇲🇽</span>
+                  Portal del Fútbol Mexicano
+                </span>
+                <h1 className="font-header text-4xl md:text-6xl font-black uppercase leading-none tracking-tighter mb-4">
+                  <span className="gradient-text">F1RST SPORTS</span>
+                  <br />
+                  <span className="text-white">COBERTURA & SCOUTING</span>
+                </h1>
+                <p className="text-white/70 text-base md:text-lg max-w-2xl mb-6">
+                  Sigue las jornadas de la Liga MX, Liga de Expansión, Selección Nacional y descubre el talento joven de nuestro fútbol.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <button onClick={() => setActiveTab('scouting')} className="bg-accent text-bg font-header font-bold px-6 py-2.5 rounded-lg uppercase tracking-wider text-xs hover:bg-accent-dark transition-colors">
+                    Explorar Scouting
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      // NUEVO COMPONENTE: CALENDARIO DE JORNADAS (LIGA MX Y EXPANSIÓN)
+      function CalendarioPartidos() {
+        const [subLiga, setSubLiga] = useState('ligamx');
+
+        const partidos = JORNADA_1_DATA[subLiga];
+
+        return (
+          <section className="py-12 bg-card/30 rounded-2xl border border-border p-6 mt-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+              <div>
+                <div className="flex items-center gap-3">
+                  <div className="w-1.5 h-8 bg-accent rounded-full"></div>
+                  <h3 className="font-header text-2xl font-bold uppercase tracking-tight">Jornada 1 - Apertura 2026</h3>
+                </div>
+                <p className="text-white/40 text-xs mt-1">Fechas oficiales, horarios y canales de transmisión</p>
+              </div>
+
+              {/* Selector de Liga */}
+              <div className="flex bg-black/40 p-1 rounded-lg border border-border">
+                <button
+                  onClick={() => setSubLiga('ligamx')}
+                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    subLiga === 'ligamx' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
+                  }`}
+                >
+                  Liga MX
+                </button>
+                <button
+                  onClick={() => setSubLiga('expansion')}
+                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    subLiga === 'expansion' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
+                  }`}
+                >
+                  Liga Expansión
+                </button>
+              </div>
+            </div>
+
+            {/* Grid de Partidos */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {partidos.map((partido) => (
+                <div 
+                  key={partido.id} 
+                  className="bg-card/80 border border-border rounded-xl p-5 hover:border-accent/40 transition-all flex flex-col justify-between h-44"
+                >
+                  {/* Fecha y Hora */}
+                  <div className="flex justify-between items-center text-[10px] text-white/50 uppercase font-bold tracking-wider mb-3">
+                    <span>{partido.fecha}</span>
+                    <span className="text-accent">{partido.hora}</span>
+                  </div>
+
+                  {/* Versus */}
+                  <div className="flex flex-col gap-2 my-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-sm text-white/90">{partido.local}</span>
+                      <span className="text-xs text-white/30 font-header">L</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-sm text-white/90">{partido.visitante}</span>
+                      <span className="text-xs text-white/30 font-header">V</span>
+                    </div>
+                  </div>
+
+                  {/* Canal de Transmisión */}
+                  <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-white/60">
+                    <div className="flex items-center gap-1.5 text-white/40">
+                      <i className="fas fa-tv text-[10px]"></i>
+                      <span className="text-[10px] uppercase font-bold tracking-wider">Transmisión:</span>
+                    </div>
+                    <span className="font-semibold text-accent text-[11px] max-w-[180px] truncate text-right">{partido.tv}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      }
+
+      // Standings Table Component
+      function StandingsTable() {
+        const [standings, setStandings] = useState([]);
+
+        useEffect(() => {
+          const fetchStandings = async () => {
+            const data = await getLigaMXStandings();
+            if (data?.response?.[0]?.league?.standings?.[0]) {
+              setStandings(data.response[0].league.standings[0]);
+            }
+          };
+          fetchStandings();
+        }, []);
+
+        if (standings.length === 0) return null;
+
+        return (
+          <div className="glass-card rounded-2xl overflow-hidden mt-8">
+            <div className="p-5 border-b border-border">
+              <h3 className="font-header text-lg font-bold uppercase">Tabla general - Liga MX</h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="text-[10px] uppercase text-white/40 bg-white/5">
+                  <tr>
+                    <th className="text-left p-4 w-12">#</th>
+                    <th className="text-left p-4">Equipo</th>
+                    <th className="text-center p-4 w-12">PJ</th>
+                    <th className="text-center p-4 w-12">PTS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {standings.slice(0, 10).map((team) => (
+                    <tr key={team.team.id} className="border-t border-border hover:bg-white/5 transition-colors">
+                      <td className="p-4">{team.rank}</td>
+                      <td className="p-4 flex items-center gap-3">
+                        <img src={team.team.logo} className="w-6 h-6" alt="" />
+                        <span>{team.team.name}</span>
+                      </td>
+                      <td className="p-4 text-center">{team.all.played}</td>
+                      <td className="p-4 text-center font-bold text-accent">{team.points}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      }
+
+      // COMPONENTE: RADAR CHART EN SVG
+      function RadarChart({ metrics }) {
+        const keys = Object.keys(metrics);
+        const values = Object.values(metrics);
+        const numPoints = keys.length;
+        const size = 180;
+        const center = size / 2;
+        const radius = size * 0.35;
+
+        const getCoordinates = (valFactor, i) => {
+          const angle = (Math.PI * 2 / numPoints) * i - Math.PI / 2;
+          const r = radius * (valFactor / 100);
+          return { x: center + r * Math.cos(angle), y: center + r * Math.sin(angle) };
+        };
+
+        const gridPolygons = [0.2, 0.4, 0.6, 0.8, 1].map((factor) => {
+          return Array.from({ length: numPoints }).map((_, i) => {
+            const { x, y } = getCoordinates(factor * 100, i);
+            return `${x},${y}`;
+          }).join(" ");
+        });
+
+        const playerPoints = values.map((val, i) => {
+          const { x, y } = getCoordinates(val, i);
+          return `${x},${y}`;
+        }).join(" ");
+
+        return (
+          <div className="flex flex-col items-center">
+            <svg width={size} height={size} className="overflow-visible">
+              {gridPolygons.map((points, idx) => (
+                <polygon key={idx} points={points} fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
+              ))}
+              {Array.from({ length: numPoints }).map((_, i) => {
+                const outerPoint = getCoordinates(100, i);
+                return <line key={i} x1={center} y1={center} x2={outerPoint.x} y2={outerPoint.y} stroke="rgba(255, 255, 255, 0.1)" />;
+              })}
+              <polygon points={playerPoints} fill="rgba(204, 255, 0, 0.2)" stroke="#ccff00" strokeWidth="2" />
+              {values.map((val, i) => {
+                const { x, y } = getCoordinates(val, i);
+                return <circle key={i} cx={x} cy={y} r="3" fill="#ccff00" />;
+              })}
+              {keys.map((key, i) => {
+                const labelPos = getCoordinates(125, i);
+                let textAnchor = "middle";
+                if (labelPos.x > center + 10) textAnchor = "start";
+                if (labelPos.x < center - 10) textAnchor = "end";
+
+                return (
+                  <text key={key} x={labelPos.x} y={labelPos.y + 3} fill="#a1a1aa" fontSize="8" textAnchor={textAnchor} className="font-header font-bold uppercase tracking-wider">
+                    {key}
+                  </text>
+                );
+              })}
+            </svg>
+          </div>
+        );
+      }
+
+      // SECCIÓN: MÓDULO DE SCOUTING
+      function ScoutingSection() {
+        const [filterPos, setFilterPos] = useState('Todos');
+        const [search, setSearch] = useState('');
+
+        const posiciones = ['Todos', 'Defensa Central', 'Pivote', 'Extremo'];
+
+        const filtrados = useMemo(() => {
+          return PROSPECTOS_MOCK.filter(p => {
+            const matchesPos = filterPos === 'Todos' || p.posicion === filterPos;
+            const matchesSearch = p.nombre.toLowerCase().includes(search.toLowerCase()) || p.club.toLowerCase().includes(search.toLowerCase());
+            return matchesPos && matchesSearch;
+          });
+        }, [filterPos, search]);
+
+        return (
+          <section className="py-12 px-5 max-w-[1400px] mx-auto">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+              <div>
+                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Scouting / Prospectos</h2>
+                <p className="text-white/50 text-sm mt-1">Base de datos de rendimiento y fuerzas básicas</p>
+              </div>
+              <div className="relative">
+                <input 
+                  type="text" 
+                  placeholder="Buscar jugador..." 
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="bg-card border border-border rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-accent w-full md:w-64 text-white"
+                />
+                <i className="fas fa-search absolute left-3.5 top-3.5 text-white/30 text-xs"></i>
+              </div>
+            </div>
+
+            <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
+              {posiciones.map(pos => (
+                <button
+                  key={pos}
+                  onClick={() => setFilterPos(pos)}
+                  className={`px-4 py-2 rounded-lg font-header font-bold text-xs uppercase tracking-wider transition-all ${
+                    filterPos === pos ? 'bg-accent text-bg' : 'bg-card text-muted hover:text-white border border-border'
+                  }`}
+                >
+                  {pos}
+                </button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {filtrados.map(jugador => (
+                <div key={jugador.id} className="glass-card rounded-2xl p-6 flex flex-col md:flex-row gap-6 hover:border-accent/30 transition-all">
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="bg-accent/10 text-accent font-header font-bold text-[9px] px-2.5 py-1 rounded-full uppercase">{jugador.posicion}</span>
+                        <span className="text-white/40 text-xs">{jugador.categoria}</span>
+                      </div>
+                      <h3 className="text-2xl font-black uppercase mb-1 font-header tracking-tight">{jugador.nombre}</h3>
+                      <div className="text-xs text-white/60 mb-1"><i className="fas fa-birthday-cake mr-2 text-accent"></i>{jugador.edad} años</div>
+                      <div className="text-xs text-white/60"><i className="fas fa-shield-halved mr-2 text-accent"></i>{jugador.club}</div>
+                    </div>
+                    <div className="mt-6 space-y-2">
+                      {Object.entries(jugador.metricas).slice(0, 3).map(([key, val]) => (
+                        <div key={key} className="flex justify-between text-xs border-b border-white/5 pb-1">
+                          <span className="text-white/60">{key}</span>
+                          <span className="font-bold text-accent">{val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center p-4 bg-black/40 rounded-xl border border-border/50">
+                    <RadarChart metrics={jugador.metricas} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        );
+      }
+
+      // SECCIÓN: SELECCIÓN NACIONAL
+      function MexicoSection() {
+        const [nextMatches, setNextMatches] = useState([]);
+        const [lastResults, setLastResults] = useState([]);
+        const [activeTab, setActiveTab] = useState('next');
+
+        useEffect(() => {
+          const fetchData = async () => {
+            const next = await getMexicoNextFixtures();
+            if (next?.response) setNextMatches(next.response);
+            
+            const last = await getMexicoLastResults();
+            if (last?.response) setLastResults(last.response);
+          };
+          fetchData();
+        }, []);
+
+        return (
+          <section className="py-12 px-5 max-w-[1400px] mx-auto">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-1.5 h-12 bg-green-mx rounded-full"></div>
+              <div>
+                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Selección Mexicana</h2>
+                <p className="text-white/50 text-sm mt-1">Estatus y partidos</p>
+              </div>
+            </div>
+
+            <div className="flex gap-2 mb-6">
+              <button
+                onClick={() => setActiveTab('next')}
+                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
+                  activeTab === 'next' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
+                }`}
+              >
+                Próximos Partidos
+              </button>
+              <button
+                onClick={() => setActiveTab('results')}
+                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
+                  activeTab === 'results' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
+                }`}
+              >
+                Últimos Resultados
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              {activeTab === 'next' ? (
+                nextMatches.length > 0 ? (
+                  nextMatches.map((match) => (
+                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
+                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
+                      <span className="text-sm font-bold text-accent">{new Date(match.fixture.date).toLocaleDateString('es-MX')}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-white/50">No hay partidos próximos registrados.</p>
+                )
+              ) : (
+                lastResults.length > 0 ? (
+                  lastResults.map((match) => (
+                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
+                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
+                      <span className="font-bold text-accent">{match.goals.home} - {match.goals.away}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-white/50">Cargando...</p>
+                )
+              )}
+            </div>
+          </section>
+        );
+      }
+
+      // Footer Component
+      function Footer() {
+        return (
+          <footer className="bg-card border-t border-border mt-auto">
+            <div className="max-w-[1400px] mx-auto px-5 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="text-xs text-white/30 uppercase tracking-widest">
+                &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
+              </div>
+              <div className="text-[10px] text-white/20">
+                F1RSTSPORTS es una plataforma libre de costo.
+              </div>
+            </div>
+          </footer>
+        );
+      }
+
+      // ===== MAIN APP =====
+      function App() {
+        const [activeTab, setActiveTab] = useState('inicio');
+
+        return (
+          <div className="min-h-screen flex flex-col bg-bg">
+            <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+            
+            <main className="flex-1 pt-[90px]">
+              {activeTab === 'inicio' && (
+                <>
+                  <HeroBanner setActiveTab={setActiveTab} />
+                  <div className="max-w-[1400px] mx-auto px-5">
+                    <CalendarioPartidos />
+                    <StandingsTable />
+                  </div>
+                </>
+              )}
+
+              {activeTab === 'scouting' && <ScoutingSection />}
+              {activeTab === 'seleccion' && <MexicoSection />}
+            </main>
+
+            <Footer />
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
 
       // ===== API FUNCTIONS =====
       async function getLigaMXFixtures() {
@@ -771,6 +1320,7 @@
           </section>
         );
       }
+        
 
       // Footer Component
       function Footer() {
