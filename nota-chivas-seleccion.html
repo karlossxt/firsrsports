@@ -4,156 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polémica en el Tri: 8 de Chivas convocados | F1rstSports</title>
-    
-    <!-- METATAGS PARA REDES SOCIALES -->
+
+    <meta name="description" content="¿Mérito o favoritismo? Analizamos la fuerte presencia rojiblanca en la lista del Tri.">
+    <link rel="canonical" href="https://f1rstsports.com.mx/nota-chivas-seleccion.html">
+
+    <meta property="og:type" content="article">
     <meta property="og:title" content="Chivas domina la convocatoria: 8 jugadores del Rebaño en la Selección Mexicana">
     <meta property="og:description" content="¿Mérito o favoritismo? Analizamos la fuerte presencia rojiblanca en la lista del Tri.">
     <meta property="og:image" content="https://f1rstsports.com.mx/chivas-tri-hero.jpg">
     <meta property="og:url" content="https://f1rstsports.com.mx/nota-chivas-seleccion.html">
-    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="F1rstSports">
+    <meta property="og:locale" content="es_MX">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chivas domina la convocatoria del Tri">
+    <meta name="twitter:description" content="8 jugadores de Chivas en la lista de la Selección Mexicana.">
+    <meta name="twitter:image" content="https://f1rstsports.com.mx/chivas-tri-hero.jpg">
+    <meta name="twitter:site" content="@f1rstsports">
 
     <link rel="icon" type="image/png" href="logof1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
-        :root {
-            --bg-body: #050505;
-            --bg-card: #0a0a0a;
-            --accent: #ccff00;
-            --primary: #2563eb;
-            --chivas-red: #d50a0a;
-            --text-main: #ffffff;
-            --text-muted: #a1a1aa;
-            --font-head: 'Chakra Petch', sans-serif;
-            --font-body: 'Inter', sans-serif;
-        }
-
-        body { margin: 0; padding: 0; background-color: var(--bg-body); color: var(--text-main); font-family: var(--font-body); line-height: 1.8; }
-        a { text-decoration: none; color: white; transition: 0.3s; }
-
-        header { 
-            background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(10px);
-            padding: 15px 5%; display: flex; align-items: center; justify-content: space-between; 
-            position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .brand-text { font-family: var(--font-head); font-weight: 700; font-style: italic; font-size: 1.6rem; letter-spacing: -1px; }
-
-        .article-container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .category-tag { background: var(--chivas-red); color: white; padding: 4px 12px; font-family: var(--font-head); font-weight: 800; font-size: 0.8rem; text-transform: uppercase; border-radius: 3px; display: inline-block; margin-bottom: 15px; }
-        .main-title { font-family: var(--font-head); font-size: 3rem; line-height: 1.1; margin: 0 0 20px; text-transform: uppercase; font-weight: 800; }
-        
-        .share-bar { display: flex; gap: 15px; margin: 25px 0; padding: 15px 0; border-top: 1px solid #222; border-bottom: 1px solid #222; }
-        .share-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #111; border: 1px solid #333; transition: 0.3s; }
-        .share-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-
-        .featured-image { width: 100%; border-radius: 12px; margin-bottom: 35px; border: 1px solid #333; }
-        
-        .article-body h2 { font-family: var(--font-head); color: var(--accent); text-transform: uppercase; font-size: 1.6rem; margin-top: 40px; margin-bottom: 15px; }
-        .article-body p { margin-bottom: 25px; font-size: 1.15rem; color: #e4e4e7; }
-        
-        /* LISTA DE CONVOCADOS ESTILIZADA */
-        .convocados-list { 
-            background: linear-gradient(145deg, #111, #050505); 
-            border: 1px solid #222; 
-            border-radius: 12px; 
-            padding: 30px; 
-            margin: 30px 0;
+        .convocados-list {
+            background: linear-gradient(145deg, #111, #050505);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
-        .player-item { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            font-family: var(--font-head); 
-            font-weight: 600; 
+        .player-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-head);
+            font-weight: 600;
             color: #fff;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
-        .player-item i { color: var(--chivas-red); font-size: 0.8rem; }
-
-        .poll-box { 
-            background: #111; 
-            border-left: 5px solid var(--accent); 
-            padding: 30px; 
-            margin: 50px 0; 
-            border-radius: 0 12px 12px 0;
+        .player-item i {
+            color: var(--chivas-red);
+            font-size: 0.75rem;
         }
-        .poll-box h3 { margin-top: 0; font-family: var(--font-head); text-transform: uppercase; color: var(--accent); }
-
-        footer { background: #000; padding: 60px 5%; text-align: center; border-top: 1px solid #222; margin-top: 80px; }
-
-        @media (max-width: 768px) { 
-            .main-title { font-size: 2.2rem; } 
+        .poll-box {
+            background: var(--bg-surface);
+            border-left: 5px solid var(--accent);
+            padding: 28px;
+            margin: 40px 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        .poll-box h3 {
+            margin-top: 0;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        @media (max-width: 768px) {
             .convocados-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+    <div class="page-wrapper">
 
-    <header>
-        <a href="index.html" class="brand-link">
-            <span class="brand-text">F1RST<span style="color:var(--accent);">SPORTS</span></span>
-        </a>
-        <a href="futbol.html" style="color: var(--accent); font-family: var(--font-head); font-weight: bold; font-size: 0.8rem; border: 1px solid; padding: 5px 10px; border-radius: 4px;">VOLVER A FÚTBOL</a>
-    </header>
-
-    <article class="article-container">
-        <span class="category-tag">Selección Mexicana</span>
-        <h1 class="main-title">Chivas domina la convocatoria: 8 jugadores del Rebaño en la Selección Mexicana</h1>
-        
-        <div style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
-            <span><i class="fa-solid fa-user"></i> Por Redacción F1rstSports</span> | 
-            <span><i class="fa-solid fa-calendar"></i> 15 de Enero, 2026</span>
-        </div>
-
-        <div class="share-bar">
-            <a href="https://api.whatsapp.com/send?text=Chivas domina la lista del Tri https://f1rstsports.com.mx/nota-chivas-seleccion.html" target="_blank" class="share-btn"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" class="share-btn"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" class="share-btn"><i class="fa-brands fa-x-twitter"></i></a>
-        </div>
-
-        <img src="chivas-tri-hero.jpg" alt="Jugadores de Chivas en el Tri" class="featured-image">
-
-        <div class="article-body">
-            <p>La más reciente convocatoria de la <strong>Selección Mexicana</strong> no pasó desapercibida y, como era de esperarse, encendió la polémica. Chivas aporta ocho jugadores al listado del Tri, una cifra que genera debate tanto entre analistas como entre la afición.</p>
-
-            <h2>Los convocados de Chivas al Tri</h2>
-            <p>El Guadalajara tendrá una presencia masiva en esta convocatoria, consolidándose como la base del proyecto nacional actual:</p>
-
-            <div class="convocados-list">
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Raúl Rangel</div>
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Roberto Alvarado</div>
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Richard Ledezma</div>
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Brian Gutiérrez</div>
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Bryan González</div>
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Ángel Sepúlveda</div>
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Luis Romo</div>
-                <div class="player-item"><i class="fa-solid fa-circle"></i> Armando González</div>
+        <header class="site-header">
+            <div class="header-inner">
+                <a href="index.html" class="site-logo" aria-label="F1rstSports - Inicio">
+                    <span class="brand-text">F1RST<span class="accent">SPORTS</span></span>
+                </a>
+                <nav class="main-nav" aria-label="Navegación principal">
+                    <a href="index.html">Inicio</a>
+                    <a href="seccion-ligamx.html">Liga MX</a>
+                    <a href="seccion-seleccion.html" class="active">Selección</a>
+                    <a href="seccion-velocidad.html">Velocidad</a>
+                    <a href="seccion-estadisticas.html">Estadísticas</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="seccion-seleccion.html" style="font-family:var(--font-head);font-weight:700;font-size:0.7rem;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:var(--radius-sm);">VOLVER A SELECCIÓN</a>
+                    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
             </div>
+        </header>
 
-            <p>La inclusión de estos futbolistas confirma que el Rebaño Sagrado sigue siendo una de las principales fuentes del combinado nacional, un hecho que históricamente ha dividido opiniones en el fútbol mexicano.</p>
+        <nav class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="seccion-ligamx.html"><i class="fas fa-futbol"></i> Liga MX</a>
+            <a href="seccion-seleccion.html" class="active"><i class="fas fa-flag"></i> Selección Mexicana</a>
+            <a href="seccion-velocidad.html"><i class="fas fa-flag-checkered"></i> Velocidad</a>
+            <a href="seccion-estadisticas.html"><i class="fas fa-chart-bar"></i> Estadísticas</a>
+        </nav>
 
-            <h2>¿Mérito deportivo o favoritismo?</h2>
-            <p>Para algunos, la convocatoria es reflejo del buen momento individual de varios jugadores rojiblancos y de la continuidad que han mostrado en Liga MX. Casos como el de <strong>Roberto “Piojo” Alvarado y Luis Romo</strong> parecen indiscutibles dada su jerarquía actual.</p>
-            
-            <p>Sin embargo, para otros, la cifra resulta excesiva y deja la sensación de que futbolistas de otros clubes con rendimientos similares pudieron haber sido considerados, reavivando el eterno debate sobre los criterios de selección y el equilibrio entre equipos.</p>
+        <main class="main-content">
+            <article class="article-page">
+                <span class="category-tag" style="background:var(--green-mx);">Selección Mexicana</span>
+                <h1>Chivas domina la convocatoria: 8 jugadores del Rebaño en la Selección Mexicana</h1>
 
-            <div class="poll-box">
-                <h3>📌 La polémica está servida</h3>
-                <p>¿Son justos los ocho convocados del Guadalajara o el Tri necesita mayor diversidad de clubes para el Mundial 2026?</p>
+                <div class="article-meta">
+                    <span><i class="fa-solid fa-user"></i> Por Redacción F1rstSports</span>
+                    <span>|</span>
+                    <span><i class="fa-solid fa-calendar"></i> 15 de Enero, 2026</span>
+                </div>
+
+                <div class="article-share">
+                    <a href="https://api.whatsapp.com/send?text=Chivas domina la lista del Tri https://f1rstsports.com.mx/nota-chivas-seleccion.html" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir en WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://f1rstsports.com.mx/nota-chivas-seleccion.html" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir en Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/intent/tweet?text=Chivas domina la lista del Tri&url=https://f1rstsports.com.mx/nota-chivas-seleccion.html" target="_blank" rel="noopener" class="share-btn" aria-label="Compartir en X"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+
+                <img src="chivas-tri-hero.jpg" alt="Jugadores de Chivas en el Tri" class="article-featured-image" width="800" height="450" loading="eager">
+
+                <div class="article-body">
+                    <p>La más reciente convocatoria de la <strong>Selección Mexicana</strong> no pasó desapercibida y, como era de esperarse, encendió la polémica. Chivas aporta ocho jugadores al listado del Tri, una cifra que genera debate tanto entre analistas como entre la afición.</p>
+
+                    <h2>Los convocados de Chivas al Tri</h2>
+                    <p>El Guadalajara tendrá una presencia masiva en esta convocatoria, consolidándose como la base del proyecto nacional actual:</p>
+
+                    <div class="convocados-list">
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Raúl Rangel</div>
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Roberto Alvarado</div>
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Richard Ledezma</div>
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Brian Gutiérrez</div>
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Bryan González</div>
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Ángel Sepúlveda</div>
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Luis Romo</div>
+                        <div class="player-item"><i class="fa-solid fa-circle"></i> Armando González</div>
+                    </div>
+
+                    <p>La inclusión de estos futbolistas confirma que el Rebaño Sagrado sigue siendo una de las principales fuentes del combinado nacional, un hecho que históricamente ha dividido opiniones en el fútbol mexicano.</p>
+
+                    <h2>¿Mérito deportivo o favoritismo?</h2>
+                    <p>Para algunos, la convocatoria es reflejo del buen momento individual de varios jugadores rojiblancos y de la continuidad que han mostrado en Liga MX. Casos como el de <strong>Roberto "Piojo" Alvarado y Luis Romo</strong> parecen indiscutibles dada su jerarquía actual.</p>
+
+                    <p>Sin embargo, para otros, la cifra resulta excesiva y deja la sensación de que futbolistas de otros clubes con rendimientos similares pudieron haber sido considerados, reavivando el eterno debate sobre los criterios de selección y el equilibrio entre equipos.</p>
+
+                    <div class="poll-box">
+                        <h3>La polémica está servida</h3>
+                        <p>¿Son justos los ocho convocados del Guadalajara o el Tri necesita mayor diversidad de clubes para el Mundial 2026?</p>
+                    </div>
+
+                    <p>Ahora la responsabilidad recae en los jugadores: respaldar la decisión en la cancha y demostrar que su llamado no fue un exceso mediático, sino una apuesta acertada del cuerpo técnico nacional.</p>
+                </div>
+
+                <a href="seccion-seleccion.html" class="article-back-btn"><i class="fas fa-arrow-left"></i> Volver a Selección</a>
+            </article>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="brand-text">F1RST<span class="accent">SPORTS</span></span>
+                    <p>El hogar del fútbol mexicano y los deportes de velocidad.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Secciones</h4>
+                    <a href="seccion-ligamx.html">Liga MX</a>
+                    <a href="seccion-seleccion.html">Selección Mexicana</a>
+                    <a href="seccion-velocidad.html">Velocidad</a>
+                    <a href="seccion-estadisticas.html">Estadísticas</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Portal</h4>
+                    <a href="quienes-somos.html">Quiénes Somos</a>
+                    <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+                </div>
             </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 F1rstSports Media. Todos los derechos reservados.</span>
+            </div>
+        </footer>
 
-            <p>Ahora la responsabilidad recae en los jugadores: respaldar la decisión en la cancha y demostrar que su llamado no fue un exceso mediático, sino una apuesta acertada del cuerpo técnico nacional.</p>
-        </div>
-    </article>
-
-    <footer>
-        <div class="footer-brand"><span class="brand-text" style="font-size:2rem; font-style:italic;">F1RST<span style="color:var(--accent)">SPORTS</span></span></div>
-        <p style="color:#555; margin-top:20px;">&copy; 2026 F1rstSports Media. La voz del fanático.</p>
-    </footer>
-
+    </div>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

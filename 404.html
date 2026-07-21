@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada — F1rstSports</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/png" href="logof1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        .error-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .error-code {
+            font-family: var(--font-head);
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        .error-msg {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+        .error-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--accent);
+            color: var(--bg-body);
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+        }
+        .error-btn:hover {
+            background: var(--text-main);
+            color: var(--bg-body);
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="site-header">
+            <div class="header-inner">
+                <a href="index.html" class="site-logo" aria-label="F1rstSports - Inicio">
+                    <span class="brand-text">F1RST<span class="accent">SPORTS</span></span>
+                </a>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="error-page">
+                <div class="error-code">404</div>
+                <p class="error-msg">La página que buscas no existe o fue movida.</p>
+                <a href="index.html" class="error-btn"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-bottom" style="border-top:none;margin-top:0;padding-top:0;">
+                <span>&copy; 2026 F1rstSports Media. Todos los derechos reservados.</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

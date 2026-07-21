@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas Deportivas — Liga MX | F1rstSports</title>
+    <meta name="description" content="Tablas de posiciones, goleadores y estadísticas de Liga MX en F1rstSports.">
+    <link rel="canonical" href="https://f1rstsports.com.mx/seccion-estadisticas.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Estadísticas Deportivas | F1rstSports">
+    <meta property="og:description" content="Tablas de posiciones, goleadores y estadísticas de Liga MX.">
+    <meta property="og:image" content="https://f1rstsports.com.mx/logof1.png">
+    <meta property="og:url" content="https://f1rstsports.com.mx/seccion-estadisticas.html">
+    <meta property="og:site_name" content="F1rstSports">
+    <meta property="og:locale" content="es_MX">
+    <link rel="icon" type="image/png" href="logof1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <header class="site-header">
+            <div class="header-inner">
+                <a href="index.html" class="site-logo" aria-label="F1rstSports - Inicio">
+                    <span class="brand-text">F1RST<span class="accent">SPORTS</span></span>
+                </a>
+                <nav class="main-nav" aria-label="Navegación principal">
+                    <a href="index.html">Inicio</a>
+                    <a href="seccion-ligamx.html">Liga MX</a>
+                    <a href="seccion-seleccion.html">Selección</a>
+                    <a href="seccion-velocidad.html">Velocidad</a>
+                    <a href="seccion-estadisticas.html" class="active">Estadísticas</a>
+                </nav>
+                <div class="header-actions">
+                    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <nav class="mobile-menu" id="mobile-menu" aria-label="Menú móvil">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="seccion-ligamx.html"><i class="fas fa-futbol"></i> Liga MX</a>
+            <a href="seccion-seleccion.html"><i class="fas fa-flag"></i> Selección Mexicana</a>
+            <a href="seccion-velocidad.html"><i class="fas fa-flag-checkered"></i> Velocidad</a>
+            <a href="seccion-estadisticas.html" class="active"><i class="fas fa-chart-bar"></i> Estadísticas</a>
+        </nav>
+
+        <main class="main-content">
+
+            <section class="section-spacing" style="padding-top:40px;">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="bar blue"></div>
+                        <div>
+                            <h2>Estadísticas <span class="demo-badge">Demo</span></h2>
+                            <p class="subtitle">Datos de demostración — Se conectarán a una API deportiva</p>
+                        </div>
+                    </div>
+
+                    <p style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:30px;">
+                        <!-- TODO: Connect to sports API for live Liga MX standings, scorers, and fixtures data -->
+                        Los datos mostrados son de demostración y no representan resultados actuales. Serán reemplazados con información en tiempo real de una API deportiva.
+                    </p>
+
+                    <!-- Tabla Liga MX -->
+                    <section style="margin-bottom:48px;" aria-label="Tabla de posiciones Liga MX">
+                        <div class="section-header">
+                            <div class="bar"></div>
+                            <div>
+                                <h2 style="font-size:1.2rem;">Tabla de Posiciones — Liga MX</h2>
+                                <p class="subtitle">Apertura 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="data-table" aria-label="Tabla de posiciones Liga MX Apertura 2026">
+                                <thead>
+                                    <tr>
+                                        <th>Pos</th>
+                                        <th>Equipo</th>
+                                        <th>PJ</th>
+                                        <th>G</th>
+                                        <th>E</th>
+                                        <th>P</th>
+                                        <th>GF</th>
+                                        <th>GC</th>
+                                        <th>DG</th>
+                                        <th class="accent">PTS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="highlight-row">
+                                        <td><span class="rank-badge accent">1</span></td>
+                                        <td><strong>Chivas</strong></td>
+                                        <td>4</td><td>4</td><td>0</td><td>0</td>
+                                        <td>9</td><td>4</td><td>+5</td>
+                                        <td><strong>12</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge accent">2</span></td>
+                                        <td>Cruz Azul</td>
+                                        <td>4</td><td>3</td><td>0</td><td>1</td>
+                                        <td>7</td><td>4</td><td>+3</td>
+                                        <td><strong>9</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge accent">3</span></td>
+                                        <td>Atlas</td>
+                                        <td>4</td><td>3</td><td>0</td><td>1</td>
+                                        <td>6</td><td>4</td><td>+2</td>
+                                        <td><strong>9</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge accent">4</span></td>
+                                        <td>Pumas</td>
+                                        <td>4</td><td>2</td><td>2</td><td>0</td>
+                                        <td>8</td><td>4</td><td>+4</td>
+                                        <td><strong>8</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">5</span></td>
+                                        <td>América</td>
+                                        <td>4</td><td>2</td><td>1</td><td>1</td>
+                                        <td>5</td><td>3</td><td>+2</td>
+                                        <td><strong>7</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">6</span></td>
+                                        <td>Toluca</td>
+                                        <td>4</td><td>2</td><td>1</td><td>1</td>
+                                        <td>4</td><td>3</td><td>+1</td>
+                                        <td><strong>7</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">7</span></td>
+                                        <td>Monterrey</td>
+                                        <td>4</td><td>2</td><td>0</td><td>2</td>
+                                        <td>5</td><td>5</td><td>0</td>
+                                        <td><strong>6</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">8</span></td>
+                                        <td>Pachuca</td>
+                                        <td>4</td><td>1</td><td>2</td><td>1</td>
+                                        <td>4</td><td>4</td><td>0</td>
+                                        <td><strong>5</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">9</span></td>
+                                        <td>Tigres</td>
+                                        <td>4</td><td>1</td><td>1</td><td>2</td>
+                                        <td>3</td><td>5</td><td>-2</td>
+                                        <td><strong>4</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">10</span></td>
+                                        <td>Santos</td>
+                                        <td>4</td><td>1</td><td>1</td><td>2</td>
+                                        <td>3</td><td>5</td><td>-2</td>
+                                        <td><strong>4</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">11</span></td>
+                                        <td>Necaxa</td>
+                                        <td>4</td><td>1</td><td>0</td><td>3</td>
+                                        <td>3</td><td>6</td><td>-3</td>
+                                        <td><strong>3</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">12</span></td>
+                                        <td>Puebla</td>
+                                        <td>4</td><td>0</td><td>2</td><td>2</td>
+                                        <td>2</td><td>5</td><td>-3</td>
+                                        <td><strong>2</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">13</span></td>
+                                        <td>San Luis</td>
+                                        <td>4</td><td>0</td><td>1</td><td>3</td>
+                                        <td>3</td><td>7</td><td>-4</td>
+                                        <td><strong>1</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">14</span></td>
+                                        <td>León</td>
+                                        <td>4</td><td>0</td><td>1</td><td>3</td>
+                                        <td>2</td><td>6</td><td>-4</td>
+                                        <td><strong>1</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">15</span></td>
+                                        <td>Juárez</td>
+                                        <td>4</td><td>0</td><td>0</td><td>4</td>
+                                        <td>1</td><td>8</td><td>-7</td>
+                                        <td><strong>0</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">16</span></td>
+                                        <td>Querétaro</td>
+                                        <td>4</td><td>0</td><td>0</td><td>4</td>
+                                        <td>1</td><td>9</td><td>-8</td>
+                                        <td><strong>0</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">17</span></td>
+                                        <td>Atlante</td>
+                                        <td>4</td><td>0</td><td>0</td><td>4</td>
+                                        <td>0</td><td>10</td><td>-10</td>
+                                        <td><strong>0</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="rank-badge muted">18</span></td>
+                                        <td>Tijuana</td>
+                                        <td>4</td><td>0</td><td>0</td><td>4</td>
+                                        <td>0</td><td>11</td><td>-11</td>
+                                        <td><strong>0</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Goleadores -->
+                    <section style="margin-bottom:48px;" aria-label="Goleadores">
+                        <div class="section-header">
+                            <div class="bar"></div>
+                            <div>
+                                <h2 style="font-size:1.2rem;">Goleadores <span class="demo-badge">Demo</span></h2>
+                                <p class="subtitle">Apertura 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="data-table" aria-label="Goleadores Liga MX">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Jugador</th>
+                                        <th>Equipo</th>
+                                        <th class="accent">Goles</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><strong>Armando González</strong></td>
+                                        <td>Chivas</td>
+                                        <td><strong>5</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><strong>Henry Martín</strong></td>
+                                        <td>América</td>
+                                        <td><strong>4</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><strong>Andre-Pierre Gignac</strong></td>
+                                        <td>Tigres</td>
+                                        <td><strong>3</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><strong>Nicolás Ibáñez</strong></td>
+                                        <td>Pumas</td>
+                                        <td><strong>3</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><strong>Antonio Valencia</strong></td>
+                                        <td>Cruz Azul</td>
+                                        <td><strong>3</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Próximos partidos -->
+                    <section aria-label="Próximos partidos Liga MX">
+                        <div class="section-header">
+                            <div class="bar"></div>
+                            <div>
+                                <h2 style="font-size:1.2rem;">Próximos Partidos — Jornada 5 <span class="demo-badge">Demo</span></h2>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));gap:12px;">
+                            <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px;display:flex;flex-direction:column;gap:8px;">
+                                <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-secondary);text-transform:uppercase;">
+                                    <span>Viernes 31 Ene</span>
+                                    <span style="color:var(--accent);">19:00</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;align-items:center;font-family:var(--font-head);font-weight:700;font-size:0.9rem;">
+                                    <span>Chivas</span>
+                                    <span style="color:var(--text-muted);">vs</span>
+                                    <span>Cruz Azul</span>
+                                </div>
+                                <div style="font-size:0.65rem;color:var(--text-muted);text-align:center;">Canal 5 / TUDN</div>
+                            </div>
+                            <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px;display:flex;flex-direction:column;gap:8px;">
+                                <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-secondary);text-transform:uppercase;">
+                                    <span>Sábado 1 Feb</span>
+                                    <span style="color:var(--accent);">21:00</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;align-items:center;font-family:var(--font-head);font-weight:700;font-size:0.9rem;">
+                                    <span>América</span>
+                                    <span style="color:var(--text-muted);">vs</span>
+                                    <span>Atlas</span>
+                                </div>
+                                <div style="font-size:0.65rem;color:var(--text-muted);text-align:center;">Fox One / ViX</div>
+                            </div>
+                            <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:16px;display:flex;flex-direction:column;gap:8px;">
+                                <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-secondary);text-transform:uppercase;">
+                                    <span>Sábado 1 Feb</span>
+                                    <span style="color:var(--accent);">19:00</span>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;align-items:center;font-family:var(--font-head);font-weight:700;font-size:0.9rem;">
+                                    <span>Toluca</span>
+                                    <span style="color:var(--text-muted);">vs</span>
+                                    <span>Pumas</span>
+                                </div>
+                                <div style="font-size:0.65rem;color:var(--text-muted);text-align:center;">TUDN / ViX</div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="brand-text">F1RST<span class="accent">SPORTS</span></span>
+                    <p>El hogar del fútbol mexicano y los deportes de velocidad.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Secciones</h4>
+                    <a href="seccion-ligamx.html">Liga MX</a>
+                    <a href="seccion-seleccion.html">Selección Mexicana</a>
+                    <a href="seccion-velocidad.html">Velocidad</a>
+                    <a href="seccion-estadisticas.html">Estadísticas</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Más</h4>
+                    <a href="seccion-nfl.html">NFL</a>
+                    <a href="seccion-tenis.html">Tenis</a>
+                    <a href="seccion-beisbol.html">Béisbol</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Portal</h4>
+                    <a href="quienes-somos.html">Quiénes Somos</a>
+                    <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 F1rstSports Media. Todos los derechos reservados.</span>
+            </div>
+        </footer>
+
+    </div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

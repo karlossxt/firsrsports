@@ -3,958 +3,789 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1rstSports | Portal del Fútbol Mexicano</title>
-    <meta name="description" content="Resultados en vivo, estadísticas y noticias de la Liga MX y Selección Mexicana">
-    
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>F1rstSports — Portal del Fútbol Mexicano y Deportes de Velocidad</title>
+    <meta name="description" content="F1rstSports: Noticias, resultados, estadísticas y análisis de Liga MX, Selección Mexicana y deportes de velocidad. El hogar del fútbol mexicano.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://f1rstsports.com.mx/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="F1rstSports — Portal del Fútbol Mexicano y Deportes de Velocidad">
+    <meta property="og:description" content="Noticias, resultados, estadísticas y análisis de Liga MX, Selección Mexicana y deportes de velocidad.">
+    <meta property="og:image" content="https://f1rstsports.com.mx/logof1.png">
+    <meta property="og:url" content="https://f1rstsports.com.mx/">
+    <meta property="og:site_name" content="F1rstSports">
+    <meta property="og:locale" content="es_MX">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="F1rstSports — Portal Deportivo">
+    <meta name="twitter:description" content="El hogar del fútbol mexicano y los deportes de velocidad.">
+    <meta name="twitter:image" content="https://f1rstsports.com.mx/logof1.png">
+    <meta name="twitter:site" content="@f1rstsports">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="logof1.png">
 
-    <!-- Tailwind & React -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'bg': '#050505',
-              'card': '#0a0a0a',
-              'card-hover': '#111111',
-              'accent': '#ccff00',
-              'accent-dark': '#a3cc00',
-              'green-mx': '#006341',
-              'green-light': '#00a651',
-              'primary': '#2563eb',
-              'muted': '#a1a1aa',
-              'border': 'rgba(255,255,255,0.08)'
-            },
-            fontFamily: {
-              header: ['Chakra Petch', 'sans-serif'],
-              body: ['Inter', 'sans-serif'],
-              italic: ['Playfair Display', 'serif']
-            },
-            animation: {
-              'ticker': 'ticker 40s linear infinite',
-              'pulse-slow': 'pulse 3s ease-in-out infinite',
-              'fade-in': 'fadeIn 0.5s ease-out',
-              'slide-up': 'slideUp 0.4s ease-out',
-            },
-            keyframes: {
-              ticker: {
-                '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-50%)' },
-              },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              slideUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    
-    <style>
-      * { box-sizing: border-box; }
-      
-      body {
-        background-color: #050505;
-        color: white;
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
-      }
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-      .ticker-wrap {
-        overflow: hidden;
-        white-space: nowrap;
-      }
-
-      .ticker-wrap:hover .ticker-content {
-        animation-play-state: paused;
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, #ccff00 0%, #00a651 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .glass-card {
-        background: rgba(10, 10, 10, 0.8);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .glow-accent {
-        box-shadow: 0 0 30px rgba(204, 255, 0, 0.15);
-      }
-
-      .skeleton {
-        background: linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%);
-        background-size: 200% 100%;
-        animation: skeleton-loading 1.5s infinite;
-        border-radius: 8px;
-      }
-
-      @keyframes skeleton-loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-      }
-
-      .match-card {
-        transition: all 0.3s ease;
-      }
-
-      .match-card:hover {
-        transform: translateY(-2px);
-        border-color: rgba(204, 255, 0, 0.3);
-      }
-
-      .live-badge {
-        animation: pulse 2s infinite;
-      }
-
-      @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.6; }
-      }
-
-      /* Scrollbar */
-      ::-webkit-scrollbar { width: 8px; height: 8px; }
-      ::-webkit-scrollbar-track { background: #0a0a0a; }
-      ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-      ::-webkit-scrollbar-thumb:hover { background: #444; }
-    </style>
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div id="root"></div>
+    <div class="page-wrapper">
 
-    <script type="text/babel">
-      const { useState, useEffect, useMemo } = React;
+        <!-- ===== HEADER ===== -->
+        <header class="site-header" role="banner">
+            <div class="header-inner">
+                <a href="index.html" class="site-logo" aria-label="F1rstSports - Inicio">
+                    <span class="brand-text">F1RST<span class="accent">SPORTS</span></span>
+                </a>
 
-      // ===== API CONFIGURATION =====
-      const API_KEY = '00f4ae4c03780419af2a413aded999e3';
-      const API_BASE = 'https://v3.football.api-sports.io';
-      const LIGA_MX_ID = 31;
-      const MEXICO_TEAM_ID = 1;
-      const SEASON = 2026;
+                <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+                    <a href="index.html" class="active">Inicio</a>
+                    <a href="seccion-ligamx.html">Liga MX</a>
+                    <a href="seccion-seleccion.html">Selección</a>
+                    <a href="seccion-velocidad.html">Velocidad</a>
+                    <a href="seccion-estadisticas.html">Estadísticas</a>
+                    <a href="#calendario">Calendario</a>
+                    <a href="#resultados">Resultados</a>
+                </nav>
 
-      // ===== API SERVICE =====
-      const apiHeaders = { 'x-apisports-key': API_KEY };
-      const cache = new Map();
-
-      async function fetchAPI(endpoint, cacheDuration = 300000) {
-        const cached = cache.get(endpoint);
-        if (cached && Date.now() - cached.time < cacheDuration) {
-          return cached.data;
-        }
-
-        try {
-          const response = await fetch(`${API_BASE}${endpoint}`, { headers: apiHeaders });
-          const data = await response.json();
-          cache.set(endpoint, { data, time: Date.now() });
-          return data;
-        } catch (error) {
-          console.error('API Error:', error);
-          return cached ? cached.data : null;
-        }
-      }
-
-      async function getLigaMXFixtures() {
-        return fetchAPI(`/fixtures?league=${LIGA_MX_ID}&season=${SEASON}`, 300000);
-      }
-
-      async function getLiveMatches() {
-        return fetchAPI('/fixtures?live=all', 30000);
-      }
-
-      async function getMexicoNextFixtures() {
-        return fetchAPI(`/fixtures?team=${MEXICO_TEAM_ID}&next=5`, 3600000);
-      }
-
-      async function getMexicoLastResults() {
-        return fetchAPI(`/fixtures?team=${MEXICO_TEAM_ID}&last=5`, 3600000);
-      }
-
-      // ===== BASE DE DATOS LOCAL: JORNADA 1 (LIGA MX Y EXPANSIÓN) =====
-      const JORNADA_1_DATA = {
-        ligamx: [
-          { id: 1, local: "Necaxa", visitante: "Atlante", fecha: "Jueves 16 de julio", hora: "19:00 hrs.", tv: "Fox One" },
-          { id: 2, local: "Tijuana", visitante: "Tigres", fecha: "Jueves 16 de julio", hora: "21:10 hrs.", tv: "Fox One / Caliente.mx" },
-          { id: 3, local: "Atlético San Luis", visitante: "Cruz Azul", fecha: "Viernes 17 de julio", hora: "19:00 hrs.", tv: "ESPN / ViX Premium" },
-          { id: 4, local: "León", visitante: "Atlas", fecha: "Viernes 17 de julio", hora: "19:00 hrs.", tv: "Fox One" },
-          { id: 5, local: "FC Juárez", visitante: "Puebla", fecha: "Viernes 17 de julio", hora: "21:00 hrs.", tv: "Canal 7 (Abierta) / Fox One" },
-          { id: 6, local: "Pumas", visitante: "Pachuca", fecha: "Sábado 18 de julio", hora: "17:00 hrs.", tv: "Canal 5 (Abierta) / TUDN / ViX" },
-          { id: 7, local: "Monterrey", visitante: "Santos Laguna", fecha: "Sábado 18 de julio", hora: "19:05 hrs.", tv: "Canal 5 (Abierta) / TUDN / ViX" },
-          { id: 8, local: "Chivas", visitante: "Toluca", fecha: "Sábado 18 de julio", hora: "19:07 hrs.", tv: "Amazon Prime Video" },
-          { id: 9, local: "Querétaro", visitante: "América", fecha: "Sábado 18 de julio", hora: "21:10 hrs.", tv: "Fox One / Caliente.mx" }
-        ],
-        expansion: [
-          { id: 10, local: "Tepatitlán", visitante: "Durango", fecha: "Viernes 24 de julio", hora: "19:00 hrs.", tv: "Por confirmar" },
-          { id: 11, local: "Tlaxcala", visitante: "Leones Negros", fecha: "Sábado 25 de julio", hora: "16:00 hrs.", tv: "Por confirmar" },
-          { id: 12, local: "Venados", visitante: "Oaxaca", fecha: "Sábado 25 de julio", hora: "17:00 hrs.", tv: "Por confirmar" },
-          { id: 13, local: "Atlético Morelia", visitante: "Atlético La Paz", fecha: "Sábado 25 de julio", hora: "19:00 hrs.", tv: "Por confirmar" },
-          { id: 14, local: "Tapatío", visitante: "Cruz Azul Hidalgo", fecha: "Domingo 26 de julio", hora: "17:00 hrs.", tv: "Por confirmar" },
-          { id: 15, local: "Zacatecas", visitante: "Correcaminos", fecha: "Por definir", hora: "TBD", tv: "Por confirmar" },
-          { id: 16, local: "Dorados", visitante: "Cancún", fecha: "Por definir", hora: "TBD", tv: "Por confirmar" },
-          { id: 17, local: "Tampico Madero", visitante: "Piratas", fecha: "Por definir", hora: "TBD", tv: "Por confirmar" }
-        ]
-      };
-
-      // ===== DATOS LOCALES: TABLAS TEMPORADA 2026-27 =====
-      const TABLA_LIGA_MX_27 = [
-        { rank: 1, club: "Atlante", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 2, club: "Atlas", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 3, club: "San Luis", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 4, club: "Guadalajara", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 5, club: "América", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 6, club: "Cruz Azul", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 7, club: "Monterrey", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 8, club: "Pachuca", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: true },
-        { rank: 9, club: "León", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 10, club: "Necaxa", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 11, club: "Puebla", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 12, club: "Santos", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 13, club: "Tijuana", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 14, club: "Toluca", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 15, club: "Juárez", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 16, club: "Pumas", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 17, club: "Querétaro", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false },
-        { rank: 18, club: "Tigres", pj: 0, g: 0, e: 0, p: 0, gf: 0, gc: 0, dg: 0, pts: 0, cupo: false }
-      ];
-
-      const TABLA_EXPANSION_27 = [
-        { rank: 1, club: "Alebrijes", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 2, club: "Cancún FC", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 3, club: "Club Atlético La Paz", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 4, club: "CA Morelia", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 5, club: "Correcaminos", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 6, club: "Cruz Azul Hidalgo", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 7, club: "Dorados", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 8, club: "Durango", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 9, club: "JAIBA BRAVA", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 10, club: "Mineros Zacatecas", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 11, club: "Piratas FC", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 12, club: "Tapatío", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 13, club: "Tepatitlán FC", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 14, club: "Tlaxcala", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 15, club: "U. de G.", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } },
-        { rank: 16, club: "Venados", gen: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, loc: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 }, vis: { jj: 0, jg: 0, je: 0, jp: 0, gf: 0, gc: 0, dif: 0, pts: 0 } }
-      ];
-
-      // ===== BASE DE DATOS LOCAL JUGADORES (SCOUTING) =====
-      const PROSPECTOS_MOCK = [
-        {
-          id: 1,
-          nombre: "Fidel Ambríz",
-          edad: 21,
-          club: "Monterrey",
-          categoria: "Liga MX / Selección Mayor",
-          posicion: "Pivote",
-          metricas: { "Pases Clave": 85, "Intercepciones": 90, "Recuperaciones": 88, "Duelos Ganados": 78, "Precisión Pases": 92 }
-        },
-        {
-          id: 2,
-          nombre: "Yael Padilla",
-          edad: 18,
-          club: "Guadalajara",
-          categoria: "Liga MX / Sub-23",
-          posicion: "Extremo",
-          metricas: { "Regates": 92, "Pases Clave": 78, "Goles Esperados": 80, "Centros": 75, "Precisión Pases": 81 }
-        },
-        {
-          id: 3,
-          nombre: "Heriberto Jurado",
-          edad: 19,
-          club: "Necaxa",
-          categoria: "Sub-23",
-          posicion: "Extremo",
-          metricas: { "Regates": 88, "Pases Clave": 85, "Goles Esperados": 70, "Centros": 82, "Precisión Pases": 79 }
-        },
-        {
-          id: 4,
-          nombre: "Ramón Juárez",
-          edad: 23,
-          club: "América",
-          categoria: "Liga MX",
-          posicion: "Defensa Central",
-          metricas: { "Juego Aéreo": 92, "Intercepciones": 85, "Despejes": 89, "Duelos Suelo": 82, "Precisión Pases": 88 }
-        }
-      ];
-
-      // ===== COMPONENTS =====
-
-      // Header Component
-      function Header({ activeTab, setActiveTab }) {
-        const [scrolled, setScrolled] = useState(false);
-
-        useEffect(() => {
-          const handleScroll = () => setScrolled(window.scrollY > 50);
-          window.addEventListener('scroll', handleScroll);
-          return () => window.removeEventListener('scroll', handleScroll);
-        }, []);
-
-        return (
-          <header className={`fixed top-0 left-0 right-0 z-[2000] transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-            <div className="max-w-[1400px] mx-auto px-5 py-4 flex items-center justify-between">
-              <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('inicio'); }} className="flex items-center gap-3 group">
-                <span className="font-header font-black italic text-2xl tracking-tighter uppercase text-white">
-                  F1RST<span className="text-accent group-hover:text-white transition-colors">SPORTS</span>
-                </span>
-              </a>
-              
-              <nav className="hidden md:flex items-center gap-1">
-                {[
-                  { id: 'inicio', name: 'Inicio / Calendario' },
-                  { id: 'scouting', name: 'Scouting / Radars' },
-                  { id: 'seleccion', name: 'Selección' },
-                ].map((item) => (
-                  <button 
-                    key={item.id} 
-                    onClick={() => setActiveTab(item.id)}
-                    className={`px-4 py-2 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                      activeTab === item.id 
-                        ? 'text-bg bg-accent' 
-                        : 'text-muted hover:text-white hover:bg-white/10'
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                ))}
-              </nav>
-
-              <button className="md:hidden text-white text-xl">
-                <i className="fas fa-bars"></i>
-              </button>
-            </div>
-          </header>
-        );
-      }
-
-      // Score Ticker Component
-      function ScoreTicker() {
-        const [matches, setMatches] = useState([]);
-        const [isLive, setIsLive] = useState(false);
-
-        useEffect(() => {
-          const fetchData = async () => {
-            const live = await getLiveMatches();
-            const liveLigaMX = live?.response?.filter(m => m.league.id === LIGA_MX_ID) || [];
-            
-            if (liveLigaMX.length > 0) {
-              setMatches(liveLigaMX);
-              setIsLive(true);
-            } else {
-              const fixtures = await getLigaMXFixtures();
-              if (fixtures?.response) {
-                setMatches(fixtures.response.slice(0, 12));
-                setIsLive(false);
-              }
-            }
-          };
-
-          fetchData();
-          const interval = setInterval(fetchData, 30000);
-          return () => clearInterval(interval);
-        }, []);
-
-        if (matches.length === 0) return null;
-
-        return (
-          <div className="fixed top-[72px] left-0 right-0 z-[1999] bg-card/95 backdrop-blur-sm border-b border-border">
-            <div className="flex items-center">
-              <div className={`flex-shrink-0 px-5 py-3 font-header font-extrabold text-xs uppercase ${
-                isLive ? 'bg-red-600 text-white live-badge' : 'bg-accent text-bg'
-              }`}>
-                {isLive ? (
-                  <span className="flex items-center gap-2">
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                    EN VIVO
-                  </span>
-                ) : 'LIGA MX'}
-              </div>
-              
-              <div className="ticker-wrap flex-1">
-                <div className="ticker-content flex animate-ticker">
-                  {[...matches, ...matches].map((game, i) => (
-                    <div key={i} className="flex-shrink-0 px-6 py-3 border-r border-border flex items-center gap-6">
-                      <div className="flex items-center gap-3 min-w-[140px]">
-                        <img src={game.teams?.home?.logo} className="w-6 h-6" alt="" />
-                        <span className="text-sm font-medium truncate">{game.teams?.home?.name}</span>
-                      </div>
-                      
-                      <div className="flex items-center gap-2 font-header">
-                        <span className="text-lg font-bold text-accent min-w-[24px] text-center">
-                          {game.goals?.home ?? '-'}
-                        </span>
-                        <span className="text-white/30 text-xs">VS</span>
-                        <span className="text-lg font-bold text-accent min-w-[24px] text-center">
-                          {game.goals?.away ?? '-'}
-                        </span>
-                      </div>
-                      
-                      <div className="flex items-center gap-3 min-w-[140px]">
-                        <span className="text-sm font-medium truncate text-right">{game.teams?.away?.name}</span>
-                        <img src={game.teams?.away?.logo} className="w-6 h-6" alt="" />
-                      </div>
-                      
-                      <div className="text-[10px] text-white/40 uppercase ml-2">
-                        {game.fixture?.status?.short === 'NS' 
-                          ? new Date(game.fixture.date).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' })
-                          : game.fixture?.status?.short
-                        }
-                      </div>
-                    </div>
-                  ))}
+                <div class="header-actions">
+                    <button class="btn-search" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
-              </div>
             </div>
-          </div>
-        );
-      }
+        </header>
 
-      // Hero Banner
-      function HeroBanner({ setActiveTab }) {
-        return (
-          <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-bg/80 to-transparent"></div>
-            
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
-              <div className="max-w-[1400px] mx-auto">
-                <span className="inline-flex items-center gap-2 bg-green-mx/90 text-white font-header font-bold text-xs px-4 py-2 rounded-full uppercase mb-4">
-                  <span className="text-lg">🇲🇽</span>
-                  Portal del Fútbol Mexicano
-                </span>
-                <h1 className="font-header text-4xl md:text-6xl font-black uppercase leading-none tracking-tighter mb-4">
-                  <span className="gradient-text">F1RST SPORTS</span>
-                  <br />
-                  <span className="text-white">COBERTURA & SCOUTING</span>
-                </h1>
-                <p className="text-white/70 text-base md:text-lg max-w-2xl mb-6">
-                  Sigue las jornadas de la Liga MX, Liga de Expansión, Selección Nacional y descubre el talento joven de nuestro fútbol.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <button onClick={() => setActiveTab('scouting')} className="bg-accent text-bg font-header font-bold px-6 py-2.5 rounded-lg uppercase tracking-wider text-xs hover:bg-accent-dark transition-colors">
-                    Explorar Scouting
-                  </button>
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" style="display:none;"></div>
+
+        <!-- Mobile Menu -->
+        <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menú móvil">
+            <a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a>
+            <a href="seccion-ligamx.html"><i class="fas fa-futbol"></i> Liga MX</a>
+            <a href="seccion-seleccion.html"><i class="fas fa-flag"></i> Selección Mexicana</a>
+            <a href="seccion-velocidad.html"><i class="fas fa-flag-checkered"></i> Velocidad</a>
+            <a href="seccion-estadisticas.html"><i class="fas fa-chart-bar"></i> Estadísticas</a>
+            <a href="#calendario"><i class="fas fa-calendar-alt"></i> Calendario</a>
+            <a href="#resultados"><i class="fas fa-scoreboard"></i> Resultados</a>
+            <a href="quienes-somos.html"><i class="fas fa-info-circle"></i> Quiénes Somos</a>
+        </nav>
+
+        <!-- ===== MAIN ===== -->
+        <main class="main-content">
+
+            <!-- ===== HERO: NOTICIA PRINCIPAL ===== -->
+            <section class="hero-section" aria-label="Noticia principal">
+                <div class="hero-bg">
+                    <img src="chivas-tri-hero.jpg" alt="Jugadores de Chivas convocados a la Selección Mexicana" width="1440" height="600">
                 </div>
-              </div>
-            </div>
-          </section>
-        );
-      }
-
-      // Calendario de Partidos (Jornada 1)
-      function CalendarioPartidos() {
-        const [subLiga, setSubLiga] = useState('ligamx');
-        const partidos = JORNADA_1_DATA[subLiga];
-
-        return (
-          <section className="py-12 bg-card/30 rounded-2xl border border-border p-6 mt-8">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-              <div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-8 bg-accent rounded-full"></div>
-                  <h3 className="font-header text-2xl font-bold uppercase tracking-tight">Jornada 1 - Apertura 2026</h3>
+                <div class="hero-content">
+                    <span class="category-tag green" style="background:var(--green-mx);color:white;padding:4px 12px;font-family:var(--font-head);font-weight:800;font-size:0.7rem;text-transform:uppercase;border-radius:4px;display:inline-block;margin-bottom:12px;">Selección Mexicana</span>
+                    <h1 style="font-size:clamp(1.8rem, 4vw, 3.2rem);font-weight:800;text-transform:uppercase;line-height:1.05;margin-bottom:12px;">Chivas domina la convocatoria: 8 jugadores del Rebaño en el Tri</h1>
+                    <p style="color:var(--text-muted);font-size:1rem;max-width:600px;margin-bottom:20px;">¿Mérito o favoritismo? Analizamos la fuerte presencia rojiblanca en la lista del Tri para las Eliminatorias al Mundial 2026.</p>
+                    <a href="nota-chivas-seleccion.html" style="display:inline-block;background:var(--accent);color:var(--bg-body);padding:10px 24px;font-family:var(--font-head);font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;border-radius:var(--radius-sm);transition:all var(--transition);">Leer nota completa</a>
                 </div>
-                <p className="text-white/40 text-xs mt-1">Fechas oficiales, horarios y canales de transmisión</p>
-              </div>
+            </section>
 
-              {/* Selector de Liga */}
-              <div className="flex bg-black/40 p-1 rounded-lg border border-border">
-                <button
-                  onClick={() => setSubLiga('ligamx')}
-                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    subLiga === 'ligamx' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
-                  }`}
-                >
-                  Liga MX
-                </button>
-                <button
-                  onClick={() => setSubLiga('expansion')}
-                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    subLiga === 'expansion' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
-                  }`}
-                >
-                  Liga Expansión
-                </button>
-              </div>
-            </div>
+            <!-- ===== BLOCK: NOTICIAS SECUNDARIAS ===== -->
+            <section class="section-spacing" aria-label="Noticias destacadas">
+                <div class="container">
+                    <div class="news-grid" style="margin-top:-40px;position:relative;z-index:3;">
 
-            {/* Grid de Partidos */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {partidos.map((partido) => (
-                <div 
-                  key={partido.id} 
-                  className="bg-card/80 border border-border rounded-xl p-5 hover:border-accent/40 transition-all flex flex-col justify-between h-44"
-                >
-                  <div className="flex justify-between items-center text-[10px] text-white/50 uppercase font-bold tracking-wider mb-3">
-                    <span>{partido.fecha}</span>
-                    <span className="text-accent">{partido.hora}</span>
-                  </div>
+                        <!-- Card 1 -->
+                        <a href="nota-chivas-superlider.html" class="news-card">
+                            <div class="card-image">
+                                <img src="chivas-festejo-sanluis.jpg" alt="Chivas celebra victoria ante San Luis" loading="lazy" width="400" height="250">
+                                <span class="category-badge">Liga MX</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Chivas: Súper Líder Absoluto con paso perfecto</h3>
+                                <p class="excerpt">El Rebaño de Gabriel Milito consolida su dominio en el Clausura 2026 tras un partido dramático.</p>
+                                <div class="card-meta">
+                                    <span>31 Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
 
-                  <div className="flex flex-col gap-2 my-2">
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-sm text-white/90">{partido.local}</span>
-                      <span className="text-xs text-white/30 font-header">L</span>
+                        <!-- Card 2 -->
+                        <a href="f1-2026-revolucion.html" class="news-card">
+                            <div class="card-image">
+                                <img src="audi-f1-livery.png" alt="Audi F1 Team 2026" loading="lazy" width="400" height="250">
+                                <span class="category-badge orange">Velocidad</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>F1 2026: La revolución total de motores y aerodinámica</h3>
+                                <p class="excerpt">Audi debuta, Cadillac regresa con Checo y la aerodinámica activa dice adiós al DRS tradicional.</p>
+                                <div class="card-meta">
+                                    <span>11 Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card 3 -->
+                        <a href="nota-seleccion-mexicana.html" class="news-card">
+                            <div class="card-image">
+                                <img src="chivas-1.jpg" alt="Selección Mexicana en acción" loading="lazy" width="400" height="250">
+                                <span class="category-badge green">Selección</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>México vence 1-0 a Panamá y suma en amistosos de preparación</h3>
+                                <p class="excerpt">La Selección Mexicana muestra mejores sensaciones en su rumbo al Mundial 2026.</p>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Card 4 -->
+                        <a href="nota-wrc-2026.html" class="news-card">
+                            <div class="card-image">
+                                <img src="wrc-montecarlo-1.png" alt="Oliver Solberg WRC Monte Carlo" loading="lazy" width="400" height="250">
+                                <span class="category-badge orange">WRC</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Oliver Solberg: El rey más joven de los Alpes en Monte-Carlo</h3>
+                                <p class="excerpt">Toyota Gazoo Racing domina con un 1-2-3 histórico en la prueba más exigente del WRC.</p>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-sm text-white/90">{partido.visitante}</span>
-                      <span className="text-xs text-white/30 font-header">V</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-white/60">
-                    <div className="flex items-center gap-1.5 text-white/40">
-                      <i className="fas fa-tv text-[10px]"></i>
-                      <span className="text-[10px] uppercase font-bold tracking-wider">Transmisión:</span>
-                    </div>
-                    <span className="font-semibold text-accent text-[11px] max-w-[180px] truncate text-right">{partido.tv}</span>
-                  </div>
                 </div>
-              ))}
-            </div>
-          </section>
-        );
-      }
+            </section>
 
-      // NUEVO COMPONENTE: STANDINGS TABLE TEMPORADA 2026-27 (LIGA MX & EXPANSIÓN)
-      function StandingsTable() {
-        const [ligaSeleccionada, setLigaSeleccionada] = useState('ligamx');
-        const [filtroExpansion, setFiltroExpansion] = useState('gen'); // gen, loc, vis
+            <hr class="section-divider">
 
-        return (
-          <div className="glass-card rounded-2xl overflow-hidden mt-8">
-            {/* Header del modulo de tablas */}
-            <div className="p-5 border-b border-border flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-              <div>
-                <h3 className="font-header text-xl font-bold uppercase tracking-tight">Tablas de Posiciones</h3>
-                <p className="text-white/40 text-xs mt-1">Temporada 2026–27 (Estadísticas Iniciales)</p>
-              </div>
-
-              {/* Toggles de Ligas */}
-              <div className="flex bg-black/40 p-1 rounded-lg border border-border">
-                <button
-                  onClick={() => setLigaSeleccionada('ligamx')}
-                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    ligaSeleccionada === 'ligamx' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
-                  }`}
-                >
-                  Liga MX
-                </button>
-                <button
-                  onClick={() => setLigaSeleccionada('expansion')}
-                  className={`px-4 py-2 rounded-md font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    ligaSeleccionada === 'expansion' ? 'bg-accent text-bg' : 'text-muted hover:text-white'
-                  }`}
-                >
-                  Liga Expansión
-                </button>
-              </div>
-            </div>
-
-            {/* Sub-toggles específicos para Liga de Expansión (Local / Visitante / General) */}
-            {ligaSeleccionada === 'expansion' && (
-              <div className="p-3 bg-white/[0.02] border-b border-border/50 flex gap-2 overflow-x-auto">
-                {[
-                  { id: 'gen', name: 'General' },
-                  { id: 'loc', name: 'Local' },
-                  { id: 'vis', name: 'Visitante' }
-                ].map(sub => (
-                  <button
-                    key={sub.id}
-                    onClick={() => setFiltroExpansion(sub.id)}
-                    className={`px-3 py-1.5 rounded-lg font-header font-bold text-[10px] uppercase tracking-widest transition-all ${
-                      filtroExpansion === sub.id ? 'bg-white/10 text-accent border border-accent/20' : 'text-muted hover:text-white border border-transparent'
-                    }`}
-                  >
-                    {sub.name}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* TABLA LIGA MX */}
-            {ligaSeleccionada === 'ligamx' && (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="text-[10px] uppercase text-white/40 bg-white/5">
-                    <tr>
-                      <th className="text-left p-4 w-12">Rank</th>
-                      <th className="text-left p-4">Club</th>
-                      <th className="text-center p-4 w-12">PJ</th>
-                      <th className="text-center p-4 w-12">G</th>
-                      <th className="text-center p-4 w-12">E</th>
-                      <th className="text-center p-4 w-12">P</th>
-                      <th className="text-center p-4 w-12">GF</th>
-                      <th className="text-center p-4 w-12">GC</th>
-                      <th className="text-center p-4 w-12">DG</th>
-                      <th className="text-center p-4 w-14 font-bold text-accent">PTS</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {TABLA_LIGA_MX_27.map((team) => (
-                      <tr 
-                        key={team.rank} 
-                        className={`border-t border-border hover:bg-white/5 transition-colors ${
-                          team.cupo ? 'bg-accent/[0.01]' : ''
-                        }`}
-                      >
-                        <td className="p-4">
-                          <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                            team.cupo ? 'bg-accent text-bg' : 'bg-white/10 text-white/60'
-                          }`}>
-                            {team.rank}
-                          </span>
-                        </td>
-                        <td className="p-4">
-                          <div className="flex items-center gap-2">
-                            <span className="font-medium text-white">{team.club}</span>
-                            {team.cupo && (
-                              <span className="text-[8px] bg-accent/20 text-accent font-extrabold uppercase px-1.5 py-0.5 rounded tracking-wider">
-                                Liguilla
-                              </span>
-                            )}
-                          </div>
-                        </td>
-                        <td className="p-4 text-center text-white/60">{team.pj}</td>
-                        <td className="p-4 text-center text-white/60">{team.g}</td>
-                        <td className="p-4 text-center text-white/60">{team.e}</td>
-                        <td className="p-4 text-center text-white/60">{team.p}</td>
-                        <td className="p-4 text-center text-white/60">{team.gf}</td>
-                        <td className="p-4 text-center text-white/60">{team.gc}</td>
-                        <td className="p-4 text-center text-white/60">{team.dg}</td>
-                        <td className="p-4 text-center font-header text-base font-bold text-accent">{team.pts}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            {/* TABLA LIGA EXPANSIÓN */}
-            {ligaSeleccionada === 'expansion' && (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="text-[10px] uppercase text-white/40 bg-white/5">
-                    <tr>
-                      <th className="text-left p-4 w-12">Pos</th>
-                      <th className="text-left p-4">Club</th>
-                      <th className="text-center p-4 w-12">JJ</th>
-                      <th className="text-center p-4 w-12">JG</th>
-                      <th className="text-center p-4 w-12">JE</th>
-                      <th className="text-center p-4 w-12">JP</th>
-                      <th className="text-center p-4 w-12">GF</th>
-                      <th className="text-center p-4 w-12">GC</th>
-                      <th className="text-center p-4 w-12">Dif</th>
-                      <th className="text-center p-4 w-14 font-bold text-accent">PTS</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {TABLA_EXPANSION_27.map((team) => {
-                      // Elegir el set de datos segun el filtro (gen, loc, vis)
-                      const stats = team[filtroExpansion];
-                      return (
-                        <tr key={team.rank} className="border-t border-border hover:bg-white/5 transition-colors">
-                          <td className="p-4 text-white/60 font-medium text-center">{team.rank}</td>
-                          <td className="p-4 font-semibold text-white">{team.club}</td>
-                          <td className="p-4 text-center text-white/60">{stats.jj}</td>
-                          <td className="p-4 text-center text-white/60">{stats.jg}</td>
-                          <td className="p-4 text-center text-white/60">{stats.je}</td>
-                          <td className="p-4 text-center text-white/60">{stats.jp}</td>
-                          <td className="p-4 text-center text-white/60">{stats.gf}</td>
-                          <td className="p-4 text-center text-white/60">{stats.gc}</td>
-                          <td className="p-4 text-center text-white/60">{stats.dif}</td>
-                          <td className="p-4 text-center font-header text-base font-bold text-accent">{stats.pts}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-        );
-      }
-
-      // COMPONENTE: RADAR CHART EN SVG
-      function RadarChart({ metrics }) {
-        const keys = Object.keys(metrics);
-        const values = Object.values(metrics);
-        const numPoints = keys.length;
-        const size = 180;
-        const center = size / 2;
-        const radius = size * 0.35;
-
-        const getCoordinates = (valFactor, i) => {
-          const angle = (Math.PI * 2 / numPoints) * i - Math.PI / 2;
-          const r = radius * (valFactor / 100);
-          return { x: center + r * Math.cos(angle), y: center + r * Math.sin(angle) };
-        };
-
-        const gridPolygons = [0.2, 0.4, 0.6, 0.8, 1].map((factor) => {
-          return Array.from({ length: numPoints }).map((_, i) => {
-            const { x, y } = getCoordinates(factor * 100, i);
-            return `${x},${y}`;
-          }).join(" ");
-        });
-
-        const playerPoints = values.map((val, i) => {
-          const { x, y } = getCoordinates(val, i);
-          return `${x},${y}`;
-        }).join(" ");
-
-        return (
-          <div className="flex flex-col items-center">
-            <svg width={size} height={size} className="overflow-visible">
-              {gridPolygons.map((points, idx) => (
-                <polygon key={idx} points={points} fill="none" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
-              ))}
-              {Array.from({ length: numPoints }).map((_, i) => {
-                const outerPoint = getCoordinates(100, i);
-                return <line key={i} x1={center} y1={center} x2={outerPoint.x} y2={outerPoint.y} stroke="rgba(255, 255, 255, 0.1)" />;
-              })}
-              <polygon points={playerPoints} fill="rgba(204, 255, 0, 0.2)" stroke="#ccff00" strokeWidth="2" />
-              {values.map((val, i) => {
-                const { x, y } = getCoordinates(val, i);
-                return <circle key={i} cx={x} cy={y} r="3" fill="#ccff00" />;
-              })}
-              {keys.map((key, i) => {
-                const labelPos = getCoordinates(125, i);
-                let textAnchor = "middle";
-                if (labelPos.x > center + 10) textAnchor = "start";
-                if (labelPos.x < center - 10) textAnchor = "end";
-
-                return (
-                  <text key={key} x={labelPos.x} y={labelPos.y + 3} fill="#a1a1aa" fontSize="8" textAnchor={textAnchor} className="font-header font-bold uppercase tracking-wider">
-                    {key}
-                  </text>
-                );
-              })}
-            </svg>
-          </div>
-        );
-      }
-
-      // SECCIÓN: MÓDULO DE SCOUTING
-      function ScoutingSection() {
-        const [filterPos, setFilterPos] = useState('Todos');
-        const [search, setSearch] = useState('');
-
-        const posiciones = ['Todos', 'Defensa Central', 'Pivote', 'Extremo'];
-
-        const filtrados = useMemo(() => {
-          return PROSPECTOS_MOCK.filter(p => {
-            const matchesPos = filterPos === 'Todos' || p.posicion === filterPos;
-            const matchesSearch = p.nombre.toLowerCase().includes(search.toLowerCase()) || p.club.toLowerCase().includes(search.toLowerCase());
-            return matchesPos && matchesSearch;
-          });
-        }, [filterPos, search]);
-
-        return (
-          <section className="py-12 px-5 max-w-[1400px] mx-auto">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-              <div>
-                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Scouting / Prospectos</h2>
-                <p className="text-white/50 text-sm mt-1">Base de datos de rendimiento y fuerzas básicas</p>
-              </div>
-              <div className="relative">
-                <input 
-                  type="text" 
-                  placeholder="Buscar jugador..." 
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="bg-card border border-border rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:border-accent w-full md:w-64 text-white"
-                />
-                <i className="fas fa-search absolute left-3.5 top-3.5 text-white/30 text-xs"></i>
-              </div>
-            </div>
-
-            <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
-              {posiciones.map(pos => (
-                <button
-                  key={pos}
-                  onClick={() => setFilterPos(pos)}
-                  className={`px-4 py-2 rounded-lg font-header font-bold text-xs uppercase tracking-wider transition-all ${
-                    filterPos === pos ? 'bg-accent text-bg' : 'bg-card text-muted hover:text-white border border-border'
-                  }`}
-                >
-                  {pos}
-                </button>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {filtrados.map(jugador => (
-                <div key={jugador.id} className="glass-card rounded-2xl p-6 flex flex-col md:flex-row gap-6 hover:border-accent/30 transition-all">
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="bg-accent/10 text-accent font-header font-bold text-[9px] px-2.5 py-1 rounded-full uppercase">{jugador.posicion}</span>
-                        <span className="text-white/40 text-xs">{jugador.categoria}</span>
-                      </div>
-                      <h3 className="text-2xl font-black uppercase mb-1 font-header tracking-tight">{jugador.nombre}</h3>
-                      <div className="text-xs text-white/60 mb-1"><i className="fas fa-birthday-cake mr-2 text-accent"></i>{jugador.edad} años</div>
-                      <div className="text-xs text-white/60"><i className="fas fa-shield-halved mr-2 text-accent"></i>{jugador.club}</div>
+            <!-- ===== ACCESOS RÁPIDOS ===== -->
+            <section class="section-spacing" aria-label="Accesos rápidos">
+                <div class="container">
+                    <div class="quick-access-grid">
+                        <a href="seccion-ligamx.html" class="quick-card">
+                            <div class="icon-box"><i class="fas fa-futbol"></i></div>
+                            <div>
+                                <h3>Liga MX</h3>
+                                <p>Noticias, tabla, calendario y resultados del fútbol mexicano.</p>
+                            </div>
+                        </a>
+                        <a href="seccion-seleccion.html" class="quick-card">
+                            <div class="icon-box green"><i class="fas fa-flag"></i></div>
+                            <div>
+                                <h3>Selección Mexicana</h3>
+                                <p>Convocatorias, Mundial, Copa Oro y partidos del Tri.</p>
+                            </div>
+                        </a>
+                        <a href="seccion-velocidad.html" class="quick-card">
+                            <div class="icon-box orange"><i class="fas fa-flag-checkered"></i></div>
+                            <div>
+                                <h3>Velocidad</h3>
+                                <p>F1, WRC, Dakar, NASCAR y más deportes de motor.</p>
+                            </div>
+                        </a>
+                        <a href="seccion-estadisticas.html" class="quick-card">
+                            <div class="icon-box blue"><i class="fas fa-chart-bar"></i></div>
+                            <div>
+                                <h3>Estadísticas</h3>
+                                <p>Tablas de posiciones, goleadores y datos clave.</p>
+                            </div>
+                        </a>
                     </div>
-                    <div className="mt-6 space-y-2">
-                      {Object.entries(jugador.metricas).slice(0, 3).map(([key, val]) => (
-                        <div key={key} className="flex justify-between text-xs border-b border-white/5 pb-1">
-                          <span className="text-white/60">{key}</span>
-                          <span className="font-bold text-accent">{val}</span>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- ===== LIGA MX ===== -->
+            <section class="section-spacing" id="liga-mx" aria-label="Liga MX">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="bar"></div>
+                        <div>
+                            <h2>Liga MX</h2>
+                            <p class="subtitle">Apertura 2026 — Fútbol mexicano</p>
                         </div>
-                      ))}
                     </div>
-                  </div>
-                  <div className="flex items-center justify-center p-4 bg-black/40 rounded-xl border border-border/50">
-                    <RadarChart metrics={jugador.metricas} />
-                  </div>
+
+                    <div class="section-links">
+                        <a href="seccion-ligamx.html">Noticias</a>
+                        <a href="seccion-estadisticas.html">Tabla general</a>
+                        <a href="#calendario">Calendario</a>
+                        <a href="#resultados">Resultados</a>
+                        <a href="seccion-estadisticas.html">Estadísticas</a>
+                    </div>
+
+                    <div class="news-grid">
+                        <!-- Featured Liga MX -->
+                        <a href="nota-chivas-lider.html" class="news-card news-card-featured">
+                            <div class="card-image">
+                                <img src="chivas-1.jpg" alt="Chivas líder de la Liga MX" loading="lazy" width="600" height="400">
+                                <span class="category-badge">Liga MX</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Chivas, el líder imparable de Milito: Un torneo perfecto en su retorno</h3>
+                                <p class="excerpt">El Guadalajara de Gabriel Milito se ha convertido en la sensación del Clausura 2026 con un inicio histórico de victorias.</p>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Secondary Liga MX cards -->
+                        <a href="nota-final-ligamx.html" class="news-card">
+                            <div class="card-image">
+                                <img src="toluca-campeon.jpg" alt="Toluca campeón Liga MX" loading="lazy" width="400" height="250">
+                                <span class="category-badge">Liga MX</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Toluca se corona campeón: 9-8 en penales ante Tigres</h3>
+                                <div class="card-meta">
+                                    <span>Dic 2025</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-america-desmantelado.html" class="news-card">
+                            <div class="card-image">
+                                <img src="alvaro-fidalgo-salida.jpg" alt="Fidalgo sale del América" loading="lazy" width="400" height="250">
+                                <span class="category-badge">Liga MX</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>América se desarma: Fidalgo y Saint-Maximin dejan al equipo</h3>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-chivas-superlider.html" class="news-card">
+                            <div class="card-image">
+                                <img src="chivas-festejo-sanluis.jpg" alt="Chivas superlíder" loading="lazy" width="400" height="250">
+                                <span class="category-badge">Liga MX</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Chivas: Súper Líder Absoluto con paso perfecto</h3>
+                                <div class="card-meta">
+                                    <span>31 Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-barca-lider.html" class="news-card">
+                            <div class="card-image">
+                                <img src="barcelona.jpg" alt="Barcelona líder La Liga" loading="lazy" width="400" height="250">
+                                <span class="category-badge blue">La Liga</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Barcelona se consolida como líder de La Liga</h3>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-psg.html" class="news-card">
+                            <div class="card-image">
+                                <img src="psg-campeon.jpg" alt="PSG campeón" loading="lazy" width="400" height="250">
+                                <span class="category-badge blue">Internacional</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>PSG conquista título internacional</h3>
+                                <div class="card-meta">
+                                    <span>2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-              ))}
-            </div>
-          </section>
-        );
-      }
+            </section>
 
-      // SECCIÓN: SELECCIÓN NACIONAL
-      function MexicoSection() {
-        const [nextMatches, setNextMatches] = useState([]);
-        const [lastResults, setLastResults] = useState([]);
-        const [activeTab, setActiveTab] = useState('next');
+            <hr class="section-divider">
 
-        useEffect(() => {
-          const fetchData = async () => {
-            const next = await getMexicoNextFixtures();
-            if (next?.response) setNextMatches(next.response);
-            
-            const last = await getMexicoLastResults();
-            if (last?.response) setLastResults(last.response);
-          };
-          fetchData();
-        }, []);
-
-        return (
-          <section className="py-12 px-5 max-w-[1400px] mx-auto">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-1.5 h-12 bg-green-mx rounded-full"></div>
-              <div>
-                <h2 className="font-header text-3xl md:text-4xl font-bold uppercase tracking-tight">Selección Mexicana</h2>
-                <p className="text-white/50 text-sm mt-1">Estatus y partidos</p>
-              </div>
-            </div>
-
-            <div className="flex gap-2 mb-6">
-              <button
-                onClick={() => setActiveTab('next')}
-                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                  activeTab === 'next' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
-                }`}
-              >
-                Próximos Partidos
-              </button>
-              <button
-                onClick={() => setActiveTab('results')}
-                className={`px-6 py-3 rounded-lg font-header font-bold text-sm uppercase tracking-wider transition-all ${
-                  activeTab === 'results' ? 'bg-green-mx text-white' : 'bg-white/5 text-white/50 hover:bg-white/10'
-                }`}
-              >
-                Últimos Resultados
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              {activeTab === 'next' ? (
-                nextMatches.length > 0 ? (
-                  nextMatches.map((match) => (
-                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
-                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
-                      <span className="text-sm font-bold text-accent">{new Date(match.fixture.date).toLocaleDateString('es-MX')}</span>
+            <!-- ===== SELECCIÓN MEXICANA ===== -->
+            <section class="section-spacing" id="seleccion" aria-label="Selección Mexicana">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="bar green"></div>
+                        <div>
+                            <h2>Selección Mexicana</h2>
+                            <p class="subtitle">El Tri en su camino al Mundial 2026</p>
+                        </div>
                     </div>
-                  ))
-                ) : (
-                  <p className="text-white/50">No hay partidos próximos registrados.</p>
-                )
-              ) : (
-                lastResults.length > 0 ? (
-                  lastResults.map((match) => (
-                    <div key={match.fixture.id} className="glass-card rounded-xl p-5 border border-border flex justify-between items-center">
-                      <span className="text-xs text-white/60 font-semibold">{match.league.name}</span>
-                      <span className="font-bold text-accent">{match.goals.home} - {match.goals.away}</span>
+
+                    <div class="filter-tags" role="group" aria-label="Filtros de selección">
+                        <span class="filter-tag active">Todos</span>
+                        <span class="filter-tag">Selección Mayor</span>
+                        <span class="filter-tag">Mundial</span>
+                        <span class="filter-tag">Copa Oro</span>
+                        <span class="filter-tag">Nations League</span>
+                        <span class="filter-tag">Convocatorias</span>
                     </div>
-                  ))
-                ) : (
-                  <p className="text-white/50">Cargando...</p>
-                )
-              )}
+
+                    <div class="news-grid">
+                        <!-- Featured Selección -->
+                        <a href="nota-chivas-seleccion.html" class="news-card news-card-featured">
+                            <div class="card-image">
+                                <img src="chivas-tri-hero.jpg" alt="Chivas en la Selección Mexicana" loading="lazy" width="600" height="400">
+                                <span class="category-badge green">Selección</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Chivas domina la convocatoria: 8 jugadores del Rebaño en la Selección Mexicana</h3>
+                                <p class="excerpt">La más reciente convocatoria de la Selección Mexicana no pasó desapercibida y encendió el debate sobre la presencia rojiblanca.</p>
+                                <div class="card-meta">
+                                    <span>15 Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-mexico-grupo.html" class="news-card">
+                            <div class="card-image">
+                                <img src="mexico-grupo.jpg" alt="México en el sorteo Mundial 2026" loading="lazy" width="400" height="250">
+                                <span class="category-badge green">Mundial</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>México en el Grupo A del Mundial 2026: El camino del Tri</h3>
+                                <div class="card-meta">
+                                    <span>Dic 2025</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-chucky-lozano.html" class="news-card">
+                            <div class="card-image">
+                                <img src="chucky-1.webp" alt="Chucky Lozano" loading="lazy" width="400" height="250">
+                                <span class="category-badge green">Selección</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Chucky Lozano: La crisis de un referente del fútbol mexicano</h3>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-seleccion-mexicana.html" class="news-card">
+                            <div class="card-image">
+                                <img src="chivas-2.jpg" alt="México vs Panamá" loading="lazy" width="400" height="250">
+                                <span class="category-badge green">Amistoso</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>México gana 1-0 a Panamá y suma en preparación mundialista</h3>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-mexico.html" class="news-card">
+                            <div class="card-image">
+                                <img src="mexico-calendario-2026.jpg" alt="Calendario Selección Mexicana" loading="lazy" width="400" height="250">
+                                <span class="category-badge green">Mundial</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>La crisis del Tri pre-Mundial: ¿Está listo México para 2026?</h3>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-sorteo.html" class="news-card">
+                            <div class="card-image">
+                                <img src="sorteo.png" alt="Sorteo Mundial 2026" loading="lazy" width="400" height="250">
+                                <span class="category-badge green">Mundial</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Sorteo del Mundial 2026: Todos los grupos y partidos</h3>
+                                <div class="card-meta">
+                                    <span>Dic 2025</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- ===== VELOCIDAD ===== -->
+            <section class="section-spacing" id="velocidad" aria-label="Velocidad - Deportes de motor">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="bar orange"></div>
+                        <div>
+                            <h2>Velocidad</h2>
+                            <p class="subtitle">Fórmula 1, WRC, Dakar, NASCAR y más</p>
+                        </div>
+                    </div>
+
+                    <div class="filter-tags" role="group" aria-label="Filtros de velocidad">
+                        <a href="seccion-velocidad.html" class="filter-tag active">Todos</a>
+                        <a href="seccion-velocidad.html" class="filter-tag">Fórmula 1</a>
+                        <a href="seccion-velocidad.html" class="filter-tag">WRC</a>
+                        <a href="seccion-velocidad.html" class="filter-tag">Dakar</a>
+                        <a href="seccion-velocidad.html" class="filter-tag">NASCAR</a>
+                        <a href="seccion-velocidad.html" class="filter-tag">Rally</a>
+                    </div>
+
+                    <div class="news-grid">
+                        <!-- Featured Velocidad -->
+                        <a href="f1-2026-revolucion.html" class="news-card news-card-featured">
+                            <div class="card-image">
+                                <img src="f1-2026-concept.png" alt="Fórmula 1 2026 concepto" loading="lazy" width="600" height="400">
+                                <span class="category-badge orange">Fórmula 1</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>F1 2026: Nuevas reglas, el debut de Audi y el regreso de Checo con Cadillac</h3>
+                                <p class="excerpt">La temporada más revolucionaria de la F1 se acerca: motores 50/50, aerodinámica activa y dos equipos nuevos en la parrilla.</p>
+                                <div class="card-meta">
+                                    <span>11 Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-dakar-2026.html" class="news-card">
+                            <div class="card-image">
+                                <img src="luciano-benavides-win.png" alt="Benavides campeón Dakar" loading="lazy" width="400" height="250">
+                                <span class="category-badge orange">Dakar</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Final memorable en Yanbu: Benavides derrota a Brabec por 2 segundos</h3>
+                                <div class="card-meta">
+                                    <span>21 Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-wrc-2026.html" class="news-card">
+                            <div class="card-image">
+                                <img src="wrc-montecarlo-1.png" alt="Solberg WRC Monte Carlo" loading="lazy" width="400" height="250">
+                                <span class="category-badge orange">WRC</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Oliver Solberg: El ganador más joven en la historia de Monte-Carlo</h3>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-raptor-dakar.html" class="news-card">
+                            <div class="card-image">
+                                <img src="raptor-dakar.jpg" alt="Ford Raptor Dakar 2026" loading="lazy" width="400" height="250">
+                                <span class="category-badge orange">Dakar</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Ford Raptor ataca de nuevo: Dominio en el desierto</h3>
+                                <div class="card-meta">
+                                    <span>Ene 2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="nota-wrc.html" class="news-card">
+                            <div class="card-image">
+                                <img src="wrc.jpg" alt="Ogier campeón WRC" loading="lazy" width="400" height="250">
+                                <span class="category-badge orange">WRC</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>Sébastien Ogier: Nueve veces campeón del mundo</h3>
+                                <div class="card-meta">
+                                    <span>2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="WRC2026–SEUCIA.html" class="news-card">
+                            <div class="card-image">
+                                <img src="toyota-team-suecia.jpg.png" alt="WRC Suecia 2026" loading="lazy" width="400" height="250">
+                                <span class="category-badge orange">WRC</span>
+                            </div>
+                            <div class="card-body">
+                                <h3>WRC 2026: Acción en Suecia</h3>
+                                <div class="card-meta">
+                                    <span>2026</span>
+                                    <span class="read-more">Leer más →</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- ===== ESTADÍSTICAS ===== -->
+            <section class="section-spacing" id="estadisticas" aria-label="Estadísticas">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="bar blue"></div>
+                        <div>
+                            <h2>Estadísticas <span class="demo-badge">Demo</span></h2>
+                            <p class="subtitle">Tabla de posiciones — Liga MX Apertura 2026</p>
+                        </div>
+                    </div>
+
+                    <p style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:20px;">
+                        <!-- TODO: Connect to sports API for live Liga MX standings data -->
+                        Los datos mostrados son de demostración. Se conectarán a una API deportiva en una futura actualización.
+                    </p>
+
+                    <div class="table-wrapper">
+                        <table class="data-table" aria-label="Tabla de posiciones Liga MX">
+                            <thead>
+                                <tr>
+                                    <th>Pos</th>
+                                    <th>Equipo</th>
+                                    <th>PJ</th>
+                                    <th>G</th>
+                                    <th>E</th>
+                                    <th>P</th>
+                                    <th>GF</th>
+                                    <th>GC</th>
+                                    <th>DG</th>
+                                    <th class="accent">PTS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="highlight-row">
+                                    <td><span class="rank-badge accent">1</span></td>
+                                    <td><strong>Chivas</strong></td>
+                                    <td>4</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>9</td>
+                                    <td>4</td>
+                                    <td>+5</td>
+                                    <td><strong>12</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge accent">2</span></td>
+                                    <td>Cruz Azul</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>7</td>
+                                    <td>4</td>
+                                    <td>+3</td>
+                                    <td><strong>9</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge accent">3</span></td>
+                                    <td>Atlas</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>0</td>
+                                    <td>1</td>
+                                    <td>6</td>
+                                    <td>4</td>
+                                    <td>+2</td>
+                                    <td><strong>9</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge accent">4</span></td>
+                                    <td>Pumas</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>8</td>
+                                    <td>4</td>
+                                    <td>+4</td>
+                                    <td><strong>8</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">5</span></td>
+                                    <td>América</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>5</td>
+                                    <td>3</td>
+                                    <td>+2</td>
+                                    <td><strong>7</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">6</span></td>
+                                    <td>Toluca</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>4</td>
+                                    <td>3</td>
+                                    <td>+1</td>
+                                    <td><strong>7</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">7</span></td>
+                                    <td>Monterrey</td>
+                                    <td>4</td>
+                                    <td>2</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>5</td>
+                                    <td>5</td>
+                                    <td>0</td>
+                                    <td><strong>6</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">8</span></td>
+                                    <td>Pachuca</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>4</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td><strong>5</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">9</span></td>
+                                    <td>Tigres</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>5</td>
+                                    <td>-2</td>
+                                    <td><strong>4</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">10</span></td>
+                                    <td>Santos</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>5</td>
+                                    <td>-2</td>
+                                    <td><strong>4</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">11</span></td>
+                                    <td>Necaxa</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td>6</td>
+                                    <td>-3</td>
+                                    <td><strong>3</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank-badge muted">12</span></td>
+                                    <td>Puebla</td>
+                                    <td>4</td>
+                                    <td>0</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>5</td>
+                                    <td>-3</td>
+                                    <td><strong>2</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <a href="seccion-estadisticas.html" style="display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-family:var(--font-head);font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.5px;">
+                            Ver estadísticas completas <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="brand-text">F1RST<span class="accent">SPORTS</span></span>
+                    <p>El hogar del fútbol mexicano y los deportes de velocidad. Cobertura, análisis y estadísticas con la más alta calidad editorial.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:contacto@f1rstsports.com.mx" aria-label="Correo electrónico"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Secciones</h4>
+                    <a href="seccion-ligamx.html">Liga MX</a>
+                    <a href="seccion-seleccion.html">Selección Mexicana</a>
+                    <a href="seccion-velocidad.html">Velocidad</a>
+                    <a href="seccion-estadisticas.html">Estadísticas</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Más</h4>
+                    <a href="seccion-nfl.html">NFL</a>
+                    <a href="seccion-tenis.html">Tenis</a>
+                    <a href="seccion-beisbol.html">Béisbol</a>
+                    <a href="boxeo.html">Boxeo</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Portal</h4>
+                    <a href="quienes-somos.html">Quiénes Somos</a>
+                    <a href="aviso-privacidad.html">Aviso de Privacidad</a>
+                    <a href="mailto:contacto@f1rstsports.com.mx">Contacto</a>
+                </div>
             </div>
-          </section>
-        );
-      }
-
-      // Footer Component
-      function Footer() {
-        return (
-          <footer className="bg-card border-t border-border mt-auto">
-            <div className="max-w-[1400px] mx-auto px-5 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-xs text-white/30 uppercase tracking-widest">
-                &copy; 2026 F1RSTSPORTS MEDIA. TODOS LOS DERECHOS RESERVADOS.
-              </div>
-              <div className="text-[10px] text-white/20">
-                F1RSTSPORTS es una plataforma libre de costo.
-              </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 F1rstSports Media. Todos los derechos reservados.</span>
+                <span>F1rstSports es una plataforma de información deportiva independiente.</span>
             </div>
-          </footer>
-        );
-      }
+        </footer>
 
-      // ===== MAIN APP =====
-      function App() {
-        const [activeTab, setActiveTab] = useState('inicio');
+    </div><!-- /.page-wrapper -->
 
-        return (
-          <div className="min-h-screen flex flex-col bg-bg">
-            <Header activeTab={activeTab} setActiveTab={setActiveTab} />
-            
-            <main className="flex-1 pt-[90px]">
-              {activeTab === 'inicio' && (
-                <>
-                  <HeroBanner setActiveTab={setActiveTab} />
-                  <div className="max-w-[1400px] mx-auto px-5">
-                    <CalendarioPartidos />
-                    <StandingsTable />
-                  </div>
-                </>
-              )}
-
-              {activeTab === 'scouting' && <ScoutingSection />}
-              {activeTab === 'seleccion' && <MexicoSection />}
-            </main>
-
-            <Footer />
-          </div>
-        );
-      }
-
-      const root = ReactDOM.createRoot(document.getElementById('root'));
-      root.render(<App />);
-    </script>
+    <!-- Shared JS -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
